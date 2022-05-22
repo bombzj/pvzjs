@@ -1,0 +1,3458 @@
+{
+    "sleep": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 46.6,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "x": 43.9,
+                    "y": 49.3,
+                    "sy": 0.455,
+                    "f": 0,
+                    "i": "puffshroom_blink2",
+                    "sx": 0.44
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.9,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.3,
+                    "sy": 0.44,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29,
+                    "sx": 0.444,
+                    "sy": 0.431,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.5,
+                    "sy": 0.459,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.3,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "sy": 0.431,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.1,
+                    "y": 29.6,
+                    "sx": 0.448,
+                    "sy": 0.422,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.6,
+                    "sy": 0.463,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.6,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.8,
+                    "sy": 0.421,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.4,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.9,
+                    "y": 30.3,
+                    "sx": 0.451,
+                    "sy": 0.413,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.9,
+                    "sy": 0.467,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 48,
+                    "sy": 0.402,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 52,
+                    "sy": 0.411,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.8,
+                    "y": 30.9,
+                    "sx": 0.455,
+                    "sy": 0.405,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 50,
+                    "sy": 0.471,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.7,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "kx": 17.7,
+                    "sx": 0.472,
+                    "sy": 0.419,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "y": 31.3,
+                    "sy": 0.394,
+                    "x": 21.8,
+                    "sx": 0.455,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "sy": 0.44,
+                    "x": 43.9,
+                    "y": 50,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.4,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.5,
+                    "y": 51.3,
+                    "kx": 11.8,
+                    "sx": 0.465,
+                    "sy": 0.429,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22,
+                    "y": 30.3,
+                    "sx": 0.45,
+                    "sy": 0.409,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.8,
+                    "sy": 0.445,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51.1,
+                    "kx": 5.8,
+                    "sx": 0.457,
+                    "sy": 0.44,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29.3,
+                    "sx": 0.445,
+                    "sy": 0.425,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.5,
+                    "sy": 0.45,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.3,
+                    "sy": 0.455,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.3,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.6,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.8,
+                    "sx": 0.437,
+                    "sy": 0.449,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49,
+                    "sy": 0.459,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.6,
+                    "sy": 0.468,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.6,
+                    "y": 27.2,
+                    "sx": 0.434,
+                    "sy": 0.458,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.8,
+                    "sy": 0.463,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.7,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.4,
+                    "sy": 0.476,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.3,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.6,
+                    "sx": 0.43,
+                    "sy": 0.467,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.6,
+                    "sy": 0.467,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.4,
+                    "sy": 0.474,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.1,
+                    "sy": 0.485,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.4,
+                    "sy": 0.471,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.8,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.7,
+                    "kx": -13,
+                    "sx": 0.462,
+                    "sy": 0.478,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 47.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.5,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "sy": 0.471,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "kx": -8.5,
+                    "sx": 0.458,
+                    "sy": 0.469,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.8,
+                    "sx": 0.432,
+                    "sy": 0.464,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.9,
+                    "sy": 0.466,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.4,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.9,
+                    "kx": -4.2,
+                    "sx": 0.454,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.6,
+                    "sx": 0.436,
+                    "sy": 0.452,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49,
+                    "sy": 0.461,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.3,
+                    "sy": 0.455,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            }
+        ]
+    },
+    "shooting": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 46.6,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.1,
+                    "ky": -0.9,
+                    "sx": 0.436,
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.402,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 48.8,
+                    "sx": 0.432,
+                    "y": 48.8,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.8,
+                    "y": 27.9,
+                    "ky": -1.2,
+                    "sx": 0.436,
+                    "sy": 0.45,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29,
+                    "ky": -1.9,
+                    "sx": 0.431,
+                    "sy": 0.441,
+                    "y": 46.6,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.354,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 48.1,
+                    "kx": 0,
+                    "sx": 0.413,
+                    "y": 48.8,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.3,
+                    "y": 27.4,
+                    "ky": -2.4,
+                    "sx": 0.432,
+                    "sy": 0.46,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.7,
+                    "ky": -2.9,
+                    "sx": 0.427,
+                    "y": 46.6,
+                    "sy": 0.441,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.307,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 47.5,
+                    "y": 48.9,
+                    "kx": -0.2,
+                    "sx": 0.395,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 20.8,
+                    "y": 27,
+                    "ky": -3.7,
+                    "sx": 0.428,
+                    "sy": 0.47,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.5,
+                    "ky": -3.9,
+                    "sx": 0.423,
+                    "y": 46.6,
+                    "sy": 0.441,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.259,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 46.9,
+                    "sx": 0.377,
+                    "y": 48.9,
+                    "sy": 0.45,
+                    "kx": -0.2,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 20.2,
+                    "y": 26.5,
+                    "ky": -4.9,
+                    "sx": 0.424,
+                    "sy": 0.481,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.3,
+                    "ky": -5.1,
+                    "sx": 0.419,
+                    "sy": 0.442,
+                    "y": 46.6,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.211,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 46.2,
+                    "y": 48.8,
+                    "kx": -0.4,
+                    "sx": 0.358,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 19.6,
+                    "y": 26.1,
+                    "ky": -6.3,
+                    "sx": 0.42,
+                    "sy": 0.491,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.6,
+                    "y": 46.9,
+                    "ky": -2.4,
+                    "sx": 0.434,
+                    "sy": 0.43,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 46.6,
+                    "y": 51.3,
+                    "sx": 0.518,
+                    "sy": 0.436,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 47.5,
+                    "y": 48.6,
+                    "kx": -0.2,
+                    "sx": 0.399,
+                    "sy": 0.47,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 19,
+                    "y": 27.4,
+                    "kx": -2.7,
+                    "ky": -9.1,
+                    "sx": 0.42,
+                    "sy": 0.491,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.8,
+                    "y": 47.1,
+                    "ky": 0,
+                    "sx": 0.449,
+                    "sy": 0.419,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 45.6,
+                    "y": 51.5,
+                    "sx": 0.825,
+                    "sy": 0.421,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 48.9,
+                    "y": 48.4,
+                    "sx": 0.44,
+                    "sy": 0.491,
+                    "kx": -0.2,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 20.5,
+                    "y": 28.7,
+                    "kx": -1.7,
+                    "ky": -5.9,
+                    "sx": 0.432,
+                    "sy": 0.456,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.9,
+                    "y": 47.5,
+                    "ky": 2.3,
+                    "sx": 0.464,
+                    "sy": 0.407,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 44.6,
+                    "y": 51.7,
+                    "sx": 1.132,
+                    "sy": 0.407,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 50.2,
+                    "y": 48.2,
+                    "kx": 0,
+                    "sx": 0.481,
+                    "sy": 0.511,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22,
+                    "y": 30,
+                    "kx": -0.7,
+                    "ky": -2.9,
+                    "sx": 0.445,
+                    "sy": 0.421,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "x": 44.6,
+                    "y": 49.8,
+                    "sx": 0.44,
+                    "sy": 0.401,
+                    "f": 0,
+                    "i": "puffshroom_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29,
+                    "y": 47.8,
+                    "ky": 5,
+                    "sx": 0.48,
+                    "sy": 0.396,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 44,
+                    "y": 51.9,
+                    "sx": 1.439,
+                    "sy": 0.393,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 51.5,
+                    "y": 48.1,
+                    "sx": 0.522,
+                    "sy": 0.532,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 23.4,
+                    "y": 31.4,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.458,
+                    "sy": 0.387,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "x": 44.9,
+                    "y": 49.9,
+                    "sy": 0.417,
+                    "i": "puffshroom_blink2",
+                    "sx": 0.44
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.2,
+                    "y": 47.4,
+                    "ky": 3.3,
+                    "sx": 0.466,
+                    "sy": 0.41,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 45.2,
+                    "y": 51.6,
+                    "sx": 1.109,
+                    "sy": 0.412,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 50.8,
+                    "y": 48.4,
+                    "sx": 0.498,
+                    "sy": 0.505,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 24.4,
+                    "y": 31.1,
+                    "sx": 0.442,
+                    "sy": 0.397,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.8,
+                    "i": "puffshroom_blink1",
+                    "x": 44.9,
+                    "sx": 0.44,
+                    "sy": 0.417
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 47,
+                    "ky": 1.5,
+                    "sx": 0.453,
+                    "sy": 0.425,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 46.5,
+                    "y": 51.3,
+                    "sx": 0.78,
+                    "sy": 0.431,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 50.1,
+                    "y": 48.5,
+                    "sx": 0.474,
+                    "sy": 0.477,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 23.4,
+                    "y": 29.8,
+                    "sx": 0.441,
+                    "sy": 0.418,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "ky": 0,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                }
+            }
+        ]
+    },
+    "idle": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 46.6,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "f": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "f": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "f": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "f": 0,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.9,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.3,
+                    "sy": 0.44,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29,
+                    "sx": 0.444,
+                    "sy": 0.431,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.3,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "sy": 0.431,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.1,
+                    "y": 29.6,
+                    "sx": 0.448,
+                    "sy": 0.422,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.6,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.8,
+                    "sy": 0.421,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.4,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.9,
+                    "y": 30.3,
+                    "sx": 0.451,
+                    "sy": 0.413,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 48,
+                    "sy": 0.402,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 52,
+                    "sy": 0.411,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.8,
+                    "y": 30.9,
+                    "sx": 0.455,
+                    "sy": 0.405,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.7,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "kx": 17.7,
+                    "sx": 0.472,
+                    "sy": 0.419,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "y": 31.3,
+                    "sy": 0.394,
+                    "x": 21.8,
+                    "sx": 0.455,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.4,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.5,
+                    "y": 51.3,
+                    "kx": 11.8,
+                    "sx": 0.465,
+                    "sy": 0.429,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22,
+                    "y": 30.3,
+                    "sx": 0.45,
+                    "sy": 0.409,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51.1,
+                    "kx": 5.8,
+                    "sx": 0.457,
+                    "sy": 0.44,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29.3,
+                    "sx": 0.445,
+                    "sy": 0.425,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.3,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.6,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.8,
+                    "sx": 0.437,
+                    "sy": 0.449,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.6,
+                    "sy": 0.468,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.6,
+                    "y": 27.2,
+                    "sx": 0.434,
+                    "sy": 0.458,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.7,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.4,
+                    "sy": 0.476,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.3,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.6,
+                    "sx": 0.43,
+                    "sy": 0.467,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.4,
+                    "sy": 0.474,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.1,
+                    "sy": 0.485,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.8,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.7,
+                    "kx": -13,
+                    "sx": 0.462,
+                    "sy": 0.478,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 47.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "kx": -8.5,
+                    "sx": 0.458,
+                    "sy": 0.469,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.8,
+                    "sx": 0.432,
+                    "sy": 0.464,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.4,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.9,
+                    "kx": -4.2,
+                    "sx": 0.454,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.6,
+                    "sx": 0.436,
+                    "sy": 0.452,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_head"
+                }
+            }
+        ]
+    },
+    "face": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 46.6,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "f": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "f": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "f": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "f": 0,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.9,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.3,
+                    "sy": 0.44,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29,
+                    "sx": 0.444,
+                    "sy": 0.431,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.3,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "sy": 0.431,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.1,
+                    "y": 29.6,
+                    "sx": 0.448,
+                    "sy": 0.422,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.6,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.8,
+                    "sy": 0.421,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.4,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.9,
+                    "y": 30.3,
+                    "sx": 0.451,
+                    "sy": 0.413,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 48,
+                    "sy": 0.402,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 52,
+                    "sy": 0.411,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.8,
+                    "y": 30.9,
+                    "sx": 0.455,
+                    "sy": 0.405,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.7,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "kx": 17.7,
+                    "sx": 0.472,
+                    "sy": 0.419,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "y": 31.3,
+                    "sy": 0.394,
+                    "x": 21.8,
+                    "sx": 0.455,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.4,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.5,
+                    "y": 51.3,
+                    "kx": 11.8,
+                    "sx": 0.465,
+                    "sy": 0.429,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22,
+                    "y": 30.3,
+                    "sx": 0.45,
+                    "sy": 0.409,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51.1,
+                    "kx": 5.8,
+                    "sx": 0.457,
+                    "sy": 0.44,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29.3,
+                    "sx": 0.445,
+                    "sy": 0.425,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.3,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.6,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.8,
+                    "sx": 0.437,
+                    "sy": 0.449,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.6,
+                    "sy": 0.468,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.6,
+                    "y": 27.2,
+                    "sx": 0.434,
+                    "sy": 0.458,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.7,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.4,
+                    "sy": 0.476,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.3,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.6,
+                    "sx": 0.43,
+                    "sy": 0.467,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.4,
+                    "sy": 0.474,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.1,
+                    "sy": 0.485,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.8,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.7,
+                    "kx": -13,
+                    "sx": 0.462,
+                    "sy": 0.478,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 47.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "kx": -8.5,
+                    "sx": 0.458,
+                    "sy": 0.469,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.8,
+                    "sx": 0.432,
+                    "sy": 0.464,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.4,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.9,
+                    "kx": -4.2,
+                    "sx": 0.454,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.6,
+                    "sx": 0.436,
+                    "sy": 0.452,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 46.6,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.1,
+                    "ky": -0.9,
+                    "sx": 0.436,
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.402,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 48.8,
+                    "sx": 0.432,
+                    "y": 48.8,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.8,
+                    "y": 27.9,
+                    "ky": -1.2,
+                    "sx": 0.436,
+                    "sy": 0.45,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29,
+                    "ky": -1.9,
+                    "sx": 0.431,
+                    "sy": 0.441,
+                    "y": 46.6,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.354,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 48.1,
+                    "kx": 0,
+                    "sx": 0.413,
+                    "y": 48.8,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.3,
+                    "y": 27.4,
+                    "ky": -2.4,
+                    "sx": 0.432,
+                    "sy": 0.46,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.7,
+                    "ky": -2.9,
+                    "sx": 0.427,
+                    "y": 46.6,
+                    "sy": 0.441,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.307,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 47.5,
+                    "y": 48.9,
+                    "kx": -0.2,
+                    "sx": 0.395,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 20.8,
+                    "y": 27,
+                    "ky": -3.7,
+                    "sx": 0.428,
+                    "sy": 0.47,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.5,
+                    "ky": -3.9,
+                    "sx": 0.423,
+                    "y": 46.6,
+                    "sy": 0.441,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.259,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 46.9,
+                    "sx": 0.377,
+                    "y": 48.9,
+                    "sy": 0.45,
+                    "kx": -0.2,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 20.2,
+                    "y": 26.5,
+                    "ky": -4.9,
+                    "sx": 0.424,
+                    "sy": 0.481,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.3,
+                    "ky": -5.1,
+                    "sx": 0.419,
+                    "sy": 0.442,
+                    "y": 46.6,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "sx": 0.211,
+                    "x": 47.6,
+                    "y": 51,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 46.2,
+                    "y": 48.8,
+                    "kx": -0.4,
+                    "sx": 0.358,
+                    "sy": 0.45,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 19.6,
+                    "y": 26.1,
+                    "ky": -6.3,
+                    "sx": 0.42,
+                    "sy": 0.491,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.6,
+                    "y": 46.9,
+                    "ky": -2.4,
+                    "sx": 0.434,
+                    "sy": 0.43,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 46.6,
+                    "y": 51.3,
+                    "sx": 0.518,
+                    "sy": 0.436,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 47.5,
+                    "y": 48.6,
+                    "kx": -0.2,
+                    "sx": 0.399,
+                    "sy": 0.47,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 19,
+                    "y": 27.4,
+                    "kx": -2.7,
+                    "ky": -9.1,
+                    "sx": 0.42,
+                    "sy": 0.491,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.8,
+                    "y": 47.1,
+                    "ky": 0,
+                    "sx": 0.449,
+                    "sy": 0.419,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 45.6,
+                    "y": 51.5,
+                    "sx": 0.825,
+                    "sy": 0.421,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 48.9,
+                    "y": 48.4,
+                    "sx": 0.44,
+                    "sy": 0.491,
+                    "kx": -0.2,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 20.5,
+                    "y": 28.7,
+                    "kx": -1.7,
+                    "ky": -5.9,
+                    "sx": 0.432,
+                    "sy": 0.456,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 28.9,
+                    "y": 47.5,
+                    "ky": 2.3,
+                    "sx": 0.464,
+                    "sy": 0.407,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 44.6,
+                    "y": 51.7,
+                    "sx": 1.132,
+                    "sy": 0.407,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 50.2,
+                    "y": 48.2,
+                    "kx": 0,
+                    "sx": 0.481,
+                    "sy": 0.511,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22,
+                    "y": 30,
+                    "kx": -0.7,
+                    "ky": -2.9,
+                    "sx": 0.445,
+                    "sy": 0.421,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "x": 44.6,
+                    "y": 49.8,
+                    "sx": 0.44,
+                    "sy": 0.401,
+                    "f": 0,
+                    "i": "puffshroom_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29,
+                    "y": 47.8,
+                    "ky": 5,
+                    "sx": 0.48,
+                    "sy": 0.396,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 44,
+                    "y": 51.9,
+                    "sx": 1.439,
+                    "sy": 0.393,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 51.5,
+                    "y": 48.1,
+                    "sx": 0.522,
+                    "sy": 0.532,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 23.4,
+                    "y": 31.4,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.458,
+                    "sy": 0.387,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "x": 44.9,
+                    "y": 49.9,
+                    "sy": 0.417,
+                    "i": "puffshroom_blink2",
+                    "sx": 0.44
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.2,
+                    "y": 47.4,
+                    "ky": 3.3,
+                    "sx": 0.466,
+                    "sy": 0.41,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 45.2,
+                    "y": 51.6,
+                    "sx": 1.109,
+                    "sy": 0.412,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 50.8,
+                    "y": 48.4,
+                    "sx": 0.498,
+                    "sy": 0.505,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 24.4,
+                    "y": 31.1,
+                    "sx": 0.442,
+                    "sy": 0.397,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.8,
+                    "i": "puffshroom_blink1",
+                    "x": 44.9,
+                    "sx": 0.44,
+                    "sy": 0.417
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 47,
+                    "ky": 1.5,
+                    "sx": 0.453,
+                    "sy": 0.425,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 46.5,
+                    "y": 51.3,
+                    "sx": 0.78,
+                    "sy": 0.431,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 50.1,
+                    "y": 48.5,
+                    "sx": 0.474,
+                    "sy": 0.477,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 23.4,
+                    "y": 29.8,
+                    "sx": 0.441,
+                    "sy": 0.418,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "ky": 0,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 29.3,
+                    "y": 46.6,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "x": 49.4,
+                    "y": 48.8,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "x": 43.9,
+                    "y": 49.3,
+                    "sy": 0.455,
+                    "f": 0,
+                    "i": "puffshroom_blink2",
+                    "sx": 0.44
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.9,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.3,
+                    "sy": 0.44,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29,
+                    "sx": 0.444,
+                    "sy": 0.431,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.5,
+                    "sy": 0.459,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.3,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "sy": 0.431,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.1,
+                    "y": 29.6,
+                    "sx": 0.448,
+                    "sy": 0.422,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.6,
+                    "sy": 0.463,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.6,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.8,
+                    "sy": 0.421,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.4,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.9,
+                    "y": 30.3,
+                    "sx": 0.451,
+                    "sy": 0.413,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.9,
+                    "sy": 0.467,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 48,
+                    "sy": 0.402,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 52,
+                    "sy": 0.411,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 21.8,
+                    "y": 30.9,
+                    "sx": 0.455,
+                    "sy": 0.405,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 50,
+                    "sy": 0.471,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.7,
+                    "sy": 0.411,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51.5,
+                    "kx": 17.7,
+                    "sx": 0.472,
+                    "sy": 0.419,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "y": 31.3,
+                    "sy": 0.394,
+                    "x": 21.8,
+                    "sx": 0.455,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "sy": 0.44,
+                    "x": 43.9,
+                    "y": 50,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47.4,
+                    "sy": 0.421,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.5,
+                    "y": 51.3,
+                    "kx": 11.8,
+                    "sx": 0.465,
+                    "sy": 0.429,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22,
+                    "y": 30.3,
+                    "sx": 0.45,
+                    "sy": 0.409,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.8,
+                    "sy": 0.445,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 47,
+                    "sy": 0.43,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "x": 47.6,
+                    "y": 51.1,
+                    "kx": 5.8,
+                    "sx": 0.457,
+                    "sy": 0.44,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 49.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.2,
+                    "y": 29.3,
+                    "sx": 0.445,
+                    "sy": 0.425,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.5,
+                    "sy": 0.45,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.3,
+                    "sy": 0.455,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.3,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.6,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.8,
+                    "sx": 0.437,
+                    "sy": 0.449,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49,
+                    "sy": 0.459,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.6,
+                    "sy": 0.468,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.6,
+                    "y": 27.2,
+                    "sx": 0.434,
+                    "sy": 0.458,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.8,
+                    "sy": 0.463,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.7,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.4,
+                    "sy": 0.476,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.3,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.6,
+                    "sx": 0.43,
+                    "sy": 0.467,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.6,
+                    "sy": 0.467,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.4,
+                    "sy": 0.474,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.1,
+                    "sy": 0.485,
+                    "x": 47.6,
+                    "sx": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.1,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.4,
+                    "sy": 0.471,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 45.8,
+                    "sy": 0.466,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.7,
+                    "kx": -13,
+                    "sx": 0.462,
+                    "sy": 0.478,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 47.9,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.9,
+                    "y": 26,
+                    "sx": 0.427,
+                    "sy": 0.475,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.5,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "sy": 0.471,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46,
+                    "sy": 0.457,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.8,
+                    "kx": -8.5,
+                    "sx": 0.458,
+                    "sy": 0.469,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.2,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.7,
+                    "y": 26.8,
+                    "sx": 0.432,
+                    "sy": 0.464,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 48.9,
+                    "sy": 0.466,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.4,
+                    "sy": 0.449,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 50.9,
+                    "kx": -4.2,
+                    "sx": 0.454,
+                    "sy": 0.459,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.5,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.5,
+                    "y": 27.6,
+                    "sx": 0.436,
+                    "sy": 0.452,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49,
+                    "sy": 0.461,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 46.6,
+                    "sy": 0.44,
+                    "x": 29.3,
+                    "sx": 0.44,
+                    "ky": 0,
+                    "i": "puffshroom_body"
+                },
+                "PuffShroom_stem": {
+                    "y": 51,
+                    "kx": 0,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "x": 47.6,
+                    "i": "puffshroom_stem"
+                },
+                "PuffShroom_tip": {
+                    "y": 48.8,
+                    "x": 49.4,
+                    "sx": 0.45,
+                    "sy": 0.45,
+                    "kx": 0,
+                    "i": "puffshroom_tip"
+                },
+                "PuffShroom_head": {
+                    "x": 22.4,
+                    "y": 28.4,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "puffshroom_head"
+                },
+                "PuffShroom_eyes": {
+                    "y": 49.3,
+                    "sy": 0.455,
+                    "x": 43.9,
+                    "sx": 0.44,
+                    "i": "puffshroom_blink2"
+                }
+            }
+        ]
+    },
+    "blink": {
+        "actionList": [
+            {
+                "anim_blink": {
+                    "x": 43.9,
+                    "y": 49.2,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "f": 0,
+                    "i": "puffshroom_blink1"
+                }
+            },
+            {
+                "anim_blink": {
+                    "f": 0,
+                    "x": 43.9,
+                    "y": 49.2,
+                    "sx": 0.44,
+                    "sy": 0.44,
+                    "i": "puffshroom_blink1"
+                }
+            }
+        ]
+    }
+}

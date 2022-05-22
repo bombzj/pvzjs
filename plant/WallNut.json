@@ -1,0 +1,775 @@
+{
+    "idle": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 6.9,
+                    "y": 3.6,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 6,
+                    "y": 4.8,
+                    "kx": -0.7,
+                    "ky": -0.7,
+                    "sy": 0.711,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 5.2,
+                    "y": 6.2,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 4.3,
+                    "y": 7.5,
+                    "kx": -2.2,
+                    "ky": -2.1,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 3.5,
+                    "y": 8.8,
+                    "kx": -2.9,
+                    "ky": -2.9,
+                    "sy": 0.686,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 4.3,
+                    "y": 7.5,
+                    "kx": -2.2,
+                    "ky": -2.2,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 5.2,
+                    "y": 6.2,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 6,
+                    "y": 4.8,
+                    "kx": -0.6,
+                    "ky": -0.6,
+                    "sy": 0.71,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7,
+                    "y": 3.6,
+                    "kx": 0,
+                    "ky": 0,
+                    "sy": 0.719,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7.9,
+                    "y": 3.9,
+                    "kx": 0.8,
+                    "ky": 0.7,
+                    "sy": 0.711,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 8.8,
+                    "y": 4.3,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 9.8,
+                    "y": 4.6,
+                    "kx": 2.3,
+                    "ky": 2.3,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 10.5,
+                    "y": 4.9,
+                    "kx": 3,
+                    "ky": 3,
+                    "sy": 0.686,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 9.6,
+                    "y": 4.5,
+                    "kx": 2.3,
+                    "ky": 2.3,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 8.7,
+                    "y": 4.2,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7.8,
+                    "y": 3.7,
+                    "kx": 0.8,
+                    "ky": 0.8,
+                    "sy": 0.711,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7,
+                    "y": 3.5,
+                    "kx": 0,
+                    "ky": 0,
+                    "sy": 0.719,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            }
+        ]
+    },
+    "face": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 6.9,
+                    "y": 3.6,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 6,
+                    "y": 4.8,
+                    "kx": -0.7,
+                    "ky": -0.7,
+                    "sy": 0.711,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 5.2,
+                    "y": 6.2,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 4.3,
+                    "y": 7.5,
+                    "kx": -2.2,
+                    "ky": -2.1,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 3.5,
+                    "y": 8.8,
+                    "kx": -2.9,
+                    "ky": -2.9,
+                    "sy": 0.686,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 4.3,
+                    "y": 7.5,
+                    "kx": -2.2,
+                    "ky": -2.2,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 5.2,
+                    "y": 6.2,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 6,
+                    "y": 4.8,
+                    "kx": -0.6,
+                    "ky": -0.6,
+                    "sy": 0.71,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7,
+                    "y": 3.6,
+                    "kx": 0,
+                    "ky": 0,
+                    "sy": 0.719,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7.9,
+                    "y": 3.9,
+                    "kx": 0.8,
+                    "ky": 0.7,
+                    "sy": 0.711,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 8.8,
+                    "y": 4.3,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 9.8,
+                    "y": 4.6,
+                    "kx": 2.3,
+                    "ky": 2.3,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 10.5,
+                    "y": 4.9,
+                    "kx": 3,
+                    "ky": 3,
+                    "sy": 0.686,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 9.6,
+                    "y": 4.5,
+                    "kx": 2.3,
+                    "ky": 2.3,
+                    "sy": 0.694,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 8.7,
+                    "y": 4.2,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sy": 0.702,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7.8,
+                    "y": 3.7,
+                    "kx": 0.8,
+                    "ky": 0.8,
+                    "sy": 0.711,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 7,
+                    "y": 3.5,
+                    "kx": 0,
+                    "ky": 0,
+                    "sy": 0.719,
+                    "sx": 0.7,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": 44.8,
+                    "y": 75.5,
+                    "f": 0
+                },
+                "anim_face": {
+                    "x": 7.3,
+                    "y": 3.6,
+                    "f": 0,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": 27.6,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 29.2,
+                    "y": -7.4,
+                    "kx": 27.6,
+                    "ky": 27.6,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": 8.9,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 56.7,
+                    "y": -6.3,
+                    "kx": 57.7,
+                    "ky": 57.7,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -11.3,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 82.5,
+                    "y": 10.1,
+                    "kx": 90,
+                    "ky": 90,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -31.5,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 96.2,
+                    "y": 33.1,
+                    "kx": 122.3,
+                    "ky": 122.3,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -50.2,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 94.6,
+                    "y": 57.9,
+                    "kx": 152.4,
+                    "ky": 152.4,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -67.4,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 81.1,
+                    "y": 76.7,
+                    "kx": 180,
+                    "ky": 180,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -84.6,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 59.1,
+                    "y": 91.3,
+                    "kx": 207.6,
+                    "ky": 207.6,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -103.4,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 31.5,
+                    "y": 94.1,
+                    "kx": 237.7,
+                    "ky": 237.7,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -123.6,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 5.7,
+                    "y": 81.7,
+                    "kx": 270,
+                    "ky": 270,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -143.8,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": -7.9,
+                    "y": 54.5,
+                    "kx": 302.3,
+                    "ky": 302.3,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -162.5,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": -6.3,
+                    "y": 25.9,
+                    "kx": 332.4,
+                    "ky": 332.4,
+                    "sx": 0.699,
+                    "sy": 0.718,
+                    "i": "wallnut_body"
+                }
+            },
+            {
+                "_ground": {
+                    "x": -179.8,
+                    "y": 75.5
+                },
+                "anim_face": {
+                    "x": 6.9,
+                    "y": 3.6,
+                    "kx": 360,
+                    "ky": 360,
+                    "sx": 0.7,
+                    "sy": 0.719,
+                    "i": "wallnut_body"
+                }
+            }
+        ]
+    },
+    "blink_twitch": {
+        "actionList": [
+            {
+                "anim_blink_twitch": {
+                    "x": 29.2,
+                    "y": 35.6,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "f": 0,
+                    "i": "wallnut_twitch"
+                }
+            },
+            {
+                "anim_blink_twitch": {
+                    "y": 34.2,
+                    "x": 29.2,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_twitch"
+                }
+            },
+            {
+                "anim_blink_twitch": {
+                    "y": 35.6,
+                    "x": 29.2,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_twitch"
+                }
+            },
+            {
+                "anim_blink_twitch": {
+                    "y": 34.2,
+                    "x": 29.2,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_twitch"
+                }
+            },
+            {
+                "anim_blink_twitch": {
+                    "y": 35.6,
+                    "x": 29.2,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_twitch"
+                }
+            }
+        ]
+    },
+    "blink_twice": {
+        "actionList": [
+            {
+                "anim_blink_twice": {
+                    "x": 28,
+                    "y": 21.6,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "f": 0,
+                    "i": "wallnut_blink1"
+                }
+            },
+            {
+                "anim_blink_twice": {
+                    "y": 21.8,
+                    "i": "wallnut_blink2",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_twice": {
+                    "y": 21.6,
+                    "i": "wallnut_blink1",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_twice": {
+                    "f": 0,
+                    "x": 28,
+                    "y": 21.6,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_blink1"
+                }
+            },
+            {
+                "anim_blink_twice": {
+                    "y": 21.8,
+                    "i": "wallnut_blink2",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_twice": {
+                    "y": 21.6,
+                    "i": "wallnut_blink1",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            }
+        ]
+    },
+    "blink_thrice": {
+        "actionList": [
+            {
+                "anim_blink_thrice": {
+                    "x": 28,
+                    "y": 21.6,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "f": 0,
+                    "i": "wallnut_blink1"
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "y": 21.8,
+                    "i": "wallnut_blink2",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "y": 21.6,
+                    "i": "wallnut_blink1",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "f": 0,
+                    "x": 28,
+                    "y": 21.6,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_blink1"
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "y": 21.8,
+                    "i": "wallnut_blink2",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "y": 21.6,
+                    "i": "wallnut_blink1",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "f": 0,
+                    "x": 28,
+                    "y": 21.6,
+                    "sx": 0.7,
+                    "sy": 0.7,
+                    "i": "wallnut_blink1"
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "y": 21.8,
+                    "i": "wallnut_blink2",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            },
+            {
+                "anim_blink_thrice": {
+                    "y": 21.6,
+                    "i": "wallnut_blink1",
+                    "x": 28,
+                    "sx": 0.7,
+                    "sy": 0.7
+                }
+            }
+        ]
+    }
+}

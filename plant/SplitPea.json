@@ -1,0 +1,4794 @@
+{
+    "idle": {
+        "actionList": [
+            {
+                "backleaf": {
+                    "x": 27.7,
+                    "y": 53,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 53.9,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.1,
+                    "y": 52.9,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 36.1,
+                    "y": 52.6,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 31,
+                    "y": 45.3,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.8,
+                    "y": 54.4,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.3,
+                    "y": 56,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.4,
+                    "y": 61.6,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 37.6,
+                    "y": 48.7,
+                    "f": 0
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 53.3,
+                    "sx": 0.561,
+                    "sy": 0.543,
+                    "x": 27.7,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "y": 54.1,
+                    "kx": 0.5,
+                    "ky": 0.5,
+                    "sx": 0.565,
+                    "sy": 0.547,
+                    "x": 25,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.2,
+                    "y": 53.1,
+                    "kx": 0.3,
+                    "ky": 0.3,
+                    "sx": 0.578,
+                    "sy": 0.547,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 36.5,
+                    "y": 52,
+                    "kx": 2,
+                    "ky": 1.3,
+                    "sx": 0.556,
+                    "sy": 0.589,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 31.4,
+                    "y": 43,
+                    "kx": 1.8,
+                    "ky": 1,
+                    "sx": 0.556,
+                    "sy": 0.633,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.7,
+                    "y": 54.6,
+                    "sx": 0.559,
+                    "sy": 0.55,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.1,
+                    "y": 56.1,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sx": 0.584,
+                    "sy": 0.554,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.5,
+                    "y": 61.4,
+                    "kx": 1.3,
+                    "ky": 1.3,
+                    "sx": 0.567,
+                    "sy": 0.554,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 38,
+                    "y": 47.1
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 53.6,
+                    "sx": 0.566,
+                    "sy": 0.53,
+                    "x": 27.7,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.9,
+                    "y": 54.2,
+                    "kx": 1,
+                    "ky": 1,
+                    "sx": 0.575,
+                    "sy": 0.539,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.3,
+                    "y": 53.4,
+                    "kx": 0.5,
+                    "ky": 0.5,
+                    "sx": 0.6,
+                    "sy": 0.539,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 36.7,
+                    "y": 51.4,
+                    "kx": 4.1,
+                    "ky": 2.8,
+                    "sx": 0.557,
+                    "sy": 0.622,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 32,
+                    "y": 40.8,
+                    "kx": 3.8,
+                    "ky": 2.3,
+                    "sx": 0.557,
+                    "sy": 0.71,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.6,
+                    "y": 54.8,
+                    "sx": 0.563,
+                    "sy": 0.544,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "kx": -2.9,
+                    "ky": -2.9,
+                    "sx": 0.613,
+                    "sy": 0.552,
+                    "x": 56.1,
+                    "y": 56.1,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "y": 61.3,
+                    "kx": 2.8,
+                    "ky": 2.8,
+                    "sx": 0.58,
+                    "sy": 0.552,
+                    "x": 19.5,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 38.3,
+                    "y": 45.5
+                }
+            },
+            {
+                "backleaf": {
+                    "x": 27.6,
+                    "y": 53.9,
+                    "sx": 0.572,
+                    "sy": 0.518,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "y": 54.4,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sx": 0.584,
+                    "sy": 0.531,
+                    "x": 24.9,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.5,
+                    "y": 53.6,
+                    "kx": 0.8,
+                    "ky": 0.8,
+                    "sx": 0.623,
+                    "sy": 0.531,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 37.1,
+                    "y": 50.8,
+                    "kx": 6.3,
+                    "ky": 4,
+                    "sx": 0.558,
+                    "sy": 0.655,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 32.5,
+                    "y": 38.6,
+                    "kx": 5.7,
+                    "ky": 3.5,
+                    "sy": 0.787,
+                    "sx": 0.557,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.5,
+                    "y": 55,
+                    "sx": 0.566,
+                    "sy": 0.538,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56,
+                    "kx": -4.4,
+                    "ky": -4.4,
+                    "sx": 0.642,
+                    "sy": 0.55,
+                    "y": 56.1,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "y": 61.1,
+                    "kx": 4,
+                    "ky": 4,
+                    "sx": 0.592,
+                    "sy": 0.55,
+                    "x": 19.5,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 38.6,
+                    "y": 43.8
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.1,
+                    "sx": 0.577,
+                    "sy": 0.505,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "y": 54.6,
+                    "kx": 2,
+                    "ky": 2,
+                    "sx": 0.594,
+                    "sy": 0.523,
+                    "x": 24.9,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "y": 54,
+                    "kx": 1.1,
+                    "ky": 1.1,
+                    "sx": 0.645,
+                    "sy": 0.523,
+                    "x": 47.5,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 37.5,
+                    "y": 50.1,
+                    "kx": 8.3,
+                    "ky": 5.5,
+                    "sx": 0.559,
+                    "sy": 0.688,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 33,
+                    "y": 38,
+                    "kx": 7.3,
+                    "ky": 4.5,
+                    "sx": 0.56,
+                    "sy": 0.81,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.4,
+                    "y": 55.1,
+                    "sx": 0.57,
+                    "sy": 0.533,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 55.9,
+                    "y": 56.3,
+                    "kx": -5.9,
+                    "ky": -5.9,
+                    "sx": 0.671,
+                    "sy": 0.548,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.6,
+                    "y": 60.9,
+                    "kx": 5.5,
+                    "ky": 5.5,
+                    "sx": 0.604,
+                    "sy": 0.548,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 39.1,
+                    "y": 43.5
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.5,
+                    "sx": 0.583,
+                    "sy": 0.492,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 54.7,
+                    "kx": 2.7,
+                    "ky": 2.7,
+                    "sx": 0.604,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.7,
+                    "y": 54.1,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sx": 0.667,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 37.9,
+                    "y": 49.6,
+                    "kx": 10.5,
+                    "ky": 6.8,
+                    "sy": 0.721,
+                    "sx": 0.559,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 33.6,
+                    "y": 37.4,
+                    "kx": 9.1,
+                    "ky": 5.5,
+                    "sx": 0.563,
+                    "sy": 0.834,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.3,
+                    "y": 55.3,
+                    "sx": 0.574,
+                    "sy": 0.527,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 55.8,
+                    "y": 56.4,
+                    "kx": -7.5,
+                    "ky": -7.5,
+                    "sx": 0.7,
+                    "sy": 0.547,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.7,
+                    "y": 60.8,
+                    "kx": 6.8,
+                    "ky": 6.8,
+                    "sx": 0.616,
+                    "sy": 0.546,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 39.6,
+                    "y": 43.1
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.8,
+                    "sx": 0.588,
+                    "sy": 0.48,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.7,
+                    "y": 55.3,
+                    "kx": 0.3,
+                    "ky": 0.3,
+                    "sx": 0.616,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.9,
+                    "y": 54.4,
+                    "kx": 2.8,
+                    "ky": 2.8,
+                    "sx": 0.66,
+                    "sy": 0.508,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 38.3,
+                    "y": 49,
+                    "kx": 12.7,
+                    "ky": 8.3,
+                    "sx": 0.56,
+                    "sy": 0.755,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 34.3,
+                    "y": 36.6,
+                    "kx": 11,
+                    "ky": 6.5,
+                    "sx": 0.566,
+                    "sy": 0.858,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.2,
+                    "y": 55.4,
+                    "sx": 0.577,
+                    "sy": 0.521,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 55.6,
+                    "y": 56.5,
+                    "kx": -9.2,
+                    "ky": -9.2,
+                    "sx": 0.729,
+                    "sy": 0.545,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.6,
+                    "y": 60.4,
+                    "kx": 8.3,
+                    "ky": 8.3,
+                    "sx": 0.628,
+                    "sy": 0.545,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 40.1,
+                    "y": 42.8
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 55,
+                    "sx": 0.594,
+                    "sy": 0.467,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.5,
+                    "y": 55.8,
+                    "kx": -1.7,
+                    "ky": -1.7,
+                    "sx": 0.628,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.1,
+                    "y": 54.8,
+                    "kx": 4.3,
+                    "ky": 4.3,
+                    "sx": 0.653,
+                    "sy": 0.5,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 39,
+                    "y": 49.1,
+                    "kx": 16.8,
+                    "ky": 10.8,
+                    "sx": 0.561,
+                    "sy": 0.733,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 35.5,
+                    "y": 36.8,
+                    "kx": 13.1,
+                    "ky": 8.8,
+                    "sx": 0.564,
+                    "sy": 0.843,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.1,
+                    "y": 55.6,
+                    "sx": 0.581,
+                    "sy": 0.516,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56,
+                    "y": 56.6,
+                    "kx": -7.5,
+                    "ky": -7.5,
+                    "sx": 0.707,
+                    "sy": 0.543,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.4,
+                    "y": 60.8,
+                    "kx": 5.8,
+                    "ky": 5.8,
+                    "sx": 0.62,
+                    "sy": 0.551,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 41.1,
+                    "y": 43.1
+                }
+            },
+            {
+                "backleaf": {
+                    "x": 27.5,
+                    "y": 55.3,
+                    "sx": 0.599,
+                    "sy": 0.454,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.3,
+                    "y": 56.4,
+                    "kx": -3.9,
+                    "ky": -3.9,
+                    "sx": 0.64,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.4,
+                    "y": 55.1,
+                    "kx": 5.8,
+                    "ky": 5.8,
+                    "sx": 0.646,
+                    "sy": 0.492,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 39.7,
+                    "y": 49.3,
+                    "kx": 20.8,
+                    "ky": 13.5,
+                    "sx": 0.562,
+                    "sy": 0.712,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 36.8,
+                    "y": 37.1,
+                    "kx": 15.5,
+                    "ky": 11,
+                    "sx": 0.562,
+                    "sy": 0.829,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22,
+                    "y": 55.8,
+                    "sx": 0.585,
+                    "sy": 0.51,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.4,
+                    "kx": -5.9,
+                    "ky": -5.9,
+                    "sx": 0.686,
+                    "sy": 0.542,
+                    "y": 56.6,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.1,
+                    "y": 61.1,
+                    "kx": 3.5,
+                    "ky": 3.5,
+                    "sx": 0.612,
+                    "sy": 0.557,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 42.1,
+                    "y": 43.5
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 55.6,
+                    "sx": 0.605,
+                    "sy": 0.442,
+                    "x": 27.5,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24,
+                    "y": 57,
+                    "kx": -6.2,
+                    "ky": -6.2,
+                    "sx": 0.652,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.6,
+                    "y": 55.4,
+                    "kx": 7.3,
+                    "ky": 7.3,
+                    "sx": 0.639,
+                    "sy": 0.484,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 40.4,
+                    "y": 49.6,
+                    "kx": 25.1,
+                    "ky": 16.1,
+                    "sx": 0.563,
+                    "sy": 0.691,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 38,
+                    "kx": 17.8,
+                    "ky": 13.3,
+                    "sx": 0.561,
+                    "sy": 0.815,
+                    "y": 37.1,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 21.9,
+                    "y": 56,
+                    "sx": 0.588,
+                    "sy": 0.504,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.8,
+                    "y": 56.8,
+                    "kx": -4.4,
+                    "ky": -4.4,
+                    "sx": 0.664,
+                    "sy": 0.54,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.9,
+                    "y": 61.4,
+                    "kx": 1.3,
+                    "ky": 1,
+                    "sx": 0.604,
+                    "sy": 0.563,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 43.2,
+                    "y": 43.8
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 55.9,
+                    "sx": 0.61,
+                    "sy": 0.429,
+                    "x": 27.5,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 23.9,
+                    "y": 57.6,
+                    "kx": -8.5,
+                    "ky": -8.5,
+                    "sx": 0.665,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.8,
+                    "y": 55.7,
+                    "kx": 8.8,
+                    "ky": 8.8,
+                    "sx": 0.633,
+                    "sy": 0.477,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 41.1,
+                    "y": 49.8,
+                    "kx": 29.1,
+                    "ky": 18.8,
+                    "sx": 0.564,
+                    "sy": 0.67,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 40,
+                    "y": 37.6,
+                    "kx": 19.6,
+                    "ky": 19.1,
+                    "sx": 0.551,
+                    "sy": 0.804,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 21.8,
+                    "y": 56.1,
+                    "sx": 0.592,
+                    "sy": 0.499,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 57.1,
+                    "y": 56.9,
+                    "kx": -2.9,
+                    "ky": -2.9,
+                    "sx": 0.643,
+                    "sy": 0.539,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.6,
+                    "y": 61.8,
+                    "kx": -0.9,
+                    "ky": -1.2,
+                    "sx": 0.596,
+                    "sy": 0.569,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 44.6,
+                    "y": 44.6
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 55.6,
+                    "sx": 0.607,
+                    "sy": 0.438,
+                    "x": 27.5,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.1,
+                    "y": 57.1,
+                    "kx": -6.7,
+                    "ky": -6.7,
+                    "sx": 0.656,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.5,
+                    "y": 55.5,
+                    "kx": 7.6,
+                    "ky": 7.6,
+                    "sx": 0.637,
+                    "sy": 0.482,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 41.8,
+                    "y": 50,
+                    "kx": 33.3,
+                    "ky": 21.3,
+                    "sx": 0.565,
+                    "sy": 0.649,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 42,
+                    "y": 38.1,
+                    "kx": 21.5,
+                    "ky": 25,
+                    "sx": 0.541,
+                    "sy": 0.794,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 21.7,
+                    "y": 56.4,
+                    "sx": 0.596,
+                    "sy": 0.493,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 57.4,
+                    "y": 57,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sx": 0.621,
+                    "sy": 0.537,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.4,
+                    "y": 62.1,
+                    "kx": -3.2,
+                    "ky": -3.4,
+                    "sx": 0.588,
+                    "sy": 0.575,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 46,
+                    "y": 45.5
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 55.5,
+                    "sx": 0.603,
+                    "sy": 0.447,
+                    "x": 27.5,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.2,
+                    "y": 56.8,
+                    "kx": -5.2,
+                    "ky": -5.2,
+                    "sx": 0.647,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.4,
+                    "y": 55.3,
+                    "kx": 6.5,
+                    "ky": 6.5,
+                    "sx": 0.642,
+                    "sy": 0.488,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 42.4,
+                    "y": 50.4,
+                    "kx": 37.5,
+                    "ky": 24.1,
+                    "sx": 0.567,
+                    "sy": 0.629,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 44,
+                    "y": 39,
+                    "kx": 23.5,
+                    "ky": 30.8,
+                    "sx": 0.532,
+                    "sy": 0.785,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "y": 56.5,
+                    "sx": 0.6,
+                    "sy": 0.487,
+                    "x": 21.7,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 57.9,
+                    "y": 57.1,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.6,
+                    "sy": 0.535,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.2,
+                    "y": 62.5,
+                    "kx": -5.7,
+                    "ky": -5.9,
+                    "sx": 0.58,
+                    "sy": 0.582,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 47.4,
+                    "y": 46.3
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 55.3,
+                    "sx": 0.599,
+                    "sy": 0.456,
+                    "x": 27.5,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.3,
+                    "y": 56.3,
+                    "kx": -3.5,
+                    "ky": -3.5,
+                    "sx": 0.638,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.3,
+                    "y": 55.1,
+                    "kx": 5.5,
+                    "ky": 5.5,
+                    "sx": 0.647,
+                    "sy": 0.493,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 41.6,
+                    "y": 50.3,
+                    "kx": 33.3,
+                    "ky": 21.3,
+                    "sx": 0.565,
+                    "sy": 0.634,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 42.1,
+                    "y": 38.2,
+                    "kx": 22.1,
+                    "ky": 25.6,
+                    "sx": 0.546,
+                    "sy": 0.794,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "y": 56.4,
+                    "sx": 0.596,
+                    "sy": 0.493,
+                    "x": 21.7,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 57.5,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sx": 0.621,
+                    "sy": 0.537,
+                    "y": 57.1,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.5,
+                    "y": 62.1,
+                    "kx": -3.2,
+                    "ky": -3.4,
+                    "sx": 0.588,
+                    "sy": 0.575,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 46,
+                    "y": 45.5
+                }
+            },
+            {
+                "backleaf": {
+                    "x": 27.6,
+                    "y": 55.1,
+                    "sx": 0.595,
+                    "sy": 0.465,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.5,
+                    "y": 55.9,
+                    "kx": -1.9,
+                    "ky": -1.9,
+                    "sx": 0.63,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48.1,
+                    "y": 54.8,
+                    "kx": 4.3,
+                    "ky": 4.3,
+                    "sx": 0.652,
+                    "sy": 0.499,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 40.9,
+                    "kx": 29.1,
+                    "ky": 18.8,
+                    "sx": 0.564,
+                    "sy": 0.64,
+                    "y": 50.3,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 40.3,
+                    "y": 37.6,
+                    "kx": 20.8,
+                    "ky": 20.3,
+                    "sx": 0.561,
+                    "sy": 0.804,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 21.9,
+                    "y": 56.1,
+                    "sx": 0.592,
+                    "sy": 0.499,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 57.1,
+                    "y": 57,
+                    "kx": -2.9,
+                    "ky": -2.9,
+                    "sx": 0.643,
+                    "sy": 0.539,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.7,
+                    "y": 61.8,
+                    "kx": -0.9,
+                    "ky": -1.2,
+                    "sx": 0.596,
+                    "sy": 0.569,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 44.6,
+                    "y": 44.6
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.9,
+                    "sx": 0.591,
+                    "sy": 0.474,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.7,
+                    "y": 55.5,
+                    "kx": -0.2,
+                    "ky": -0.2,
+                    "sx": 0.621,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 48,
+                    "y": 54.6,
+                    "kx": 3.3,
+                    "ky": 3.3,
+                    "sx": 0.657,
+                    "sy": 0.504,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 40.1,
+                    "y": 50.1,
+                    "kx": 25.1,
+                    "ky": 16.1,
+                    "sx": 0.563,
+                    "sy": 0.647,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 38.4,
+                    "y": 36.9,
+                    "kx": 19.6,
+                    "ky": 15.1,
+                    "sx": 0.576,
+                    "sy": 0.815,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22,
+                    "y": 56,
+                    "sx": 0.588,
+                    "sy": 0.504,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.8,
+                    "y": 56.8,
+                    "kx": -4.4,
+                    "ky": -4.4,
+                    "sx": 0.664,
+                    "sy": 0.54,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 18.9,
+                    "y": 61.5,
+                    "kx": 1.3,
+                    "ky": 1,
+                    "sx": 0.604,
+                    "sy": 0.563,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 43.2,
+                    "y": 43.8
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.6,
+                    "sx": 0.587,
+                    "sy": 0.483,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.8,
+                    "y": 55.1,
+                    "kx": 1,
+                    "ky": 1,
+                    "sx": 0.613,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.8,
+                    "y": 54.4,
+                    "kx": 2.3,
+                    "ky": 2.3,
+                    "sx": 0.662,
+                    "sy": 0.51,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 39.4,
+                    "y": 50,
+                    "kx": 20.8,
+                    "ky": 13.5,
+                    "sx": 0.562,
+                    "sy": 0.653,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 37,
+                    "kx": 16.6,
+                    "ky": 12.3,
+                    "sx": 0.572,
+                    "sy": 0.828,
+                    "y": 36.9,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.1,
+                    "y": 55.9,
+                    "sx": 0.585,
+                    "sy": 0.51,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.4,
+                    "kx": -5.9,
+                    "ky": -5.9,
+                    "sx": 0.686,
+                    "sy": 0.542,
+                    "y": 56.8,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.2,
+                    "y": 61.2,
+                    "kx": 3.5,
+                    "ky": 3.5,
+                    "sx": 0.612,
+                    "sy": 0.557,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 42.1,
+                    "y": 43.5
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.4,
+                    "sx": 0.583,
+                    "sy": 0.492,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 54.7,
+                    "kx": 2.7,
+                    "ky": 2.7,
+                    "sx": 0.604,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.7,
+                    "y": 54.1,
+                    "kx": 1.2,
+                    "ky": 1.2,
+                    "sx": 0.667,
+                    "sy": 0.515,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 38.6,
+                    "y": 50.1,
+                    "kx": 16.8,
+                    "ky": 10.8,
+                    "sx": 0.561,
+                    "sy": 0.659,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 35.6,
+                    "y": 36.7,
+                    "kx": 13.8,
+                    "ky": 9.3,
+                    "sx": 0.569,
+                    "sy": 0.843,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.2,
+                    "y": 55.6,
+                    "sx": 0.581,
+                    "sy": 0.516,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56,
+                    "y": 56.7,
+                    "kx": -7.5,
+                    "ky": -7.5,
+                    "sx": 0.707,
+                    "sy": 0.543,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.5,
+                    "y": 60.9,
+                    "kx": 5.8,
+                    "ky": 5.8,
+                    "sx": 0.62,
+                    "sy": 0.551,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 41.1,
+                    "y": 43.1
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54.2,
+                    "sx": 0.579,
+                    "sy": 0.501,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 54.6,
+                    "kx": 2.3,
+                    "ky": 2.3,
+                    "sx": 0.597,
+                    "sy": 0.521,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.6,
+                    "y": 54,
+                    "kx": 1,
+                    "ky": 1,
+                    "sx": 0.651,
+                    "sy": 0.521,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 38,
+                    "y": 49.8,
+                    "kx": 12.7,
+                    "ky": 8.3,
+                    "sx": 0.56,
+                    "sy": 0.665,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 34.3,
+                    "y": 36.6,
+                    "kx": 11,
+                    "ky": 6.5,
+                    "sx": 0.566,
+                    "sy": 0.858,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "y": 55.5,
+                    "sx": 0.577,
+                    "sy": 0.521,
+                    "x": 22.2,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 55.6,
+                    "y": 56.6,
+                    "kx": -9.2,
+                    "ky": -9.2,
+                    "sx": 0.729,
+                    "sy": 0.545,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.6,
+                    "y": 60.6,
+                    "kx": 8.3,
+                    "ky": 8.3,
+                    "sx": 0.628,
+                    "sy": 0.545,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 40.1,
+                    "y": 42.8
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 54,
+                    "sx": 0.575,
+                    "sy": 0.51,
+                    "x": 27.6,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 24.9,
+                    "y": 54.5,
+                    "kx": 1.8,
+                    "ky": 1.8,
+                    "sx": 0.59,
+                    "sy": 0.527,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "y": 53.8,
+                    "kx": 0.8,
+                    "ky": 0.8,
+                    "sx": 0.635,
+                    "sy": 0.527,
+                    "x": 47.6,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 37.6,
+                    "y": 50.4,
+                    "kx": 10.5,
+                    "ky": 6.8,
+                    "sx": 0.559,
+                    "sy": 0.647,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 33.7,
+                    "y": 37.3,
+                    "kx": 9.1,
+                    "ky": 5.5,
+                    "sx": 0.563,
+                    "sy": 0.834,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.3,
+                    "y": 55.3,
+                    "sx": 0.574,
+                    "sy": 0.527,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "y": 56.5,
+                    "kx": -7.5,
+                    "ky": -7.5,
+                    "sx": 0.7,
+                    "sy": 0.547,
+                    "x": 55.6,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.5,
+                    "y": 60.9,
+                    "kx": 6.8,
+                    "ky": 6.8,
+                    "sx": 0.616,
+                    "sy": 0.546,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 39.6,
+                    "y": 43.1
+                }
+            },
+            {
+                "backleaf": {
+                    "x": 27.7,
+                    "y": 53.7,
+                    "sx": 0.571,
+                    "sy": 0.519,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25.1,
+                    "y": 54.4,
+                    "kx": 1.5,
+                    "ky": 1.5,
+                    "sx": 0.583,
+                    "sy": 0.532,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.5,
+                    "y": 53.6,
+                    "kx": 0.6,
+                    "ky": 0.6,
+                    "sx": 0.619,
+                    "sy": 0.533,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 37.4,
+                    "y": 50.8,
+                    "kx": 8.3,
+                    "ky": 5.5,
+                    "sy": 0.629,
+                    "sx": 0.559,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 33.1,
+                    "y": 37.9,
+                    "kx": 7.3,
+                    "ky": 4.5,
+                    "sx": 0.56,
+                    "sy": 0.81,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.4,
+                    "y": 55.1,
+                    "sx": 0.57,
+                    "sy": 0.533,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 55.7,
+                    "y": 56.4,
+                    "kx": -5.9,
+                    "ky": -5.9,
+                    "sx": 0.671,
+                    "sy": 0.548,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "kx": 5.5,
+                    "ky": 5.5,
+                    "sx": 0.604,
+                    "sy": 0.548,
+                    "x": 19.5,
+                    "y": 60.9,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 39.1,
+                    "y": 43.5
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 53.6,
+                    "sx": 0.567,
+                    "sy": 0.528,
+                    "x": 27.7,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 54.3,
+                    "kx": 1,
+                    "ky": 1,
+                    "sx": 0.576,
+                    "sy": 0.538,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.4,
+                    "y": 53.4,
+                    "kx": 0.5,
+                    "ky": 0.5,
+                    "sx": 0.603,
+                    "sy": 0.538,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 37,
+                    "y": 51.2,
+                    "kx": 6.3,
+                    "ky": 4,
+                    "sx": 0.558,
+                    "sy": 0.61,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 32.5,
+                    "y": 38.6,
+                    "kx": 5.7,
+                    "ky": 3.5,
+                    "sx": 0.557,
+                    "sy": 0.787,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.5,
+                    "y": 54.9,
+                    "sx": 0.566,
+                    "sy": 0.538,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 55.9,
+                    "y": 56.3,
+                    "kx": -4.4,
+                    "ky": -4.4,
+                    "sx": 0.642,
+                    "sy": 0.55,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "y": 61.1,
+                    "kx": 4,
+                    "ky": 4,
+                    "sx": 0.592,
+                    "sy": 0.55,
+                    "x": 19.5,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 38.6,
+                    "y": 43.8
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 53.4,
+                    "sx": 0.563,
+                    "sy": 0.537,
+                    "x": 27.7,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 54.1,
+                    "kx": 0.8,
+                    "ky": 0.8,
+                    "sx": 0.569,
+                    "sy": 0.544,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "y": 53.2,
+                    "kx": 0.3,
+                    "ky": 0.3,
+                    "sx": 0.587,
+                    "sy": 0.544,
+                    "x": 47.4,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 36.6,
+                    "y": 51.6,
+                    "kx": 4.1,
+                    "ky": 2.8,
+                    "sx": 0.557,
+                    "sy": 0.592,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 32,
+                    "y": 40.9,
+                    "kx": 3.8,
+                    "ky": 2.3,
+                    "sy": 0.71,
+                    "sx": 0.557,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.6,
+                    "y": 54.8,
+                    "sx": 0.563,
+                    "sy": 0.544,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56,
+                    "y": 56.1,
+                    "kx": -2.9,
+                    "ky": -2.9,
+                    "sx": 0.613,
+                    "sy": 0.552,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.4,
+                    "y": 61.2,
+                    "kx": 2.8,
+                    "ky": 2.8,
+                    "sx": 0.58,
+                    "sy": 0.552,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 38.3,
+                    "y": 45.5
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 53.1,
+                    "sx": 0.559,
+                    "sy": 0.546,
+                    "x": 27.7,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "x": 25,
+                    "y": 54,
+                    "kx": 0.3,
+                    "ky": 0.3,
+                    "sx": 0.562,
+                    "sy": 0.55,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.3,
+                    "y": 53,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.571,
+                    "sy": 0.55,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 36.4,
+                    "y": 52.1,
+                    "kx": 2,
+                    "ky": 1.3,
+                    "sx": 0.556,
+                    "sy": 0.574,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 31.5,
+                    "y": 43.1,
+                    "kx": 1.8,
+                    "ky": 1,
+                    "sx": 0.556,
+                    "sy": 0.633,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.7,
+                    "y": 54.6,
+                    "sx": 0.559,
+                    "sy": 0.55,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.1,
+                    "kx": -1.4,
+                    "ky": -1.4,
+                    "sx": 0.584,
+                    "sy": 0.554,
+                    "y": 56.1,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.3,
+                    "y": 61.4,
+                    "kx": 1.3,
+                    "ky": 1.3,
+                    "sx": 0.567,
+                    "sy": 0.554,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 38,
+                    "y": 47.1
+                }
+            },
+            {
+                "backleaf": {
+                    "y": 53,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "x": 27.7,
+                    "i": "peashooter_backleaf"
+                },
+                "backleaf_left_tip": {
+                    "y": 53.9,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "x": 25,
+                    "i": "peashooter_backleaf_lefttip"
+                },
+                "backleaf_right_tip": {
+                    "x": 47.1,
+                    "y": 52.9,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "kx": 0,
+                    "ky": 0,
+                    "i": "peashooter_backleaf_righttip"
+                },
+                "stalk_bottom": {
+                    "x": 36.1,
+                    "y": 52.6,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_stalk_bottom"
+                },
+                "stalk_top": {
+                    "x": 31,
+                    "y": 45.3,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_stalk_top"
+                },
+                "frontleaf": {
+                    "x": 22.8,
+                    "y": 54.4,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_frontleaf"
+                },
+                "frontleaf_right_tip": {
+                    "x": 56.3,
+                    "y": 56,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_frontleaf_righttip"
+                },
+                "frontleaf_tip_left": {
+                    "x": 19.4,
+                    "y": 61.6,
+                    "kx": 0,
+                    "ky": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_frontleaf_lefttip"
+                },
+                "anim_idle": {
+                    "x": 37.6,
+                    "y": 48.7
+                }
+            }
+        ]
+    },
+    "shooting": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 19.1,
+                    "y": 14,
+                    "sy": 0.555,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.9,
+                    "sy": 0.555,
+                    "x": 52.4,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.7,
+                    "y": 13.1,
+                    "sx": 0.543,
+                    "sy": 0.568,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.2,
+                    "y": 13.1,
+                    "sx": 0.548,
+                    "sy": 0.57,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 20.2,
+                    "y": 12.3,
+                    "sx": 0.531,
+                    "sy": 0.581,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.1,
+                    "y": 12.3,
+                    "sx": 0.541,
+                    "sy": 0.585,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 20.8,
+                    "y": 11.5,
+                    "sx": 0.519,
+                    "sy": 0.594,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 51.9,
+                    "y": 11.4,
+                    "sx": 0.534,
+                    "sy": 0.599,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 21.5,
+                    "y": 10,
+                    "sx": 0.496,
+                    "sy": 0.618,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 51,
+                    "y": 10.1,
+                    "sx": 0.493,
+                    "sy": 0.63,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 22.4,
+                    "y": 8.6,
+                    "sx": 0.474,
+                    "sy": 0.642,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 50.1,
+                    "y": 8.7,
+                    "sx": 0.452,
+                    "sy": 0.661,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 23.2,
+                    "y": 7,
+                    "sx": 0.451,
+                    "sy": 0.666,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 49.1,
+                    "y": 7.2,
+                    "sx": 0.412,
+                    "sy": 0.692,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 22,
+                    "y": 9.2,
+                    "sx": 0.486,
+                    "sy": 0.629,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 50.4,
+                    "y": 9.3,
+                    "sx": 0.461,
+                    "sy": 0.646,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 20.7,
+                    "y": 11.4,
+                    "sx": 0.521,
+                    "sy": 0.592,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 51.5,
+                    "y": 11.5,
+                    "sx": 0.509,
+                    "sy": 0.601,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.5,
+                    "y": 13.8,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.7,
+                    "y": 13.7,
+                    "sx": 0.558,
+                    "sy": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19,
+                    "y": 15.8,
+                    "sx": 0.572,
+                    "sy": 0.521,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 53.8,
+                    "y": 15.7,
+                    "sx": 0.565,
+                    "sy": 0.517,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.4,
+                    "y": 21.6,
+                    "sx": 0.555,
+                    "sy": 0.519,
+                    "f": 0,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 18.4,
+                    "y": 17.7,
+                    "sx": 0.589,
+                    "sy": 0.487,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 54.8,
+                    "y": 17.7,
+                    "sx": 0.572,
+                    "sy": 0.478,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.6,
+                    "y": 23,
+                    "sx": 0.555,
+                    "sy": 0.519,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 17.9,
+                    "y": 19.5,
+                    "sx": 0.605,
+                    "sy": 0.452,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 55.9,
+                    "y": 19.7,
+                    "sx": 0.58,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.9,
+                    "y": 24.4,
+                    "sy": 0.481,
+                    "i": "peashooter_blink2",
+                    "sx": 0.555
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 18.4,
+                    "y": 17.6,
+                    "sx": 0.589,
+                    "sy": 0.487,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 54.7,
+                    "y": 17.6,
+                    "sx": 0.572,
+                    "sy": 0.478,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.3,
+                    "y": 22.8,
+                    "sx": 0.555,
+                    "sy": 0.481,
+                    "i": "peashooter_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 18.9,
+                    "y": 15.6,
+                    "sx": 0.572,
+                    "sy": 0.521,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 53.7,
+                    "y": 15.7,
+                    "sx": 0.564,
+                    "sy": 0.517,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 37.7,
+                    "y": 21.6,
+                    "i": "peashooter_blink1",
+                    "sx": 0.555,
+                    "sy": 0.481
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 13.7,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 13.7,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "y": 19.9,
+                    "sy": 0.521,
+                    "x": 37.7,
+                    "sx": 0.555,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.2,
+                    "sy": 0.565,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.1,
+                    "sy": 0.565,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.575,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.6,
+                    "sy": 0.575,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12,
+                    "sy": 0.585,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12,
+                    "sy": 0.585,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 12.4,
+                    "sy": 0.579,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 12.4,
+                    "sy": 0.579,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.573,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.7,
+                    "sy": 0.573,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.2,
+                    "sy": 0.567,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.1,
+                    "sy": 0.567,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.4,
+                    "sy": 0.563,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.4,
+                    "sy": 0.563,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.1,
+                    "y": 13.7,
+                    "sy": 0.559,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 13.6,
+                    "sy": 0.559,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 14,
+                    "sy": 0.555,
+                    "x": 19.1,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.9,
+                    "sy": 0.555,
+                    "x": 52.4,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            }
+        ]
+    },
+    "head_idle": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 17.8,
+                    "sx": 0.555,
+                    "sy": 0.5,
+                    "f": 0,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 17.8,
+                    "sx": 0.555,
+                    "sy": 0.5,
+                    "f": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 16.3,
+                    "sy": 0.522,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 53,
+                    "y": 16.3,
+                    "kx": 9.9,
+                    "sx": 0.564,
+                    "sy": 0.517,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 14.7,
+                    "sy": 0.545,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.8,
+                    "y": 14.7,
+                    "kx": 4.8,
+                    "sx": 0.559,
+                    "sy": 0.542,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.4,
+                    "y": 13.1,
+                    "sy": 0.567,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 13.1,
+                    "kx": 0,
+                    "sx": 0.555,
+                    "sy": 0.567,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 12.9,
+                    "sy": 0.57,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.8,
+                    "sy": 0.573,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.572,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 12.5,
+                    "sy": 0.579,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 12.5,
+                    "sy": 0.575,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.2,
+                    "sy": 0.585,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 12.9,
+                    "sy": 0.568,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 12.8,
+                    "kx": -1.7,
+                    "sx": 0.556,
+                    "sy": 0.575,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.4,
+                    "y": 13.3,
+                    "sy": 0.562,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.4,
+                    "kx": -3.7,
+                    "sx": 0.557,
+                    "sy": 0.565,
+                    "x": 52.6,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.8,
+                    "sy": 0.555,
+                    "x": 19.4,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.7,
+                    "y": 13.9,
+                    "kx": -5.7,
+                    "sx": 0.558,
+                    "sy": 0.555,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 15,
+                    "sy": 0.537,
+                    "x": 19.4,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 15,
+                    "kx": -3.7,
+                    "sx": 0.554,
+                    "sy": 0.537,
+                    "x": 52.7,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 16.1,
+                    "sy": 0.518,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 16.1,
+                    "kx": -1.7,
+                    "sx": 0.551,
+                    "sy": 0.518,
+                    "x": 52.7,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 17.2,
+                    "sy": 0.5,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 17.2,
+                    "kx": 0,
+                    "sx": 0.547,
+                    "sy": 0.5,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 16.1,
+                    "sy": 0.518,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 15.8,
+                    "kx": 9.1,
+                    "sx": 0.557,
+                    "sy": 0.518,
+                    "x": 52.6,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 15,
+                    "sy": 0.537,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 14.8,
+                    "kx": 4.5,
+                    "sx": 0.556,
+                    "sy": 0.537,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.1,
+                    "y": 13.9,
+                    "sy": 0.555,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 13.9,
+                    "kx": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 13.3,
+                    "sy": 0.565,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 13.2,
+                    "sy": 0.565,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.575,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.6,
+                    "sy": 0.575,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 12,
+                    "sy": 0.585,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 12,
+                    "sy": 0.585,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.3,
+                    "sy": 0.579,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.3,
+                    "sy": 0.579,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.6,
+                    "sy": 0.573,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.6,
+                    "sy": 0.573,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.4,
+                    "y": 13,
+                    "sy": 0.567,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.9,
+                    "sy": 0.567,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 14.6,
+                    "sy": 0.545,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 14.6,
+                    "sy": 0.545,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 16.3,
+                    "sy": 0.522,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 16.2,
+                    "sy": 0.522,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 17.8,
+                    "sy": 0.5,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 17.8,
+                    "sy": 0.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            }
+        ]
+    },
+    "face": {
+        "actionList": [
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 17.8,
+                    "sx": 0.555,
+                    "sy": 0.5,
+                    "f": 0,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 17.8,
+                    "sx": 0.555,
+                    "sy": 0.5,
+                    "f": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 16.3,
+                    "sy": 0.522,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 53,
+                    "y": 16.3,
+                    "kx": 9.9,
+                    "sx": 0.564,
+                    "sy": 0.517,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 14.7,
+                    "sy": 0.545,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.8,
+                    "y": 14.7,
+                    "kx": 4.8,
+                    "sx": 0.559,
+                    "sy": 0.542,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.4,
+                    "y": 13.1,
+                    "sy": 0.567,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 13.1,
+                    "kx": 0,
+                    "sx": 0.555,
+                    "sy": 0.567,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 12.9,
+                    "sy": 0.57,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.8,
+                    "sy": 0.573,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.572,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 12.5,
+                    "sy": 0.579,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 12.5,
+                    "sy": 0.575,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.2,
+                    "sy": 0.585,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 12.9,
+                    "sy": 0.568,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 12.8,
+                    "kx": -1.7,
+                    "sx": 0.556,
+                    "sy": 0.575,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.4,
+                    "y": 13.3,
+                    "sy": 0.562,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.4,
+                    "kx": -3.7,
+                    "sx": 0.557,
+                    "sy": 0.565,
+                    "x": 52.6,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.8,
+                    "sy": 0.555,
+                    "x": 19.4,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.7,
+                    "y": 13.9,
+                    "kx": -5.7,
+                    "sx": 0.558,
+                    "sy": 0.555,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 15,
+                    "sy": 0.537,
+                    "x": 19.4,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 15,
+                    "kx": -3.7,
+                    "sx": 0.554,
+                    "sy": 0.537,
+                    "x": 52.7,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 16.1,
+                    "sy": 0.518,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 16.1,
+                    "kx": -1.7,
+                    "sx": 0.551,
+                    "sy": 0.518,
+                    "x": 52.7,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 17.2,
+                    "sy": 0.5,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 17.2,
+                    "kx": 0,
+                    "sx": 0.547,
+                    "sy": 0.5,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 16.1,
+                    "sy": 0.518,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 15.8,
+                    "kx": 9.1,
+                    "sx": 0.557,
+                    "sy": 0.518,
+                    "x": 52.6,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 15,
+                    "sy": 0.537,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 14.8,
+                    "kx": 4.5,
+                    "sx": 0.556,
+                    "sy": 0.537,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.1,
+                    "y": 13.9,
+                    "sy": 0.555,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 13.9,
+                    "kx": 0,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 13.3,
+                    "sy": 0.565,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 13.2,
+                    "sy": 0.565,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.575,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.6,
+                    "sy": 0.575,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 12,
+                    "sy": 0.585,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 12,
+                    "sy": 0.585,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.3,
+                    "sy": 0.579,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.3,
+                    "sy": 0.579,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.6,
+                    "sy": 0.573,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.6,
+                    "sy": 0.573,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.4,
+                    "y": 13,
+                    "sy": 0.567,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.9,
+                    "sy": 0.567,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 14.6,
+                    "sy": 0.545,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 14.6,
+                    "sy": 0.545,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 16.3,
+                    "sy": 0.522,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 16.2,
+                    "sy": 0.522,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 17.8,
+                    "sy": 0.5,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 17.8,
+                    "sy": 0.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.1,
+                    "y": 14,
+                    "sy": 0.555,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.9,
+                    "sy": 0.555,
+                    "x": 52.4,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.7,
+                    "y": 13.1,
+                    "sx": 0.543,
+                    "sy": 0.568,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.2,
+                    "y": 13.1,
+                    "sx": 0.548,
+                    "sy": 0.57,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 20.2,
+                    "y": 12.3,
+                    "sx": 0.531,
+                    "sy": 0.581,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.1,
+                    "y": 12.3,
+                    "sx": 0.541,
+                    "sy": 0.585,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 20.8,
+                    "y": 11.5,
+                    "sx": 0.519,
+                    "sy": 0.594,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 51.9,
+                    "y": 11.4,
+                    "sx": 0.534,
+                    "sy": 0.599,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 21.5,
+                    "y": 10,
+                    "sx": 0.496,
+                    "sy": 0.618,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 51,
+                    "y": 10.1,
+                    "sx": 0.493,
+                    "sy": 0.63,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 22.4,
+                    "y": 8.6,
+                    "sx": 0.474,
+                    "sy": 0.642,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 50.1,
+                    "y": 8.7,
+                    "sx": 0.452,
+                    "sy": 0.661,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 23.2,
+                    "y": 7,
+                    "sx": 0.451,
+                    "sy": 0.666,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 49.1,
+                    "y": 7.2,
+                    "sx": 0.412,
+                    "sy": 0.692,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 22,
+                    "y": 9.2,
+                    "sx": 0.486,
+                    "sy": 0.629,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 50.4,
+                    "y": 9.3,
+                    "sx": 0.461,
+                    "sy": 0.646,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 20.7,
+                    "y": 11.4,
+                    "sx": 0.521,
+                    "sy": 0.592,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 51.5,
+                    "y": 11.5,
+                    "sx": 0.509,
+                    "sy": 0.601,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.5,
+                    "y": 13.8,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.7,
+                    "y": 13.7,
+                    "sx": 0.558,
+                    "sy": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19,
+                    "y": 15.8,
+                    "sx": 0.572,
+                    "sy": 0.521,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 53.8,
+                    "y": 15.7,
+                    "sx": 0.565,
+                    "sy": 0.517,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.4,
+                    "y": 21.6,
+                    "sx": 0.555,
+                    "sy": 0.519,
+                    "f": 0,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 18.4,
+                    "y": 17.7,
+                    "sx": 0.589,
+                    "sy": 0.487,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 54.8,
+                    "y": 17.7,
+                    "sx": 0.572,
+                    "sy": 0.478,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.6,
+                    "y": 23,
+                    "sx": 0.555,
+                    "sy": 0.519,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 17.9,
+                    "y": 19.5,
+                    "sx": 0.605,
+                    "sy": 0.452,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 55.9,
+                    "y": 19.7,
+                    "sx": 0.58,
+                    "sy": 0.44,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.9,
+                    "y": 24.4,
+                    "sy": 0.481,
+                    "i": "peashooter_blink2",
+                    "sx": 0.555
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 18.4,
+                    "y": 17.6,
+                    "sx": 0.589,
+                    "sy": 0.487,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 54.7,
+                    "y": 17.6,
+                    "sx": 0.572,
+                    "sy": 0.478,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 38.3,
+                    "y": 22.8,
+                    "sx": 0.555,
+                    "sy": 0.481,
+                    "i": "peashooter_blink2"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 18.9,
+                    "y": 15.6,
+                    "sx": 0.572,
+                    "sy": 0.521,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 53.7,
+                    "y": 15.7,
+                    "sx": 0.564,
+                    "sy": 0.517,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "x": 37.7,
+                    "y": 21.6,
+                    "i": "peashooter_blink1",
+                    "sx": 0.555,
+                    "sy": 0.481
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.3,
+                    "y": 13.7,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.6,
+                    "y": 13.7,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                },
+                "idle_shoot_blink": {
+                    "y": 19.9,
+                    "sy": 0.521,
+                    "x": 37.7,
+                    "sx": 0.555,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.2,
+                    "sy": 0.565,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.1,
+                    "sy": 0.565,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.575,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.6,
+                    "sy": 0.575,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12,
+                    "sy": 0.585,
+                    "x": 19.3,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12,
+                    "sy": 0.585,
+                    "x": 52.6,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.2,
+                    "y": 12.4,
+                    "sy": 0.579,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.5,
+                    "y": 12.4,
+                    "sy": 0.579,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 12.7,
+                    "sy": 0.573,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 12.7,
+                    "sy": 0.573,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.2,
+                    "sy": 0.567,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.1,
+                    "sy": 0.567,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 13.4,
+                    "sy": 0.563,
+                    "x": 19.2,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.4,
+                    "sy": 0.563,
+                    "x": 52.5,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "x": 19.1,
+                    "y": 13.7,
+                    "sy": 0.559,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "x": 52.4,
+                    "y": 13.6,
+                    "sy": 0.559,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            },
+            {
+                "anim_face": {
+                    "y": 14,
+                    "sy": 0.555,
+                    "x": 19.1,
+                    "sx": 0.555,
+                    "i": "peashooter_head"
+                },
+                "idle_mouth": {
+                    "y": 13.9,
+                    "sy": 0.555,
+                    "x": 52.4,
+                    "sx": 0.555,
+                    "kx": 0,
+                    "i": "peashooter_mouth"
+                }
+            }
+        ]
+    },
+    "splitpea_idle": {
+        "actionList": [
+            {
+                "SplitPea_head": {
+                    "x": -1.6,
+                    "y": 14.6,
+                    "sx": 0.559,
+                    "sy": 0.571,
+                    "f": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.4,
+                    "y": 15.3,
+                    "kx": 180,
+                    "sx": 0.463,
+                    "sy": 0.458,
+                    "f": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 18.6,
+                    "y": 15.8,
+                    "kx": 180,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "f": 0,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 16.8,
+                    "kx": -4.7,
+                    "sx": 0.561,
+                    "sy": 0.587,
+                    "x": -1.6,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 17.1,
+                    "kx": 170.7,
+                    "sx": 0.469,
+                    "x": 3.4,
+                    "sy": 0.458,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 17.9,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 14.5,
+                    "kx": -2.2,
+                    "sx": 0.56,
+                    "sy": 0.604,
+                    "x": -1.6,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 2.3,
+                    "y": 15.5,
+                    "kx": 162.4,
+                    "ky": -4.5,
+                    "sx": 0.475,
+                    "sy": 0.458,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 16.3,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 12.1,
+                    "kx": 0,
+                    "sx": 0.559,
+                    "sy": 0.621,
+                    "x": -1.6,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 2.5,
+                    "y": 11.9,
+                    "kx": 166.9,
+                    "ky": -3.2,
+                    "sx": 0.472,
+                    "sy": 0.513,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 14.7,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11.6,
+                    "sy": 0.627,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 2.8,
+                    "y": 11.6,
+                    "kx": 171.4,
+                    "ky": -2,
+                    "sx": 0.468,
+                    "sy": 0.516,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 14.1,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11.2,
+                    "sy": 0.633,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3,
+                    "y": 11.3,
+                    "kx": 175.7,
+                    "ky": -0.9,
+                    "sx": 0.466,
+                    "sy": 0.518,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 13.5,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 10.6,
+                    "sy": 0.639,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.1,
+                    "y": 11.1,
+                    "kx": 180,
+                    "ky": 0,
+                    "sx": 0.463,
+                    "sy": 0.52,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.9,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11.3,
+                    "sy": 0.622,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 11.7,
+                    "sy": 0.504,
+                    "x": 3.1,
+                    "sx": 0.463,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.7,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 12,
+                    "sy": 0.605,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 12.4,
+                    "sy": 0.487,
+                    "x": 3.1,
+                    "sx": 0.463,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.6,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 12.7,
+                    "sy": 0.588,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 13.1,
+                    "sy": 0.471,
+                    "x": 3.1,
+                    "sx": 0.463,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.5,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 13.5,
+                    "sy": 0.582,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.2,
+                    "y": 13.9,
+                    "sy": 0.466,
+                    "sx": 0.463,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.9,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 14.2,
+                    "sy": 0.576,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.3,
+                    "y": 14.7,
+                    "sy": 0.462,
+                    "sx": 0.463,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 14.6,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 14.9,
+                    "sy": 0.571,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.4,
+                    "y": 15.6,
+                    "sy": 0.458,
+                    "sx": 0.463,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 16.3,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 16.9,
+                    "kx": -5.5,
+                    "sx": 0.562,
+                    "x": -1.6,
+                    "sy": 0.571,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 16.3,
+                    "kx": 167.1,
+                    "sx": 0.475,
+                    "x": 3.4,
+                    "sy": 0.458,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 18,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -1.7,
+                    "y": 14.5,
+                    "kx": -2.7,
+                    "sx": 0.56,
+                    "sy": 0.596,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 14.6,
+                    "kx": 160.3,
+                    "sx": 0.492,
+                    "sy": 0.477,
+                    "x": 3.4,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 18.5,
+                    "y": 16.3,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -1.6,
+                    "y": 12.1,
+                    "kx": 0,
+                    "sx": 0.559,
+                    "sy": 0.621,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 2.5,
+                    "y": 11.9,
+                    "kx": 166.9,
+                    "ky": -3.2,
+                    "sx": 0.472,
+                    "sy": 0.513,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 14.1,
+                    "x": 18.5,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11.5,
+                    "sy": 0.629,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 11.3,
+                    "sy": 0.52,
+                    "x": 2.5,
+                    "sx": 0.472,
+                    "kx": 166.9,
+                    "ky": -3.2,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 13.1,
+                    "x": 18.5,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11,
+                    "sy": 0.637,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 10.8,
+                    "kx": 166.7,
+                    "ky": -3,
+                    "sy": 0.527,
+                    "x": 2.5,
+                    "sx": 0.472,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.1,
+                    "x": 18.5,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 10.4,
+                    "sy": 0.646,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "y": 10.2,
+                    "kx": 166.4,
+                    "ky": -3.1,
+                    "sx": 0.473,
+                    "sy": 0.534,
+                    "x": 2.5,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 11.1,
+                    "x": 18.5,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 10.8,
+                    "sy": 0.639,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 2.6,
+                    "y": 11.1,
+                    "kx": 168.7,
+                    "ky": -2.4,
+                    "sx": 0.471,
+                    "sy": 0.521,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 11.4,
+                    "x": 18.5,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11.2,
+                    "sy": 0.632,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 2.9,
+                    "y": 11.9,
+                    "kx": 171,
+                    "ky": -1.9,
+                    "sx": 0.469,
+                    "sy": 0.509,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 18.6,
+                    "y": 11.8,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 11.6,
+                    "sy": 0.626,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3,
+                    "y": 12.7,
+                    "kx": 173.2,
+                    "ky": -1.4,
+                    "sx": 0.468,
+                    "sy": 0.496,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 12.1,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 12.6,
+                    "sy": 0.607,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.1,
+                    "y": 13.7,
+                    "kx": 175.5,
+                    "ky": -0.9,
+                    "sx": 0.466,
+                    "sy": 0.484,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 13.5,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 13.6,
+                    "sy": 0.589,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.3,
+                    "y": 14.4,
+                    "kx": 177.7,
+                    "ky": -0.4,
+                    "sx": 0.464,
+                    "sy": 0.471,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 15,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "y": 14.6,
+                    "sy": 0.571,
+                    "x": -1.6,
+                    "sx": 0.559,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.4,
+                    "y": 15.3,
+                    "kx": 180,
+                    "ky": 0,
+                    "sx": 0.463,
+                    "sy": 0.458,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "y": 16.4,
+                    "x": 18.6,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            }
+        ]
+    },
+    "splitpea_shooting": {
+        "actionList": [
+            {
+                "SplitPea_head": {
+                    "x": -1.6,
+                    "y": 14.6,
+                    "sx": 0.559,
+                    "sy": 0.571,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.4,
+                    "y": 15.3,
+                    "sx": 0.463,
+                    "sy": 0.458,
+                    "kx": 180,
+                    "ky": 0,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 18.6,
+                    "y": 16.4,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 0.4,
+                    "y": 12.9,
+                    "sx": 0.514,
+                    "sy": 0.608,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 5.3,
+                    "y": 12.7,
+                    "kx": 173.5,
+                    "ky": -0.5,
+                    "sx": 0.432,
+                    "sy": 0.513,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 20.7,
+                    "y": 13.2,
+                    "sx": 0.783,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 2.4,
+                    "y": 11.1,
+                    "sx": 0.47,
+                    "sy": 0.645,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 7.2,
+                    "y": 10.2,
+                    "kx": 166.9,
+                    "ky": -1.2,
+                    "sx": 0.401,
+                    "sy": 0.568,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 22.7,
+                    "y": 9.9,
+                    "sx": 0.767,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 4.6,
+                    "y": 9.3,
+                    "sx": 0.425,
+                    "sy": 0.682,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 8.8,
+                    "y": 8,
+                    "kx": 160.3,
+                    "ky": -2,
+                    "sx": 0.371,
+                    "sy": 0.623,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 24.8,
+                    "y": 6.7,
+                    "sx": 0.75,
+                    "sy": 0.8,
+                    "kx": 180,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 5.1,
+                    "y": 9,
+                    "sx": 0.415,
+                    "sy": 0.688,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 9.2,
+                    "y": 7.5,
+                    "kx": 159.7,
+                    "ky": -1.9,
+                    "sx": 0.339,
+                    "sy": 0.639,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 25.2,
+                    "y": 7.5,
+                    "kx": 182,
+                    "ky": 2,
+                    "sx": 0.775,
+                    "sy": 0.753,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 5.7,
+                    "y": 8.7,
+                    "sx": 0.405,
+                    "sy": 0.694,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 9.8,
+                    "y": 7.1,
+                    "kx": 159.2,
+                    "ky": -1.7,
+                    "sx": 0.308,
+                    "sy": 0.654,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 25.5,
+                    "y": 8.4,
+                    "kx": 184,
+                    "ky": 4,
+                    "sx": 0.799,
+                    "sy": 0.706,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 6.2,
+                    "y": 8.4,
+                    "sx": 0.395,
+                    "sy": 0.7,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 10.2,
+                    "y": 6.7,
+                    "kx": 158.4,
+                    "ky": -1.8,
+                    "sx": 0.277,
+                    "sy": 0.67,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 25.9,
+                    "y": 9.3,
+                    "kx": 186,
+                    "ky": 6,
+                    "sx": 0.824,
+                    "sy": 0.659,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": 0.5,
+                    "y": 10.4,
+                    "sx": 0.516,
+                    "sy": 0.661,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 5.4,
+                    "y": 9.1,
+                    "kx": 161.2,
+                    "ky": -2.2,
+                    "sx": 0.379,
+                    "sy": 0.605,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 21.7,
+                    "y": 13.4,
+                    "kx": 188,
+                    "ky": 8,
+                    "sx": 0.849,
+                    "sy": 0.611,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -5,
+                    "y": 12.3,
+                    "sx": 0.636,
+                    "sy": 0.622,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 0.5,
+                    "y": 11.6,
+                    "kx": 164,
+                    "ky": -2.7,
+                    "sx": 0.482,
+                    "sy": 0.54,
+                    "i": "peashooter_mouth"
+                },
+                "idle_SplitPea_shoot_blink": {
+                    "x": 12.1,
+                    "y": 18.3,
+                    "kx": 180,
+                    "ky": 0.3,
+                    "sx": 0.47,
+                    "sy": 0.492,
+                    "f": 0,
+                    "i": "peashooter_blink1"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 17.5,
+                    "y": 17.5,
+                    "kx": 190,
+                    "ky": 10,
+                    "sx": 0.874,
+                    "sy": 0.564,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -10.7,
+                    "y": 14.2,
+                    "sx": 0.757,
+                    "sy": 0.582,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": -4.2,
+                    "y": 14.2,
+                    "kx": 166.7,
+                    "ky": -3.2,
+                    "sx": 0.585,
+                    "sy": 0.474,
+                    "i": "peashooter_mouth"
+                },
+                "idle_SplitPea_shoot_blink": {
+                    "x": 9.7,
+                    "y": 19.3,
+                    "ky": 0,
+                    "sx": 0.555,
+                    "sy": 0.512,
+                    "i": "peashooter_blink2",
+                    "kx": 180
+                },
+                "SplitPea_eyebrows": {
+                    "x": 13.3,
+                    "y": 21.7,
+                    "kx": 192.1,
+                    "ky": 12.1,
+                    "sx": 0.899,
+                    "sy": 0.518,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -7.7,
+                    "y": 14.3,
+                    "sx": 0.691,
+                    "sy": 0.578,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": -1.6,
+                    "y": 14.6,
+                    "kx": 171.2,
+                    "ky": -1.9,
+                    "sx": 0.544,
+                    "sy": 0.469,
+                    "i": "peashooter_mouth"
+                },
+                "idle_SplitPea_shoot_blink": {
+                    "x": 11.3,
+                    "y": 19.6,
+                    "ky": 0.3,
+                    "sx": 0.498,
+                    "sy": 0.492,
+                    "i": "peashooter_blink1",
+                    "kx": 180
+                },
+                "SplitPea_eyebrows": {
+                    "x": 15.2,
+                    "y": 19.7,
+                    "kx": 188,
+                    "ky": 8,
+                    "sx": 0.866,
+                    "sy": 0.612,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -4.6,
+                    "sx": 0.625,
+                    "sy": 0.575,
+                    "y": 14.3,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 0.7,
+                    "y": 15,
+                    "kx": 175.7,
+                    "ky": -0.9,
+                    "sx": 0.504,
+                    "sy": 0.464,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 17,
+                    "y": 17.7,
+                    "kx": 184,
+                    "ky": 4,
+                    "sx": 0.833,
+                    "sy": 0.706,
+                    "i": "peashooter_eyebrow"
+                }
+            },
+            {
+                "SplitPea_head": {
+                    "x": -1.6,
+                    "y": 14.6,
+                    "sx": 0.559,
+                    "sy": 0.571,
+                    "kx": 0,
+                    "i": "splitpea_head"
+                },
+                "SplitPea_mouth": {
+                    "x": 3.4,
+                    "y": 15.3,
+                    "kx": 180,
+                    "ky": 0,
+                    "sx": 0.463,
+                    "sy": 0.458,
+                    "i": "peashooter_mouth"
+                },
+                "SplitPea_eyebrows": {
+                    "x": 18.6,
+                    "y": 15.8,
+                    "kx": 180,
+                    "ky": 0,
+                    "sx": 0.8,
+                    "sy": 0.8,
+                    "i": "peashooter_eyebrow"
+                }
+            }
+        ]
+    },
+    "blink": {
+        "actionList": [
+            {
+                "anim_blink": {
+                    "x": 37.6,
+                    "y": 23.5,
+                    "sx": 0.555,
+                    "sy": 0.555,
+                    "f": 0,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_blink": {
+                    "x": 37.5,
+                    "y": 23.4,
+                    "i": "peashooter_blink2",
+                    "sx": 0.555,
+                    "sy": 0.555
+                }
+            },
+            {
+                "anim_blink": {
+                    "x": 37.6,
+                    "y": 23.5,
+                    "i": "peashooter_blink1",
+                    "sx": 0.555,
+                    "sy": 0.555
+                }
+            }
+        ]
+    },
+    "SplitPea_blink": {
+        "actionList": [
+            {
+                "anim_SplitPea_blink": {
+                    "x": 14.8,
+                    "y": 20.7,
+                    "kx": -179,
+                    "ky": 0.3,
+                    "sx": 0.448,
+                    "sy": 0.492,
+                    "f": 0,
+                    "i": "peashooter_blink1"
+                }
+            },
+            {
+                "anim_SplitPea_blink": {
+                    "x": 15.3,
+                    "y": 20.4,
+                    "kx": -179.9,
+                    "ky": 0,
+                    "sx": 0.485,
+                    "sy": 0.512,
+                    "i": "peashooter_blink2"
+                }
+            },
+            {
+                "anim_SplitPea_blink": {
+                    "x": 14.8,
+                    "y": 20.7,
+                    "kx": -179,
+                    "ky": 0.3,
+                    "sx": 0.448,
+                    "sy": 0.492,
+                    "i": "peashooter_blink1"
+                }
+            }
+        ]
+    }
+}

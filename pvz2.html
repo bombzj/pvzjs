@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>PVZ2</title>
+    </head>
+    <script src="pixi.min.js"></script>
+    <script src="pam.js"></script>
+    <body>
+        <script type="text/javascript">
+           
+
+
+    //Create a Pixi Application
+    let app = new PIXI.Application({width: 916, height: 700});
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+
+    app.renderer.backgroundColor = 0x0ccccff;
+    const loader = PIXI.Loader.shared;
+    PIXI.Sprite.prototype.change = function(texture) {
+        this.texture = texture
+    }
+    PIXI.DisplayObject.prototype.turn = function(d) {
+        this.angle += d
+    }
+    PIXI.DisplayObject.prototype.move = function(x, y) {
+        this.x += x
+        this.y += y
+    }
+    PIXI.DisplayObject.prototype.moveTo = function(x, y) {
+        this.x = x
+        this.y = y
+    }
+    const pamList = [
+        {
+            name: ['SUNFLOWER'],
+            image: 'PlantSunflower_1200_00'
+        },
+        {
+            name: ['PEASHOOTER'],
+            image: 'PLANTPEASHOOTER_1200_00'
+        },
+        {
+            name: ['SNOWPEA', 'SNOWPEA_GUNSHOOT'],
+            image: 'PLANTSNOWPEA_1200_00'
+        },
+        {
+            name: ['CHERRYBOMB', 'CHERRYBOMB_EXPLOSION_TOP', 'CHERRYBOMB_EXPLOSION_REAR'],
+            image: 'PLANTCHERRYBOMB_1200_00'
+        },
+        {
+            name: ['SUNFLOWER_TWIN'],
+            image: 'PLANTTWINSUNFLOWER_1200_00'
+        },
+        {
+            name: ['THREEPEATER'],
+            image: 'PLANTTHREEPEATER_1200_00'
+        },
+        {
+            name: ['SQUASH'],
+            image: 'PLANTSQUASH_1200_00'
+        },
+        {
+            name: ['ZOMBIE_MODERN_ALLSTAR'],
+            image: 'ZOMBIEMODERNALLSTARGROUP_1200_00'
+        },
+        {
+            name: ['ZOMBIE_EGYPT_BASIC'],
+            image: 'ZombieEgyptBasicGroup_1200_00'
+        },
+        {
+            name: ['COCONUTCANNON', 'COCONUT_PROJECTILE_EXPLOSION'],
+            image: 'PlantCoconutCannon_1200_00'
+        },
+        {
+            name: ['FUMESHROOM', 'FUMESHROOM_BUBBLES', 'FUMESHROOM_BUBBLES_HIT'],
+            image: 'PLANTFUMESHROOM_1200_00'
+        },
+        {
+            name: ['BLOOMERANG', 'BLOOMERANG_PROJECTILE'],
+            image: 'PlantBloomerang_1200_00'
+        },
+        {
+            name: ['BONKCHOY'],
+            image: 'PLANTBONKCHOY_1200_00'
+        },
+        {
+            name: ['GARGANTUAR'],
+            image: 'ZOMBIEFUTUREGARGANTUARGROUP_1200_00'
+        },
+        {
+            name: ['SNAPDRAGON', 'SNAPDRAGON_FIRE'],
+            image: ['PlantSnapdragon_1200_00', 'PlantSnapdragon_1200_01']
+        },
+        {
+            name: [],
+            image: ['DelayLoad_Background_FrontLawn_1200_00', 'DelayLoad_Background_FrontLawn_1200_03']
+        }
+    ]
+    for(let p of pamList) {
+        for(let name of p.name) {
+            loader.add(name, "pam/pam/" + name + ".json")
+        }
+        if(typeof p.image == 'string') {
+            loader.add(p.image, "pam/" + p.image + ".json")
+        } else {
+            for(let i of p.image) {
+                loader.add(i, "pam/" + i + ".json")
+            }
+        }
+    }
+    loader.load((loader, resources) => setup(resources));
+    
+    function add(texture, x, y) {
+        let s = new PIXI.Sprite(texture);
+        s.x = x
+        s.y = y
+        app.stage.addChild(s);
+        return s
+    }
+
+    let objects = []
+    function setup(resources) {
+        for(let p of pamList) {
+            for(let name of p.name) {
+                if(resources[name].data) {
+                    let textures = {}
+                    if(typeof p.image == 'string') {
+                        textures = resources[p.image].textures
+                    } else {
+                        for(let i of p.image) {
+                            Object.assign(textures, resources[i].textures)
+                        }
+                    }
+                    pamInit(name, resources[name].data, textures)
+                }
+            }
+        }
+        addSprite(resources.DelayLoad_Background_FrontLawn_1200_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE, -320, -280)
+
+        addPam(pams.PEASHOOTER, 'attack2', 0, -50, {custom: 'custom_06'})
+        // addPam(pams.PEASHOOTER, 'attack', 0, 100)
+        addPam(pams.PEASHOOTER, 'attack', -50, 80, {custom: 'custom_04'})
+        addPam(pams.SUNFLOWER, 'idle', 110, -50, {custom: 'custom_03'})
+        addPam(pams.SNOWPEA, 'attack', 240, -50, {custom: 'custom_01', userAction: function(pamSprite) {
+            let shot = addPam(pams.SNOWPEA_GUNSHOOT, '', pamSprite.x + 80, pamSprite.y - 60)
+            shot.stepAction = function() {
+                this.x += 10
+                if(this.x > 800) {
+                    this.needRemove = true
+                }
+            }
+        }})
+        let cherry = addPam(pams.CHERRYBOMB, 'idle', 230, 80, {onFinish: function(pamSprite) {
+            if(pamSprite.cherryWait < 0) {
+                pamSprite.visible = false
+                let offsetX = 24, offsetY = -180
+                addPam(pams.CHERRYBOMB_EXPLOSION_REAR, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
+                addPam(pams.CHERRYBOMB_EXPLOSION_TOP, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
+                pamSprite.cherryWait = cherryWaitIdle + 100
+            }
+        }})
+        let cherryWaitIdle = 50
+        cherry.cherryWait = cherryWaitIdle
+        cherry.stepAction = function() {
+            this.cherryWait--
+            if(this.cherryWait == cherryWaitIdle) {
+                this.changeAction(this.pam.actionFrame['idle'])
+                this.visible = true
+            }
+            if(this.cherryWait == 0) {
+                this.changeAction(this.pam.actionFrame['attack'])
+
+            }
+        }
+        addPam(pams.SUNFLOWER_TWIN, 'idle', 380, -50)
+        addPam(pams.THREEPEATER, 'idle', 370, 80)
+        addPam(pams.SQUASH, 'idle', 80, 80)
+
+        addPam(pams.BONKCHOY, 'idle', 150, 240)
+        // addPam(pams.BLOOMERANG_PROJECTILE, '', -100,-100)
+        addPam(pams.BLOOMERANG, 'attack', -50, 240, {userAction: function(pamSprite) {
+            let shot = addPam(pams.BLOOMERANG_PROJECTILE, '', pamSprite.x + 100, pamSprite.y - 60)
+            shot.forward = true
+            shot.stepAction = function() {
+                if(shot.forward) {
+                    this.x += 15
+                    if(this.x > 700) {
+                        this.y -= 20
+                        this.forward = false
+                    }
+                } else {
+                    this.x -= 15
+                    if(this.x < -300) {
+                        this.needRemove = true
+                    }
+                }
+            }
+        }})
+        addPam(pams.FUMESHROOM, 'special', 300, 240, {userAction: function(pamSprite) {
+            let shot = addPam(pams.FUMESHROOM_BUBBLES, 'special', pamSprite.x + 130, pamSprite.y, {onFinish: onFinish})
+            shot.pamParent = pamSprite
+        }})
+        addPam(pams.COCONUTCANNON, 'attack', 50, 360, {userAction: function(pamSprite) {
+            let shot = addPam(pams.COCONUT_PROJECTILE_EXPLOSION, 'coconut_projectile', pamSprite.x + 80, pamSprite.y - 40)
+            shot.stepAction = function() {
+                this.x += 10
+                if(this.x > 800) {
+                    this.needRemove = true
+                }
+            }
+        }})
+
+        addPam(pams.SNAPDRAGON, 'attack', 420, 340, {userAction: function(pamSprite) {
+            let shot = addPam(pams.SNAPDRAGON_FIRE, 'animation', pamSprite.x + 40, pamSprite.y - 30, {onFinish: onFinish})
+            shot.pamParent = pamSprite
+        }})
+
+        addPam(pams.ZOMBIE_EGYPT_BASIC, 'walk', 600, 0, {walk: true, walkGround: 'ground_swatch'})
+        addPam(pams.ZOMBIE_MODERN_ALLSTAR, 'run', 600, 100, {walk: true, walkGround: 'ground_swatch'})
+        // addPam(pams.GARGANTUAR, 'walk', 600, 200, {walk: true, walkGround: 'ground_swatch'})
+        // addSprite(pams.PEASHOOTER.image[13].texture, 0, 0)
+        // addSprite(pams.PEASHOOTER.image[15].texture, 100, 0)
+        // addSprite(pams.PEASHOOTER.image[17].texture, 200, 0)
+        // addSprite(pams.SUNFLOWER.image[16].texture, 300, 0)
+        // for(let i = 0;i < 10;i++) {
+        //     addSprite(pams.COCONUT_PROJECTILE_EXPLOSION.image[24].texture, i * 50, 0)
+        // }
+        // addSprite(pams.ZOMBIE_EGYPT_BASIC.image[17].texture, 300, 0)
+        app.ticker.add(delta => loop())
+        
+    }
+
+    var intv = 0
+    function loop() {
+        objects.forEach(a => {
+            if(a.needRemove || a.pamParant && a.pamParent.needRemove) {
+                app.stage.removeChild(a)
+            }
+        })
+        objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
+        intv++
+        if(intv > 2) {
+            intv = 0
+            for(let p of objects) {
+                if(p.visible) {
+                    p.step()
+                }
+                if(p.stepAction) {
+                    p.stepAction()
+                }
+                if(p.param.walk) {
+                    if(p.x < -400) {
+                        p.x = 900
+                    }
+                }
+            }
+        }
+    }
+
+    function addPam(pam, act, x, y, custom) {
+        // if(pam != pams.BLOOMERANG_PROJECTILE) return {}
+        let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act], custom)
+        a.position.set(x, y)
+        app.stage.addChild(a)
+        objects.push(a)
+        return a
+    }
+
+    
+    function addSprite(tex, x, y) {
+        let a = new PIXI.Sprite(tex)
+        a.position.set(x, y)
+        app.stage.addChild(a)
+        return a
+    }
+
+    function onFinish(pamSprite) {
+        pamSprite.needRemove = true
+    }
+
+        </script>
+    </body>
+</html>

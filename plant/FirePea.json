@@ -1,0 +1,704 @@
+{
+    "idle": {
+        "actionList": [
+            {
+                "FirePea_spark1": {
+                    "x": 20.3,
+                    "y": 40.5,
+                    "sx": 0.817,
+                    "sy": 0.817,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 20.8,
+                    "y": 19.9,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 17.7,
+                    "y": 40.8,
+                    "sx": 0.85,
+                    "sy": 0.787,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 26.4,
+                    "y": 15.7,
+                    "kx": 15,
+                    "ky": 15,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 15.2,
+                    "y": 41,
+                    "sx": 0.884,
+                    "sy": 0.758,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 32.8,
+                    "y": 13.1,
+                    "kx": 29.9,
+                    "ky": 29.9,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 12.6,
+                    "y": 41.1,
+                    "sx": 0.917,
+                    "sy": 0.729,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 39.8,
+                    "y": 12.1,
+                    "kx": 45,
+                    "ky": 45,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 10,
+                    "y": 41.4,
+                    "sx": 0.951,
+                    "sy": 0.7,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 46.8,
+                    "y": 13.1,
+                    "kx": 60.1,
+                    "ky": 60.1,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 7.4,
+                    "y": 41.6,
+                    "sx": 0.984,
+                    "sy": 0.671,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 53.1,
+                    "y": 15.7,
+                    "kx": 75,
+                    "ky": 75,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 4.8,
+                    "y": 41.8,
+                    "sx": 1.018,
+                    "sy": 0.641,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 58.7,
+                    "y": 19.9,
+                    "kx": 90,
+                    "ky": 90,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark1": {
+                    "x": 2.2,
+                    "y": 42,
+                    "sx": 1.052,
+                    "sy": 0.612,
+                    "a": 0.83,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 63,
+                    "y": 25.5,
+                    "kx": 105,
+                    "ky": 105,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": 14.1,
+                    "y": 26.7,
+                    "sx": 0.817,
+                    "sy": 0.817,
+                    "f": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark1": {
+                    "x": -0.2,
+                    "y": 42.3,
+                    "sx": 1.085,
+                    "sy": 0.583,
+                    "a": 0.67,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 65.6,
+                    "y": 31.9,
+                    "kx": 119.9,
+                    "ky": 119.9,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": 11.5,
+                    "y": 26.9,
+                    "sx": 0.854,
+                    "sy": 0.799,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark1": {
+                    "x": -2.8,
+                    "y": 42.5,
+                    "sx": 1.119,
+                    "sy": 0.554,
+                    "a": 0.5,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 66.6,
+                    "y": 38.9,
+                    "kx": 135,
+                    "ky": 135,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": 8.8,
+                    "y": 27,
+                    "sx": 0.891,
+                    "sy": 0.782,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark1": {
+                    "x": -5.4,
+                    "y": 42.6,
+                    "sx": 1.152,
+                    "sy": 0.524,
+                    "a": 0.33,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 65.6,
+                    "y": 45.9,
+                    "kx": 150.1,
+                    "ky": 150.1,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": 6.1,
+                    "y": 27.1,
+                    "sx": 0.928,
+                    "sy": 0.765,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark1": {
+                    "x": -7.9,
+                    "y": 42.9,
+                    "sx": 1.186,
+                    "sy": 0.495,
+                    "a": 0.17,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 63,
+                    "y": 52.3,
+                    "kx": 165,
+                    "ky": 165,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": 3.4,
+                    "y": 27.3,
+                    "sx": 0.966,
+                    "sy": 0.747,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark1": {
+                    "x": -10.5,
+                    "y": 43.1,
+                    "sx": 1.219,
+                    "sy": 0.466,
+                    "a": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 58.7,
+                    "y": 57.8,
+                    "kx": 180,
+                    "ky": 180,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": 0.8,
+                    "y": 27.4,
+                    "sx": 1.003,
+                    "sy": 0.73,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark1": {
+                    "x": -10.5,
+                    "y": 43.1,
+                    "sx": 1.219,
+                    "sy": 0.466,
+                    "a": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 53.1,
+                    "y": 62,
+                    "kx": 195,
+                    "ky": 195,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": -1.7,
+                    "y": 27.5,
+                    "sx": 1.04,
+                    "sy": 0.713,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 46.8,
+                    "y": 64.7,
+                    "kx": 209.9,
+                    "ky": 209.9,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark2": {
+                    "x": -3.6,
+                    "y": 27.7,
+                    "sx": 1.078,
+                    "sy": 0.681,
+                    "a": 0.83,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 39.8,
+                    "y": 65.7,
+                    "kx": 225,
+                    "ky": 225,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": 5.5,
+                    "y": 32.3,
+                    "sx": 0.817,
+                    "sy": 0.817,
+                    "f": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark2": {
+                    "x": -5.5,
+                    "y": 28,
+                    "sx": 1.115,
+                    "sy": 0.65,
+                    "a": 0.67,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 32.8,
+                    "y": 64.8,
+                    "kx": 240.1,
+                    "ky": 240.1,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": 1.8,
+                    "y": 32.6,
+                    "sx": 0.872,
+                    "sy": 0.782,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark2": {
+                    "x": -7.3,
+                    "y": 28.2,
+                    "sx": 1.152,
+                    "sy": 0.619,
+                    "a": 0.5,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 26.4,
+                    "y": 62,
+                    "kx": 255,
+                    "ky": 255,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -1.8,
+                    "y": 32.9,
+                    "sx": 0.928,
+                    "sy": 0.748,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark2": {
+                    "x": -9.2,
+                    "y": 28.4,
+                    "sx": 1.19,
+                    "sy": 0.588,
+                    "a": 0.33,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 20.8,
+                    "y": 57.8,
+                    "kx": 270,
+                    "ky": 270,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -5.6,
+                    "y": 33,
+                    "sx": 0.983,
+                    "sy": 0.714,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark2": {
+                    "x": -11.1,
+                    "y": 28.7,
+                    "sx": 1.227,
+                    "sy": 0.557,
+                    "a": 0.17,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 16.6,
+                    "y": 52.3,
+                    "kx": 285,
+                    "ky": 285,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -9.3,
+                    "y": 33.3,
+                    "sx": 1.039,
+                    "sy": 0.68,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark2": {
+                    "x": -12.9,
+                    "y": 28.9,
+                    "sx": 1.264,
+                    "sy": 0.526,
+                    "a": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 13.9,
+                    "y": 45.9,
+                    "kx": 299.9,
+                    "ky": 299.9,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -12.3,
+                    "y": 33.6,
+                    "sx": 1.078,
+                    "sy": 0.633,
+                    "a": 0.75,
+                    "i": "firepea_spark"
+                },
+                "FirePea_spark2": {
+                    "x": -12.9,
+                    "y": 28.9,
+                    "sx": 1.264,
+                    "sy": 0.526,
+                    "a": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.9,
+                    "y": 19.6,
+                    "sx": 1.139,
+                    "i": "firepea_flame2"
+                },
+                "anim_idle": {
+                    "x": 13,
+                    "y": 38.9,
+                    "kx": 315,
+                    "ky": 315,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -15.2,
+                    "y": 34,
+                    "sx": 1.117,
+                    "sy": 0.586,
+                    "a": 0.5,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 14,
+                    "y": 31.9,
+                    "kx": 330.1,
+                    "ky": 330.1,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -18.1,
+                    "y": 34.4,
+                    "sx": 1.157,
+                    "sy": 0.539,
+                    "a": 0.25,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -11.8,
+                    "y": 19.4,
+                    "sx": 1.083,
+                    "i": "firepea_flame3"
+                },
+                "anim_idle": {
+                    "x": 16.6,
+                    "y": 25.5,
+                    "kx": 345,
+                    "ky": 345,
+                    "sx": 0.999,
+                    "sy": 0.999,
+                    "i": "firepea"
+                }
+            },
+            {
+                "FirePea_spark3": {
+                    "x": -21.1,
+                    "y": 34.7,
+                    "sx": 1.196,
+                    "sy": 0.493,
+                    "a": 0,
+                    "i": "firepea_spark"
+                },
+                "FirePea_flames": {
+                    "x": -7.8,
+                    "y": 20,
+                    "sx": 1,
+                    "i": "firepea_flame1"
+                },
+                "anim_idle": {
+                    "x": 20.8,
+                    "y": 19.9,
+                    "kx": 360,
+                    "ky": 360,
+                    "sx": 1,
+                    "sy": 1,
+                    "i": "firepea"
+                }
+            }
+        ]
+    }
+}

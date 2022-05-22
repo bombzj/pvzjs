@@ -1,0 +1,7320 @@
+{
+  "leaf_idle": {
+    "actionList": [
+      [
+        {
+          "x": "27.7",
+          "y": "53",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_backleaf",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "25",
+          "y": "53.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_backleaf_lefttip",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "47.0",
+          "y": "52.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_backleaf_righttip",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "36.1",
+          "y": "52.6",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_stalk_bottom",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "31.0",
+          "y": "45.3",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_stalk_top",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "22.8",
+          "y": "54.4",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_frontleaf",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "56.3",
+          "y": "56.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_frontleaf_righttip",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "19.4",
+          "y": "61.6",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_frontleaf_lefttip",
+          "kx": 0,
+          "ky": 0
+        }
+      ],
+      [
+        {
+          "y": "53.3",
+          "sx": "0.561",
+          "sy": "0.543",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.7",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "y": "54.0",
+          "kx": "0.5",
+          "ky": "0.5",
+          "sx": "0.565",
+          "sy": "0.547",
+          "x": "25",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.2",
+          "y": "53.1",
+          "kx": "0.3",
+          "ky": "0.3",
+          "sx": "0.578",
+          "sy": "0.547",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "36.5",
+          "y": "52",
+          "kx": "2.0",
+          "ky": "1.3",
+          "sx": "0.556",
+          "sy": "0.589",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "31.4",
+          "y": "43.0",
+          "kx": "1.8",
+          "ky": "1.0",
+          "sx": "0.556",
+          "sy": "0.633",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.7",
+          "y": "54.5",
+          "sx": "0.559",
+          "sy": "0.550",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.1",
+          "kx": "-1.4",
+          "ky": "-1.4",
+          "sx": "0.584",
+          "sy": "0.554",
+          "y": "56.0",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.5",
+          "y": "61.4",
+          "kx": "1.3",
+          "ky": "1.3",
+          "sx": "0.567",
+          "sy": "0.554",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "53.5",
+          "sx": "0.566",
+          "sy": "0.530",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.7",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.9",
+          "y": "54.2",
+          "kx": "1.0",
+          "ky": "1.0",
+          "sx": "0.575",
+          "sy": "0.539",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.3",
+          "y": "53.4",
+          "kx": "0.5",
+          "ky": "0.5",
+          "sx": "0.600",
+          "sy": "0.539",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "36.7",
+          "y": "51.4",
+          "kx": "4.1",
+          "ky": "2.8",
+          "sx": "0.557",
+          "sy": "0.622",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "32",
+          "y": "40.8",
+          "kx": "3.8",
+          "ky": "2.3",
+          "sx": "0.557",
+          "sy": "0.710",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.6",
+          "y": "54.8",
+          "sx": "0.563",
+          "sy": "0.544",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "kx": "-2.9",
+          "ky": "-2.9",
+          "sx": "0.613",
+          "sy": "0.552",
+          "x": "56.1",
+          "y": "56.0",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "y": "61.3",
+          "kx": "2.8",
+          "ky": "2.8",
+          "sx": "0.580",
+          "sy": "0.552",
+          "x": "19.5",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "x": "27.6",
+          "y": "53.9",
+          "sx": "0.572",
+          "sy": "0.518",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_backleaf"
+        },
+        {
+          "y": "54.4",
+          "kx": "1.5",
+          "ky": "1.5",
+          "sx": "0.584",
+          "sy": "0.531",
+          "x": "24.9",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.5",
+          "y": "53.6",
+          "kx": "0.8",
+          "ky": "0.8",
+          "sx": "0.623",
+          "sy": "0.531",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "37.1",
+          "y": "50.8",
+          "kx": "6.3",
+          "ky": "4.0",
+          "sx": "0.558",
+          "sy": "0.655",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "32.5",
+          "y": "38.5",
+          "kx": "5.7",
+          "ky": "3.5",
+          "sy": "0.787",
+          "sx": "0.557",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.5",
+          "y": "55",
+          "sx": "0.566",
+          "sy": "0.538",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56",
+          "y": "56.1",
+          "kx": "-4.4",
+          "ky": "-4.4",
+          "sx": "0.642",
+          "sy": "0.550",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "y": "61.1",
+          "kx": "4.0",
+          "ky": "4.0",
+          "sx": "0.592",
+          "sy": "0.550",
+          "x": "19.5",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.1",
+          "sx": "0.577",
+          "sy": "0.505",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "y": "54.5",
+          "kx": "2.0",
+          "ky": "2.0",
+          "sx": "0.594",
+          "sy": "0.523",
+          "x": "24.9",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "y": "54",
+          "kx": "1.1",
+          "ky": "1.1",
+          "sx": "0.645",
+          "sy": "0.523",
+          "x": "47.5",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "37.5",
+          "y": "50.1",
+          "kx": "8.3",
+          "ky": "5.5",
+          "sx": "0.559",
+          "sy": "0.688",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "33.0",
+          "y": "38",
+          "kx": "7.3",
+          "ky": "4.5",
+          "sx": "0.560",
+          "sy": "0.810",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.4",
+          "y": "55.1",
+          "sx": "0.570",
+          "sy": "0.533",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.9",
+          "y": "56.3",
+          "kx": "-5.9",
+          "ky": "-5.9",
+          "sx": "0.671",
+          "sy": "0.548",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.6",
+          "y": "60.9",
+          "kx": "5.5",
+          "ky": "5.5",
+          "sx": "0.604",
+          "sy": "0.548",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.5",
+          "sx": "0.583",
+          "sy": "0.492",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25",
+          "y": "54.7",
+          "kx": "2.7",
+          "ky": "2.7",
+          "sx": "0.604",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.7",
+          "y": "54.1",
+          "kx": "1.5",
+          "ky": "1.5",
+          "sx": "0.667",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "37.9",
+          "y": "49.6",
+          "kx": "10.5",
+          "ky": "6.8",
+          "sy": "0.721",
+          "sx": "0.559",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "33.6",
+          "y": "37.4",
+          "kx": "9.1",
+          "ky": "5.5",
+          "sx": "0.563",
+          "sy": "0.834",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.3",
+          "y": "55.3",
+          "sx": "0.574",
+          "sy": "0.527",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.8",
+          "y": "56.4",
+          "kx": "-7.5",
+          "ky": "-7.5",
+          "sx": "0.700",
+          "sy": "0.547",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.7",
+          "y": "60.8",
+          "kx": "6.8",
+          "ky": "6.8",
+          "sx": "0.616",
+          "sy": "0.546",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.8",
+          "sx": "0.588",
+          "sy": "0.480",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.7",
+          "y": "55.3",
+          "kx": "0.3",
+          "ky": "0.3",
+          "sx": "0.616",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.9",
+          "y": "54.4",
+          "kx": "2.8",
+          "ky": "2.8",
+          "sx": "0.660",
+          "sy": "0.508",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "38.3",
+          "y": "49",
+          "kx": "12.7",
+          "ky": "8.3",
+          "sx": "0.560",
+          "sy": "0.755",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "34.3",
+          "y": "36.6",
+          "kx": "11.0",
+          "ky": "6.5",
+          "sx": "0.566",
+          "sy": "0.858",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.2",
+          "y": "55.4",
+          "sx": "0.577",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.5",
+          "y": "56.5",
+          "kx": "-9.2",
+          "ky": "-9.2",
+          "sx": "0.729",
+          "sy": "0.545",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.6",
+          "y": "60.4",
+          "kx": "8.3",
+          "ky": "8.3",
+          "sx": "0.628",
+          "sy": "0.545",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "55.0",
+          "sx": "0.594",
+          "sy": "0.467",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.5",
+          "y": "55.8",
+          "kx": "-1.7",
+          "ky": "-1.7",
+          "sx": "0.628",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.1",
+          "y": "54.8",
+          "kx": "4.3",
+          "ky": "4.3",
+          "sx": "0.653",
+          "sy": "0.500",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "39.0",
+          "y": "49.1",
+          "kx": "16.8",
+          "ky": "10.8",
+          "sx": "0.561",
+          "sy": "0.733",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "35.5",
+          "y": "36.8",
+          "kx": "13.1",
+          "ky": "8.8",
+          "sx": "0.564",
+          "sy": "0.843",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.1",
+          "y": "55.6",
+          "sx": "0.581",
+          "sy": "0.516",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56",
+          "kx": "-7.5",
+          "ky": "-7.5",
+          "sx": "0.707",
+          "sy": "0.543",
+          "y": "56.5",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.4",
+          "y": "60.8",
+          "kx": "5.8",
+          "ky": "5.8",
+          "sx": "0.620",
+          "sy": "0.551",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "x": "27.5",
+          "y": "55.3",
+          "sx": "0.599",
+          "sy": "0.454",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.3",
+          "y": "56.4",
+          "kx": "-3.9",
+          "ky": "-3.9",
+          "sx": "0.640",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.4",
+          "y": "55.0",
+          "kx": "5.8",
+          "ky": "5.8",
+          "sx": "0.646",
+          "sy": "0.492",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "39.7",
+          "y": "49.3",
+          "kx": "20.8",
+          "ky": "13.5",
+          "sx": "0.562",
+          "sy": "0.712",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "36.8",
+          "y": "37.0",
+          "kx": "15.5",
+          "ky": "11.0",
+          "sx": "0.562",
+          "sy": "0.829",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.0",
+          "y": "55.8",
+          "sx": "0.585",
+          "sy": "0.510",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.4",
+          "y": "56.6",
+          "kx": "-5.9",
+          "ky": "-5.9",
+          "sx": "0.686",
+          "sy": "0.542",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.1",
+          "y": "61.1",
+          "kx": "3.5",
+          "ky": "3.5",
+          "sx": "0.612",
+          "sy": "0.557",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "55.6",
+          "sx": "0.605",
+          "sy": "0.442",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.5",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24",
+          "y": "57.0",
+          "kx": "-6.2",
+          "ky": "-6.2",
+          "sx": "0.652",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.6",
+          "y": "55.4",
+          "kx": "7.3",
+          "ky": "7.3",
+          "sx": "0.639",
+          "sy": "0.484",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "40.4",
+          "y": "49.6",
+          "kx": "25.1",
+          "ky": "16.1",
+          "sx": "0.563",
+          "sy": "0.691",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "38.0",
+          "y": "37.1",
+          "kx": "17.8",
+          "ky": "13.3",
+          "sx": "0.561",
+          "sy": "0.815",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "21.9",
+          "y": "56",
+          "sx": "0.588",
+          "sy": "0.504",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.8",
+          "y": "56.8",
+          "kx": "-4.4",
+          "ky": "-4.4",
+          "sx": "0.664",
+          "sy": "0.540",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.9",
+          "y": "61.4",
+          "kx": "1.3",
+          "ky": "1.0",
+          "sx": "0.604",
+          "sy": "0.563",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "55.9",
+          "sx": "0.610",
+          "sy": "0.429",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.5",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "23.9",
+          "y": "57.5",
+          "kx": "-8.5",
+          "ky": "-8.5",
+          "sx": "0.665",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.8",
+          "y": "55.7",
+          "kx": "8.8",
+          "ky": "8.8",
+          "sx": "0.633",
+          "sy": "0.477",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "41.1",
+          "y": "49.8",
+          "kx": "29.1",
+          "ky": "18.8",
+          "sx": "0.564",
+          "sy": "0.670",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "40.0",
+          "y": "37.6",
+          "kx": "19.6",
+          "ky": "19.1",
+          "sx": "0.551",
+          "sy": "0.804",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "21.8",
+          "y": "56.1",
+          "sx": "0.592",
+          "sy": "0.499",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "57.0",
+          "y": "56.9",
+          "kx": "-2.9",
+          "ky": "-2.9",
+          "sx": "0.643",
+          "sy": "0.539",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.6",
+          "y": "61.8",
+          "kx": "-0.9",
+          "ky": "-1.2",
+          "sx": "0.596",
+          "sy": "0.569",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "55.6",
+          "sx": "0.607",
+          "sy": "0.438",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.5",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.1",
+          "y": "57.0",
+          "kx": "-6.7",
+          "ky": "-6.7",
+          "sx": "0.656",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.5",
+          "y": "55.5",
+          "kx": "7.6",
+          "ky": "7.6",
+          "sx": "0.637",
+          "sy": "0.482",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "41.8",
+          "y": "50.0",
+          "kx": "33.3",
+          "ky": "21.3",
+          "sx": "0.565",
+          "sy": "0.649",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "42",
+          "y": "38.1",
+          "kx": "21.5",
+          "ky": "25.0",
+          "sx": "0.541",
+          "sy": "0.794",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "21.7",
+          "y": "56.4",
+          "sx": "0.596",
+          "sy": "0.493",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "57.4",
+          "y": "57.0",
+          "kx": "-1.4",
+          "ky": "-1.4",
+          "sx": "0.621",
+          "sy": "0.537",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.4",
+          "y": "62.1",
+          "kx": "-3.2",
+          "ky": "-3.4",
+          "sx": "0.588",
+          "sy": "0.575",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "55.5",
+          "sx": "0.603",
+          "sy": "0.447",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.5",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.2",
+          "y": "56.8",
+          "kx": "-5.2",
+          "ky": "-5.2",
+          "sx": "0.647",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.4",
+          "y": "55.3",
+          "kx": "6.5",
+          "ky": "6.5",
+          "sx": "0.642",
+          "sy": "0.488",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "42.4",
+          "y": "50.4",
+          "kx": "37.5",
+          "ky": "24.1",
+          "sx": "0.567",
+          "sy": "0.629",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "44",
+          "y": "39.0",
+          "kx": "23.5",
+          "ky": "30.8",
+          "sx": "0.532",
+          "sy": "0.785",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "y": "56.5",
+          "sx": "0.600",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "x": "21.7",
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "57.9",
+          "y": "57.1",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.600",
+          "sy": "0.535",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.2",
+          "y": "62.5",
+          "kx": "-5.7",
+          "ky": "-5.9",
+          "sx": "0.580",
+          "sy": "0.582",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "55.3",
+          "sx": "0.599",
+          "sy": "0.456",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.5",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.3",
+          "y": "56.3",
+          "kx": "-3.5",
+          "ky": "-3.5",
+          "sx": "0.638",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.3",
+          "y": "55.0",
+          "kx": "5.5",
+          "ky": "5.5",
+          "sx": "0.647",
+          "sy": "0.493",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "41.6",
+          "y": "50.3",
+          "kx": "33.3",
+          "ky": "21.3",
+          "sx": "0.565",
+          "sy": "0.634",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "42.0",
+          "y": "38.2",
+          "kx": "22.1",
+          "ky": "25.6",
+          "sx": "0.546",
+          "sy": "0.794",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "y": "56.4",
+          "sx": "0.596",
+          "sy": "0.493",
+          "kx": 0,
+          "ky": 0,
+          "x": "21.7",
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "57.5",
+          "y": "57.0",
+          "kx": "-1.4",
+          "ky": "-1.4",
+          "sx": "0.621",
+          "sy": "0.537",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.5",
+          "y": "62.1",
+          "kx": "-3.2",
+          "ky": "-3.4",
+          "sx": "0.588",
+          "sy": "0.575",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "x": "27.6",
+          "y": "55.0",
+          "sx": "0.595",
+          "sy": "0.465",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.5",
+          "y": "55.9",
+          "kx": "-1.9",
+          "ky": "-1.9",
+          "sx": "0.630",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48.0",
+          "y": "54.8",
+          "kx": "4.3",
+          "ky": "4.3",
+          "sx": "0.652",
+          "sy": "0.499",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "40.9",
+          "kx": "29.1",
+          "ky": "18.8",
+          "sx": "0.564",
+          "sy": "0.640",
+          "y": "50.3",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "40.3",
+          "y": "37.6",
+          "kx": "20.8",
+          "ky": "20.3",
+          "sx": "0.561",
+          "sy": "0.804",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "21.9",
+          "y": "56.1",
+          "sx": "0.592",
+          "sy": "0.499",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "57.1",
+          "y": "57",
+          "kx": "-2.9",
+          "ky": "-2.9",
+          "sx": "0.643",
+          "sy": "0.539",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.7",
+          "y": "61.8",
+          "kx": "-0.9",
+          "ky": "-1.2",
+          "sx": "0.596",
+          "sy": "0.569",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.9",
+          "sx": "0.591",
+          "sy": "0.474",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.7",
+          "y": "55.5",
+          "kx": "-0.2",
+          "ky": "-0.2",
+          "sx": "0.621",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "48",
+          "y": "54.6",
+          "kx": "3.3",
+          "ky": "3.3",
+          "sx": "0.657",
+          "sy": "0.504",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "40.1",
+          "y": "50.1",
+          "kx": "25.1",
+          "ky": "16.1",
+          "sx": "0.563",
+          "sy": "0.647",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "38.4",
+          "y": "36.9",
+          "kx": "19.6",
+          "ky": "15.1",
+          "sx": "0.576",
+          "sy": "0.815",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22",
+          "y": "56",
+          "sx": "0.588",
+          "sy": "0.504",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.8",
+          "y": "56.8",
+          "kx": "-4.4",
+          "ky": "-4.4",
+          "sx": "0.664",
+          "sy": "0.540",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "18.9",
+          "y": "61.5",
+          "kx": "1.3",
+          "ky": "1.0",
+          "sx": "0.604",
+          "sy": "0.563",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.6",
+          "sx": "0.587",
+          "sy": "0.483",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.8",
+          "y": "55.1",
+          "kx": "1.0",
+          "ky": "1.0",
+          "sx": "0.613",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.8",
+          "y": "54.4",
+          "kx": "2.3",
+          "ky": "2.3",
+          "sx": "0.662",
+          "sy": "0.510",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "39.4",
+          "y": "50.0",
+          "kx": "20.8",
+          "ky": "13.5",
+          "sx": "0.562",
+          "sy": "0.653",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "37.0",
+          "kx": "16.6",
+          "ky": "12.3",
+          "sx": "0.572",
+          "sy": "0.828",
+          "y": "36.9",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.1",
+          "y": "55.9",
+          "sx": "0.585",
+          "sy": "0.510",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.4",
+          "kx": "-5.9",
+          "ky": "-5.9",
+          "sx": "0.686",
+          "sy": "0.542",
+          "y": "56.8",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.2",
+          "y": "61.2",
+          "kx": "3.5",
+          "ky": "3.5",
+          "sx": "0.612",
+          "sy": "0.557",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.4",
+          "sx": "0.583",
+          "sy": "0.492",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25",
+          "y": "54.7",
+          "kx": "2.7",
+          "ky": "2.7",
+          "sx": "0.604",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.7",
+          "y": "54.1",
+          "kx": "1.2",
+          "ky": "1.2",
+          "sx": "0.667",
+          "sy": "0.515",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "38.6",
+          "kx": "16.8",
+          "ky": "10.8",
+          "sx": "0.561",
+          "sy": "0.659",
+          "y": "50.0",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "35.6",
+          "y": "36.7",
+          "kx": "13.8",
+          "ky": "9.3",
+          "sx": "0.569",
+          "sy": "0.843",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.2",
+          "y": "55.6",
+          "sx": "0.581",
+          "sy": "0.516",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56",
+          "y": "56.7",
+          "kx": "-7.5",
+          "ky": "-7.5",
+          "sx": "0.707",
+          "sy": "0.543",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.5",
+          "y": "60.9",
+          "kx": "5.8",
+          "ky": "5.8",
+          "sx": "0.620",
+          "sy": "0.551",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.2",
+          "sx": "0.579",
+          "sy": "0.501",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25.0",
+          "y": "54.5",
+          "kx": "2.3",
+          "ky": "2.3",
+          "sx": "0.597",
+          "sy": "0.521",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.5",
+          "y": "54",
+          "kx": "1.0",
+          "ky": "1.0",
+          "sx": "0.651",
+          "sy": "0.521",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "38.0",
+          "y": "49.8",
+          "kx": "12.7",
+          "ky": "8.3",
+          "sx": "0.560",
+          "sy": "0.665",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "34.3",
+          "y": "36.6",
+          "kx": "11.0",
+          "ky": "6.5",
+          "sx": "0.566",
+          "sy": "0.858",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "y": "55.5",
+          "sx": "0.577",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "x": "22.2",
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.5",
+          "y": "56.6",
+          "kx": "-9.2",
+          "ky": "-9.2",
+          "sx": "0.729",
+          "sy": "0.545",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.6",
+          "y": "60.6",
+          "kx": "8.3",
+          "ky": "8.3",
+          "sx": "0.628",
+          "sy": "0.545",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "54.0",
+          "sx": "0.575",
+          "sy": "0.510",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.6",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "24.9",
+          "kx": "1.8",
+          "ky": "1.8",
+          "sx": "0.590",
+          "sy": "0.527",
+          "y": "54.5",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "y": "53.8",
+          "kx": "0.8",
+          "ky": "0.8",
+          "sx": "0.635",
+          "sy": "0.527",
+          "x": "47.5",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "37.6",
+          "y": "50.4",
+          "kx": "10.5",
+          "ky": "6.8",
+          "sx": "0.559",
+          "sy": "0.647",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "33.7",
+          "y": "37.3",
+          "kx": "9.1",
+          "ky": "5.5",
+          "sx": "0.563",
+          "sy": "0.834",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.3",
+          "y": "55.3",
+          "sx": "0.574",
+          "sy": "0.527",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.6",
+          "y": "56.5",
+          "kx": "-7.5",
+          "ky": "-7.5",
+          "sx": "0.700",
+          "sy": "0.547",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.5",
+          "y": "60.9",
+          "kx": "6.8",
+          "ky": "6.8",
+          "sx": "0.616",
+          "sy": "0.546",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "x": "27.7",
+          "y": "53.7",
+          "sx": "0.571",
+          "sy": "0.519",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25.1",
+          "y": "54.4",
+          "kx": "1.5",
+          "ky": "1.5",
+          "sx": "0.583",
+          "sy": "0.532",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "y": "53.5",
+          "kx": "0.6",
+          "ky": "0.6",
+          "sx": "0.619",
+          "sy": "0.533",
+          "x": "47.5",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "37.4",
+          "y": "50.8",
+          "kx": "8.3",
+          "ky": "5.5",
+          "sy": "0.629",
+          "sx": "0.559",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "33.1",
+          "y": "37.9",
+          "kx": "7.3",
+          "ky": "4.5",
+          "sx": "0.560",
+          "sy": "0.810",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.4",
+          "y": "55.1",
+          "sx": "0.570",
+          "sy": "0.533",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.7",
+          "y": "56.4",
+          "kx": "-5.9",
+          "ky": "-5.9",
+          "sx": "0.671",
+          "sy": "0.548",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "kx": "5.5",
+          "ky": "5.5",
+          "sx": "0.604",
+          "sy": "0.548",
+          "x": "19.5",
+          "y": "60.9",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "53.6",
+          "sx": "0.567",
+          "sy": "0.528",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.7",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25",
+          "y": "54.3",
+          "kx": "1.0",
+          "ky": "1.0",
+          "sx": "0.576",
+          "sy": "0.538",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.4",
+          "y": "53.4",
+          "kx": "0.5",
+          "ky": "0.5",
+          "sx": "0.603",
+          "sy": "0.538",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "37",
+          "y": "51.2",
+          "kx": "6.3",
+          "ky": "4.0",
+          "sx": "0.558",
+          "sy": "0.610",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "32.5",
+          "y": "38.5",
+          "kx": "5.7",
+          "ky": "3.5",
+          "sx": "0.557",
+          "sy": "0.787",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.5",
+          "y": "54.9",
+          "sx": "0.566",
+          "sy": "0.538",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "55.9",
+          "y": "56.3",
+          "kx": "-4.4",
+          "ky": "-4.4",
+          "sx": "0.642",
+          "sy": "0.550",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "y": "61.1",
+          "kx": "4.0",
+          "ky": "4.0",
+          "sx": "0.592",
+          "sy": "0.550",
+          "x": "19.5",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "53.4",
+          "sx": "0.563",
+          "sy": "0.537",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.7",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25.0",
+          "y": "54.1",
+          "kx": "0.8",
+          "ky": "0.8",
+          "sx": "0.569",
+          "sy": "0.544",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "y": "53.2",
+          "kx": "0.3",
+          "ky": "0.3",
+          "sx": "0.587",
+          "sy": "0.544",
+          "x": "47.4",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "36.6",
+          "y": "51.6",
+          "kx": "4.1",
+          "ky": "2.8",
+          "sx": "0.557",
+          "sy": "0.592",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "32.0",
+          "y": "40.9",
+          "kx": "3.8",
+          "ky": "2.3",
+          "sy": "0.710",
+          "sx": "0.557",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.6",
+          "y": "54.8",
+          "sx": "0.563",
+          "sy": "0.544",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56",
+          "y": "56.1",
+          "kx": "-2.9",
+          "ky": "-2.9",
+          "sx": "0.613",
+          "sy": "0.552",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.4",
+          "y": "61.2",
+          "kx": "2.8",
+          "ky": "2.8",
+          "sx": "0.580",
+          "sy": "0.552",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "53.1",
+          "sx": "0.559",
+          "sy": "0.546",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.7",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "x": "25",
+          "y": "54.0",
+          "kx": "0.3",
+          "ky": "0.3",
+          "sx": "0.562",
+          "sy": "0.550",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.3",
+          "y": "53.0",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.571",
+          "sy": "0.550",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "36.4",
+          "y": "52.1",
+          "kx": "2.0",
+          "ky": "1.3",
+          "sx": "0.556",
+          "sy": "0.574",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "31.5",
+          "y": "43.0",
+          "kx": "1.8",
+          "ky": "1.0",
+          "sx": "0.556",
+          "sy": "0.633",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.7",
+          "y": "54.6",
+          "sx": "0.559",
+          "sy": "0.550",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.1",
+          "y": "56.0",
+          "kx": "-1.4",
+          "ky": "-1.4",
+          "sx": "0.584",
+          "sy": "0.554",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.3",
+          "y": "61.4",
+          "kx": "1.3",
+          "ky": "1.3",
+          "sx": "0.567",
+          "sy": "0.554",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ],
+      [
+        {
+          "y": "53",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "27.7",
+          "i": "peashooter_backleaf"
+        },
+        {
+          "y": "53.9",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "x": "25",
+          "i": "peashooter_backleaf_lefttip"
+        },
+        {
+          "x": "47.1",
+          "y": "52.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": "0.0",
+          "i": "peashooter_backleaf_righttip"
+        },
+        {
+          "x": "36.1",
+          "y": "52.6",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_stalk_bottom"
+        },
+        {
+          "x": "31.0",
+          "y": "45.3",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_stalk_top"
+        },
+        {
+          "x": "22.8",
+          "y": "54.4",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_frontleaf"
+        },
+        {
+          "x": "56.3",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "y": "56.0",
+          "i": "peashooter_frontleaf_righttip"
+        },
+        {
+          "x": "19.4",
+          "y": "61.6",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "i": "peashooter_frontleaf_lefttip"
+        }
+      ]
+    ]
+  },
+  "shooting": {
+    "actionList": [
+      [
+        {
+          "x": "19.1",
+          "y": "14",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "11.3",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.3",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "18.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-1.1",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "24.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-1.1",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.5",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-1.1",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.6",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-1.1",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.3",
+          "y": "11.5",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "16.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "y": "1.5",
+          "kx": "3.8",
+          "ky": "5.6",
+          "sy": "0.592",
+          "sx": "0.603",
+          "x": "10.0",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.7",
+          "y": "13.1",
+          "sx": "0.543",
+          "sy": "0.568",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.1",
+          "y": "10.4",
+          "sx": "0.548",
+          "sy": "0.570",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "57.9",
+          "y": "17.4",
+          "kx": "-1.0",
+          "sx": "0.559",
+          "sy": "0.559",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.5",
+          "y": "23.6",
+          "kx": "-1.0",
+          "sx": "0.559",
+          "sy": "0.559",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.8",
+          "y": "11.5",
+          "kx": "-1.0",
+          "sx": "0.559",
+          "sy": "0.559",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.8",
+          "y": "17.7",
+          "kx": "-1.0",
+          "sx": "0.559",
+          "sy": "0.559",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.1",
+          "y": "10.5",
+          "sx": "0.548",
+          "sy": "0.570",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.3",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.3",
+          "y": "0.1",
+          "kx": "4.0",
+          "ky": "5.4",
+          "sx": "0.596",
+          "sy": "0.608",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "20.2",
+          "y": "12.3",
+          "sx": "0.531",
+          "sy": "0.581",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.0",
+          "y": "9.5",
+          "sx": "0.541",
+          "sy": "0.585",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "57.6",
+          "y": "16.5",
+          "kx": "-0.9",
+          "sx": "0.569",
+          "sy": "0.569",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.2",
+          "y": "22.8",
+          "kx": "-0.9",
+          "sx": "0.569",
+          "sy": "0.569",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.5",
+          "y": "10.6",
+          "kx": "-0.9",
+          "sx": "0.569",
+          "sy": "0.569",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.4",
+          "y": "16.9",
+          "kx": "-0.9",
+          "sx": "0.569",
+          "sy": "0.569",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.0",
+          "y": "9.5",
+          "sx": "0.541",
+          "sy": "0.584",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "15.9",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.6",
+          "y": "-1.2",
+          "kx": "4.2",
+          "ky": "5.2",
+          "sx": "0.588",
+          "sy": "0.623",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "20.8",
+          "y": "11.5",
+          "sx": "0.519",
+          "sy": "0.594",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "48.9",
+          "y": "8.6",
+          "sx": "0.534",
+          "sy": "0.599",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "57.4",
+          "y": "15.7",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.9",
+          "y": "22.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.1",
+          "y": "9.7",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52",
+          "y": "16.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "48.9",
+          "y": "8.5",
+          "sx": "0.534",
+          "sy": "0.599",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "15.5",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.8",
+          "y": "-2.6",
+          "kx": "4.3",
+          "ky": "5.0",
+          "sx": "0.580",
+          "sy": "0.639",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "21.5",
+          "y": "10",
+          "sx": "0.496",
+          "sy": "0.618",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "48.1",
+          "y": "7.1",
+          "sx": "0.493",
+          "sy": "0.630",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "56.5",
+          "y": "14.1",
+          "kx": "-1.2",
+          "sx": "0.570",
+          "sy": "0.625",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.0",
+          "y": "21",
+          "kx": "-1.2",
+          "sx": "0.570",
+          "sy": "0.625",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.2",
+          "y": "7.6",
+          "kx": "-1.2",
+          "sx": "0.570",
+          "sy": "0.625",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.1",
+          "y": "14.4",
+          "kx": "-1.2",
+          "sx": "0.570",
+          "sy": "0.625",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "48.3",
+          "y": "6.9",
+          "sx": "0.493",
+          "sy": "0.630",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.4",
+          "y": "14.2",
+          "sx": "0.762",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "11.1",
+          "y": "-4.0",
+          "kx": "4.5",
+          "ky": "4.8",
+          "sx": "0.572",
+          "sy": "0.654",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "22.4",
+          "y": "8.6",
+          "sx": "0.474",
+          "sy": "0.642",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "47.5",
+          "y": "5.6",
+          "sx": "0.452",
+          "sy": "0.661",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "55.5",
+          "y": "12.5",
+          "sx": "0.563",
+          "sy": "0.673",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.2",
+          "y": "19.9",
+          "sx": "0.563",
+          "sy": "0.673",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.4",
+          "y": "5.5",
+          "sx": "0.563",
+          "sy": "0.673",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.3",
+          "y": "12.8",
+          "sx": "0.563",
+          "sy": "0.673",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "47.5",
+          "y": "5.3",
+          "sx": "0.453",
+          "sy": "0.661",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.5",
+          "y": "13",
+          "sx": "0.724",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "11.4",
+          "y": "-5.4",
+          "kx": "4.7",
+          "ky": "4.6",
+          "sx": "0.564",
+          "sy": "0.670",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "23.2",
+          "y": "7.0",
+          "sx": "0.451",
+          "sy": "0.666",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "46.8",
+          "y": "3.9",
+          "sx": "0.412",
+          "sy": "0.692",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "54.6",
+          "y": "10.9",
+          "kx": "-1.5",
+          "sx": "0.555",
+          "sy": "0.720",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.3",
+          "y": "18.8",
+          "kx": "-1.5",
+          "sx": "0.555",
+          "sy": "0.720",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.5",
+          "y": "3.4",
+          "kx": "-1.5",
+          "sx": "0.555",
+          "sy": "0.720",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.5",
+          "y": "11.3",
+          "kx": "-1.5",
+          "sx": "0.555",
+          "sy": "0.720",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "46.8",
+          "y": "3.9",
+          "sx": "0.412",
+          "sy": "0.692",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.8",
+          "y": "11.7",
+          "sx": "0.686",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "11.6",
+          "y": "-6.9",
+          "kx": "4.8",
+          "ky": "4.5",
+          "sx": "0.556",
+          "sy": "0.686",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "22",
+          "y": "9.2",
+          "sx": "0.486",
+          "sy": "0.629",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "47.6",
+          "y": "6.3",
+          "sx": "0.461",
+          "sy": "0.646",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "55.5",
+          "y": "12.8",
+          "kx": "-1.2",
+          "sx": "0.563",
+          "sy": "0.673",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.2",
+          "y": "20.2",
+          "kx": "-1.2",
+          "sx": "0.563",
+          "sy": "0.673",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.4",
+          "y": "5.9",
+          "kx": "-1.2",
+          "sx": "0.563",
+          "sy": "0.673",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.3",
+          "y": "13.2",
+          "kx": "-1.2",
+          "sx": "0.563",
+          "sy": "0.673",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "47.5",
+          "y": "6.3",
+          "sx": "0.461",
+          "sy": "0.646",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.4",
+          "y": "12.7",
+          "sx": "0.724",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "11",
+          "y": "-4.5",
+          "kx": "4.5",
+          "ky": "4.8",
+          "sx": "0.576",
+          "sy": "0.654",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "20.7",
+          "y": "11.4",
+          "sx": "0.521",
+          "sy": "0.592",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "48.4",
+          "y": "8.7",
+          "sx": "0.509",
+          "sy": "0.601",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "56.4",
+          "y": "14.7",
+          "sx": "0.570",
+          "sy": "0.625",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.0",
+          "y": "21.7",
+          "sx": "0.570",
+          "sy": "0.625",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.2",
+          "y": "8.3",
+          "sx": "0.570",
+          "sy": "0.625",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.1",
+          "y": "15.2",
+          "sx": "0.570",
+          "sy": "0.625",
+          "kx": "-1.2",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "48.3",
+          "y": "8.6",
+          "sx": "0.509",
+          "sy": "0.601",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35",
+          "y": "13.7",
+          "sx": "0.762",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.4",
+          "y": "-2.1",
+          "kx": "4.1",
+          "ky": "5.3",
+          "sx": "0.596",
+          "sy": "0.623",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.5",
+          "y": "13.8",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.1",
+          "y": "11.1",
+          "sx": "0.558",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "57.4",
+          "y": "16.7",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.9",
+          "y": "23.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.1",
+          "y": "10.7",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52",
+          "y": "17.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.1",
+          "y": "11.0",
+          "sx": "0.558",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "34.5",
+          "y": "14.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.7",
+          "y": "0.2",
+          "kx": "3.8",
+          "ky": "5.7",
+          "sx": "0.616",
+          "sy": "0.592",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19",
+          "y": "15.8",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50",
+          "y": "13.3",
+          "sx": "0.570",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.4",
+          "y": "18.1",
+          "kx": "-0.9",
+          "sy": "0.567",
+          "sx": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56",
+          "y": "24.3",
+          "kx": "-0.9",
+          "sy": "0.567",
+          "sx": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.5",
+          "y": "11.9",
+          "kx": "-0.7",
+          "sx": "0.629",
+          "sy": "0.592",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.0",
+          "y": "18.4",
+          "kx": "-0.9",
+          "sy": "0.567",
+          "sx": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.9",
+          "y": "13.2",
+          "sx": "0.570",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.4",
+          "y": "21.6",
+          "sx": "0.555",
+          "sy": "0.519",
+          "i": "gatlingpea_blink1",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "35.1",
+          "y": "18.1",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.1",
+          "y": "2.5",
+          "kx": "3.4",
+          "ky": "6.3",
+          "sx": "0.636",
+          "sy": "0.561",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.4",
+          "y": "17.7",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.8",
+          "y": "15.5",
+          "sx": "0.582",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.4",
+          "y": "19.5",
+          "sy": "0.555",
+          "sx": "0.578",
+          "kx": "-0.9",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57",
+          "y": "25.7",
+          "sy": "0.555",
+          "sx": "0.578",
+          "kx": "-0.9",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "59.8",
+          "y": "13.0",
+          "kx": "-0.2",
+          "sx": "0.679",
+          "sy": "0.606",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.0",
+          "y": "19.9",
+          "sy": "0.555",
+          "sx": "0.578",
+          "kx": "-0.9",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.6",
+          "y": "15.4",
+          "sx": "0.582",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.6",
+          "y": "22.4",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.8",
+          "y": "21.5",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.5",
+          "y": "4.9",
+          "kx": "3.2",
+          "ky": "6.8",
+          "sx": "0.656",
+          "sy": "0.530",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "17.9",
+          "y": "19.5",
+          "sx": "0.605",
+          "sy": "0.452",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "51.5",
+          "y": "17.6",
+          "sx": "0.594",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "60.5",
+          "y": "21.0",
+          "kx": "-1.0",
+          "sy": "0.544",
+          "sx": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.0",
+          "y": "27",
+          "kx": "-1.0",
+          "sy": "0.544",
+          "sx": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "62.0",
+          "y": "14.1",
+          "kx": "0.0",
+          "sx": "0.730",
+          "sy": "0.620",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.0",
+          "y": "21.4",
+          "kx": "-1.0",
+          "sy": "0.544",
+          "sx": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.5",
+          "y": "17.6",
+          "sx": "0.595",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.8",
+          "y": "23.9",
+          "kx": "1.4",
+          "sx": "0.555",
+          "sy": "0.481",
+          "i": "gatlingpea_blink2",
+          "ky": 0
+        },
+        {
+          "x": "36.4",
+          "y": "24.9",
+          "kx": "-7.2",
+          "ky": "-7.2",
+          "sy": "0.663",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "7.6",
+          "y": "7.3",
+          "kx": "2.9",
+          "ky": "7.5",
+          "sx": "0.676",
+          "sy": "0.499",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.4",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.7",
+          "y": "15.4",
+          "sx": "0.581",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.9",
+          "y": "19",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.5",
+          "y": "25.3",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.7",
+          "y": "13",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.8",
+          "y": "19.3",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.8",
+          "y": "15.4",
+          "sx": "0.581",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.5",
+          "y": "22.2",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "i": "gatlingpea_blink1",
+          "ky": 0
+        },
+        {
+          "x": "35.9",
+          "y": "22.4",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.6",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.0",
+          "y": "13.2",
+          "sx": "0.568",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.4",
+          "y": "20.9",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.5",
+          "y": "21.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "y": "13.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.1",
+          "y": "12.8",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.1",
+          "y": "13.2",
+          "sx": "0.568",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.5",
+          "y": "19.8",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.2",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "13.7",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "11.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.1",
+          "y": "18.5",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.6",
+          "y": "22.3",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.1",
+          "y": "12.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.6",
+          "y": "15.4",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.5",
+          "y": "10.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "17.2",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sy": "0.800",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.6",
+          "y": "2.5",
+          "kx": "3.4",
+          "ky": "6.4",
+          "sx": "0.646",
+          "sy": "0.557",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.7",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.1",
+          "y": "13.3",
+          "sx": "0.574",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.8",
+          "y": "18.9",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.3",
+          "y": "25.3",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.5",
+          "y": "12.9",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.4",
+          "y": "19.3",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.3",
+          "y": "13.2",
+          "sx": "0.566",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.4",
+          "y": "21.6",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.5",
+          "y": "19.7",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.3",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.3",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.8",
+          "y": "15.5",
+          "sx": "0.592",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "61.0",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "y": "18.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "y": "25.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "59.0",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "y": "12.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.3",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "y": "19.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.0",
+          "y": "15.4",
+          "sx": "0.577",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.6",
+          "y": "22.4",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.8",
+          "y": "22.3",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "17.9",
+          "y": "19.5",
+          "sx": "0.605",
+          "sy": "0.452",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "51.4",
+          "y": "17.6",
+          "sx": "0.611",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "61",
+          "y": "21.0",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.544",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.5",
+          "y": "27",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.544",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "60.9",
+          "y": "14.2",
+          "kx": "0.0",
+          "sx": "0.730",
+          "sy": "0.620",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.5",
+          "y": "21.4",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.544",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.9",
+          "y": "17.6",
+          "sx": "0.588",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.8",
+          "y": "23.9",
+          "kx": "1.4",
+          "sx": "0.555",
+          "sy": "0.481",
+          "i": "gatlingpea_blink2",
+          "ky": 0
+        },
+        {
+          "x": "36.4",
+          "y": "24.9",
+          "kx": "-7.2",
+          "ky": "-7.2",
+          "sy": "0.663",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "7.6",
+          "y": "7.3",
+          "kx": "2.9",
+          "ky": "7.5",
+          "sx": "0.676",
+          "sy": "0.499",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.4",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.8",
+          "y": "15.4",
+          "sx": "0.592",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.9",
+          "y": "19",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.5",
+          "y": "25.3",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.7",
+          "y": "13",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.8",
+          "y": "19.3",
+          "kx": "-1.4",
+          "sx": "0.537",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.1",
+          "y": "15.4",
+          "sx": "0.577",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.5",
+          "y": "22.2",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "i": "gatlingpea_blink1",
+          "ky": 0
+        },
+        {
+          "x": "35.9",
+          "y": "22.4",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.6",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.0",
+          "y": "13.2",
+          "sx": "0.574",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.4",
+          "y": "20.9",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.5",
+          "y": "21.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "y": "13.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.1",
+          "y": "12.8",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.3",
+          "y": "13.2",
+          "sx": "0.566",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.5",
+          "y": "19.8",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.2",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "13.7",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "11.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.1",
+          "y": "18.5",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.6",
+          "y": "22.3",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.1",
+          "y": "12.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.6",
+          "y": "15.4",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.5",
+          "y": "10.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "17.2",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sy": "0.800",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.6",
+          "y": "2.5",
+          "kx": "3.4",
+          "ky": "6.4",
+          "sx": "0.646",
+          "sy": "0.557",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.7",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.2",
+          "y": "13.3",
+          "sx": "0.570",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.8",
+          "y": "18.3",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.3",
+          "y": "24.7",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.5",
+          "y": "12.3",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.4",
+          "y": "18.7",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.2",
+          "y": "13.2",
+          "sx": "0.569",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.4",
+          "y": "21.6",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.5",
+          "y": "19.7",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.3",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.3",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.9",
+          "y": "15.5",
+          "sx": "0.584",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "60",
+          "y": "19.2",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.572",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.7",
+          "y": "25.5",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.572",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.9",
+          "y": "13.2",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.572",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55",
+          "y": "19.5",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.572",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.9",
+          "y": "15.4",
+          "sx": "0.584",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.6",
+          "y": "22.4",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.8",
+          "y": "22.3",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "17.9",
+          "y": "19.5",
+          "sx": "0.605",
+          "sy": "0.452",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "51.5",
+          "y": "17.6",
+          "sx": "0.598",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "60.5",
+          "y": "21.4",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.524",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.0",
+          "y": "27.2",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.524",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "60.4",
+          "y": "14.6",
+          "kx": "0.0",
+          "sx": "0.730",
+          "sy": "0.620",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.0",
+          "y": "21.8",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.524",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.5",
+          "y": "17.6",
+          "sx": "0.598",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.8",
+          "y": "23.9",
+          "kx": "1.4",
+          "sx": "0.555",
+          "sy": "0.481",
+          "i": "gatlingpea_blink2",
+          "ky": 0
+        },
+        {
+          "x": "36.4",
+          "y": "24.9",
+          "kx": "-7.2",
+          "ky": "-7.2",
+          "sy": "0.663",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "7.6",
+          "y": "7.3",
+          "kx": "2.9",
+          "ky": "7.5",
+          "sx": "0.676",
+          "sy": "0.499",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.4",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.9",
+          "y": "15.4",
+          "sx": "0.584",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.9",
+          "y": "19.0",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.568",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.5",
+          "y": "25.3",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.568",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.8",
+          "y": "13.1",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.568",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.9",
+          "y": "19.4",
+          "kx": "-1.2",
+          "sx": "0.536",
+          "sy": "0.568",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.8",
+          "y": "15.4",
+          "sx": "0.584",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.5",
+          "y": "22.2",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "i": "gatlingpea_blink1",
+          "ky": 0
+        },
+        {
+          "x": "35.9",
+          "y": "22.4",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.6",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.2",
+          "y": "13.2",
+          "sx": "0.570",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.4",
+          "y": "20.9",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.5",
+          "y": "21.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "y": "13.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.1",
+          "y": "12.8",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.2",
+          "y": "13.2",
+          "sx": "0.569",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.5",
+          "y": "19.8",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.2",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "13.7",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "11.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "60.4",
+          "y": "18.4",
+          "kx": "-1.2",
+          "sx": "0.549",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.1",
+          "y": "22.2",
+          "kx": "-1.2",
+          "sx": "0.549",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.5",
+          "y": "12.0",
+          "kx": "-1.2",
+          "sx": "0.549",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.3",
+          "y": "15.3",
+          "kx": "-1.2",
+          "sx": "0.549",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.5",
+          "y": "10.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "17.2",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sy": "0.800",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.6",
+          "y": "2.5",
+          "kx": "3.4",
+          "ky": "6.4",
+          "sx": "0.646",
+          "sy": "0.557",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.7",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.3",
+          "y": "13.3",
+          "sx": "0.569",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "61.0",
+          "y": "18.2",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "y": "24.6",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "59.0",
+          "y": "12.2",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.3",
+          "y": "18.6",
+          "kx": "-1.3",
+          "sx": "0.508",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.2",
+          "y": "13.2",
+          "sx": "0.569",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.4",
+          "y": "21.6",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.5",
+          "y": "19.7",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.3",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.3",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "51.0",
+          "y": "15.5",
+          "sx": "0.583",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "19.2",
+          "kx": "-1.2",
+          "sy": "0.560",
+          "sx": "0.508",
+          "ky": 0,
+          "x": "61.0",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "25.4",
+          "kx": "-1.2",
+          "sy": "0.560",
+          "sx": "0.508",
+          "ky": 0,
+          "x": "58.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "13.4",
+          "kx": "-1.2",
+          "sy": "0.560",
+          "sx": "0.508",
+          "ky": 0,
+          "x": "59.0",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "19.6",
+          "kx": "-1.2",
+          "sy": "0.560",
+          "sx": "0.508",
+          "ky": 0,
+          "x": "56.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51",
+          "y": "15.4",
+          "sx": "0.583",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.6",
+          "y": "22.4",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "ky": 0,
+          "i": "gatlingpea_blink1"
+        },
+        {
+          "x": "35.8",
+          "y": "22.3",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "17.9",
+          "y": "19.5",
+          "sx": "0.605",
+          "sy": "0.452",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "51.8",
+          "y": "17.6",
+          "sx": "0.596",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "60.5",
+          "y": "21.3",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.518",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.0",
+          "y": "27.0",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.518",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "60.4",
+          "y": "14.4",
+          "kx": "0.0",
+          "sx": "0.730",
+          "sy": "0.620",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.0",
+          "y": "21.4",
+          "kx": "-1.0",
+          "sx": "0.578",
+          "sy": "0.544",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "51.7",
+          "y": "17.6",
+          "sx": "0.596",
+          "sy": "0.440",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.8",
+          "y": "23.9",
+          "kx": "1.4",
+          "sx": "0.555",
+          "sy": "0.481",
+          "i": "gatlingpea_blink2",
+          "ky": 0
+        },
+        {
+          "x": "36.4",
+          "y": "24.9",
+          "kx": "-7.2",
+          "ky": "-7.2",
+          "sy": "0.663",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "7.6",
+          "y": "7.3",
+          "kx": "2.9",
+          "ky": "7.5",
+          "sx": "0.676",
+          "sy": "0.499",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.4",
+          "y": "17.6",
+          "sx": "0.589",
+          "sy": "0.487",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "51",
+          "y": "15.4",
+          "sx": "0.583",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "61.0",
+          "y": "19.5",
+          "kx": "-1.2",
+          "sx": "0.508",
+          "sy": "0.558",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "y": "25.6",
+          "kx": "-1.2",
+          "sx": "0.508",
+          "sy": "0.558",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "59.0",
+          "y": "13.7",
+          "kx": "-1.2",
+          "sx": "0.508",
+          "sy": "0.558",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.3",
+          "y": "19.8",
+          "kx": "-1.2",
+          "sx": "0.508",
+          "sy": "0.558",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.9",
+          "y": "15.4",
+          "sx": "0.583",
+          "sy": "0.478",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "38.5",
+          "y": "22.2",
+          "kx": "1.5",
+          "sx": "0.556",
+          "sy": "0.519",
+          "i": "gatlingpea_blink1",
+          "ky": 0
+        },
+        {
+          "x": "35.9",
+          "y": "22.4",
+          "kx": "-4.7",
+          "ky": "-4.7",
+          "sy": "0.709",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8",
+          "y": "5.8",
+          "kx": "3.0",
+          "ky": "7.1",
+          "sx": "0.666",
+          "sy": "0.518",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "18.9",
+          "y": "15.6",
+          "sx": "0.572",
+          "sy": "0.521",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "50.3",
+          "y": "13.2",
+          "sx": "0.569",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.4",
+          "y": "20.9",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.5",
+          "y": "21.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "58.9",
+          "y": "13.2",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.1",
+          "y": "12.8",
+          "kx": "-1.3",
+          "sx": "0.562",
+          "sy": "0.641",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "50.1",
+          "y": "13.2",
+          "sx": "0.569",
+          "sy": "0.517",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.5",
+          "y": "19.8",
+          "kx": "-2.2",
+          "ky": "-2.2",
+          "sy": "0.754",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.2",
+          "y": "4.1",
+          "kx": "3.2",
+          "ky": "6.7",
+          "sx": "0.656",
+          "sy": "0.537",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "13.7",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "11.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "59.1",
+          "y": "18.5",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "54.6",
+          "y": "22.3",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "57.1",
+          "y": "12.1",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.6",
+          "y": "15.4",
+          "kx": "-1.1",
+          "sx": "0.578",
+          "sy": "0.578",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.5",
+          "y": "10.9",
+          "sx": "0.555",
+          "sy": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "17.2",
+          "kx": "0.0",
+          "ky": "0.0",
+          "sy": "0.800",
+          "sx": "0.800",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.6",
+          "y": "2.5",
+          "kx": "3.4",
+          "ky": "6.4",
+          "sx": "0.646",
+          "sy": "0.557",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "13.2",
+          "sy": "0.565",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "10.4",
+          "sy": "0.565",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.0",
+          "y": "17.0",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.6",
+          "y": "23.4",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.8",
+          "y": "11.0",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.4",
+          "sx": "0.578",
+          "sy": "0.578",
+          "kx": "-1.1",
+          "ky": 0,
+          "x": "52.6",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10.4",
+          "sy": "0.565",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "34.9",
+          "y": "16.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": "0.0",
+          "ky": "0.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "8.9",
+          "y": "2.3",
+          "kx": "3.5",
+          "ky": "6.2",
+          "sx": "0.638",
+          "sy": "0.564",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "12.7",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.4",
+          "y": "9.8",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.1",
+          "y": "16.8",
+          "kx": "-0.9",
+          "sx": "0.571",
+          "sy": "0.571",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.1",
+          "kx": "-0.9",
+          "sx": "0.571",
+          "sy": "0.571",
+          "ky": 0,
+          "x": "55.6",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.9",
+          "y": "10.9",
+          "kx": "-0.9",
+          "sx": "0.571",
+          "sy": "0.571",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.8",
+          "y": "17.1",
+          "kx": "-0.9",
+          "sx": "0.571",
+          "sy": "0.571",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "9.8",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.2",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": "0.0",
+          "ky": "0.0",
+          "x": "34.9",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.1",
+          "y": "2.1",
+          "ky": "6.1",
+          "sx": "0.629",
+          "sy": "0.571",
+          "kx": "3.5",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "12.0",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "9.2",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "16.6",
+          "kx": "-1.0",
+          "sx": "0.564",
+          "sy": "0.564",
+          "ky": 0,
+          "x": "58.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.8",
+          "y": "22.8",
+          "kx": "-1.0",
+          "sx": "0.564",
+          "sy": "0.564",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56",
+          "y": "10.8",
+          "kx": "-1.0",
+          "sx": "0.564",
+          "sy": "0.564",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "52.9",
+          "y": "17",
+          "kx": "-1.0",
+          "sx": "0.564",
+          "sy": "0.564",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "9.2",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "34.8",
+          "y": "15.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": "0.0",
+          "ky": "0.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.4",
+          "y": "1.9",
+          "kx": "3.6",
+          "ky": "5.9",
+          "sx": "0.621",
+          "sy": "0.578",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.2",
+          "y": "13",
+          "sy": "0.570",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "10.3",
+          "sy": "0.570",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17.4",
+          "kx": "-0.9",
+          "sx": "0.557",
+          "sy": "0.557",
+          "ky": 0,
+          "x": "58.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "55.9",
+          "y": "23.5",
+          "kx": "-0.9",
+          "sx": "0.557",
+          "sy": "0.557",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.0",
+          "y": "11.6",
+          "kx": "-0.9",
+          "sx": "0.557",
+          "sy": "0.557",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.0",
+          "y": "17.8",
+          "kx": "-0.9",
+          "sx": "0.557",
+          "sy": "0.557",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.4",
+          "y": "10.4",
+          "sy": "0.570",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "34.9",
+          "y": "16.2",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": "0.0",
+          "ky": "0.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.6",
+          "y": "1.7",
+          "kx": "3.7",
+          "ky": "5.8",
+          "sx": "0.612",
+          "sy": "0.585",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.1",
+          "y": "14",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.3",
+          "y": "11.3",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.3",
+          "y": "18.3",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56",
+          "y": "24.3",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "56.1",
+          "y": "12.5",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "53.1",
+          "y": "18.6",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.3",
+          "y": "11.5",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "16.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": "0.0",
+          "ky": "0.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.0",
+          "y": "1.5",
+          "kx": "3.8",
+          "ky": "5.6",
+          "sx": "0.603",
+          "sy": "0.592",
+          "i": "gatlingpea_helmet"
+        }
+      ]
+    ]
+  },
+  "idle": {
+    "actionList": [
+      [
+        {
+          "x": "19.2",
+          "y": "17.8",
+          "sx": "0.555",
+          "sy": "0.500",
+          "i": "gatlingpea_head",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "49.3",
+          "y": "15.5",
+          "sx": "0.555",
+          "sy": "0.500",
+          "i": "gatlingpea_mouth",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "58.3",
+          "y": "20.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "i": "gatlingpea_barrel",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "56",
+          "y": "26.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "i": "gatlingpea_barrel",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "56.1",
+          "y": "14.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "i": "gatlingpea_barrel",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "53.1",
+          "y": "20.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "i": "gatlingpea_barrel",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "49.4",
+          "y": "15.4",
+          "sx": "0.550",
+          "sy": "0.500",
+          "i": "gatlingpea_mouth_overlay",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "34.8",
+          "y": "19.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "i": "peashooter_eyebrow",
+          "kx": 0,
+          "ky": 0
+        },
+        {
+          "x": "10.0",
+          "y": "3.8",
+          "kx": "3.7",
+          "ky": "5.8",
+          "sx": "0.603",
+          "sy": "0.569",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "16.3",
+          "sy": "0.522",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.8",
+          "y": "13.3",
+          "kx": "9.9",
+          "sx": "0.564",
+          "sy": "0.517",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "20.4",
+          "kx": "4.1",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "26.3",
+          "kx": "4.1",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "14.5",
+          "kx": "4.1",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "4.1",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "y": "20.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.3",
+          "y": "13.1",
+          "kx": "9.8",
+          "sx": "0.564",
+          "sy": "0.517",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "34.9",
+          "y": "18.6",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.1",
+          "y": "3.0",
+          "kx": "3.8",
+          "ky": "5.7",
+          "sx": "0.600",
+          "sy": "0.577",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "14.7",
+          "sy": "0.545",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.6",
+          "y": "11.9",
+          "kx": "4.8",
+          "sx": "0.559",
+          "sy": "0.542",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "18.8",
+          "kx": "2.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "24.8",
+          "kx": "2.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.9",
+          "kx": "2.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.8",
+          "kx": "2.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.8",
+          "kx": "4.8",
+          "sx": "0.559",
+          "sy": "0.542",
+          "ky": 0,
+          "x": "49.3",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35",
+          "y": "17.6",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.2",
+          "y": "2.4",
+          "ky": "5.6",
+          "sx": "0.597",
+          "sy": "0.584",
+          "kx": "3.8",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.4",
+          "y": "13.1",
+          "sy": "0.567",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "10.4",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.567",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17.2",
+          "kx": "0.0",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.2",
+          "kx": "0.0",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.4",
+          "kx": "0.0",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.4",
+          "kx": "0.0",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.4",
+          "y": "10.4",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.567",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "16.5",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.3",
+          "y": "1.7",
+          "kx": "3.9",
+          "ky": "5.5",
+          "sx": "0.594",
+          "sy": "0.592",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "12.9",
+          "sy": "0.570",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "10.1",
+          "sy": "0.573",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10.2",
+          "sy": "0.573",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.0",
+          "y": "16.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.4",
+          "y": "1",
+          "kx": "4.0",
+          "ky": "5.4",
+          "sx": "0.591",
+          "sy": "0.599",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "12.7",
+          "sy": "0.572",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.4",
+          "y": "9.7",
+          "sy": "0.579",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17.0",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.0",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10",
+          "sy": "0.579",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.0",
+          "y": "16.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.5",
+          "y": "0.3",
+          "ky": "5.3",
+          "sx": "0.589",
+          "sy": "0.607",
+          "kx": "4.0",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.2",
+          "y": "12.5",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.3",
+          "y": "9.4",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "56.1",
+          "y": "11.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "53.1",
+          "y": "17.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "9.8",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.4",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.0",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.6",
+          "y": "-0.3",
+          "kx": "4.1",
+          "sx": "0.586",
+          "sy": "0.614",
+          "ky": "5.3",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "12.9",
+          "sy": "0.568",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.4",
+          "y": "10.1",
+          "kx": "-1.7",
+          "sx": "0.556",
+          "sy": "0.575",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "16.9",
+          "kx": "-0.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "22.9",
+          "kx": "-0.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.1",
+          "kx": "-0.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-0.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "y": "17.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10.4",
+          "kx": "-1.7",
+          "sx": "0.556",
+          "sy": "0.575",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.1",
+          "y": "16.8",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.4",
+          "y": "0.1",
+          "kx": "4.0",
+          "ky": "5.4",
+          "sx": "0.591",
+          "sy": "0.607",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.4",
+          "y": "13.3",
+          "sy": "0.562",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "10.9",
+          "kx": "-3.7",
+          "sx": "0.557",
+          "sy": "0.565",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.2",
+          "kx": "-0.7",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "y": "16.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-0.7",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "y": "22.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-0.7",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "y": "11.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-0.7",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "y": "17.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.1",
+          "kx": "-3.7",
+          "sx": "0.557",
+          "sy": "0.565",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.2",
+          "y": "17.1",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.3",
+          "y": "0.6",
+          "kx": "3.9",
+          "ky": "5.5",
+          "sx": "0.596",
+          "sy": "0.600",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "13.8",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.4",
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "11.6",
+          "kx": "-5.7",
+          "sx": "0.558",
+          "sy": "0.555",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.3",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "y": "16.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "y": "22.9",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "y": "11.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "y": "17.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.7",
+          "kx": "-5.7",
+          "sx": "0.558",
+          "sy": "0.555",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.3",
+          "y": "17.5",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.1",
+          "y": "1.1",
+          "ky": "5.6",
+          "sx": "0.600",
+          "sy": "0.593",
+          "kx": "3.9",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "15.0",
+          "sy": "0.537",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.4",
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "12.7",
+          "kx": "-3.7",
+          "sx": "0.554",
+          "sy": "0.537",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.2",
+          "y": "17.7",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.8",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.9",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.0",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.7",
+          "kx": "-3.7",
+          "sx": "0.554",
+          "sy": "0.537",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "17.6",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.3",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.9",
+          "y": "1.6",
+          "kx": "3.8",
+          "ky": "5.7",
+          "sx": "0.605",
+          "sy": "0.586",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "16.1",
+          "sy": "0.518",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.6",
+          "y": "13.8",
+          "kx": "-1.7",
+          "sx": "0.551",
+          "sy": "0.518",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "18.5",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "58.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "24.6",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.7",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.8",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.5",
+          "y": "13.7",
+          "kx": "-1.7",
+          "sx": "0.551",
+          "sy": "0.518",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.3",
+          "y": "17.6",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.8",
+          "y": "2.1",
+          "kx": "3.7",
+          "ky": "5.8",
+          "sx": "0.610",
+          "sy": "0.579",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "17.2",
+          "sy": "0.500",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "14.9",
+          "kx": "0.0",
+          "sx": "0.547",
+          "sy": "0.500",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.3",
+          "y": "19.4",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "25.4",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "13.6",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "19.7",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "14.8",
+          "kx": "0.0",
+          "sx": "0.547",
+          "sy": "0.500",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "17.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.3",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.6",
+          "y": "2.6",
+          "kx": "3.6",
+          "ky": "5.9",
+          "sx": "0.615",
+          "sy": "0.572",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.2",
+          "y": "16.1",
+          "sy": "0.518",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "12.9",
+          "kx": "9.1",
+          "sx": "0.557",
+          "sy": "0.518",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "19.7",
+          "kx": "3.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "25.6",
+          "kx": "3.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "13.8",
+          "kx": "3.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "3.0",
+          "sx": "0.551",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "y": "19.7",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.7",
+          "kx": "9.0",
+          "sx": "0.557",
+          "sy": "0.518",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "18.2",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.3",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.3",
+          "y": "3.5",
+          "kx": "3.5",
+          "ky": "6.2",
+          "sx": "0.628",
+          "sy": "0.561",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "15",
+          "sy": "0.537",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.2",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.3",
+          "y": "12.0",
+          "kx": "4.5",
+          "sx": "0.556",
+          "sy": "0.537",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "19",
+          "kx": "0.8",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "25",
+          "kx": "0.8",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "13.2",
+          "kx": "0.8",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "19.1",
+          "kx": "0.8",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "x": "49.4",
+          "y": "12",
+          "kx": "4.5",
+          "sx": "0.556",
+          "sy": "0.536",
+          "ky": 0,
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.5",
+          "y": "17.9",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.5",
+          "y": "2.6",
+          "kx": "3.6",
+          "ky": "6.0",
+          "sx": "0.619",
+          "sy": "0.572",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.1",
+          "y": "13.9",
+          "sy": "0.555",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "11.2",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "ky": 0,
+          "x": "49.3",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "18.2",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "58.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "24.2",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.4",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.5",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.4",
+          "kx": "0.0",
+          "sx": "0.555",
+          "sy": "0.555",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "17.5",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "9.9",
+          "y": "1.9",
+          "kx": "3.7",
+          "ky": "5.8",
+          "sx": "0.611",
+          "sy": "0.583",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.2",
+          "y": "13.3",
+          "sy": "0.565",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "10.5",
+          "sy": "0.565",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.3",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.2",
+          "y": "17.8",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.8",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.1",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10.7",
+          "sy": "0.565",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.9",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.1",
+          "y": "1.2",
+          "kx": "3.9",
+          "ky": "5.6",
+          "sx": "0.602",
+          "sy": "0.593",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "12.7",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.2",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.4",
+          "y": "9.9",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17.4",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "58.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.4",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.6",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.7",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10.1",
+          "sy": "0.575",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.3",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.5",
+          "y": "0.4",
+          "kx": "4.0",
+          "ky": "5.4",
+          "sx": "0.594",
+          "sy": "0.604",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "12.0",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "9.2",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.3",
+          "y": "17",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.0",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.2",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.3",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "9.5",
+          "sy": "0.585",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "15.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.6",
+          "y": "-0.3",
+          "kx": "4.1",
+          "ky": "5.3",
+          "sx": "0.586",
+          "sy": "0.614",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "12.3",
+          "sy": "0.579",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.5",
+          "y": "9.6",
+          "sy": "0.579",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.2",
+          "y": "17.0",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.1",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.3",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "y": "17.3",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "9.7",
+          "sy": "0.579",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.5",
+          "y": "0.3",
+          "kx": "4.0",
+          "sx": "0.589",
+          "sy": "0.607",
+          "ky": "5.3",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "12.6",
+          "sy": "0.573",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "9.9",
+          "sy": "0.573",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "17.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "58.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "23.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.4",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.4",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "9.8",
+          "sy": "0.573",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.2",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.4",
+          "y": "1.1",
+          "ky": "5.4",
+          "sx": "0.591",
+          "sy": "0.599",
+          "kx": "4.0",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.4",
+          "y": "13",
+          "sy": "0.567",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "10.2",
+          "sy": "0.567",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.5",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.3",
+          "y": "17.2",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "y": "23.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "y": "11.4",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "17.5",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "10.0",
+          "sy": "0.567",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "y": "16.5",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "x": "35.5",
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.3",
+          "y": "1.8",
+          "kx": "3.9",
+          "ky": "5.5",
+          "sx": "0.594",
+          "sy": "0.592",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.3",
+          "y": "14.6",
+          "sy": "0.545",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.4",
+          "y": "12",
+          "sy": "0.545",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.2",
+          "y": "18.1",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "24.2",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "12.3",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "18.4",
+          "kx": "-0.9",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "11.8",
+          "sx": "0.553",
+          "sy": "0.545",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.3",
+          "y": "17.6",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.2",
+          "y": "2.5",
+          "kx": "3.8",
+          "ky": "5.6",
+          "sx": "0.597",
+          "sy": "0.584",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "y": "16.3",
+          "sy": "0.522",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "x": "19.3",
+          "i": "gatlingpea_head"
+        },
+        {
+          "x": "49.3",
+          "y": "13.7",
+          "sy": "0.522",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "y": "19.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "58.2",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "25.2",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "13.3",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "19.4",
+          "sx": "0.550",
+          "sy": "0.550",
+          "kx": "-0.9",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "13.6",
+          "sx": "0.552",
+          "sy": "0.522",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "35.0",
+          "y": "18.6",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.1",
+          "y": "3.3",
+          "ky": "5.7",
+          "sx": "0.600",
+          "sy": "0.577",
+          "kx": "3.8",
+          "i": "gatlingpea_helmet"
+        }
+      ],
+      [
+        {
+          "x": "19.2",
+          "y": "17.8",
+          "sy": "0.500",
+          "sx": "0.555",
+          "kx": 0,
+          "ky": 0,
+          "i": "gatlingpea_head"
+        },
+        {
+          "y": "15.5",
+          "sy": "0.500",
+          "sx": "0.555",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.3",
+          "i": "gatlingpea_mouth"
+        },
+        {
+          "x": "58.3",
+          "y": "20.1",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "26.1",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "14.3",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "56.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "20.4",
+          "kx": "-1.1",
+          "sx": "0.550",
+          "sy": "0.550",
+          "ky": 0,
+          "x": "53.1",
+          "i": "gatlingpea_barrel"
+        },
+        {
+          "y": "15.4",
+          "sx": "0.550",
+          "sy": "0.500",
+          "kx": "0.0",
+          "ky": 0,
+          "x": "49.4",
+          "i": "gatlingpea_mouth_overlay"
+        },
+        {
+          "x": "34.8",
+          "y": "19.7",
+          "sx": "0.800",
+          "sy": "0.800",
+          "kx": 0,
+          "ky": 0,
+          "i": "peashooter_eyebrow"
+        },
+        {
+          "x": "10.0",
+          "y": "4.0",
+          "kx": "3.7",
+          "ky": "5.8",
+          "sx": "0.603",
+          "sy": "0.569",
+          "i": "gatlingpea_helmet"
+        }
+      ]
+    ]
+  }
+}

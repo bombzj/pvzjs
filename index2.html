@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World</title>
+    </head>
+    <script src="pixi.min.js"></script>
+    <script src="reanim.js"></script>
+    <body>
+        <script type="text/javascript">
+           
+
+
+    //Create a Pixi Application
+    let app = new PIXI.Application({width: 916, height: 500});
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+
+    app.renderer.backgroundColor = 0x0ffffff;
+    const loader = PIXI.Loader.shared;
+
+    
+    var plantJson = ['PeaShooterSingle', 'SunFlower', 'GloomShroom', 'Sun', 'TwinSunflower', 'CherryBomb', 'WallNut', 'HypnoShroom', 'GraveBuster'
+            , 'Chomper', 'SplitPea', 'SnowPea', 'Squash', 'ScaredyShroom', 'Puffshroom', 'Fumeshroom',
+            'PeaShooter', 'ThreePeater', 'CrazyDave', 'FirePea']
+    var zombieJson = ['BaseZombie', 'JacksonZombie', 'FootBallZombie', 'LadderZombie', 'PaperZombie', 'JackBoxZombie', 
+        'PoleVaulterZombie', 'DiscoZombie']
+    loader.add("sheet1", "KeyboardNinjaTA.json")
+    .add("sheet2", "PreloaderTA.json")
+    for(let json of plantJson) {
+        loader.add(json, 'plant/' + json + ".json")
+    }
+    for(let json of zombieJson) {
+        loader.add(json, 'zombie/' + json + ".json")
+    }
+
+    loader.load((loader, resources) => setup(resources));
+
+    var tex1, tex2
+    var anims = {}
+    var plants = []
+
+    function setup(resources) {
+        tex1 = resources.sheet1.textures
+        tex2 = resources.sheet2.textures
+        let allImage = new Set()
+        for(let json of plantJson.concat(zombieJson)) {
+            let data = anims[json] = resources[json].data
+            for(let anim in data) {
+                for(let acts of data[anim].actionList) {
+                    for(let actname in acts) {
+                        let act = acts[actname]
+                        allImage.add(act.i)
+                        if(act.sx == undefined) act.sx = 1
+                        if(act.sy == undefined) act.sy = 1
+                        act.kx = act.kx / 180 * Math.PI || 0
+                        act.ky = act.ky / 180 * Math.PI || 0
+                        act.x = parseInt(act.x)
+                        act.y = parseInt(act.y)
+                    }
+                }
+            }
+        }
+        for(let img of allImage) {
+            if(img) {
+                loader.add(img, 'reanim/' + img + '.png')
+            }
+        }
+
+        loader.load((loader, resources) => setup2(resources));
+    }
+
+    function setup2(resources) {
+        
+        init()
+        app.ticker.add(delta => loop())
+    }
+
+    function init() {
+        // plants.push(addReanim(anims.CrazyDave.blahblah, 700, 00))
+
+        plants.push(addReanim(anims.CherryBomb.idle, 100, 0))
+        plants.push(addReanim(anims.PeaShooter.full_idle, 200, 0))
+        plants.push(addReanim(anims.WallNut.idle, 300, 0))
+        plants.push(addReanim(anims.HypnoShroom.idle, 400, 0))
+        plants.push(addReanim(anims.GraveBuster.idle, 500, 0))
+
+        // a = addReanim(anims.SnowPea.leaf_idle, 600, 0)
+        // plants.push(a)
+        // plants.push(addReanim(anims.SnowPea.idle, 600, 0, a, 'peashooter_stalk_top'))
+        plants.push(addReanim(anims.SnowPea.full_idle, 600, 0))
+        plants.push(a = addReanim(anims.ThreePeater.idle, 700, 0))
+        plants.push(addReanim(anims.ThreePeater.head_idle1, 700, 0, a, 'anim_head1'))
+        plants.push(addReanim(anims.ThreePeater.head_idle2, 700, 0, a, 'anim_head2'))
+        plants.push(addReanim(anims.ThreePeater.head_idle3, 700, 0, a, 'anim_head3'))
+
+        // a = addReanim(anims.PeaShooterSingle.leaf_idle, 100, 100)
+        // plants.push(a)
+        // plants.push(addReanim(anims.PeaShooterSingle.idle, 100, 100, a, 'peashooter_stalk_top'))
+        plants.push(addReanim(anims.PeaShooterSingle.full_idle, 100, 100))
+        a = addReanim(anims.PeaShooterSingle.idle, 400, 100)
+        plants.push(a)
+        plants.push(addReanim(anims.PeaShooterSingle.shooting, 400, 100, a, 'anim_stem'))
+        // plants.push(addReanim(anims.PeaShooterSingle.shooting, 400, 100))
+
+        plants.push(addReanim(anims.SunFlower.idle, 200, 100))
+        plants.push(addReanim(anims.GloomShroom.idle, 300, 100))
+        plants.push(addReanim(anims.Chomper.idle, 500, 100))
+        plants.push(addReanim(anims.Squash.idle, 600, 100))
+        plants.push(addReanim(anims.FirePea.idle, 700, 100))
+
+        plants.push(addReanim(anims.BaseZombie.walk, 100, 200))
+        plants.push(addReanim(anims.JacksonZombie.walk, 200, 200))
+        plants.push(addReanim(anims.FootBallZombie.walk, 300, 200))
+        plants.push(addReanim(anims.Sun.Sun3, 500, 200))
+        plants.push(addReanim(anims.TwinSunflower.idle, 500, 200))
+        plants.push(addReanim(anims.ScaredyShroom.idle, 600, 200))
+
+        plants.push(addReanim(anims.LadderZombie.walk, 100, 300))
+        plants.push(addReanim(anims.PaperZombie.walk, 200, 300))
+        plants.push(addReanim(anims.JackBoxZombie.walk, 300, 300))
+        plants.push(addReanim(anims.PoleVaulterZombie.walk, 400, 300))
+
+        a = addReanim(anims.SplitPea.idle, 500, 300)
+        plants.push(a)
+        plants.push(addReanim(anims.SplitPea.head_idle, 500, 300, a, 'anim_idle'))
+        plants.push(addReanim(anims.SplitPea.splitpea_idle, 500, 300, a, 'anim_idle'))
+        // plants.push(addReanim(anims.SplitPea.head_idle, 500, 300))
+        // plants.push(addReanim(anims.SplitPea.idle, 500, 300))
+        // plants.push(addReanim(anims.SplitPea.splitpea_idle, 500, 300))
+        plants.push(addReanim(anims.Fumeshroom.idle, 600, 300))
+        plants.push(addReanim(anims.DiscoZombie.walk, 700, 300))
+    }
+
+    function addReanim(act, x, y, ref, refname) {
+        let a = new Reanim(act, ref, refname)
+        a.position.set(x, y)
+        app.stage.addChild(a)
+        return a
+    }
+
+    var intv = 0
+    function loop() {
+        intv++
+        if(intv > 4) {
+            intv = 0
+            for(let p of plants) {
+                p.step()
+            }
+        }
+    }
+
+        </script>
+    </body>
+</html>
