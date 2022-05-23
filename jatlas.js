@@ -1,46 +1,10 @@
 const fs = require('fs')
 const resources = [
     {
-        name: 'RESOURCESPLANT1.RTON',
+        name: 'RESOURCES.RTON',
         atlases: [
-            'PlantPeashooter_1200', 'PlantSunflower_1200',
-            'PlantCherryBomb_1200', 'PlantSnowPea_1200', 'PlantTwinSunflower_1200',
-            'PlantThreepeater_1200', 'PlantSquash_1200'
         ]
     },
-    {
-        name: 'RESOURCESPLANT2.RTON',
-        atlases: [
-            ''
-        ]
-    },
-    {
-        name: 'RESOURCESPLANT3.RTON',
-        atlases: [
-            ''
-        ]
-    },
-    {
-        name: 'RESOURCESZOMBIE1.RTON',
-        atlases: [
-            ''
-        ]
-    },
-    {
-        name: 'RESOURCESZOMBIE2.RTON',
-        atlases: [
-            ''
-        ]
-    },
-    {
-        name: 'RESOURCESZOMBIE3.RTON',
-        atlases: [
-            ''
-        ]
-    },
-    {
-        name: 'RESOURCESINIT.RTON',
-    }
 ]
 
 for(res of resources) {
@@ -51,7 +15,7 @@ for(res of resources) {
         data[d.id] = d  // make it easy to get
     }
     for(let atlas of data.groups) {
-        if(!atlas.id.endsWith('_1200')) continue
+        if(!atlas.id.endsWith('_768')) continue
         let frames = {}
         let parents = {}
         for(res2 of atlas.resources) {
@@ -83,7 +47,7 @@ for(res of resources) {
                 scale: "1",
                 smartupdate: "$TexturePacker:SmartUpdate:7151f20e5899d535a161be22ab70847d:19f33e5cfc654c9205a948d5bb755f49:892be25da4e113d4a02392b9e8ca5f32$"
             }
-            fs.writeFileSync('pam/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
+            fs.writeFileSync('pam/atlases/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
         }
     }
 }

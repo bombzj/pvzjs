@@ -35,78 +35,78 @@
     const pamList = [
         {
             name: ['SUNFLOWER'],
-            image: 'PlantSunflower_1200_00'
+            image: 'PlantSunflower_768_00'
         },
         {
             name: ['PEASHOOTER'],
-            image: 'PLANTPEASHOOTER_1200_00'
+            image: 'PLANTPEASHOOTER_768_00'
         },
         {
             name: ['SNOWPEA', 'SNOWPEA_GUNSHOOT'],
-            image: 'PLANTSNOWPEA_1200_00'
+            image: 'PLANTSNOWPEA_768_00'
         },
         {
             name: ['CHERRYBOMB', 'CHERRYBOMB_EXPLOSION_TOP', 'CHERRYBOMB_EXPLOSION_REAR'],
-            image: 'PLANTCHERRYBOMB_1200_00'
+            image: 'PLANTCHERRYBOMB_768_00'
         },
         {
             name: ['SUNFLOWER_TWIN'],
-            image: 'PLANTTWINSUNFLOWER_1200_00'
+            image: 'PLANTTWINSUNFLOWER_768_00'
         },
         {
             name: ['THREEPEATER'],
-            image: 'PLANTTHREEPEATER_1200_00'
+            image: 'PLANTTHREEPEATER_768_00'
         },
         {
             name: ['SQUASH'],
-            image: 'PLANTSQUASH_1200_00'
+            image: 'PLANTSQUASH_768_00'
         },
         {
             name: ['ZOMBIE_MODERN_ALLSTAR'],
-            image: 'ZOMBIEMODERNALLSTARGROUP_1200_00'
+            image: 'ZOMBIEMODERNALLSTARGROUP_768_00'
         },
         {
             name: ['ZOMBIE_EGYPT_BASIC'],
-            image: 'ZombieEgyptBasicGroup_1200_00'
+            image: 'ZombieEgyptBasicGroup_768_00'
         },
         {
             name: ['COCONUTCANNON', 'COCONUT_PROJECTILE_EXPLOSION'],
-            image: 'PlantCoconutCannon_1200_00'
+            image: 'PlantCoconutCannon_768_00'
         },
         {
             name: ['FUMESHROOM', 'FUMESHROOM_BUBBLES', 'FUMESHROOM_BUBBLES_HIT'],
-            image: 'PLANTFUMESHROOM_1200_00'
+            image: 'PLANTFUMESHROOM_768_00'
         },
         {
             name: ['BLOOMERANG', 'BLOOMERANG_PROJECTILE'],
-            image: 'PlantBloomerang_1200_00'
+            image: 'PlantBloomerang_768_00'
         },
         {
             name: ['BONKCHOY'],
-            image: 'PLANTBONKCHOY_1200_00'
+            image: 'PLANTBONKCHOY_768_00'
         },
         {
             name: ['GARGANTUAR'],
-            image: 'ZOMBIEFUTUREGARGANTUARGROUP_1200_00'
+            image: 'ZOMBIEFUTUREGARGANTUARGROUP_768_00'
         },
         {
             name: ['SNAPDRAGON', 'SNAPDRAGON_FIRE'],
-            image: ['PlantSnapdragon_1200_00', 'PlantSnapdragon_1200_01']
+            image: 'PlantSnapdragon_768_00'
         },
         {
             name: [],
-            image: ['DelayLoad_Background_FrontLawn_1200_00', 'DelayLoad_Background_FrontLawn_1200_03']
+            image: 'DelayLoad_Background_FrontLawn_768_00'
         }
     ]
     for(let p of pamList) {
         for(let name of p.name) {
-            loader.add(name, "pam/pam/" + name + ".json")
+            loader.add(name, "pam/pams/" + name + ".json")
         }
         if(typeof p.image == 'string') {
-            loader.add(p.image, "pam/" + p.image + ".json")
+            loader.add(p.image, "pam/atlases/" + p.image + ".json")
         } else {
             for(let i of p.image) {
-                loader.add(i, "pam/" + i + ".json")
+                loader.add(i, "pam/atlases/" + i + ".json")
             }
         }
     }
@@ -116,12 +116,15 @@
         let s = new PIXI.Sprite(texture);
         s.x = x
         s.y = y
-        app.stage.addChild(s);
+        stage.addChild(s);
         return s
     }
 
     let objects = []
+    let stage = new PIXI.Container()
     function setup(resources) {
+        app.stage.addChild(stage)
+        stage.scale.set(768 / 1200)
         for(let p of pamList) {
             for(let name of p.name) {
                 if(resources[name].data) {
@@ -137,29 +140,29 @@
                 }
             }
         }
-        addSprite(resources.DelayLoad_Background_FrontLawn_1200_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE, -320, -280)
+        addSprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE, 0, 0)
 
-        addPam(pams.PEASHOOTER, 'attack2', 0, -50, {custom: 'custom_06'})
+        addPam(pams.PEASHOOTER, 'idle', 0, -50, {custom: 'custom_06'})
         // addPam(pams.PEASHOOTER, 'attack', 0, 100)
         addPam(pams.PEASHOOTER, 'attack', -50, 80, {custom: 'custom_04'})
         addPam(pams.SUNFLOWER, 'idle', 110, -50, {custom: 'custom_03'})
         addPam(pams.SNOWPEA, 'attack', 240, -50, {custom: 'custom_01', userAction: function(pamSprite) {
-            let shot = addPam(pams.SNOWPEA_GUNSHOOT, '', pamSprite.x + 80, pamSprite.y - 60)
-            shot.stepAction = function() {
-                this.x += 10
-                if(this.x > 800) {
-                    this.needRemove = true
-                }
-            }
+            // let shot = addPam(pams.SNOWPEA_GUNSHOOT, '', pamSprite.x + 80, pamSprite.y - 60)
+            // shot.stepAction = function() {
+            //     this.x += 10
+            //     if(this.x > 800) {
+            //         this.needRemove = true
+            //     }
+            // }
         }})
         let cherry = addPam(pams.CHERRYBOMB, 'idle', 230, 80, {onFinish: function(pamSprite) {
-            if(pamSprite.cherryWait < 0) {
-                pamSprite.visible = false
-                let offsetX = 24, offsetY = -180
-                addPam(pams.CHERRYBOMB_EXPLOSION_REAR, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
-                addPam(pams.CHERRYBOMB_EXPLOSION_TOP, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
-                pamSprite.cherryWait = cherryWaitIdle + 100
-            }
+            // if(pamSprite.cherryWait < 0) {
+            //     pamSprite.visible = false
+            //     let offsetX = 24, offsetY = -180
+            //     addPam(pams.CHERRYBOMB_EXPLOSION_REAR, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
+            //     addPam(pams.CHERRYBOMB_EXPLOSION_TOP, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
+            //     pamSprite.cherryWait = cherryWaitIdle + 100
+            // }
         }})
         let cherryWaitIdle = 50
         cherry.cherryWait = cherryWaitIdle
@@ -181,40 +184,40 @@
         addPam(pams.BONKCHOY, 'idle', 150, 240)
         // addPam(pams.BLOOMERANG_PROJECTILE, '', -100,-100)
         addPam(pams.BLOOMERANG, 'attack', -50, 240, {userAction: function(pamSprite) {
-            let shot = addPam(pams.BLOOMERANG_PROJECTILE, '', pamSprite.x + 100, pamSprite.y - 60)
-            shot.forward = true
-            shot.stepAction = function() {
-                if(shot.forward) {
-                    this.x += 15
-                    if(this.x > 700) {
-                        this.y -= 20
-                        this.forward = false
-                    }
-                } else {
-                    this.x -= 15
-                    if(this.x < -300) {
-                        this.needRemove = true
-                    }
-                }
-            }
+            // let shot = addPam(pams.BLOOMERANG_PROJECTILE, '', pamSprite.x + 100, pamSprite.y - 60)
+            // shot.forward = true
+            // shot.stepAction = function() {
+            //     if(shot.forward) {
+            //         this.x += 15
+            //         if(this.x > 700) {
+            //             this.y -= 20
+            //             this.forward = false
+            //         }
+            //     } else {
+            //         this.x -= 15
+            //         if(this.x < -300) {
+            //             this.needRemove = true
+            //         }
+            //     }
+            // }
         }})
         addPam(pams.FUMESHROOM, 'special', 300, 240, {userAction: function(pamSprite) {
-            let shot = addPam(pams.FUMESHROOM_BUBBLES, 'special', pamSprite.x + 130, pamSprite.y, {onFinish: onFinish})
-            shot.pamParent = pamSprite
+            // let shot = addPam(pams.FUMESHROOM_BUBBLES, 'special', pamSprite.x + 130, pamSprite.y, {onFinish: onFinish})
+            // shot.pamParent = pamSprite
         }})
         addPam(pams.COCONUTCANNON, 'attack', 50, 360, {userAction: function(pamSprite) {
-            let shot = addPam(pams.COCONUT_PROJECTILE_EXPLOSION, 'coconut_projectile', pamSprite.x + 80, pamSprite.y - 40)
-            shot.stepAction = function() {
-                this.x += 10
-                if(this.x > 800) {
-                    this.needRemove = true
-                }
-            }
+            // let shot = addPam(pams.COCONUT_PROJECTILE_EXPLOSION, 'coconut_projectile', pamSprite.x + 80, pamSprite.y - 40)
+            // shot.stepAction = function() {
+            //     this.x += 10
+            //     if(this.x > 800) {
+            //         this.needRemove = true
+            //     }
+            // }
         }})
 
         addPam(pams.SNAPDRAGON, 'attack', 420, 340, {userAction: function(pamSprite) {
-            let shot = addPam(pams.SNAPDRAGON_FIRE, 'animation', pamSprite.x + 40, pamSprite.y - 30, {onFinish: onFinish})
-            shot.pamParent = pamSprite
+            // let shot = addPam(pams.SNAPDRAGON_FIRE, 'animation', pamSprite.x + 40, pamSprite.y - 30, {onFinish: onFinish})
+            // shot.pamParent = pamSprite
         }})
 
         addPam(pams.ZOMBIE_EGYPT_BASIC, 'walk', 600, 0, {walk: true, walkGround: 'ground_swatch'})
@@ -236,7 +239,7 @@
     function loop() {
         objects.forEach(a => {
             if(a.needRemove || a.pamParant && a.pamParent.needRemove) {
-                app.stage.removeChild(a)
+                stage.removeChild(a)
             }
         })
         objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
@@ -263,7 +266,7 @@
         // if(pam != pams.BLOOMERANG_PROJECTILE) return {}
         let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act], custom)
         a.position.set(x, y)
-        app.stage.addChild(a)
+        stage.addChild(a)
         objects.push(a)
         return a
     }
@@ -272,7 +275,7 @@
     function addSprite(tex, x, y) {
         let a = new PIXI.Sprite(tex)
         a.position.set(x, y)
-        app.stage.addChild(a)
+        stage.addChild(a)
         return a
     }
 
