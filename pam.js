@@ -19,6 +19,10 @@ function pamInit(name, data, textures) {
         // let ey = Math.abs(scaley/imageScale-1)
         // if(ex > 0.2 || ey > 0.2) debugger
     }
+    data.spriteMap = {}
+    for(let sprite of data.sprite) {
+        data.spriteMap[sprite.name] = sprite
+    }
     data.actionFrame = {}
     // for(let sp of data.sprite) {
     //     // if(sp.frame.length > 1) debugger

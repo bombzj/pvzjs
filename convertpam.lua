@@ -1,7 +1,7 @@
-local filepath = "D:\\Users\\ZJ\\Downloads\\decode\\IMAGES" --rainy.choosefolder()
+local filepath = rainy.choosefolder()
 print("input: " .. filepath)
 local files = rainy.getfiles(filepath)
-local newpath = rainy.formatpath("D:\\Users\\ZJ\\Downloads\\decode\\finished\\") 
+local newpath = rainy.formatpath(filepath .. "\\..\\finished\\") 
 print("output path: " .. newpath)
 --rainy.newdir(newpath)
 

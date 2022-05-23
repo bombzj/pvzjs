@@ -39,15 +39,12 @@ for(res of resources) {
             let filename = parent.path[parent.path.length - 1]
             let output = { frames: frames[parentName] }
             output.meta = {
-                app: "http://www.codeandweb.com/texturepacker",
-                version: "1.0",
-                image: filename + '.png',
+                image: '../atlases/' + filename + '.png',
                 // format: "RGBA8888",
                 size: {"w":parent.width,"h":parent.height},
-                scale: "1",
-                smartupdate: "$TexturePacker:SmartUpdate:7151f20e5899d535a161be22ab70847d:19f33e5cfc654c9205a948d5bb755f49:892be25da4e113d4a02392b9e8ca5f32$"
+                scale: "1"
             }
-            fs.writeFileSync('pam/atlases/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
+            fs.writeFileSync('pam/json/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
         }
     }
 }
