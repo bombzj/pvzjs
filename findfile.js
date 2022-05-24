@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-const path = 'F:/git/pvzjs/pam/pams/'
-const findStr = 'IMAGE_EFFECTS_SUN_SUN'
+const path = 'D:/Users/ZJ/git/pvzjs/pam/pams/'
+const findStr = 'TRANSITION_GRASSTILE'
 
 console.log('looking for: ' + findStr)
 let dir = fs.readdirSync(path, {withFileTypes: true});

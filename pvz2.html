@@ -95,7 +95,7 @@
         },
         {
             name: [],
-            image: 'DelayLoad_Background_FrontLawn_768_00'
+            image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00']
         },
         {
             name: ['T_PEA_PROJECTILE'],
@@ -104,6 +104,10 @@
         {
             name: ['ZOMBIE_ASH', 'T_SPLAT_SNOW_PEA', 'SUN'],
             image: 'levelcommon_768_00'
+        },
+        {
+            name: ['SODROLL'],
+            image: 'SodRollGroup_768_00'
         }
     ]
     for(let p of pamList) {
@@ -129,6 +133,7 @@
     }
 
     let objects = []
+    let grass, sod
     let stage = new PIXI.Container()
     function setup(resources) {
         app.stage.addChild(stage)
@@ -148,7 +153,20 @@
                 }
             }
         }
-        addSprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE, 0, 0)
+        let bg = new PIXI.Container()
+        stage.addChild(bg)
+        let bg2 = new PIXI.Sprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE)
+        bg2.position.set(0, 0)
+        let bgSod = new PIXI.Sprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_ROW_03)
+        bgSod.position.set(253, 270)
+        grass = new PIXI.TilingSprite(resources.Grass_Transition_768_00.textures.IMAGE_TRANSITION_GRASSTILE, 0, 150)
+        grass.position.set(253, 575)
+        grass.scale.set(0.706)
+        grass.tilePosition.set(40, -70)
+        bg.addChild(bg2, bgSod, grass)
+        
+        bg.scale.set(1200 / 768)
+        bg.position.set(-200, -250)
 
         addPam(pams.PEASHOOTER, 'idle', 0, -50, {custom: 'custom_06'})
         // addPam(pams.PEASHOOTER, 'attack', 0, 100)
@@ -189,6 +207,10 @@
                 addPam(pams.CHERRYBOMB_EXPLOSION_TOP, '', pamSprite.x + offsetX, pamSprite.y + offsetY, {onFinish: onFinish})
                 zombie.visible = false
                 addPam(pams.ZOMBIE_ASH, '', zombie.x, zombie.y, {onFinish: onFinish})
+                if(zombie2.x < pamSprite.x + 150 && zombie2.x > pamSprite.x - 200) {
+                    zombie2.visible = false
+                    addPam(pams.ZOMBIE_ASH, '', zombie2.x, zombie2.y, {onFinish: onFinish})
+                }
                 pamSprite.cherryWait = cherryWaitIdle + 100
             }
         }})
@@ -198,8 +220,12 @@
         cherry.stepAction = function() {
             this.cherryWait--
             if(this.cherryWait == cherryWaitIdle) {
-                zombie.visible = true
+                if(!zombie2.visible) {
+                    zombie2.x = 600
+                    zombie2.visible = true
+                }
                 zombie.x = 900
+                zombie.visible = true
                 this.changeAction(this.pam.actionFrame['idle'])
                 this.visible = true
                 this.attack = false
@@ -256,8 +282,11 @@
             shot.pamParent = pamSprite
         }})
 
-        addPam(pams.ZOMBIE_EGYPT_BASIC, 'walk', 600, 0, {walk: true, walkGround: 'ground_swatch'})
+        let zombie2 = addPam(pams.ZOMBIE_EGYPT_BASIC, 'walk', 600, 0, {walk: true, walkGround: 'ground_swatch'})
         let zombie = addPam(pams.ZOMBIE_MODERN_ALLSTAR, 'run', 600, 100, {walk: true, walkGround: 'ground_swatch'})
+
+        sod = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 685)
+        
         
         // addPam(pams.GARGANTUAR, 'walk', 600, 200, {walk: true, walkGround: 'ground_swatch'})
         // addSprite(pams.PEASHOOTER.image[13].texture, 0, 0)
@@ -289,7 +318,7 @@
         app.ticker.add(delta => loop())
         
     }
-
+    var speed = 2
     var intv = 0
     function loop() {
         objects.forEach(a => {
@@ -299,7 +328,7 @@
         })
         objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
         intv++
-        if(intv > 2) {
+        if(intv > speed) {
             intv = 0
             for(let p of objects) {
                 if(p.visible) {
@@ -313,6 +342,11 @@
                         p.x = 900
                     }
                 }
+            }
+            if(sod.parts[27]) {
+                grass.width = sod.parts[27].x * 0.925// - grass.x
+            } else {
+                grass.width = 1050
             }
         }
     }
@@ -340,9 +374,28 @@
     }
 
     function onFinish(pamSprite) {
+        pamSprite.visible = false
         pamSprite.needRemove = true
     }
+    window.onkeydown = function(e) {
+        // e.code : ArrowUp(上), ArrowDown(下), ArrowLeft(左), ArrowRight(右), Space(空格), KeyA(字母A)
+        // a = add(tex1.RedAppleLeft, rnd(0, 900 ), rnd(0, 600 ))
+        // if(e.code == 'ArrowLeft'){
+        // a = addText('周文昊', rnd(0, 900 ), rnd(0, 600 ))
+        // a.rotation = rnd(0, 360) /180 * Math.PI
+        // a.vx = speed*Math.cos(a.rotation)
+        // a.vy = speed*Math.sin(a.rotation)
+        // aa.push(a)
+        // }
 
+
+        if(e.code == 'KeyA'){
+            speed = 22
+        }
+        if(e.code == 'KeyR'){
+            speed = 2
+        }
+    }
         </script>
     </body>
 </html>

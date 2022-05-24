@@ -12,7 +12,7 @@
 
 
     //Create a Pixi Application
-    let app = new PIXI.Application({width: 916, height: 500});
+    let app = new PIXI.Application({width: 916, height: 800});
     //Add the canvas that Pixi automatically created for you to the HTML document
     document.body.appendChild(app.view);
 
@@ -21,12 +21,15 @@
 
     
     var plantJson = ['PeaShooterSingle', 'SunFlower', 'GloomShroom', 'Sun', 'TwinSunflower', 'CherryBomb', 'WallNut', 'HypnoShroom', 'GraveBuster'
-            , 'Chomper', 'SplitPea', 'SnowPea', 'Squash', 'ScaredyShroom', 'Puffshroom', 'Fumeshroom',
-            'PeaShooter', 'ThreePeater', 'CrazyDave', 'FirePea']
+            , 'Chomper', 'SplitPea', 'SnowPea', 'Squash', 'ScaredyShroom', 'Fumeshroom',
+            'PeaShooter', 'ThreePeater', 'CrazyDave', 'FirePea',
+            'PotatoMine','GatlingPeaShooter', 'Tallnut', 'CabbagePult','Cactus', 'Cattail', 'CoffeeBean',
+            'Garlic', 'GoldMagnet', 'IceShroom',
+            'MagnetShroom', 'Marigold', 'MelonPult', 'Plantern', 
+            'Pumpkin', 'SeaShroom', 'SpikeRock', 'Starfruit',
+            'WinterMelonPult', 'UmbrellaLeaf', 'Lilypad', 'PuffShroom', 'CobCannon']
     var zombieJson = ['BaseZombie', 'JacksonZombie', 'FootBallZombie', 'LadderZombie', 'PaperZombie', 'JackBoxZombie', 
         'PoleVaulterZombie', 'DiscoZombie']
-    loader.add("sheet1", "KeyboardNinjaTA.json")
-    .add("sheet2", "PreloaderTA.json")
     for(let json of plantJson) {
         loader.add(json, 'plant/' + json + ".json")
     }
@@ -41,8 +44,6 @@
     var plants = []
 
     function setup(resources) {
-        tex1 = resources.sheet1.textures
-        tex2 = resources.sheet2.textures
         let allImage = new Set()
         for(let json of plantJson.concat(zombieJson)) {
             let data = anims[json] = resources[json].data
@@ -71,7 +72,6 @@
     }
 
     function setup2(resources) {
-        
         init()
         app.ticker.add(delta => loop())
     }
@@ -112,14 +112,14 @@
         plants.push(addReanim(anims.BaseZombie.walk, 100, 200))
         plants.push(addReanim(anims.JacksonZombie.walk, 200, 200))
         plants.push(addReanim(anims.FootBallZombie.walk, 300, 200))
-        plants.push(addReanim(anims.Sun.Sun3, 500, 200))
+        plants.push(addReanim(anims.Sun.Sun3, 750, 250))
         plants.push(addReanim(anims.TwinSunflower.idle, 500, 200))
         plants.push(addReanim(anims.ScaredyShroom.idle, 600, 200))
 
-        plants.push(addReanim(anims.LadderZombie.walk, 100, 300))
-        plants.push(addReanim(anims.PaperZombie.walk, 200, 300))
-        plants.push(addReanim(anims.JackBoxZombie.walk, 300, 300))
-        plants.push(addReanim(anims.PoleVaulterZombie.walk, 400, 300))
+        // plants.push(addReanim(anims.LadderZombie.walk, 100, 300))
+        // plants.push(addReanim(anims.PaperZombie.walk, 200, 300))
+        // plants.push(addReanim(anims.JackBoxZombie.walk, 300, 300))
+        // plants.push(addReanim(anims.PoleVaulterZombie.walk, 400, 300))
 
         a = addReanim(anims.SplitPea.idle, 500, 300)
         plants.push(a)
@@ -129,7 +129,21 @@
         // plants.push(addReanim(anims.SplitPea.idle, 500, 300))
         // plants.push(addReanim(anims.SplitPea.splitpea_idle, 500, 300))
         plants.push(addReanim(anims.Fumeshroom.idle, 600, 300))
-        plants.push(addReanim(anims.DiscoZombie.walk, 700, 300))
+        // plants.push(addReanim(anims.DiscoZombie.walk, 700, 300))
+
+        plants.push(addReanim(anims.PotatoMine.armed, 500, 600))
+        plants.push(a = addReanim(anims.PeaShooterSingle.idle, 600, 600))
+        plants.push(addReanim(anims.GatlingPeaShooter.shooting, 600, 600, a, "anim_stem"))
+
+        let inrow = 8
+        for(let j = 0;j < 3;j++) {
+            for(let i = 0;i < inrow;i++) {
+                let index = j * inrow + i + 21
+                if(index < plantJson.length) {
+                    plants.push(addReanim(anims[plantJson[index]].idle, i * 100 + 50, 400 + j * 100))
+                }
+            }
+        }
     }
 
     function addReanim(act, x, y, ref, refname) {
