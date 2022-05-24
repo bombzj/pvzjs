@@ -109,16 +109,18 @@ class PamSprite extends PIXI.Container {
                 spr.setTransformArray2(change.transform, spr.data.transform)
             }
             if(change.color) {
-                // if(change.color[0] != 1 || change.color[1] != 1 || change.color[2] != 1) {
-                //     let r = change.color[0] * 256 << 0
-                //     let g = change.color[1] * 256 << 0
-                //     let b = change.color[2] * 256 << 0
-                //     if(r == 256) r = 255
-                //     if(g == 256) g = 255
-                //     if(b == 256) b = 255
-                //     spr.tint = r << 16 | g << 8 | b
-                // }
-                
+                if(change.color[0] != 1 || change.color[1] != 1 || change.color[2] != 1) {
+                    let r = change.color[0] * 256 << 0
+                    let g = change.color[1] * 256 << 0
+                    let b = change.color[2] * 256 << 0
+                    if(r == 256) r = 255
+                    if(g == 256) g = 255
+                    if(b == 256) b = 255
+                    spr.tint = r << 16 | g << 8 | b
+                    for(let c of spr.children) {
+                        c.tint = spr.tint
+                    }
+                }
                 spr.alpha = change.color[3]
             }
             if(this.param.walk && spr.data.frame) {

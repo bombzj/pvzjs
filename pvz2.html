@@ -95,7 +95,7 @@
         },
         {
             name: [],
-            image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00']
+            image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00', 'UI_SeedPackets_768_00']
         },
         {
             name: ['T_PEA_PROJECTILE'],
@@ -158,15 +158,23 @@
         let bg2 = new PIXI.Sprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE)
         bg2.position.set(0, 0)
         let bgSod = new PIXI.Sprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_ROW_03)
-        bgSod.position.set(253, 270)
-        grass = new PIXI.TilingSprite(resources.Grass_Transition_768_00.textures.IMAGE_TRANSITION_GRASSTILE, 0, 150)
-        grass.position.set(253, 575)
+        bgSod.position.set(253, 285)
+        grass = new PIXI.TilingSprite(resources.Grass_Transition_768_00.textures.IMAGE_TRANSITION_GRASSTILE, 0, 140)
+        grass.position.set(253, 587)
         grass.scale.set(0.706)
         grass.tilePosition.set(40, -70)
-        bg.addChild(bg2, bgSod, grass)
+        grass2 = new PIXI.TilingSprite(resources.Grass_Transition_768_00.textures.IMAGE_TRANSITION_GRASSTILE, 0, 140)
+        grass2.position.set(253, 200)
+        grass2.scale.set(0.706)
+        grass2.tilePosition.set(40, -70)
+        bg.addChild(bg2, bgSod, grass, grass2)
         
         bg.scale.set(1200 / 768)
         bg.position.set(-200, -250)
+
+        sod = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 685)
+        sod2 = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 85)
+
 
         addPam(pams.PEASHOOTER, 'idle', 0, -50, {custom: 'custom_06'})
         // addPam(pams.PEASHOOTER, 'attack', 0, 100)
@@ -199,6 +207,7 @@
                 }
             }
         }})
+
         let cherry = addPam(pams.CHERRYBOMB, 'idle', 230, 80, {onFinish: function(pamSprite) {
             if(pamSprite.attack) {
                 pamSprite.visible = false
@@ -284,10 +293,8 @@
 
         let zombie2 = addPam(pams.ZOMBIE_EGYPT_BASIC, 'walk', 600, 0, {walk: true, walkGround: 'ground_swatch'})
         let zombie = addPam(pams.ZOMBIE_MODERN_ALLSTAR, 'run', 600, 100, {walk: true, walkGround: 'ground_swatch'})
-
-        sod = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 685)
         
-        
+        // addPam(pams.ZOMBIE_EGYPT_BASIC, '_particles', 500, 700)
         // addPam(pams.GARGANTUAR, 'walk', 600, 200, {walk: true, walkGround: 'ground_swatch'})
         // addSprite(pams.PEASHOOTER.image[13].texture, 0, 0)
         // addSprite(pams.PEASHOOTER.image[15].texture, 100, 0)
@@ -307,13 +314,13 @@
         //         addSprite(pams.T_COCONUT_PROJECTILE_EXPLOSION.image[i + j * 10].texture, i * 100, 800 + j * 80)
         //     }
         // }
-        // for(let j = 0;j < 5;j++) {
-        //     for(let i = 0;i < 10;i++) {
-        //         let textures = Object.values(resources.PLANTSNOWPEA_768_00.textures)
-        //         let a = addSprite(textures[i + j * 10], i * 100, 800 + j * 80)
-        //         a.scale.set(2)
-        //     }
-        // }
+        for(let j = 0;j < 5;j++) {
+            for(let i = 0;i < 16;i++) {
+                let textures = Object.values(resources.UI_SeedPackets_768_00.textures)
+                let a = addSprite(textures[i + j * 10], i * 100 + 50, 750 + j * 80)
+                a.scale.set(1)
+            }
+        }
         // addSprite(pams.ZOMBIE_EGYPT_BASIC.image[17].texture, 300, 0)
         app.ticker.add(delta => loop())
         
@@ -344,10 +351,11 @@
                 }
             }
             if(sod.parts[27]) {
-                grass.width = sod.parts[27].x * 0.925// - grass.x
+                grass.width = sod.parts[27].x * 0.91 + 15// - grass.x
             } else {
                 grass.width = 1050
             }
+            grass2.width = grass.width
         }
     }
 
