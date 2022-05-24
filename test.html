@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+    </head>
+    <script src="pixi.min.js"></script>
+    <script src="pam.js"></script>
+    <body>
+<script type="text/javascript">
+
+    // 准备好画布
+    let app = new PIXI.Application({width: 916, height: 800});
+    document.body.appendChild(app.view);
+
+    // 设置背景颜色
+    app.renderer.backgroundColor = 0x0ccccff;   
+
+    // 加载图片和动画
+    const loader = PIXI.Loader.shared;          
+    loadPams()
+
+    // 启动后调用一次
+    function init(resources) {
+        let s = seed(1, 0, 0)
+        
+    }
+
+    // 每秒调用60次
+    function loop() {
+        
+    }
+
+    // 鼠标事件
+    function onclick(e) {
+        let x = e.offsetX, y = e.offsetY
+        console.log('click: ', x, y)
+    }
+    
+    // 键盘事件
+    function onkeydown(e) {
+        if(e.code == 'KeyA'){
+
+        }
+    }
+    
+
+    // 植物和种子列表
+    const plantList = [
+        {       // 0
+            name: '向日葵',
+            ename: 'sunflower',
+        },
+        {       // 1
+            name: '豌豆射手',
+            ename: 'peashooter',
+        },
+        {       // 2
+            name: '坚果',
+            ename: 'wallnut',
+        },
+        {       // 3
+            name: '冰豌豆',
+            ename: 'snowpea',
+        },
+        {       // 4
+            name: '大嘴花',
+            ename: 'chomper',
+        },
+        {       // 5
+            name: '窝瓜',
+            ename: 'squash',
+        },
+        {       // 6
+            name: '樱桃炸弹',
+            ename: 'cherrybomb',
+            seed: 'cherry_bomb',
+        },
+        {       // 7
+            name: '双豌豆射手',
+            ename: 'repeater',
+        },
+        {       // 8
+            name: '三豌豆射手',
+            ename: 'threepeater',
+        },
+        {       // 9
+            name: '大喷菇',
+            ename: 'fumeshroom',
+        },
+    ]
+
+
+    
+    // 绘制一个植物
+    function plant(i, x, y, act) {
+        let pam = pams[plantList[i].ename.toUpperCase()]
+        let a
+        if(pam.spriteMap[act]) {
+            a = new PamSprite(pam, pam.spriteMap[act])
+        } else {
+            a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
+        }
+        a.position.set(x - 120, y - 100)
+        app.stage.addChild(a)
+        a.plantType = i
+        return a
+    }
+
+    // 绘制一个种子
+    function seed(i, x, y) {
+        let textures = loader.resources.UI_SeedPackets_768_00.textures
+        let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + plantList[i].seed.toUpperCase()])
+        a.position.set(x, y)
+        app.stage.addChild(a)
+        a.seedType = i
+        return a
+    }
+
+    for(let p of plantList) {
+        if(!p.seed) {
+            p.seed = p.ename
+        }
+    }
+    window.onclick = onclick
+    window.onkeydown = onkeydown
+</script>
+    </body>
+</html>

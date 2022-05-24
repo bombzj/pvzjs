@@ -6,7 +6,6 @@ function pamInit(name, data, textures) {
     pams[name] = data
     pams[name].textures = textures
 
-    console.log('pam = ' + name)
     for(let image of data.image) {
         let s = image.name.split('|')
         image.texture = textures[s[1]]
@@ -36,7 +35,7 @@ function pamInit(name, data, textures) {
 
 const hideSprite = new Set(['ground_swatch', 'ground_swatch_plane', '_zombie_egypt_armor2_statesxxx', 
         '_zombie_egypt_armor1_states', 'butter', 'ink', 'mc_cherrybomb_explosion_text', 'mc_cherrybomb_explosion_text_c'
-        ,'brick_undamaged','brick_damaged1','brick_damaged2'])
+        ,'brick_undamaged','brick_damaged1','brick_damaged2', '_wallnut_armor_states'])
 
 class PamSprite extends PIXI.Container {
     constructor(pam, act, frameStart = 0, param = {}) {
@@ -185,4 +184,133 @@ PIXI.Container.prototype.setTransformArray2 = function(transform, transform2) {
     let mat = transform.length == 6 ? new PIXI.Matrix(...transform) : new PIXI.Matrix(1, 0, 0, 1, ...transform)
     let mat2 = transform2.length == 6 ? new PIXI.Matrix(...transform2) : new PIXI.Matrix(1, 0, 0, 1, ...transform2)
     this.transform.setFromMatrix(mat.append(mat2))
+}
+
+function setup(resources) {
+    for(let p of pamList) {
+        for(let name of p.name) {
+            if(resources[name].data) {
+                let textures = {}
+                if(typeof p.image == 'string') {
+                    textures = resources[p.image].textures
+                } else {
+                    for(let i of p.image) {
+                        Object.assign(textures, resources[i].textures)
+                    }
+                }
+                pamInit(name, resources[name].data, textures)
+            }
+        }
+    }
+    init(resources)
+    app.ticker.add(delta => loop())
+}
+
+
+const pamList = [
+    {
+        name: ['SUNFLOWER'],
+        image: 'PlantSunflower_768_00'
+    },
+    {
+        name: ['PEASHOOTER'],
+        image: 'PLANTPEASHOOTER_768_00'
+    },
+    {
+        name: ['SNOWPEA', 'SNOWPEA_PLANTFOOD', 'T_SNOW_PEA'],
+        image: 'PLANTSNOWPEA_768_00'
+    },
+    {
+        name: ['CHERRYBOMB', 'CHERRYBOMB_EXPLOSION_TOP', 'CHERRYBOMB_EXPLOSION_REAR'],
+        image: 'PLANTCHERRYBOMB_768_00'
+    },
+    {
+        name: ['SUNFLOWER_TWIN'],
+        image: 'PLANTTWINSUNFLOWER_768_00'
+    },
+    {
+        name: ['THREEPEATER'],
+        image: 'PLANTTHREEPEATER_768_00'
+    },
+    {
+        name: ['SQUASH'],
+        image: 'PLANTSQUASH_768_00'
+    },
+    {
+        name: ['ZOMBIE_MODERN_ALLSTAR'],
+        image: 'ZOMBIEMODERNALLSTARGROUP_768_00'
+    },
+    {
+        name: ['ZOMBIE_EGYPT_BASIC'],
+        image: 'ZombieEgyptBasicGroup_768_00'
+    },
+    {
+        name: ['COCONUTCANNON', 'T_COCONUT_PROJECTILE_EXPLOSION'],
+        image: 'PlantCoconutCannon_768_00'
+    },
+    {
+        name: ['FUMESHROOM', 'FUMESHROOM_BUBBLES', 'FUMESHROOM_BUBBLES_HIT'],
+        image: 'PLANTFUMESHROOM_768_00'
+    },
+    {
+        name: ['BLOOMERANG', 'T_BLOOMERANG_PROJECTILE'],
+        image: 'PlantBloomerang_768_00'
+    },
+    {
+        name: ['BONKCHOY'],
+        image: 'PLANTBONKCHOY_768_00'
+    },
+    {
+        name: ['WALLNUT'],
+        image: 'PLANTWALLNUT_768_00'
+    },
+    {
+        name: ['CHOMPER'],
+        image: 'PLANTCHOMPER_768_00'
+    },
+    {
+        name: ['REPEATER'],
+        image: 'PLANTREPEATER_768_00'
+    },
+    {
+        name: ['GARGANTUAR'],
+        image: 'ZOMBIEFUTUREGARGANTUARGROUP_768_00'
+    },
+    {
+        name: ['SNAPDRAGON', 'SNAPDRAGON_FIRE'],
+        image: 'PlantSnapdragon_768_00'
+    },
+    {
+        name: [],
+        image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00', 'UI_SeedPackets_768_00']
+    },
+    {
+        name: ['T_PEA_PROJECTILE'],
+        image: 'PEAEFFECTS_768_00'
+    },
+    {
+        name: ['ZOMBIE_ASH', 'T_SPLAT_SNOW_PEA', 'SUN'],
+        image: 'levelcommon_768_00'
+    },
+    {
+        name: ['SODROLL'],
+        image: 'SodRollGroup_768_00'
+    }
+]
+
+function loadPams() {
+    
+    for(let p of pamList) {
+        for(let name of p.name) {
+            loader.add(name, "pam/pams/" + name + ".json")
+        }
+        if(typeof p.image == 'string') {
+            loader.add(p.image, "pam/json/" + p.image + ".json")
+        } else {
+            for(let i of p.image) {
+                loader.add(i, "pam/json/" + i + ".json")
+            }
+        }
+    }
+    loader.load((loader, resources) => setup(resources));
 }

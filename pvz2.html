@@ -8,151 +8,21 @@
     <script src="pam.js"></script>
     <body>
         <script type="text/javascript">
-           
-
-
-    //Create a Pixi Application
+     
     let app = new PIXI.Application({width: 916, height: 800});
-    //Add the canvas that Pixi automatically created for you to the HTML document
     document.body.appendChild(app.view);
 
     app.renderer.backgroundColor = 0x0ccccff;
     const loader = PIXI.Loader.shared;
-    PIXI.Sprite.prototype.change = function(texture) {
-        this.texture = texture
-    }
-    PIXI.DisplayObject.prototype.turn = function(d) {
-        this.angle += d
-    }
-    PIXI.DisplayObject.prototype.move = function(x, y) {
-        this.x += x
-        this.y += y
-    }
-    PIXI.DisplayObject.prototype.moveTo = function(x, y) {
-        this.x = x
-        this.y = y
-    }
-    const pamList = [
-        {
-            name: ['SUNFLOWER'],
-            image: 'PlantSunflower_768_00'
-        },
-        {
-            name: ['PEASHOOTER'],
-            image: 'PLANTPEASHOOTER_768_00'
-        },
-        {
-            name: ['SNOWPEA', 'SNOWPEA_PLANTFOOD', 'T_SNOW_PEA'],
-            image: 'PLANTSNOWPEA_768_00'
-        },
-        {
-            name: ['CHERRYBOMB', 'CHERRYBOMB_EXPLOSION_TOP', 'CHERRYBOMB_EXPLOSION_REAR'],
-            image: 'PLANTCHERRYBOMB_768_00'
-        },
-        {
-            name: ['SUNFLOWER_TWIN'],
-            image: 'PLANTTWINSUNFLOWER_768_00'
-        },
-        {
-            name: ['THREEPEATER'],
-            image: 'PLANTTHREEPEATER_768_00'
-        },
-        {
-            name: ['SQUASH'],
-            image: 'PLANTSQUASH_768_00'
-        },
-        {
-            name: ['ZOMBIE_MODERN_ALLSTAR'],
-            image: 'ZOMBIEMODERNALLSTARGROUP_768_00'
-        },
-        {
-            name: ['ZOMBIE_EGYPT_BASIC'],
-            image: 'ZombieEgyptBasicGroup_768_00'
-        },
-        {
-            name: ['COCONUTCANNON', 'T_COCONUT_PROJECTILE_EXPLOSION'],
-            image: 'PlantCoconutCannon_768_00'
-        },
-        {
-            name: ['FUMESHROOM', 'FUMESHROOM_BUBBLES', 'FUMESHROOM_BUBBLES_HIT'],
-            image: 'PLANTFUMESHROOM_768_00'
-        },
-        {
-            name: ['BLOOMERANG', 'T_BLOOMERANG_PROJECTILE'],
-            image: 'PlantBloomerang_768_00'
-        },
-        {
-            name: ['BONKCHOY'],
-            image: 'PLANTBONKCHOY_768_00'
-        },
-        {
-            name: ['GARGANTUAR'],
-            image: 'ZOMBIEFUTUREGARGANTUARGROUP_768_00'
-        },
-        {
-            name: ['SNAPDRAGON', 'SNAPDRAGON_FIRE'],
-            image: 'PlantSnapdragon_768_00'
-        },
-        {
-            name: [],
-            image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00', 'UI_SeedPackets_768_00']
-        },
-        {
-            name: ['T_PEA_PROJECTILE'],
-            image: 'PEAEFFECTS_768_00'
-        },
-        {
-            name: ['ZOMBIE_ASH', 'T_SPLAT_SNOW_PEA', 'SUN'],
-            image: 'levelcommon_768_00'
-        },
-        {
-            name: ['SODROLL'],
-            image: 'SodRollGroup_768_00'
-        }
-    ]
-    for(let p of pamList) {
-        for(let name of p.name) {
-            loader.add(name, "pam/pams/" + name + ".json")
-        }
-        if(typeof p.image == 'string') {
-            loader.add(p.image, "pam/json/" + p.image + ".json")
-        } else {
-            for(let i of p.image) {
-                loader.add(i, "pam/json/" + i + ".json")
-            }
-        }
-    }
-    loader.load((loader, resources) => setup(resources));
-    
-    function add(texture, x, y) {
-        let s = new PIXI.Sprite(texture);
-        s.x = x
-        s.y = y
-        stage.addChild(s);
-        return s
-    }
+    loadPams()
 
     let objects = []
     let grass, sod
     let stage = new PIXI.Container()
-    function setup(resources) {
+    function init(resources) {
         app.stage.addChild(stage)
         stage.scale.set(768 / 1200)
-        for(let p of pamList) {
-            for(let name of p.name) {
-                if(resources[name].data) {
-                    let textures = {}
-                    if(typeof p.image == 'string') {
-                        textures = resources[p.image].textures
-                    } else {
-                        for(let i of p.image) {
-                            Object.assign(textures, resources[i].textures)
-                        }
-                    }
-                    pamInit(name, resources[name].data, textures)
-                }
-            }
-        }
+
         let bg = new PIXI.Container()
         stage.addChild(bg)
         let bg2 = new PIXI.Sprite(resources.DelayLoad_Background_FrontLawn_768_00.textures.IMAGE_BACKGROUNDS_FRONTLAWN_TEXTURE)
@@ -322,8 +192,6 @@
             }
         }
         // addSprite(pams.ZOMBIE_EGYPT_BASIC.image[17].texture, 300, 0)
-        app.ticker.add(delta => loop())
-        
     }
     var speed = 2
     var intv = 0
@@ -386,17 +254,6 @@
         pamSprite.needRemove = true
     }
     window.onkeydown = function(e) {
-        // e.code : ArrowUp(上), ArrowDown(下), ArrowLeft(左), ArrowRight(右), Space(空格), KeyA(字母A)
-        // a = add(tex1.RedAppleLeft, rnd(0, 900 ), rnd(0, 600 ))
-        // if(e.code == 'ArrowLeft'){
-        // a = addText('周文昊', rnd(0, 900 ), rnd(0, 600 ))
-        // a.rotation = rnd(0, 360) /180 * Math.PI
-        // a.vx = speed*Math.cos(a.rotation)
-        // a.vy = speed*Math.sin(a.rotation)
-        // aa.push(a)
-        // }
-
-
         if(e.code == 'KeyA'){
             speed = 22
         }
