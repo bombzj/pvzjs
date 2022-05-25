@@ -202,6 +202,7 @@ function setup(resources) {
             }
         }
     }
+    planttype = resources.planttype
     init(resources)
     app.ticker.add(delta => loop())
 }
@@ -298,8 +299,9 @@ const pamList = [
     }
 ]
 
+const loadJsons = [/*'planttypes'*/]
+var planttype
 function loadPams() {
-    
     for(let p of pamList) {
         for(let name of p.name) {
             loader.add(name, "pam/pams/" + name + ".json")
@@ -312,5 +314,9 @@ function loadPams() {
             }
         }
     }
+    for(let j of loadJsons) {
+        loader.add(j, 'packages/' + j + '.rton.json')
+    }
+    loader.add('planttype', 'pam/planttype.json')
     loader.load((loader, resources) => setup(resources));
 }

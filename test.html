@@ -22,8 +22,11 @@
 
     // 启动后调用一次
     function init(resources) {
-        let s = seed(1, 0, 0)
-        
+        // let s = seed(1, 0, 0)
+        // let s2 = seed(0, 50, 0) 
+        for(i = 0;i < 10;i++){
+            let s2 = seed(i, 70 * i, 0)
+        }
     }
 
     // 每秒调用60次
@@ -73,8 +76,7 @@
         },
         {       // 6
             name: '樱桃炸弹',
-            ename: 'cherrybomb',
-            seed: 'cherry_bomb',
+            ename: 'cherry_bomb',
         },
         {       // 7
             name: '双豌豆射手',
@@ -94,7 +96,7 @@
     
     // 绘制一个植物
     function plant(i, x, y, act) {
-        let pam = pams[plantList[i].ename.toUpperCase()]
+        let pam = pams[planttype[plantList[i].ename].pamName]
         let a
         if(pam.spriteMap[act]) {
             a = new PamSprite(pam, pam.spriteMap[act])
@@ -110,18 +112,13 @@
     // 绘制一个种子
     function seed(i, x, y) {
         let textures = loader.resources.UI_SeedPackets_768_00.textures
-        let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + plantList[i].seed.toUpperCase()])
+        let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + plantList[i].ename.toUpperCase()])
         a.position.set(x, y)
         app.stage.addChild(a)
         a.seedType = i
         return a
     }
 
-    for(let p of plantList) {
-        if(!p.seed) {
-            p.seed = p.ename
-        }
-    }
     window.onclick = onclick
     window.onkeydown = onkeydown
 </script>
