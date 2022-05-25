@@ -6,6 +6,7 @@
     </head>
     <script src="pixi.min.js"></script>
     <script src="pam.js"></script>
+    <script src="pvz2util.js"></script>
     <body>
         <script type="text/javascript">
      
@@ -14,7 +15,7 @@
 
     app.renderer.backgroundColor = 0x0ccccff;
     const loader = PIXI.Loader.shared;
-    loadPams(init)
+    loadPams()
 
     let objects = []
     let grass, sod
@@ -45,6 +46,9 @@
         sod = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 685)
         sod2 = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 85)
 
+        for(let i = 0;i < 5;i++) {
+            car(100, 110 + i * 97)
+        }
 
         addPam(pams.PEASHOOTER, 'idle', 0, -50, {custom: 'custom_06'})
         // addPam(pams.PEASHOOTER, 'attack', 0, 100)
@@ -164,6 +168,10 @@
         let zombie2 = addPam(pams.ZOMBIE_EGYPT_BASIC, 'walk', 600, 0, {walk: true, walkGround: 'ground_swatch'})
         let zombie = addPam(pams.ZOMBIE_MODERN_ALLSTAR, 'run', 600, 100, {walk: true, walkGround: 'ground_swatch'})
         
+        for(let i = 0;i < 7;i++) {
+            seed(i, 10, 100 + i * 80)
+        }
+        numSun(10, 10, 230)
         // addPam(pams.ZOMBIE_EGYPT_BASIC, '_particles', 500, 700)
         // addPam(pams.GARGANTUAR, 'walk', 600, 200, {walk: true, walkGround: 'ground_swatch'})
         // addSprite(pams.PEASHOOTER.image[13].texture, 0, 0)
@@ -184,13 +192,13 @@
         //         addSprite(pams.T_COCONUT_PROJECTILE_EXPLOSION.image[i + j * 10].texture, i * 100, 800 + j * 80)
         //     }
         // }
-        let textures = Object.values(resources.UI_SeedPackets_768_00.textures)
-        for(let j = 0;j < 5;j++) {
-            for(let i = 0;i < 14;i++) {
-                let a = addSprite(textures[i + j * 14+133], i * 100 + 50, 750 + j * 80)
-                a.scale.set(1)
-            }
-        }
+        // let textures = Object.values(resources.UI_SeedPackets_768_00.textures)
+        // for(let j = 0;j < 5;j++) {
+        //     for(let i = 0;i < 14;i++) {
+        //         let a = addSprite(textures[i + j * 14+133], i * 100 + 50, 750 + j * 80)
+        //         a.scale.set(1)
+        //     }
+        // }
         // addSprite(pams.ZOMBIE_EGYPT_BASIC.image[17].texture, 300, 0)
     }
     var speed = 2
@@ -261,6 +269,52 @@
             speed = 2
         }
     }
+       // 植物和种子列表
+       var plantList = [
+        {       // 0
+            name: '向日葵',
+            ename: 'sunflower',
+            cost: 50,
+            hitpoint: 300,
+            cooldown: 20,
+        },
+        {       // 1
+            name: '豌豆射手',
+            ename: 'peashooter',
+        },
+        {       // 2
+            name: '坚果',
+            ename: 'wallnut',
+        },
+        {       // 3
+            name: '冰豌豆',
+            ename: 'snowpea',
+        },
+        {       // 4
+            name: '大嘴花',
+            ename: 'chomper',
+        },
+        {       // 5
+            name: '窝瓜',
+            ename: 'squash',
+        },
+        {       // 6
+            name: '樱桃炸弹',
+            ename: 'cherry_bomb',
+        },
+        {       // 7
+            name: '双豌豆射手',
+            ename: 'repeater',
+        },
+        {       // 8
+            name: '三豌豆射手',
+            ename: 'threepeater',
+        },
+        {       // 9
+            name: '大喷菇',
+            ename: 'fumeshroom',
+        },
+    ]
         </script>
     </body>
 </html>

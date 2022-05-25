@@ -6,6 +6,7 @@
     </head>
     <script src="pixi.min.js"></script>
     <script src="pam.js"></script>
+    <script src="pvz2util.js"></script>
     <body>
 <script type="text/javascript">
 
@@ -18,12 +19,13 @@
 
     // 加载图片和动画
     const loader = PIXI.Loader.shared;          
-    loadPams(init2)
+    loadPams()
 
     // 启动后调用一次
     function init(resources) {
         // let s = seed(1, 0, 0)
         // let s2 = seed(0, 50, 0) 
+        back(0, 0)
         for(i = 0;i < 10;i++){
             let s2 = seed(i, 70 * i, 0)
         }
@@ -95,110 +97,8 @@
         },
     ]
 
-
-    
-    // 画一个植物
-    function plant(i, x, y, act) {
-        let pam = pams[plantList[i].pamName]
-        let a
-        if(pam.spriteMap[act]) {
-            a = new PamSprite(pam, pam.spriteMap[act])
-        } else {
-            a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
-        }
-        a.position.set(x, y)
-        app.stage.addChild(a)
-        a.plantType = i
-        a.scale.set(resScale)
-        return a
-    }
-
-    // 画一个种子
-    function seed(i, x, y) {
-        let textures = loader.resources.UI_SeedPackets_768_00.textures
-        let c = new PIXI.Container()
-        
-        let bgname = plantList[i].world
-        if(!bgname || bgname == 'tutorial') bgname = 'ready'
-        let b = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
-        // b.position.set(x, y)
-        let priceTab = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_PRICE_TAB)
-        priceTab.position.set(70, 35)
-
-        let price = new PIXI.Text(plantList[i].cost ,{fontFamily : 'Arial', fontSize: 32, fill : 'white', align : 'center', fontWeight:'600', strokeThickness:3});
-        price.position.set(115 - price.width, 40)
-
-        let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + plantList[i].ename.toUpperCase()])
-        a.position.set(10, 0)
-        a.seedType = i
-
-        c.addChild(b, a, priceTab, price)
-        c.position.set(x, y)
-        app.stage.addChild(c)
-        return a
-    }
-
-    // 画背景
-    function back(x, y) {
-        let textures = loader.resources.DelayLoad_Background_FrontLawn_Birthday_768_00.textures
-        let a = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE_LEFT)
-        a.position.set(x, y)
-        let b = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
-        b.position.set(x + a.width, y)
-        app.stage.addChild(a, b)
-        return a
-    }
-
-    // 画太阳
-    function sun(x, y) {
-        let pam = pams.SUN
-        let a = new PamSprite(pam, pam.main_sprite)
-        a.position.set(x, y)
-        app.stage.addChild(a)
-        a.scale.set(resScale)
-        return a
-    }
-
-    // 画太阳商量
-    function numSun(x, y, num = 0) {
-        let c = new PIXI.Container()
-        let textures = loader.resources.UI_ALWAYSLOADED_768_00.textures
-        let b = new PIXI.Sprite(textures.IMAGE_UI_GENERIC_COUNTER_BG)
-        b.position.set(35, 15)
-        let a = new PIXI.Sprite(textures.IMAGE_UI_HUD_INGAME_SUN)
-
-        let cnt = new PIXI.Text(num ,{fontFamily : 'Arial', fontSize: 32, fill : 'white', align : 'center', fontWeight:'600', strokeThickness:3});
-        cnt.position.set(85, 12)
-
-        c.addChild(b, a, cnt)
-        c.position.set(x, y)
-        app.stage.addChild(c)
-    }
-
-    // 画小车
-    function car(x, y, act) {
-        let pam = pams.MOWER_MODERN
-        let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
-        a.position.set(x, y)
-        app.stage.addChild(a)
-        a.scale.set(resScale)
-        return a
-    }
-
-    const resScale = 768 / 1200
     app.view.onclick = onclick
     window.onkeydown = onkeydown
-    function init2(resources) {
-        for(let p of plantList) {
-            let t = plantType[p.ename]
-            Object.assign(p, t)
-        }
-        init(resources)
-    }
-    const worldBg = {
-        egypt: 1,
-        pirate: 2,
-    }
 </script>
     </body>
 </html>
