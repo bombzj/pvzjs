@@ -186,7 +186,7 @@ PIXI.Container.prototype.setTransformArray2 = function(transform, transform2) {
     this.transform.setFromMatrix(mat.append(mat2))
 }
 
-function setup(resources) {
+function setup(resources, callback) {
     for(let p of pamList) {
         for(let name of p.name) {
             if(resources[name].data) {
@@ -202,8 +202,8 @@ function setup(resources) {
             }
         }
     }
-    planttype = resources.planttype
-    init(resources)
+    plantType = resources.planttype.data
+    if(callback)   callback(resources)
     app.ticker.add(delta => loop())
 }
 
@@ -283,7 +283,11 @@ const pamList = [
     },
     {
         name: [],
-        image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00', 'UI_SeedPackets_768_00']
+        image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00', 'UI_SeedPackets_768_00', 'DelayLoad_Background_FrontLawn_Birthday_768_00']
+    },
+    {
+        name: [],
+        image: ['UI_ALWAYSLOADED_768_00']
     },
     {
         name: ['T_PEA_PROJECTILE'],
@@ -296,12 +300,16 @@ const pamList = [
     {
         name: ['SODROLL'],
         image: 'SodRollGroup_768_00'
+    },
+    {
+        name: ['MOWER_MODERN'],
+        image: 'MODERNMOWERGROUP_768_00'
     }
 ]
 
 const loadJsons = [/*'planttypes'*/]
-var planttype
-function loadPams() {
+var plantType
+function loadPams(callback) {
     for(let p of pamList) {
         for(let name of p.name) {
             loader.add(name, "pam/pams/" + name + ".json")
@@ -318,5 +326,5 @@ function loadPams() {
         loader.add(j, 'packages/' + j + '.rton.json')
     }
     loader.add('planttype', 'pam/planttype.json')
-    loader.load((loader, resources) => setup(resources));
+    loader.load((loader, resources) => setup(resources, callback));
 }

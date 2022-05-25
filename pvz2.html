@@ -14,7 +14,7 @@
 
     app.renderer.backgroundColor = 0x0ccccff;
     const loader = PIXI.Loader.shared;
-    loadPams()
+    loadPams(init)
 
     let objects = []
     let grass, sod
@@ -40,7 +40,7 @@
         bg.addChild(bg2, bgSod, grass, grass2)
         
         bg.scale.set(1200 / 768)
-        bg.position.set(-200, -250)
+        bg.position.set(-0, -0)
 
         sod = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 685)
         sod2 = addPam(pams.SODROLL, '', bg.x + 400, bg.y + 85)
@@ -184,10 +184,10 @@
         //         addSprite(pams.T_COCONUT_PROJECTILE_EXPLOSION.image[i + j * 10].texture, i * 100, 800 + j * 80)
         //     }
         // }
+        let textures = Object.values(resources.UI_SeedPackets_768_00.textures)
         for(let j = 0;j < 5;j++) {
-            for(let i = 0;i < 16;i++) {
-                let textures = Object.values(resources.UI_SeedPackets_768_00.textures)
-                let a = addSprite(textures[i + j * 10], i * 100 + 50, 750 + j * 80)
+            for(let i = 0;i < 14;i++) {
+                let a = addSprite(textures[i + j * 14+133], i * 100 + 50, 750 + j * 80)
                 a.scale.set(1)
             }
         }
