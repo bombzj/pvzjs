@@ -3,13 +3,15 @@
 function plant(i, x, y, act) {
     let pam = pams[plantList[i].pamName]
     let a
-    if(pam.spriteMap[act]) {
+    if (pam.spriteMap[act]) {
         a = new PamSprite(pam, pam.spriteMap[act])
     } else {
         a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
     }
+    a.pivot.set(195, 180)
     a.position.set(x, y)
     stage.addChild(a)
+    objects.push(a)
     a.plantType = i
     a.scale.set(resScale)
     a.ztype = 'plant'
@@ -19,27 +21,69 @@ function plant(i, x, y, act) {
 // 画一个种子
 function seed(i, x, y) {
     let textures = loader.resources.UI_SeedPackets_768_00.textures
+    let planttype = plantList[i]
     let c = new PIXI.Container()
-    
-    let bgname = plantList[i].world
-    if(!bgname || bgname == 'tutorial') bgname = 'ready'
+
+    let bgname = planttype.world
+    if (!bgname || bgname == 'tutorial') bgname = 'ready'
     let b = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
     // b.position.set(x, y)
     let priceTab = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_PRICE_TAB)
     priceTab.position.set(70, 35)
 
-    let price = new PIXI.Text(plantList[i].cost ,{fontFamily : 'Arial', fontSize: 32, fill : 'white', align : 'center', fontWeight:'600', strokeThickness:3});
+    let price = new PIXI.Text(planttype.cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
     price.position.set(115 - price.width, 40)
 
-    let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + plantList[i].ename.toUpperCase()])
+    
+    let cover1 = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_COOLDOWN)
+    cover1.tint = 0x0
+    cover1.alpha = 0.5
+    // cover1.position.set(0, 0)
+    let cover2 = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_COOLDOWN)
+    cover2.tint = 0x0
+    cover2.alpha = 0.5
+    // cover1.position.set(0, 0)
+
+    let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
     a.position.set(10, 0)
     a.seedType = i
 
-    c.addChild(b, a, priceTab, price)
+    c.addChild(b, a, priceTab, price, cover1, cover2)
     c.position.set(x, y)
     stage.addChild(c)
-    a.ztype = 'seed'
+    objects.push(c)
+    c.ztype = 'seed'
+    c.planttype = planttype
+    c.cd = planttype.cooldown * 60
+    c.step = function(sunTotal) {
+        if(this.cd == 0) {
+            cover1.visible = this.planttype.cost <= sunTotal
+            cover2.visible = false
+            return
+        }
+        this.cd--
+        cover2.scale.y = this.cd / this.planttype.cooldown / 60
+        cover1.visible = true
+        cover2.visible = true
+    }
+    c.use = function() {
+        this.cd = this.planttype.cooldown * 60
+    }
+    c.ready = function() {
+        return this.cd == 0
+    }
     return c
+}
+
+
+function seedSel(x, y) {
+    let textures = loader.resources.UI_SeedPackets_768_00.textures
+    let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_SELECT'])
+    a.position.set(x, y)
+    stage.addChild(a)
+    a.ztype = 'seed'
+    return a
+    
 }
 
 // 画背景
@@ -59,6 +103,7 @@ function sun(x, y) {
     let a = new PamSprite(pam, pam.main_sprite)
     a.position.set(x, y)
     stage.addChild(a)
+    objects.push(a)
     a.scale.set(resScale)
     a.ztype = 'sun'
     return a
@@ -74,12 +119,24 @@ function numSun(x, y, num = 0) {
     b.alpha = 0.7
     let a = new PIXI.Sprite(textures.IMAGE_UI_HUD_INGAME_SUN)
 
-    let cnt = new PIXI.Text(num ,{fontFamily : 'Arial', fontSize: 32, fill : 'white', align : 'center', fontWeight:'600', strokeThickness:3});
+    let cnt = new PIXI.Text(num, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
     cnt.position.set(75, 12)
 
+    c.cnt = cnt
+    c._num = num
     c.addChild(b, a, cnt)
     c.position.set(x, y)
     stage.addChild(c)
+
+    Object.defineProperty(c, 'num', {
+        set: function (x) {
+            c.cnt.text = x
+            this._num = x
+        }, 
+        get: function () {
+            return this._num
+        }
+    });
     return c
 }
 
@@ -101,14 +158,14 @@ function rm(obj) {
 const resScale = 768 / 1200
 
 function setup(resources) {
-    for(let p of pamList) {
-        for(let name of p.name) {
-            if(resources[name].data) {
+    for (let p of pamList) {
+        for (let name of p.name) {
+            if (resources[name].data) {
                 let textures = {}
-                if(typeof p.image == 'string') {
+                if (typeof p.image == 'string') {
                     textures = resources[p.image].textures
                 } else {
-                    for(let i of p.image) {
+                    for (let i of p.image) {
                         Object.assign(textures, resources[i].textures)
                     }
                 }
@@ -117,7 +174,7 @@ function setup(resources) {
         }
     }
     plantType = resources.planttype.data
-    for(let p of plantList) {
+    for (let p of plantList) {
         let t = plantType[p.ename]
         Object.assign(p, t)
     }
@@ -128,7 +185,7 @@ function setup(resources) {
 
 function loop2() {
     objects.forEach(a => {
-        if(a.needRemove || a.pamParant && a.pamParent.needRemove) {
+        if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
             stage.removeChild(a)
         }
     })
@@ -240,19 +297,19 @@ var stage = new PIXI.Container()
 var objects = []
 var plantType
 function loadPams(callback) {
-    for(let p of pamList) {
-        for(let name of p.name) {
+    for (let p of pamList) {
+        for (let name of p.name) {
             loader.add(name, "pam/pams/" + name + ".json")
         }
-        if(typeof p.image == 'string') {
+        if (typeof p.image == 'string') {
             loader.add(p.image, "pam/json/" + p.image + ".json")
         } else {
-            for(let i of p.image) {
+            for (let i of p.image) {
                 loader.add(i, "pam/json/" + i + ".json")
             }
         }
     }
-    for(let j of loadJsons) {
+    for (let j of loadJsons) {
         loader.add(j, 'packages/' + j + '.rton.json')
     }
     loader.add('planttype', 'pam/planttype.json')
