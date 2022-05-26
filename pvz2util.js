@@ -38,10 +38,12 @@ function seed(i, x, y) {
     let cover1 = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_COOLDOWN)
     cover1.tint = 0x0
     cover1.alpha = 0.5
+    cover1.visible = false
     // cover1.position.set(0, 0)
     let cover2 = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_COOLDOWN)
     cover2.tint = 0x0
     cover2.alpha = 0.5
+    cover2.visible = false
     // cover1.position.set(0, 0)
 
     let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
@@ -54,7 +56,7 @@ function seed(i, x, y) {
     objects.push(c)
     c.ztype = 'seed'
     c.planttype = planttype
-    c.cd = planttype.cooldown * 60
+    c.cd = planttype.cooldown * fps
     c.step = function(sunTotal) {
         if(this.cd == 0) {
             cover1.visible = this.planttype.cost <= sunTotal
@@ -62,7 +64,7 @@ function seed(i, x, y) {
             return
         }
         this.cd--
-        cover2.scale.y = this.cd / this.planttype.cooldown / 60
+        cover2.scale.y = this.cd / this.planttype.cooldown / fps
         cover1.visible = true
         cover2.visible = true
     }
@@ -104,12 +106,13 @@ function sun(x, y) {
     a.position.set(x, y)
     stage.addChild(a)
     objects.push(a)
+    a.pivot.set(100, 100)
     a.scale.set(resScale)
     a.ztype = 'sun'
     return a
 }
 
-// 画太阳商量
+// 画太阳数量
 function numSun(x, y, num = 0) {
     let c = new PIXI.Container()
     let textures = loader.resources.UI_ALWAYSLOADED_768_00.textures
@@ -146,6 +149,7 @@ function car(x, y, act) {
     let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
     a.position.set(x, y)
     stage.addChild(a)
+    objects.push(a)
     a.scale.set(resScale)
     a.ztype = 'car'
     return a
@@ -173,6 +177,7 @@ function setup(resources) {
             }
         }
     }
+    let banana = parsePam(resources['pam/banana.pam'].data)
     plantType = resources.planttype.data
     for (let p of plantList) {
         let t = plantType[p.ename]
@@ -296,6 +301,7 @@ const loadJsons = [/*'planttypes'*/]
 var stage = new PIXI.Container()
 var objects = []
 var plantType
+var fps = 30
 function loadPams(callback) {
     for (let p of pamList) {
         for (let name of p.name) {
@@ -313,5 +319,6 @@ function loadPams(callback) {
         loader.add(j, 'packages/' + j + '.rton.json')
     }
     loader.add('planttype', 'pam/planttype.json')
+    loader.add('pam/banana.pam', { xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER })
     loader.load((loader, resources) => setup(resources, callback));
 }
