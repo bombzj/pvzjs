@@ -17,11 +17,8 @@
     const loader = PIXI.Loader.shared;
     loadPams()
 
-    let objects = []
     let grass, sod
-    let stage = new PIXI.Container()
     function init(resources) {
-        app.stage.addChild(stage)
         stage.scale.set(768 / 1200)
 
         let bg = new PIXI.Container()
@@ -204,12 +201,6 @@
     var speed = 2
     var intv = 0
     function loop() {
-        objects.forEach(a => {
-            if(a.needRemove || a.pamParant && a.pamParent.needRemove) {
-                stage.removeChild(a)
-            }
-        })
-        objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
         intv++
         if(intv > speed) {
             intv = 0

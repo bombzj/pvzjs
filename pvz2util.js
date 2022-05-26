@@ -9,9 +9,10 @@ function plant(i, x, y, act) {
         a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
     }
     a.position.set(x, y)
-    app.stage.addChild(a)
+    stage.addChild(a)
     a.plantType = i
     a.scale.set(resScale)
+    a.ztype = 'plant'
     return a
 }
 
@@ -36,7 +37,8 @@ function seed(i, x, y) {
 
     c.addChild(b, a, priceTab, price)
     c.position.set(x, y)
-    app.stage.addChild(c)
+    stage.addChild(c)
+    a.ztype = 'seed'
     return c
 }
 
@@ -47,7 +49,7 @@ function back(x, y) {
     // a.position.set(x, y)
     let b = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
     b.position.set(x, y)
-    app.stage.addChild(b)
+    stage.addChild(b)
     return b
 }
 
@@ -56,8 +58,9 @@ function sun(x, y) {
     let pam = pams.SUN
     let a = new PamSprite(pam, pam.main_sprite)
     a.position.set(x, y)
-    app.stage.addChild(a)
+    stage.addChild(a)
     a.scale.set(resScale)
+    a.ztype = 'sun'
     return a
 }
 
@@ -76,7 +79,7 @@ function numSun(x, y, num = 0) {
 
     c.addChild(b, a, cnt)
     c.position.set(x, y)
-    app.stage.addChild(c)
+    stage.addChild(c)
     return c
 }
 
@@ -85,22 +88,19 @@ function car(x, y, act) {
     let pam = pams.MOWER_MODERN
     let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
     a.position.set(x, y)
-    app.stage.addChild(a)
+    stage.addChild(a)
     a.scale.set(resScale)
+    a.ztype = 'car'
     return a
 }
 
+function rm(obj) {
+    obj.needRemove = true
+}
 
 const resScale = 768 / 1200
 
-const worldBg = {
-    egypt: 1,
-    pirate: 2,
-}
-
-
-
-function setup(resources, callback) {
+function setup(resources) {
     for(let p of pamList) {
         for(let name of p.name) {
             if(resources[name].data) {
@@ -121,10 +121,20 @@ function setup(resources, callback) {
         let t = plantType[p.ename]
         Object.assign(p, t)
     }
+    app.stage.addChild(stage)
     init(resources)
-    app.ticker.add(delta => loop())
+    app.ticker.add(delta => loop2())
 }
 
+function loop2() {
+    objects.forEach(a => {
+        if(a.needRemove || a.pamParant && a.pamParent.needRemove) {
+            stage.removeChild(a)
+        }
+    })
+    objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
+    loop()
+}
 
 const pamList = [
     {
@@ -226,6 +236,8 @@ const pamList = [
 ]
 
 const loadJsons = [/*'planttypes'*/]
+var stage = new PIXI.Container()
+var objects = []
 var plantType
 function loadPams(callback) {
     for(let p of pamList) {
