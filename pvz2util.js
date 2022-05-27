@@ -177,7 +177,7 @@ function setup(resources) {
             }
         }
     }
-    let banana = parsePam(resources['pam/banana.pam'].data)
+
     plantType = resources.planttype.data
     for (let p of plantList) {
         let t = plantType[p.ename]
@@ -305,7 +305,7 @@ var fps = 30
 function loadPams(callback) {
     for (let p of pamList) {
         for (let name of p.name) {
-            loader.add(name, "pam/pams/" + name + ".json")
+            loader.add(name, "pam/pams/" + name + ".pam", {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
         }
         if (typeof p.image == 'string') {
             loader.add(p.image, "pam/json/" + p.image + ".json")

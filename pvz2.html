@@ -211,7 +211,7 @@
                 if(p.stepAction) {
                     p.stepAction()
                 }
-                if(p.param.walk) {
+                if(p.param && p.param.walk) {
                     if(p.x < -400) {
                         p.x = 900
                     }

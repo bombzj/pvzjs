@@ -5,42 +5,23 @@ class bytebuffer {
         this.pos = pos ? pos : 0;
     }
 
-    skip(n) {
-        if (n >= 0)
-            this.pos += n;
-        else
-            this.pos++;
-    }
-
     position(p) {
         if (p >= 0)
             this.pos = p;
 
         return this.pos;
     }
-    ReadByte(p) {
-        if (p >= 0)
-            return this.arr[p];
-        else
-            return this.arr[this.pos++];
-    }
-
-    gets(p) { // signed
-        let res;
-        if (p >= 0)
-            res = this.arr[p];
-        else
-            res = this.arr[this.pos++];
-        if (res >= 0x80)
-            res -= 0x100;
-        return res;
+    ReadByte() {
+        return this.arr[this.pos++];
     }
 
     ReadUInt32() {
         return this.ReadInt32() >>> 0
     }
     ReadInt32() {
-        return (this.arr[this.pos + 3] << 24) + (this.arr[this.pos + 2] << 16) + (this.arr[this.pos + 1] << 8) + this.arr[this.pos];
+        let res = (this.arr[this.pos + 3] << 24) + (this.arr[this.pos + 2] << 16) + (this.arr[this.pos + 1] << 8) + this.arr[this.pos];
+        this.pos += 4;
+        return res;
     }
 
     ReadInt16() {
@@ -60,26 +41,23 @@ class bytebuffer {
 		return this.ReadString(this.ReadInt16());
 	}
 
+    ReadBoolean() {
+        let res = this.ReadByte()
+        return res && 0x1
+    }
+
 	ReadString(len) {
 		if(len < 0 || len > 1000) debugger
-		let ary = this.ReadBytes(count);
+		let ary = this.ReadBytes(len);
 		// if (endian == Endian.Small) ary.reverse();
 		return String.fromCharCode(...ary);
 	}
 
 	ReadBytes(count) {
-
+        let res = this.arr.slice(this.pos, this.pos + count);
+        this.pos += count;
+        return res;
 	}
-
-    getr(p) {
-        return this.get(p + this.pos);
-    }
-    getrInt(p) {
-        return this.getInt(p + this.pos);
-    }
-    getrShort(p) {
-        return this.getShort(p + this.pos);
-    }
 }
 
 const Magic = 0xBAF01954;
@@ -103,7 +81,8 @@ const MoveFlags = {
 
 let data = fs.readFileSync('pam/banana.pam');
 let obj = parsePam(data);
-debugger
+console.log(JSON.stringify(obj, null, 4))
+
 
 function parsePam(data) {
     let bs = new bytebuffer(data);
@@ -115,25 +94,25 @@ function parsePam(data) {
         return null;
     }
     output.frame_rate = bs.ReadByte();
-    output.position = [bs.ReadInt16(), bs.ReadInt16()]
-    output.size = [bs.ReadInt16(), bs.ReadInt16()]
+    output.position = [bs.ReadInt16() / 20, bs.ReadInt16() / 20]
+    output.size = [bs.ReadInt16() / 20, bs.ReadInt16() / 20]
     let imagesCount = bs.ReadInt16();
     output.image = [];
     for (let i = 0; i < imagesCount; i++) {
-        image[i] = readImage(bs, version);
+        output.image[i] = readImage(bs, version);
     }
     let spritesCount = bs.ReadInt16();
     output.sprite = [];
     for (let i = 0; i < spritesCount; i++) {
-        sprite[i] = readSprite(bs, version);
+        output.sprite[i] = readSprite(bs, version);
         if (version < 4) {
-            sprite[i].frame_rate = frame_rate;
+            output.sprite[i].frame_rate = frame_rate;
         }
     }
     if (version <= 3 || bs.ReadBoolean()) {
         output.main_sprite = readSprite(bs, version)
         if (version < 4) {
-            main_sprite.frame_rate = frame_rate;
+            output.main_sprite.frame_rate = frame_rate;
         }
     }
     return output
@@ -151,8 +130,8 @@ function readImage(bs, version) {
     let transform = image.transform = [];
     if (version == 1) {
         let num6 = bs.ReadInt16() / 1000;
-        let num7 = Math.Sin(num6);
-        let num8 = Math.Cos(num6);
+        let num7 = Math.sin(num6);
+        let num8 = Math.cos(num6);
         transform[0] = num8;
         transform[2] = -num7;
         transform[1] = num7;
@@ -193,7 +172,7 @@ function readSprite(bs, version) {
     for (let i = 0; i < framesCount; i++) {
         sprite.frame[i] = readFrame(bs, version);
     }
-    return this;
+    return sprite;
 }
 
 
@@ -219,7 +198,7 @@ function readFrame(bs, version) {
         }
         frame.append = [];
         for (let i = 0; i < count; i++) {
-            append[i] = readAdds(bs, version);
+            frame.append[i] = readAdds(bs, version);
         }
     } else {
         frame.append = [];
@@ -244,7 +223,7 @@ function readFrame(bs, version) {
     }
     if ((flags & FrameFlags.Commands) != 0) {
         let num12 = bs.ReadByte();
-        frame.command = new CommandsInfo[num12];
+        frame.command = [];
         for (let m = 0; m < num12; m++) {
             frame.command[m] = readCommands(bs, version);
         }
@@ -273,14 +252,14 @@ function readRemoves(bs, version) {
 function readAdds(bs, version) {
     let append = {}
     let num5 = bs.ReadUInt16();
-    index = num5 & 2047;
-    if (index == 2047) {
+    append.index = num5 & 2047;
+    if (append.index == 2047) {
         append.index = bs.ReadInt32();
     }
     append.sprite = (num5 & 32768) != 0;
     append.additive = (num5 & 16384) != 0;
     append.resource = bs.ReadByte();
-    if (version >= 6 && resource == 255) {
+    if (version >= 6 && append.resource == 255) {
         append.resource = bs.ReadInt16();
     }
     if ((num5 & 8192) != 0) {
@@ -309,14 +288,15 @@ function readMoves(bs, version) {
     }
     change.index = num8;
     let f7 = num7;
+    let transform;
     if ((f7 & MoveFlags.Matrix) != 0) {
-        let transform = change.transform = [0, 0, 0, 0, 0, 0];
+        transform = change.transform = [0, 0, 0, 0, 0, 0];
         transform[0] = bs.ReadInt32() / 65536;
         transform[2] = bs.ReadInt32() / 65536;
         transform[1] = bs.ReadInt32() / 65536;
         transform[3] = bs.ReadInt32() / 65536;
     } else if ((f7 & MoveFlags.Rotate) != 0) {
-        let transform = change.transform = [0, 0, 0, 0, 0, 0];
+        transform = change.transform = [0, 0, 0, 0, 0, 0];
         let num9 = bs.ReadInt16() / 1000;
         let num10 = Math.sin(num9);
         let num11 = Math.cos(num9);
@@ -328,14 +308,14 @@ function readMoves(bs, version) {
         transform[1] = num10;
         transform[3] = num11;
     } else {
-        change.transform = [0, 0];
+        transform = change.transform = [0, 0];
     }
     if ((f7 & MoveFlags.LongCoords) != 0) {
-        transform[3] = bs.ReadInt32() / 20;
-        transform[4] = bs.ReadInt32() / 20;
+        transform[transform.length - 2] = bs.ReadInt32() / 20;
+        transform[transform.length - 1] = bs.ReadInt32() / 20;
     } else {
-        transform[3] = bs.ReadInt16() / 20;
-        transform[4] = bs.ReadInt16() / 20;
+        transform[transform.length - 2] = bs.ReadInt16() / 20;
+        transform[transform.length - 1] = bs.ReadInt16() / 20;
     }
     if ((f7 & MoveFlags.SrcRect) != 0) {
         let src_rect = change.src_rect = [];
