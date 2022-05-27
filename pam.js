@@ -5,6 +5,7 @@ let imageScale = 1200 / 768
 function pamInit(name, dataRaw, textures) {
     let data = parsePam(dataRaw)
     pams[name] = data
+    pams[name].name = name
     pams[name].textures = textures
 
     for(let image of data.image) {
@@ -39,27 +40,35 @@ const hideSprite = new Set(['ground_swatch', 'ground_swatch_plane', '_zombie_egy
         ,'brick_undamaged','brick_damaged1','brick_damaged2', '_wallnut_armor_states'])
 
 class PamSprite extends PIXI.Container {
-    constructor(pam, act, frameStart = 0, param = {}) {
+    constructor(pam, sprite, frameStart = 0, param = {}) {
         super()
         this.pam = pam
+        this.sprite = sprite || pam.main_sprite
+        if(typeof frameStart === 'string') {
+            frameStart = pam.actionFrame[frameStart]
+        }
         this.frameStart = this.frame = frameStart
         this.param = param
-        this.act = act
         this.doFrame()
     }
 
     changeAction(frameStart) {
+        if(typeof frameStart === 'string') {
+            frameStart = this.pam.actionFrame[frameStart]
+            if(frameStart == undefined) debugger
+        }
         this.frameStart = this.frame = frameStart
     }
 
     doFrame() {
-        let frame = this.act.frame[this.frame]
-        if(frame.stop || this.frame >= this.act.frame.length - 1) {
+        let frame = this.sprite.frame[this.frame]
+        if(frame.stop || this.frame >= this.sprite.frame.length - 1) {
             this.frame = this.frameStart
             if(this.param.onFinish) {
                 this.param.onFinish(this)
             }
-            frame = this.act.frame[this.frame]
+            if(this.onFinish) this.onFinish()
+            frame = this.sprite.frame[this.frame]
         }
         if(this.frame == this.frameStart) {  // first frame, remove any
             this.parts = {}
@@ -146,7 +155,7 @@ class PamSprite extends PIXI.Container {
     }
 
     step() {
-        if(this.act.frame.length > 1) {
+        if(this.sprite.frame.length > 1) {
             this.doFrame()
         }
         if(this.param.walk && this.groundMove) {
@@ -163,10 +172,56 @@ class PamSprite extends PIXI.Container {
 
     getSprite(name) {
         for(let part of this.parts) {
-            if(part.act.name == name) {
+            if(part.sprite.name == name) {
                 return part
             }
         }
+    }
+}
+
+
+class PlantSprite extends PamSprite {
+    constructor(type) {
+        let pam = pams[type.pamName]
+        super(pam)
+        this.actionCooldownMax = 2.5 * fps
+        this.actionCooldown = 0
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        if(true) {
+            if(this.actionCooldown <= 0) {
+                if(this.pam.name == 'SUNFLOWER') {
+                    this.changeAction('special')
+                } else if(this.pam.actionFrame['attack']) {
+                    this.changeAction('attack')
+                }
+                this.actName = 'attack'
+                this.actionCooldown = this.actionCooldownMax
+            }
+        }
+        this.actionCooldown--
+        super.step()
+    }
+    onFinish() {
+        if(this.actName == 'attack') {
+            this.changeAction('idle')
+        }
+    }
+}
+
+class ZombieSprite extends PamSprite {
+    constructor(type) {
+        let pam = pams[type.pamName]
+        super(pam, null, 'walk')
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
     }
 }
 
@@ -196,32 +251,8 @@ class bytebuffer {
         this.pos = pos ? pos : 0;
     }
 
-    skip(n) {
-        if (n >= 0)
-            this.pos += n;
-        else
-            this.pos++;
-    }
-
-    position(p) {
-        if (p >= 0)
-            this.pos = p;
-
-        return this.pos;
-    }
     ReadByte() {
         return this.arr[this.pos++];
-    }
-
-    gets(p) { // signed
-        let res;
-        if (p >= 0)
-            res = this.arr[p];
-        else
-            res = this.arr[this.pos++];
-        if (res >= 0x80)
-            res -= 0x100;
-        return res;
     }
 
     ReadUInt32() {

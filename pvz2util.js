@@ -1,20 +1,27 @@
 
 // 画一个植物
-function plant(i, x, y, act) {
-    let pam = pams[plantList[i].pamName]
-    let a
-    if (pam.spriteMap[act]) {
-        a = new PamSprite(pam, pam.spriteMap[act])
-    } else {
-        a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
-    }
+function plant(i, x, y) {
+    let a = new PlantSprite(plantList[i])
     a.pivot.set(195, 180)
     a.position.set(x, y)
     stage.addChild(a)
-    objects.push(a)
+    newObjects.push(a)
     a.plantType = i
     a.scale.set(resScale)
     a.ztype = 'plant'
+    return a
+}
+
+// 画一个僵尸
+function zombie(i, x, y, act) {
+    let a = new ZombieSprite(zombieList[i])
+    a.pivot.set(195, 180)
+    a.position.set(x, y)
+    stage.addChild(a)
+    newObjects.push(a)
+    a.plantType = i
+    a.scale.set(resScale)
+    a.ztype = 'zombie'
     return a
 }
 
@@ -31,7 +38,7 @@ function seed(i, x, y) {
     let priceTab = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_PRICE_TAB)
     priceTab.position.set(70, 35)
 
-    let price = new PIXI.Text(planttype.cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+    let price = new PIXI.Text(planttype.prop.Cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
     price.position.set(115 - price.width, 40)
 
     
@@ -53,23 +60,23 @@ function seed(i, x, y) {
     c.addChild(b, a, priceTab, price, cover1, cover2)
     c.position.set(x, y)
     stage.addChild(c)
-    objects.push(c)
+    newObjects.push(c)
     c.ztype = 'seed'
     c.planttype = planttype
-    c.cd = planttype.cooldown * fps
+    c.cd = planttype.prop.StartingCooldown * fps
     c.step = function(sunTotal) {
         if(this.cd == 0) {
-            cover1.visible = this.planttype.cost <= sunTotal
+            cover1.visible = this.planttype.prop.Cost <= sunTotal
             cover2.visible = false
             return
         }
         this.cd--
-        cover2.scale.y = this.cd / this.planttype.cooldown / fps
+        cover2.scale.y = this.cd / this.planttype.prop.PacketCooldown / fps
         cover1.visible = true
         cover2.visible = true
     }
     c.use = function() {
-        this.cd = this.planttype.cooldown * 60
+        this.cd = this.planttype.prop.PacketCooldown * 60
     }
     c.ready = function() {
         return this.cd == 0
@@ -105,7 +112,7 @@ function sun(x, y) {
     let a = new PamSprite(pam, pam.main_sprite)
     a.position.set(x, y)
     stage.addChild(a)
-    objects.push(a)
+    newObjects.push(a)
     a.pivot.set(100, 100)
     a.scale.set(resScale)
     a.ztype = 'sun'
@@ -149,7 +156,7 @@ function car(x, y, act) {
     let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
     a.position.set(x, y)
     stage.addChild(a)
-    objects.push(a)
+    newObjects.push(a)
     a.scale.set(resScale)
     a.ztype = 'car'
     return a
@@ -178,10 +185,15 @@ function setup(resources) {
         }
     }
 
-    plantType = resources.planttype.data
+    loadPlantType(resources)
+    loadZombieType(resources)
     for (let p of plantList) {
         let t = plantType[p.ename]
         Object.assign(p, t)
+    }
+    for (let z of zombieList) {
+        let t = zombieType[z.ename]
+        Object.assign(z, t)
     }
     app.stage.addChild(stage)
     init(resources)
@@ -195,6 +207,8 @@ function loop2() {
         }
     })
     objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
+    objects = objects.concat(newObjects)
+    newObjects = []
     loop()
 }
 
@@ -299,8 +313,8 @@ const pamList = [
 
 const loadJsons = [/*'planttypes'*/]
 var stage = new PIXI.Container()
-var objects = []
-var plantType
+var objects = [], newObjects = []
+var plantType, zombieType
 var fps = 30
 function loadPams(callback) {
     for (let p of pamList) {
@@ -318,7 +332,69 @@ function loadPams(callback) {
     for (let j of loadJsons) {
         loader.add(j, 'packages/' + j + '.rton.json')
     }
-    loader.add('planttype', 'pam/planttype.json')
-    loader.add('pam/banana.pam', { xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER })
+    // loader.add('planttype', 'pam/planttype.json')
+    loader.add('planttypes', 'pam/packages/planttypes.rton.json')
+    loader.add('plantproperties', 'pam/packages/plantproperties.rton.json')
+    loader.add('zombietypes', 'pam/packages/zombietypes.rton.json')
+    loader.add('zombieproperties', 'pam/packages/zombieproperties.rton.json')
+
     loader.load((loader, resources) => setup(resources, callback));
+}
+
+function getRTIDName(str) {
+    return str.substr(5, str.indexOf('@') - 5)
+}
+
+function loadPlantType(resources) {
+    types = resources.planttypes.data
+    props = resources.plantproperties.data
+
+    props.objMap = {}
+    for(let obj of props.objects) {
+        if(!obj.aliases) continue
+        for(let alias of obj.aliases) {
+            props.objMap[alias] = obj
+        }
+    }
+
+    plantType = {}
+    
+    for(let obj of types.objects) {
+        let od = obj.objdata
+        let propName = getRTIDName(od.Properties)
+        let prop = props.objMap[propName].objdata
+        plantType[od.TypeName] = {
+            pamName: od.PopAnim.replace('POPANIM_PLANT_', ''),
+            backdrop: od.AlmanacBackdropName,
+            world: od.HomeWorld,
+            prop: prop
+        }
+    }
+}
+
+function loadZombieType(resources) {
+    types = resources.zombietypes.data
+    props = resources.zombieproperties.data
+
+    props.objMap = {}
+    for(let obj of props.objects) {
+        if(!obj.aliases) continue
+        for(let alias of obj.aliases) {
+            props.objMap[alias] = obj
+        }
+    }
+
+    zombieType = {}
+    
+    for(let obj of types.objects) {
+        let od = obj.objdata
+        if(!od) continue
+        let propName = getRTIDName(od.Properties)
+        let prop = props.objMap[propName].objdata
+        zombieType[od.TypeName] = {
+            pamName: od.PopAnim.replace('POPANIM_ZOMBIE_', ''),
+            world: od.HomeWorld,
+            prop: prop
+        }
+    }
 }

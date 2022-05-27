@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+    </head>
+    <script src="pixi.min.js"></script>
+    <script src="pam.js"></script>
+    <script src="pvz2util.js"></script>
+    <body>
+<script type="text/javascript">
+
+    // 准备好画布
+    let app = new PIXI.Application({width: 916, height: 800});
+    document.body.appendChild(app.view);
+
+    // 设置背景颜色
+    app.renderer.backgroundColor = 0x0ccccff;   
+
+    // 加载图片和动画
+    const loader = PIXI.Loader.shared;          
+    loadPams()
+
+    let sun1
+    let selspr
+    // 启动后调用一次
+    function init() {
+        back(0, 0)
+        for(let i = 0;i < 8;i++){
+            seed(i, 0, 75 * i + 100)
+        }
+        for(let i = 0;i < 8;i++){
+            plant(i, 150 * i + 100, 100)
+        }
+        for(let i = 0;i < 5;i++) {
+            car(100, i * 100 + 100)
+        }
+        sun1 = sun(500, 0)
+        selspr = seedSel(0, 100)
+    }
+    t = 0
+    // 每秒调用60次
+    function loop() {
+        if(t++ % 2 == 0) {
+            for(let obj of objects) {
+                if(obj.ztype == 'sun') {
+                    obj.step()
+                } else if(obj.ztype == 'seed') {
+                    obj.step(50)
+                } else if(obj.ztype == 'plant') {
+                    obj.step()
+                } else if(obj.ztype == 'zombie') {
+                    obj.step()
+                }
+            }
+        }
+    }
+
+    let sel = 0
+    // 鼠标事件
+    function onclick(e) {
+        let x = e.offsetX, y = e.offsetY
+        console.log('click: ', x, y)
+        if(x < 200) {
+            sel = Math.floor((y - 100) / 75) 
+            selspr.y = sel * 75 + 100
+        } else if(x > 700) {
+            zombie(sel, x, y)
+        } else {
+            plant(sel, x, y)
+        }
+    }
+    
+    // 键盘事件
+    function onkeydown(e) {
+        if(e.code == 'KeyA'){
+
+        }
+    }
+    
+
+    // 植物和种子列表
+    var plantList = [
+        {       // 0
+            name: '向日葵',
+            ename: 'sunflower',
+            cost: 50,
+            hitpoint: 300,
+            cooldown: 20,
+        },
+        {       // 1
+            name: '豌豆射手',
+            ename: 'peashooter',
+        },
+        {       // 2
+            name: '坚果',
+            ename: 'wallnut',
+        },
+        {       // 3
+            name: '冰豌豆',
+            ename: 'snowpea',
+        },
+        {       // 4
+            name: '大嘴花',
+            ename: 'chomper',
+        },
+        {       // 5
+            name: '窝瓜',
+            ename: 'squash',
+        },
+        {       // 6
+            name: '樱桃炸弹',
+            ename: 'cherry_bomb',
+        },
+        {       // 7
+            name: '双豌豆射手',
+            ename: 'repeater',
+        },
+        {       // 8
+            name: '三豌豆射手',
+            ename: 'threepeater',
+        },
+        {       // 9
+            name: '大喷菇',
+            ename: 'fumeshroom',
+        },
+    ]
+
+    var zombieList = [
+        {       // 0
+            name: '普通僵尸',
+            ename: 'mummy',
+        },
+        {       // 0
+            name: '交通锥僵尸',
+            ename: 'mummy_armor1',
+        },
+        {       // 0
+            name: '铁桶僵尸',
+            ename: 'mummy_armor2',
+        },
+        {       // 0
+            name: '全能僵尸',
+            ename: 'modern_allstar',
+        },
+    ]
+
+    app.view.onclick = onclick
+    window.onkeydown = onkeydown
+</script>
+    </body>
+</html>
