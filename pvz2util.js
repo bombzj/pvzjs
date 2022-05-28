@@ -13,7 +13,7 @@ function plant(i, x, y) {
 }
 
 // 画一个僵尸
-function zombie(i, x, y, act) {
+function zombie(i, x, y) {
     let a = new ZombieSprite(zombieList[i])
     a.pivot.set(195, 180)
     a.position.set(x, y)
@@ -25,6 +25,7 @@ function zombie(i, x, y, act) {
     return a
 }
 
+var sunTotal = 50
 // 画一个种子
 function seed(i, x, y) {
     let textures = loader.resources.UI_SeedPackets_768_00.textures
@@ -63,10 +64,14 @@ function seed(i, x, y) {
     newObjects.push(c)
     c.ztype = 'seed'
     c.planttype = planttype
-    c.cd = planttype.prop.StartingCooldown * fps
-    c.step = function(sunTotal) {
+    if(planttype.prop.StartingCooldown) {
+        c.cd = planttype.prop.StartingCooldown * fps
+    } else {
+        c.cd = planttype.prop.PacketCooldown * fps
+    }
+    c.step = function() {
         if(this.cd == 0) {
-            cover1.visible = this.planttype.prop.Cost <= sunTotal
+            cover1.visible = this.planttype.prop.Cost > sunTotal
             cover2.visible = false
             return
         }
@@ -133,20 +138,20 @@ function numSun(x, y, num = 0) {
     cnt.position.set(75, 12)
 
     c.cnt = cnt
+    sunTotal = num
     c._num = num
     c.addChild(b, a, cnt)
+    newObjects.push(c)
     c.position.set(x, y)
     stage.addChild(c)
 
-    Object.defineProperty(c, 'num', {
-        set: function (x) {
-            c.cnt.text = x
-            this._num = x
-        }, 
-        get: function () {
-            return this._num
+    c.step = function() {
+        if(this._num != sunTotal) {
+            this._num = sunTotal
+            c.cnt.text = sunTotal
         }
-    });
+    }
+    c.ztype = 'numSun'
     return c
 }
 
@@ -185,6 +190,7 @@ function setup(resources) {
         }
     }
 
+    loadPackages(resources)
     loadPlantType(resources)
     loadZombieType(resources)
     for (let p of plantList) {
@@ -311,7 +317,6 @@ const pamList = [
     }
 ]
 
-const loadJsons = [/*'planttypes'*/]
 var stage = new PIXI.Container()
 var objects = [], newObjects = []
 var plantType, zombieType
@@ -329,72 +334,55 @@ function loadPams(callback) {
             }
         }
     }
-    for (let j of loadJsons) {
-        loader.add(j, 'packages/' + j + '.rton.json')
+    for (let j of packageJsons) {
+        loader.add(j, 'pam/packages/' + j + '.rton.json')
     }
-    // loader.add('planttype', 'pam/planttype.json')
-    loader.add('planttypes', 'pam/packages/planttypes.rton.json')
-    loader.add('plantproperties', 'pam/packages/plantproperties.rton.json')
-    loader.add('zombietypes', 'pam/packages/zombietypes.rton.json')
-    loader.add('zombieproperties', 'pam/packages/zombieproperties.rton.json')
 
     loader.load((loader, resources) => setup(resources, callback));
 }
 
-function getRTIDName(str) {
-    return str.substr(5, str.indexOf('@') - 5)
+const packageJsons = ['PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
+    , 'ArmorTypes', 'PropertySheets', 'ProjectileTypes']
+var rtMap = {}
+function loadPackages(resources) {
+    for(let pkgName of packageJsons) {
+        let pkg = resources[pkgName].data
+        for(let obj of pkg.objects) {
+            if(!obj.aliases) continue
+            for(let alias of obj.aliases) {
+                rtMap[alias + '@' + pkgName] = obj.objdata
+                obj.objdata.objclass = obj.objclass
+            }
+        }
+    }
+}
+function getByRTID(str) {
+    let id = str.substr(5, str.length - 6)
+    return rtMap[id]
 }
 
 function loadPlantType(resources) {
-    types = resources.planttypes.data
-    props = resources.plantproperties.data
-
-    props.objMap = {}
-    for(let obj of props.objects) {
-        if(!obj.aliases) continue
-        for(let alias of obj.aliases) {
-            props.objMap[alias] = obj
-        }
-    }
-
     plantType = {}
-    
-    for(let obj of types.objects) {
+    for(let obj of resources.PlantTypes.data.objects) {
         let od = obj.objdata
-        let propName = getRTIDName(od.Properties)
-        let prop = props.objMap[propName].objdata
         plantType[od.TypeName] = {
             pamName: od.PopAnim.replace('POPANIM_PLANT_', ''),
             backdrop: od.AlmanacBackdropName,
             world: od.HomeWorld,
-            prop: prop
+            prop: getByRTID(od.Properties)
         }
     }
 }
 
 function loadZombieType(resources) {
-    types = resources.zombietypes.data
-    props = resources.zombieproperties.data
-
-    props.objMap = {}
-    for(let obj of props.objects) {
-        if(!obj.aliases) continue
-        for(let alias of obj.aliases) {
-            props.objMap[alias] = obj
-        }
-    }
-
     zombieType = {}
-    
-    for(let obj of types.objects) {
+    for(let obj of resources.ZombieTypes.data.objects) {
         let od = obj.objdata
         if(!od) continue
-        let propName = getRTIDName(od.Properties)
-        let prop = props.objMap[propName].objdata
         zombieType[od.TypeName] = {
             pamName: od.PopAnim.replace('POPANIM_ZOMBIE_', ''),
             world: od.HomeWorld,
-            prop: prop
+            prop: getByRTID(od.Properties)
         }
     }
 }
