@@ -1,145 +1,4 @@
-const fs = require('fs')
-
-
-class bytebuffer {
-    constructor(arr, pos) {
-        this.buffer = arr.buffer
-        this.arr = new Uint8ClampedArray(arr);
-        this.pos = pos ? pos : 0;
-    }
-
-    ReadByte() {
-        return this.arr[this.pos++];
-    }
-
-    ReadSByte() {
-        let res = this.ReadByte()
-        return res > 127 ? res - 256 : res;
-    }
-
-    ReadUInt8() {
-        return this.ReadByte()
-    }
-
-    ReadUInt32() {
-        return this.ReadInt32() >>> 0
-    }
-    ReadInt32() {
-        let res = (this.arr[this.pos + 3] << 24) + (this.arr[this.pos + 2] << 16) + (this.arr[this.pos + 1] << 8) + this.arr[this.pos];
-        this.pos += 4;
-        return res;
-    }
-
-    ReadInt16() {
-        let res = this.ReadUInt16();
-        if (res >= 0x8000)
-            res = res - 0x10000;
-        return res;
-    }
-
-    ReadUInt16() { // unsigned
-        let res = (this.arr[this.pos + 1] << 8) + this.arr[this.pos];
-		this.pos += 2;
-        return res;
-    }
-
-	ReadStringByInt16Head() {
-		return this.ReadString(this.ReadInt16());
-	}
-
-    ReadStringByVarInt32Head() {
-        return this.ReadString(this.ReadVarInt32())
-    }
-
-    ReadBoolean() {
-        let res = this.ReadByte()
-        return res && 0x1
-    }
-
-	ReadString(len) {
-		if(len < 0 || len > 1000) debugger
-		let ary = this.ReadBytes(len);
-		// if (endian == Endian.Small) ary.reverse();
-		return String.fromCharCode(...ary);
-	}
-
-	ReadBytes(count) {
-        let res = this.arr.slice(this.pos, this.pos + count);
-        this.pos += count;
-        return res;
-	}
-
-    ReadVarInt32(){
-        let num = 0;
-        let num2 = 0;
-        let b;
-        do {
-            if (num2 == 35) {
-                throw 'VarIntTooBig';
-            }
-            b = this.ReadUInt8();
-            num |= (b & 0x7F) << num2;
-            num2 += 7;
-        }
-        while ((b & 0x80) != 0);
-        return num;
-    }
-
-    ReadUVarInt32() {
-        debugger
-    }
-
-    ReadZigZag32() {
-        debugger
-    }
-
-    ReadInt64() {
-        let num1 = BigInt(this.ReadInt32())
-        let num2 = BigInt(this.ReadUInt32())
-        return (num1 << 32n) | num2;
-    }
-
-    ReadUInt64() {
-        debugger
-    }
-
-    ReadVarInt64() {
-        let num = 0;
-        let num2 = 0;
-        let b;
-        do {
-            if (num2 == 70) {
-                throw "VarIntTooBig";
-            }
-            b = ReadUInt8();
-            num |= ((b & 0x7F)) << num2;
-            num2 += 7;
-        }
-        while ((b & 0x80) != 0);
-        return num;
-    }
-
-    ReadUVarInt64() {
-        let res = ReadVarInt64();
-        return res < 0 ? res + 4294967296n : res
-    }
-
-    ReadZigZag64() {
-        debugger
-    }
-
-    ReadFloat64() {
-        let res = new DataView(this.buffer, this.pos).getFloat64()
-        this.pos += 8
-        return res
-    }
-
-    ReadFloat32() {
-        debugger
-    }
-}
-
-
+const RTID0 = 'RTID(0)'
 var R0x90List, R0x92List;
 
 function ReadBinary(bs) {
@@ -153,7 +12,7 @@ function ReadRTID(bs) {
     let temp = bs.ReadByte();
     switch (temp) {
         case 0x00:
-            return 'RTID(0)';
+            return RTID0;
         case 0x01: //Not sure
             let value_1_2 = bs.ReadVarInt32();
             let value_1_1 = bs.ReadVarInt32();
@@ -303,7 +162,7 @@ function ReadValue(bs) {
             return(ReadBinary(bs));
             break;
         case 0x90:
-            tempstring = bs.ReadBytes(bs.ReadVarInt32());
+            tempstring = String.fromCharCode(...bs.ReadBytes(bs.ReadVarInt32()));
             R0x90List.push(tempstring);
             return(tempstring);
             break;
@@ -312,7 +171,7 @@ function ReadValue(bs) {
             break;
         case 0x92:
             bs.ReadVarInt32();
-            tempstring = bs.ReadBytes(bs.ReadVarInt32());
+            tempstring = String.fromCharCode(...bs.ReadBytes(bs.ReadVarInt32()));
             R0x92List.push(tempstring);
             return(tempstring);
             break;
@@ -340,7 +199,7 @@ function ReadValue(bs) {
             return(bs.ReadByte() != 0);
             break;
         default:
-            throw "Str.Obj.TypeMisMatch";
+            debugger
     }
 }
 
@@ -352,12 +211,10 @@ function ReadJObject(bs) {
         //key
         let key
         let type = bs.ReadByte();
-        if (type == 0xFF)
-        {
+        if (type == 0xFF) {
             break;
         }
-        switch (type)
-        {
+        switch (type) {
             case 0x2:
                 key = NULL;
                 break;
@@ -395,11 +252,12 @@ function ReadJObject(bs) {
                 key = (R0x92List[bs.ReadVarInt32()]);
                 break;
             default:
-                throw 'Str.Obj.TypeMisMatch';
+                debugger
         }
         //value
+        let value = ReadValue(bs);
         if(!key.startsWith('#')) {
-            ret[key] = ReadValue(bs)
+            ret[key] = value;
         }
     }
     return ret
@@ -410,14 +268,20 @@ function parseRton(data) {
     let bs = new bytebuffer(data);
     if(bs.ReadString(4) != 'RTON') debugger
     if(bs.ReadInt32() != 0x1) debugger
-    ReadJObject(bs);
+    let ret = ReadJObject(bs);
     if(bs.ReadString(4) != 'DONE') debugger
-    return ReadJObject(bs)
+    return ret
 }
 
-let d = fs.readFileSync('js/planttypes.rton')
-let data = parseRton(d)
-fs.writeFileSync('js/planttypes.rton.json', JSON.stringify(data, null, 4))
+// let path = 'pvz/pkg/'
+// let dir = fs.readdirSync(path, {withFileTypes: true});
+// dir.forEach(file => {
+//     if(!file.isFile()) return
+//     let d = fs.readFileSync(path + file.name)
+//     let data = parseRton(d)  // incorrect, d should be ArrayBuffer, not nodejs.Buffer
+//     console.log(1)
+// })
+
 
 
 

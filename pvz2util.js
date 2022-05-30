@@ -171,12 +171,15 @@ function rm(obj) {
 
 const resScale = 768 / 1200
 let texturesMap = {}
+
 function setup(resources) {
     for(let resName of need2LoadGroup) {
         let res = resourcesMap[resName]
         if(!res) continue
-        for(let image of res.atlases) {
-            Object.assign(texturesMap, resources[image.name].textures)
+        for(let image of res.images) {
+            let baseTexture = resources[image.parent].texture
+            texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
+            // Object.assign(texturesMap, resources[image.name].textures)
         }
     }
     for(let resName of need2LoadGroup) {
@@ -211,11 +214,12 @@ var objects = [], newObjects = []
 var plantType, zombieType
 var fps = 30
 var resourcesMap
+
 function loadPams(callback) {
     for (let j of packageJsons) {
-        loader.add(j, 'pam/packages/' + j + '.rton.json')
+        loader.add(j, 'pam/packages/' + j + '.rton', {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER, loadType: 'rton'})
     }
-    loader.add('resourcesmap', 'pam/resourcesmap.json')
+    // loader.add('resourcesmap', 'pam/resourcesmap.json')
     loader.load((loader, resources) => setup2(resources, callback));
 }
 
@@ -231,9 +235,11 @@ function setup2(resources, callback) {
         let t = zombieType[z.ename]
         Object.assign(z, t)
     }
-    resourcesMap = resources.resourcesmap.data
+    loadResources()
+    // resourcesMap = resources.resourcesmap.data
 
     loader.reset()
+    console.log('concurrency =',  loader.concurrency)
     for(let type of plantList) {
         need2LoadGroup.push(...type.PlantResourceGroups)
     }
@@ -250,7 +256,7 @@ function setup2(resources, callback) {
         }
         for(let image of res.atlases) {
             try {
-                loader.add(image.name, 'pam/json/' + image.path + '.json')
+                loader.add(image.name, 'pam/atlases/' + image.path + '.png')
             } catch(e) { }
         }
     }
@@ -258,12 +264,16 @@ function setup2(resources, callback) {
 }
 
 
-const packageJsons = ['PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
+const packageJsons = ['RESOURCES', 'PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
     , 'ArmorTypes', 'PropertySheets', 'ProjectileTypes']
 var rtMap = {}
+var rtons = {}
+
 function loadPackages(resources) {
     for(let pkgName of packageJsons) {
-        let pkg = resources[pkgName].data
+        let pkg = parseRton(resources[pkgName].data)
+        rtons[pkgName] = pkg
+        if(!pkg.objects) continue
         for(let obj of pkg.objects) {
             if(!obj.aliases) continue
             for(let alias of obj.aliases) {
@@ -280,7 +290,7 @@ function getByRTID(str) {
 
 function loadPlantType(resources) {
     plantType = {}
-    for(let obj of resources.PlantTypes.data.objects) {
+    for(let obj of rtons.PlantTypes.objects) {
         let od = obj.objdata
         plantType[od.TypeName] = od
         plantType[od.TypeName].prop = getByRTID(od.Properties)
@@ -289,10 +299,94 @@ function loadPlantType(resources) {
 
 function loadZombieType(resources) {
     zombieType = {}
-    for(let obj of resources.ZombieTypes.data.objects) {
+    for(let obj of rtons.ZombieTypes.objects) {
         let od = obj.objdata
         if(!od) continue
         zombieType[od.TypeName] = od
         zombieType[od.TypeName].prop = getByRTID(od.Properties)
     }
+}
+
+function loadResources() {
+    let resources = rtons.RESOURCES
+
+    resourcesMap = {}
+    for(let group of resources.groups) {
+        if(group.type == 'composite') continue
+        let sub = resourcesMap[group.parent]
+        if(!sub) {
+            sub = resourcesMap[group.parent] = {
+                name: group.parent,
+                pams: [],
+                atlases: [],
+                sounds: [],
+                images: []
+            }
+        }
+        
+        if(group.res && group.res != 768) continue
+        for(let res of group.resources) {
+            if(res.type == 'Image') {
+                if(res.atlas) {
+                    sub.atlases.push({
+                        name: res.id,
+                        path: res.path[1]
+                    })
+                } else {
+                    sub.images.push(res)
+                }
+            } else if(res.type == 'PopAnim') {
+                sub.pams.push({
+                    name: res.id,
+                    path: res.path.join('/')
+                })
+            } else if(res.type == 'SoundBank') {
+                sub.sounds.push({
+                    name: res.id,
+                    path: res.path.join('/')
+                })
+            }
+        }
+    
+    }
+    
+
+
+
+    // for(let d of resources.groups) {
+    //     resources[d.id] = d  // make it easy to get
+    // }
+    // for(let atlas of resources.groups) {
+    //     if(!atlas.id.endsWith('_768')) continue
+    //     let frames = {}
+    //     let parents = {}
+    //     for(res2 of atlas.resources) {
+    //         if(res2.atlas) {
+    //             parents[res2.id] = res2
+    //             frames[res2.id] = {}
+    //         } else {
+    //             let frameName = res2.id
+    //             frames[res2.parent][frameName] = {
+    //                 frame: {
+    //                     x: res2.ax,
+    //                     y: res2.ay,
+    //                     w: res2.aw,
+    //                     h: res2.ah
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     for(let parentName in parents) {
+    //         let parent = parents[parentName]
+    //         let filename = parent.path[parent.path.length - 1]
+    //         let output = { frames: frames[parentName] }
+    //         output.meta = {
+    //             image: '../atlases/' + filename + '.png',
+    //             // format: "RGBA8888",
+    //             size: {"w":parent.width,"h":parent.height},
+    //             scale: "1"
+    //         }
+    //         fs.writeFileSync('pam/json/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
+    //     }
+    // }
 }
