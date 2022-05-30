@@ -28,33 +28,32 @@ function zombie(i, x, y) {
 var sunTotal = 50
 // 画一个种子
 function seed(i, x, y) {
-    let textures = loader.resources.UI_SeedPackets_768_00.textures
     let planttype = plantList[i]
     let c = new PIXI.Container()
 
-    let bgname = planttype.world
+    let bgname = planttype.HomeWorld
     if (!bgname || bgname == 'tutorial') bgname = 'ready'
-    let b = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
+    let b = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
     // b.position.set(x, y)
-    let priceTab = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_PRICE_TAB)
+    let priceTab = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
     priceTab.position.set(70, 35)
 
     let price = new PIXI.Text(planttype.prop.Cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
     price.position.set(115 - price.width, 40)
 
     
-    let cover1 = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_COOLDOWN)
+    let cover1 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
     cover1.tint = 0x0
     cover1.alpha = 0.5
     cover1.visible = false
     // cover1.position.set(0, 0)
-    let cover2 = new PIXI.Sprite(textures.IMAGE_UI_PACKETS_COOLDOWN)
+    let cover2 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
     cover2.tint = 0x0
     cover2.alpha = 0.5
     cover2.visible = false
     // cover1.position.set(0, 0)
 
-    let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
+    let a = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
     a.position.set(10, 0)
     a.seedType = i
 
@@ -89,23 +88,23 @@ function seed(i, x, y) {
     return c
 }
 
-
+// 画选择种子框
 function seedSel(x, y) {
-    let textures = loader.resources.UI_SeedPackets_768_00.textures
-    let a = new PIXI.Sprite(textures['IMAGE_UI_PACKETS_SELECT'])
+    let a = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_SELECT)
     a.position.set(x, y)
     stage.addChild(a)
-    a.ztype = 'seed'
+    newObjects.push(a)
+    a.ztype = 'seedSel'
+    a.step = function() {}
     return a
     
 }
 
 // 画背景
 function back(x, y) {
-    let textures = loader.resources.DelayLoad_Background_FrontLawn_Birthday_768_00.textures
     // let a = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE_LEFT)
     // a.position.set(x, y)
-    let b = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
+    let b = new PIXI.Sprite(texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
     b.position.set(x, y)
     stage.addChild(b)
     return b
@@ -113,7 +112,7 @@ function back(x, y) {
 
 // 画太阳
 function sun(x, y) {
-    let pam = pams.SUN
+    let pam = pams.POPANIM_EFFECTS_SUN
     let a = new PamSprite(pam, pam.main_sprite)
     a.position.set(x, y)
     stage.addChild(a)
@@ -127,12 +126,11 @@ function sun(x, y) {
 // 画太阳数量
 function numSun(x, y, num = 0) {
     let c = new PIXI.Container()
-    let textures = loader.resources.UI_ALWAYSLOADED_768_00.textures
-    let b = new PIXI.Sprite(textures.IMAGE_UI_GENERIC_COUNTER_BG)
+    let b = new PIXI.Sprite(texturesMap.IMAGE_UI_GENERIC_COUNTER_BG)
     b.position.set(35, 15)
     b.scale.x = 1.2
     b.alpha = 0.7
-    let a = new PIXI.Sprite(textures.IMAGE_UI_HUD_INGAME_SUN)
+    let a = new PIXI.Sprite(texturesMap.IMAGE_UI_HUD_INGAME_SUN)
 
     let cnt = new PIXI.Text(num, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
     cnt.position.set(75, 12)
@@ -157,7 +155,7 @@ function numSun(x, y, num = 0) {
 
 // 画小车
 function car(x, y, act) {
-    let pam = pams.MOWER_MODERN
+    let pam = pams.POPANIM_MOWERS_MOWER_MODERN
     let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
     a.position.set(x, y)
     stage.addChild(a)
@@ -172,35 +170,23 @@ function rm(obj) {
 }
 
 const resScale = 768 / 1200
-
+let texturesMap = {}
 function setup(resources) {
-    for (let p of pamList) {
-        for (let name of p.name) {
-            if (resources[name].data) {
-                let textures = {}
-                if (typeof p.image == 'string') {
-                    textures = resources[p.image].textures
-                } else {
-                    for (let i of p.image) {
-                        Object.assign(textures, resources[i].textures)
-                    }
-                }
-                pamInit(name, resources[name].data, textures)
-            }
+    for(let resName of need2LoadGroup) {
+        let res = resourcesMap[resName]
+        if(!res) continue
+        for(let image of res.atlases) {
+            Object.assign(texturesMap, resources[image.name].textures)
+        }
+    }
+    for(let resName of need2LoadGroup) {
+        let res = resourcesMap[resName]
+        if(!res) continue
+        for(let pam of res.pams) {
+            pamInit(pam.name, resources[pam.name].data, texturesMap)
         }
     }
 
-    loadPackages(resources)
-    loadPlantType(resources)
-    loadZombieType(resources)
-    for (let p of plantList) {
-        let t = plantType[p.ename]
-        Object.assign(p, t)
-    }
-    for (let z of zombieList) {
-        let t = zombieType[z.ename]
-        Object.assign(z, t)
-    }
     app.stage.addChild(stage)
     init(resources)
     app.ticker.add(delta => loop2())
@@ -218,128 +204,59 @@ function loop2() {
     loop()
 }
 
-const pamList = [
-    {
-        name: ['SUNFLOWER'],
-        image: 'PlantSunflower_768_00'
-    },
-    {
-        name: ['PEASHOOTER'],
-        image: 'PLANTPEASHOOTER_768_00'
-    },
-    {
-        name: ['SNOWPEA', 'SNOWPEA_PLANTFOOD', 'T_SNOW_PEA'],
-        image: 'PLANTSNOWPEA_768_00'
-    },
-    {
-        name: ['CHERRYBOMB', 'CHERRYBOMB_EXPLOSION_TOP', 'CHERRYBOMB_EXPLOSION_REAR'],
-        image: 'PLANTCHERRYBOMB_768_00'
-    },
-    {
-        name: ['SUNFLOWER_TWIN'],
-        image: 'PLANTTWINSUNFLOWER_768_00'
-    },
-    {
-        name: ['THREEPEATER'],
-        image: 'PLANTTHREEPEATER_768_00'
-    },
-    {
-        name: ['SQUASH'],
-        image: 'PLANTSQUASH_768_00'
-    },
-    {
-        name: ['ZOMBIE_MODERN_ALLSTAR'],
-        image: 'ZOMBIEMODERNALLSTARGROUP_768_00'
-    },
-    {
-        name: ['ZOMBIE_EGYPT_BASIC'],
-        image: 'ZombieEgyptBasicGroup_768_00'
-    },
-    {
-        name: ['COCONUTCANNON', 'T_COCONUT_PROJECTILE_EXPLOSION'],
-        image: 'PlantCoconutCannon_768_00'
-    },
-    {
-        name: ['FUMESHROOM', 'FUMESHROOM_BUBBLES', 'FUMESHROOM_BUBBLES_HIT'],
-        image: 'PLANTFUMESHROOM_768_00'
-    },
-    {
-        name: ['BLOOMERANG', 'T_BLOOMERANG_PROJECTILE'],
-        image: 'PlantBloomerang_768_00'
-    },
-    {
-        name: ['BONKCHOY'],
-        image: 'PLANTBONKCHOY_768_00'
-    },
-    {
-        name: ['WALLNUT'],
-        image: 'PLANTWALLNUT_768_00'
-    },
-    {
-        name: ['CHOMPER'],
-        image: 'PLANTCHOMPER_768_00'
-    },
-    {
-        name: ['REPEATER'],
-        image: 'PLANTREPEATER_768_00'
-    },
-    {
-        name: ['GARGANTUAR'],
-        image: 'ZOMBIEFUTUREGARGANTUARGROUP_768_00'
-    },
-    {
-        name: ['SNAPDRAGON', 'SNAPDRAGON_FIRE'],
-        image: 'PlantSnapdragon_768_00'
-    },
-    {
-        name: [],
-        image: ['DelayLoad_Background_FrontLawn_768_00', 'Grass_Transition_768_00', 'UI_SeedPackets_768_00', 'DelayLoad_Background_FrontLawn_Birthday_768_00']
-    },
-    {
-        name: [],
-        image: ['UI_ALWAYSLOADED_768_00']
-    },
-    {
-        name: ['T_PEA_PROJECTILE'],
-        image: 'PEAEFFECTS_768_00'
-    },
-    {
-        name: ['ZOMBIE_ASH', 'T_SPLAT_SNOW_PEA', 'SUN'],
-        image: 'levelcommon_768_00'
-    },
-    {
-        name: ['SODROLL'],
-        image: 'SodRollGroup_768_00'
-    },
-    {
-        name: ['MOWER_MODERN'],
-        image: 'MODERNMOWERGROUP_768_00'
-    }
-]
-
+let need2LoadGroup = ['LevelCommon', 'SodRollGroup', 'ModernMowerGroup', 'UI_AlwaysLoaded', 'UI_SeedPackets'
+    , 'DelayLoad_Background_FrontLawn_Birthday', 'DelayLoad_Background_FrontLawn', 'Grass_Transition']
 var stage = new PIXI.Container()
 var objects = [], newObjects = []
 var plantType, zombieType
 var fps = 30
+var resourcesMap
 function loadPams(callback) {
-    for (let p of pamList) {
-        for (let name of p.name) {
-            loader.add(name, "pam/pams/" + name + ".pam", {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
-        }
-        if (typeof p.image == 'string') {
-            loader.add(p.image, "pam/json/" + p.image + ".json")
-        } else {
-            for (let i of p.image) {
-                loader.add(i, "pam/json/" + i + ".json")
-            }
-        }
-    }
     for (let j of packageJsons) {
         loader.add(j, 'pam/packages/' + j + '.rton.json')
     }
+    loader.add('resourcesmap', 'pam/resourcesmap.json')
+    loader.load((loader, resources) => setup2(resources, callback));
+}
 
+function setup2(resources, callback) {
+    loadPackages(resources)
+    loadPlantType(resources)
+    loadZombieType(resources)
+    for (let p of plantList) {
+        let t = plantType[p.ename]
+        Object.assign(p, t)
+    }
+    for (let z of zombieList) {
+        let t = zombieType[z.ename]
+        Object.assign(z, t)
+    }
+    resourcesMap = resources.resourcesmap.data
+
+    loader.reset()
+    for(let type of plantList) {
+        need2LoadGroup.push(...type.PlantResourceGroups)
+    }
+    for(let type of zombieList) {
+        need2LoadGroup.push(...type.ResourceGroups)
+    }
+    for(let resName of need2LoadGroup) {
+        let res = resourcesMap[resName]
+        if(!res) continue
+        for(let pam of res.pams) {
+            try {
+                loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
+            } catch(e) { }
+        }
+        for(let image of res.atlases) {
+            try {
+                loader.add(image.name, 'pam/json/' + image.path + '.json')
+            } catch(e) { }
+        }
+    }
     loader.load((loader, resources) => setup(resources, callback));
 }
+
 
 const packageJsons = ['PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
     , 'ArmorTypes', 'PropertySheets', 'ProjectileTypes']
@@ -365,12 +282,8 @@ function loadPlantType(resources) {
     plantType = {}
     for(let obj of resources.PlantTypes.data.objects) {
         let od = obj.objdata
-        plantType[od.TypeName] = {
-            pamName: od.PopAnim.replace('POPANIM_PLANT_', ''),
-            backdrop: od.AlmanacBackdropName,
-            world: od.HomeWorld,
-            prop: getByRTID(od.Properties)
-        }
+        plantType[od.TypeName] = od
+        plantType[od.TypeName].prop = getByRTID(od.Properties)
     }
 }
 
@@ -379,10 +292,7 @@ function loadZombieType(resources) {
     for(let obj of resources.ZombieTypes.data.objects) {
         let od = obj.objdata
         if(!od) continue
-        zombieType[od.TypeName] = {
-            pamName: od.PopAnim.replace('POPANIM_ZOMBIE_', ''),
-            world: od.HomeWorld,
-            prop: getByRTID(od.Properties)
-        }
+        zombieType[od.TypeName] = od
+        zombieType[od.TypeName].prop = getByRTID(od.Properties)
     }
 }

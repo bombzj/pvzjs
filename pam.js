@@ -2,15 +2,14 @@
 let pams = {}
 let imageScale = 1200 / 768
 
-function pamInit(name, dataRaw, textures) {
+function pamInit(name, dataRaw) {
     let data = parsePam(dataRaw)
     pams[name] = data
     pams[name].name = name
-    pams[name].textures = textures
 
     for(let image of data.image) {
         let s = image.name.split('|')
-        image.texture = textures[s[1]]
+        image.texture = texturesMap[s[1]]
         if(image.transform.length != 6 || image.transform[1] != 0
             || image.transform[2] != 0 || !image.texture) debugger
         image.transform[0] *= image.size[0] / image.texture.width
@@ -186,7 +185,7 @@ class PamSprite extends PIXI.Container {
 
 class PlantSprite extends PamSprite {
     constructor(type) {
-        let pam = pams[type.pamName]
+        let pam = pams[type.PopAnim]
         super(pam)
         this.type = type
         if(type.prop.Actions) {
@@ -239,7 +238,7 @@ class PlantSprite extends PamSprite {
 
 class ZombieSprite extends PamSprite {
     constructor(type) {
-        let pam = pams[type.pamName]
+        let pam = pams[type.PopAnim]
         super(pam, null, 'walk')
         this.type = type
         this.hitpoints = type.prop.HitPoints
@@ -254,8 +253,7 @@ class ZombieSprite extends PamSprite {
 
 class ProjectileSprite extends PamSprite {
     constructor(type) {
-        let pamName = type.AttachedPAM.replace('POPANIM_EFFECTS_', '')
-        let pam = pams[pamName]
+        let pam = pams[type.AttachedPAM]
         super(pam, null, 'animation')
         this.type = type
         this.speedX = type.InitialVelocity[0].Min / 30
