@@ -2,8 +2,6 @@
 // 画一个植物
 function plant(i, x, y) {
     let a = new PVZ2.Plant(plantList[i])
-    let center = plantList[i].prop.ArtCenter
-    a.pivot.set(center.x / resScale, center.y / resScale)
     a.position.set(x - 30, y)
     stage.addChild(a)
     newObjects.push(a)
@@ -16,8 +14,6 @@ function plant(i, x, y) {
 // 画一个僵尸
 function zombie(i, x, y) {
     let a = new PVZ2[zombieList[i].ZombieClass](zombieList[i])
-    let center = zombieList[i].prop.ArtCenter
-    a.pivot.set(center.x / resScale, center.y / resScale)
     a.position.set(x - 30, y)
     stage.addChild(a)
     newObjects.push(a)
@@ -243,8 +239,8 @@ function setup2(resources, callback) {
         let prop = getByRTID(t.Properties)
         if(!prop) debugger
         zombieType[t.TypeName].prop = prop
-        zombieType[t.TypeName].armorProps = []
         if(prop.ZombieArmorProps) {
+            zombieType[t.TypeName].armorProps = []
             for(let armor of prop.ZombieArmorProps) {
                 zombieType[t.TypeName].armorProps.push(getByRTID(armor))
             }

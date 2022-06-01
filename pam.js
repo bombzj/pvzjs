@@ -40,10 +40,6 @@ function pamInit(name, dataRaw) {
     }
 }
 
-const hideSprite = new Set(['ground_swatch', 'ground_swatch_plane', '_zombie_egypt_armor2_statesxxx', 
-        '_zombie_egypt_armor1_states', 'butter', 'ink', 'mc_cherrybomb_explosion_text', 'mc_cherrybomb_explosion_text_c'
-        ,'brick_undamaged','brick_damaged1','brick_damaged2', '_wallnut_armor_states'])
-
 class PamSprite extends PIXI.Container {
     constructor(pam, sprite, frameStart = 0, param = {}) {
         super()
@@ -74,7 +70,7 @@ class PamSprite extends PIXI.Container {
                 // this.parts = {}  // remove is inefficient?
                 // this.removeChildren()
                 for(let part of Object.values(this.parts)) {
-                    part.visible = false
+                    part.renderable = false
                 }
                 // for(let child of this.children) {
                 //     child.visible = false
@@ -91,7 +87,7 @@ class PamSprite extends PIXI.Container {
         for(let append of frame.append) {
             let spr = this.parts[append.index]
             if(spr) {
-                spr.visible = true
+                spr.renderable = true
                 if(spr.frame) {
                     spr.frame = 0    // restart sub animation
                 }
@@ -105,7 +101,7 @@ class PamSprite extends PIXI.Container {
                 if(this.param.walk && spriteData.name == this.param.walkGround) {
                     this.ground = undefined
                 }
-                if(spriteData.name.startsWith('custom') && spriteData.name != this.param.custom || hideSprite.has(spriteData.name)) {
+                if(spriteData.name.startsWith('custom') && spriteData.name != this.param.custom/* || hideSprite.has(spriteData.name)*/) {
                     spr.visible = false
                 }
             } else {
@@ -145,16 +141,6 @@ class PamSprite extends PIXI.Container {
                 }
                 spr.alpha = change.color[3]
             }
-            if(this.param.walk && spr.data.frame) {
-                if(spr.data.name == this.param.walkGround) {
-                    if(!this.ground) {
-                        this.groundMove = 0
-                    } else {
-                        this.groundMove = spr.x - this.ground
-                    }
-                    this.ground = spr.x
-                }
-            }
         }
 
         for(let command of frame.command) {
@@ -182,11 +168,6 @@ class PamSprite extends PIXI.Container {
         if(this.sprite.frame.length > 1) {
             this.doFrame()
         }
-        if(this.param.walk && this.groundMove) {
-            if(this.groundMove > 0) {
-                this.x -= this.groundMove
-            }
-        }
         for(let part of Object.values(this.parts)) {
             if(part.step) {
                 part.step()
@@ -195,9 +176,37 @@ class PamSprite extends PIXI.Container {
     }
 
     getSprite(name) {
-        for(let part of this.parts) {
-            if(part.sprite.name == name) {
-                return part
+        for(let part of Object.values(this.parts)) {
+            if(part.sprite) {
+                if(part.sprite.name == name) {
+                    return part
+                } else if(part.getSprite) {
+                    let ret = part.getSprite(name)
+                    if(ret) return ret
+                }
+            }
+        }
+    }
+
+    showSprite(name, visible) {
+        for(let part of Object.values(this.parts)) {
+            if(part.sprite) {
+                if(part.sprite.name == name) {
+                    part.visible = visible
+                } else if(part.showSprite) {
+                    part.showSprite(name, visible)
+                }
+            }
+        }
+    }
+    showSprites(names, visible = true) {
+        for(let part of Object.values(this.parts)) {
+            if(part.sprite) {
+                if(names.has(part.sprite.name)) {
+                    part.visible = visible
+                } else if(part.showSprite) {
+                    part.showSprites(names, visible)
+                }
             }
         }
     }
@@ -230,9 +239,12 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
         // this.attacking = true
         this.hitpoints = type.prop.Hitpoints
+        let center = type.prop.ArtCenter
+        this.pivot.set(center.x / resScale, center.y / resScale)
         if(PVZ2.collisionBox) {
             // drawCollisionBox(this, type.prop.HitRect)
         }
+        this.showSprites(hideSprites, false)
     }
     init() {
         super.init()
@@ -263,7 +275,6 @@ PVZ2.Plant = class extends PVZ2.Object {
         if(this.action.Type == 'projectile') {
             let projectileType = getByRTID(this.action.Projectile)
             let a = new ProjectileSprite(projectileType)
-            a.pivot.set(-projectileType.AttachedPAMOffset.x/resScale, -projectileType.AttachedPAMOffset.y/resScale)
             a.position.set(this.x + this.action.SpawnOffset.x
                 , this.y + this.action.SpawnOffset.y)
             stage.addChild(a)
@@ -276,14 +287,43 @@ PVZ2.Plant = class extends PVZ2.Object {
     }
 }
 
+var hideSprites = new Set([
+        'ground_swatch', 'ground_swatch_plane',
+        "zombie_armor_cone_norm",
+        "zombie_armor_cone_damage_01",
+        "zombie_armor_cone_damage_02",
+        "zombie_armor_bucket_norm",
+        "zombie_armor_bucket_damage_01",
+        "zombie_armor_bucket_damage_02",
+        "zombie_armor_brick_norm",
+        "zombie_armor_brick_damage_01",
+        "zombie_armor_brick_damage_02",
+        'butter', 'ink',
+        '_wallnut_armor_states'
+    ])
+
 PVZ2.ZombieBaseClass = class extends PVZ2.Object {
     constructor(type, initAct) {
         let pam = pams[type.PopAnim]
         super(pam, null, initAct, {walk: true, walkGround: 'ground_swatch'})
         this.type = type
         this.hitpoints = type.prop.Hitpoints
+        
+        let center = type.prop.ArtCenter
+        this.pivot.set(center.x / resScale, center.y / resScale)
         if(PVZ2.collisionBox) {
             drawCollisionBox(this, type.prop.HitRect)
+        }
+        this.showSprites(hideSprites, false)
+        if(type.armorProps) {
+            this.armors = []
+            for(let armor of type.armorProps) {
+                this.armors.push({
+                    type: armor,
+                    health: armor.BaseHealth
+                })
+            }
+            this.showArmor()
         }
     }
     init() {
@@ -303,10 +343,67 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         } else {
             super.step()
         }
+
+        if(this.actName != 'die') {
+            let prop = this.type.prop
+            let ground = prop.GroundTrackName && this.getSprite(prop.GroundTrackName)
+            if(ground) {
+                if(!this.groundX) {
+                    this.groundMove = 0
+                } else {
+                    this.groundMove = ground.x - this.groundX
+                }
+                this.groundX = ground.x
+                if(this.groundMove > 0) {
+                    if(prop.RunningSpeedScale) {
+                        this.groundMove *= prop.RunningSpeedScale
+                    }
+                    this.x -= this.groundMove
+                }
+            } else {
+                this.x -= prop.Speed
+            }
+        }
+        this.showArmor()
     }
     chill(n) {
         this.chillCounter = n * fps
         this.filters = [chillFilter];
+    }
+    hit(damage) {
+        if(this.armors) {
+            for(let armor of this.armors) {
+                if(armor.health > 0) {
+                    armor.health -= damage
+                    return
+                }
+            }
+        }
+        this.hitpoints -= damage
+    }
+    showArmor() {
+        if(!this.armors) return
+        for(let armor of this.armors) {
+            for(let spr of armor.type.ArmorLayers) {
+                this.showSprite(spr, false)
+            }
+            if(armor.health <= 0) continue
+            let percent = armor.health / armor.type.BaseHealth
+            let i = 0
+            for(;i < armor.type.ArmorLayerHealth.length;i++) {
+                let layer = armor.type.ArmorLayerHealth[i]
+                if(layer < percent) {
+                    this.showSprite(armor.type.ArmorLayers[i], true)
+                    return
+                }
+            }
+            this.showSprite(armor.type.ArmorLayers[i], true)
+        }
+    }
+    onFinish() {
+        if(this.actName == 'die') {
+            rm(this)
+        }
     }
 }
 PVZ2.ZombieBasic = class extends PVZ2.ZombieBaseClass {
@@ -338,6 +435,7 @@ class ProjectileSprite extends PVZ2.Object {
         super(pam, null, 'animation')
         this.type = type
         this.speedX = type.InitialVelocity[0].Min / 30
+        this.pivot.set(-type.AttachedPAMOffset.x/resScale, -type.AttachedPAMOffset.y/resScale)
         if(PVZ2.collisionBox) {
             drawCollisionBox(this, type.CollisionRect)
         }
@@ -384,6 +482,6 @@ function drawCollisionBox(obj, rect) {
     let rec = new PIXI.Graphics()
     rec.lineStyle(3, 0x000000, 1)
     rec.drawRect(0, 0, rect.mWidth, rect.mHeight)
-    rec.position.set(rect.mX, rect.mY)
+    rec.position.set(rect.mX + obj.pivot.x, rect.mY + obj.pivot.y)
     obj.addChild(rec)
 }

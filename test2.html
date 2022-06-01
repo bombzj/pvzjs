@@ -60,15 +60,20 @@
                     obj.step()
                 } else if(obj.ztype == 'projectile') {
                     for(let obj2 of objects) {
-                        if(obj2.ztype == 'zombie') {
+                        if(obj2.ztype == 'zombie' && !obj2.dead) {
                             let dx = obj.x - obj2.x
                             let dy = obj.y - obj2.y
                             if(ifCollide(obj, obj2, obj.type.CollisionRect, obj2.type.prop.HitRect)) {
-                                obj2.hitpoints -= obj.type.BaseDamage
+                                obj2.hit(obj.type.BaseDamage)
                                 if(obj2.hitpoints < 0) {
                                     obj2.changeAction('die')
-                                } else if(obj.type.DamageFlags.indexOf('chill') != -1) {
-                                    obj2.chill(10)
+                                    obj2.dead = true
+                                } else  {
+                                    for(let cond of obj.type.Conditions) {
+                                        if(cond.Condition == 'chill') {
+                                            obj2.chill(cond.Duration.Min)
+                                        }
+                                    }
                                 }
                                 obj.splat()
                                 rm(obj)            
@@ -167,6 +172,10 @@
         {       // 0
             name: '铁桶僵尸',
             ename: 'mummy_armor2',
+        },
+        {       // 0
+            name: '铁桶僵尸',
+            ename: 'mummy_armor4',
         },
         {       // 0
             name: '全能僵尸',
