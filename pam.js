@@ -250,6 +250,13 @@ PVZ2.Plant = class extends PVZ2.Object {
         super.init()
     }
     step() {
+        if(this.type.prop.IsInstant) {
+            if(this.action.Type == 'explode' && this.actName != 'attack') {
+                if(!this.action.CooldownTimeMin || this.age > this.action.CooldownTimeMin * 30) {
+                    this.changeAction('attack')
+                }
+            }
+        }
         if(this.attacking) {
             if(this.actionCooldown <= 0) {
                 if(this.pam.name == 'SUNFLOWER') {
@@ -265,6 +272,23 @@ PVZ2.Plant = class extends PVZ2.Object {
     }
     onFinish() {
         if(this.actName != 'idle') {
+            if(this.action.Type == 'explode' && this.actName == 'attack') {
+                rm(this)
+                if(this.type.TypeName == 'cherry_bomb') {
+                    let offsetX = 24, offsetY = -180
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY)
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
+                }
+                for(let obj2 of objects) {
+                    if(obj2.ztype == 'zombie' && !obj2.dead) {
+                        obj2.dead = true
+                        rm(obj2)
+                        new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y)
+                    }
+                }
+                return
+            }
+
             this.changeAction('idle')
         } else {
             // attack after finish last action
@@ -358,10 +382,10 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
                     if(prop.RunningSpeedScale) {
                         this.groundMove *= prop.RunningSpeedScale
                     }
-                    this.x -= this.groundMove
+                    this.x -= this.groundMove * resScale
                 }
             } else {
-                this.x -= prop.Speed
+                this.x -= prop.Speed * resScale
             }
         }
         this.showArmor()
@@ -380,6 +404,10 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             }
         }
         this.hitpoints -= damage
+        if(this.hitpoints < 0) {
+            obj2.changeAction('die')
+            obj2.dead = true
+        }
     }
     showArmor() {
         if(!this.armors) return
@@ -401,7 +429,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         }
     }
     onFinish() {
-        if(this.actName == 'die') {
+        if(this.dead) {
             rm(this)
         }
     }
@@ -420,6 +448,22 @@ PVZ2.ZombieBasic = class extends PVZ2.ZombieBaseClass {
 PVZ2.ZombieModernAllStar = class extends PVZ2.ZombieBaseClass {
     constructor(type) {
         super(type, 'run')
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
+    }
+}
+PVZ2.Effect = class extends PVZ2.Object {
+    constructor(pam, act, x, y) {
+        super(pam, undefined, act, {removeOnFinish: true})
+        this.position.set(x, y)
+        stage.addChild(this)
+        newObjects.push(this)
+        this.scale.set(resScale)
+        this.ztype = 'effect'
     }
     init() {
         super.init()
@@ -452,13 +496,9 @@ class ProjectileSprite extends PVZ2.Object {
     }
     splat() {
         let pam = pams[this.type.ImpactPAM]
-        let a = new PVZ2.Object(pam, null, this.type.ImpactPAMAnimationToPlay[0], {removeOnFinish: true})
-        a.position.set(this.x + this.type.ImpactOffset[0].Min + this.type.AttachedPAMOffset.x
-            , this.y + this.type.ImpactOffset[1].Min + this.type.AttachedPAMOffset.y)
-        stage.addChild(a)
-        newObjects.push(a)
-        a.scale.set(resScale)
-        a.ztype = 'splat'
+        new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], 
+            this.x + this.type.ImpactOffset[0].Min + this.type.AttachedPAMOffset.x,
+            this.y + this.type.ImpactOffset[1].Min + this.type.AttachedPAMOffset.y)
     }
 }
 

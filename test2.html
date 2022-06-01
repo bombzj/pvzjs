@@ -56,7 +56,7 @@
                     obj.step()
                 } else if(obj.ztype == 'zombie') {
                     obj.step()
-                } else if(obj.ztype == 'splat') {
+                } else if(obj.ztype == 'effect') {
                     obj.step()
                 } else if(obj.ztype == 'projectile') {
                     for(let obj2 of objects) {
@@ -66,8 +66,6 @@
                             if(ifCollide(obj, obj2, obj.type.CollisionRect, obj2.type.prop.HitRect)) {
                                 obj2.hit(obj.type.BaseDamage)
                                 if(obj2.hitpoints < 0) {
-                                    obj2.changeAction('die')
-                                    obj2.dead = true
                                 } else  {
                                     for(let cond of obj.type.Conditions) {
                                         if(cond.Condition == 'chill') {
