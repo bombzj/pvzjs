@@ -1,9 +1,10 @@
 
 // 画一个植物
 function plant(i, x, y) {
-    let a = new PlantSprite(plantList[i])
-    a.pivot.set(195, 180)
-    a.position.set(x, y)
+    let a = new PVZ2.Plant(plantList[i])
+    let center = plantList[i].prop.ArtCenter
+    a.pivot.set(center.x / resScale, center.y / resScale)
+    a.position.set(x - 30, y)
     stage.addChild(a)
     newObjects.push(a)
     a.plantType = i
@@ -14,9 +15,10 @@ function plant(i, x, y) {
 
 // 画一个僵尸
 function zombie(i, x, y) {
-    let a = new ZombieSprite(zombieList[i])
-    a.pivot.set(195, 180)
-    a.position.set(x, y)
+    let a = new PVZ2[zombieList[i].ZombieClass](zombieList[i])
+    let center = zombieList[i].prop.ArtCenter
+    a.pivot.set(center.x / resScale, center.y / resScale)
+    a.position.set(x - 30, y)
     stage.addChild(a)
     newObjects.push(a)
     a.plantType = i
@@ -80,7 +82,7 @@ function seed(i, x, y) {
         cover2.visible = true
     }
     c.use = function() {
-        this.cd = this.planttype.prop.PacketCooldown * 60
+        this.cd = this.planttype.prop.PacketCooldown * fps
     }
     c.ready = function() {
         return this.cd == 0
@@ -113,7 +115,7 @@ function back(x, y) {
 // 画太阳
 function sun(x, y) {
     let pam = pams.POPANIM_EFFECTS_SUN
-    let a = new PamSprite(pam, pam.main_sprite)
+    let a = new PVZ2.Object(pam, pam.main_sprite)
     a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
@@ -156,7 +158,7 @@ function numSun(x, y, num = 0) {
 // 画小车
 function car(x, y, act) {
     let pam = pams.POPANIM_MOWERS_MOWER_MODERN
-    let a = new PamSprite(pam, pam.main_sprite, pam.actionFrame[act])
+    let a = new PamSprite(pam, null, pam.actionFrame[act])
     a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
@@ -211,7 +213,7 @@ let need2LoadGroup = ['LevelCommon', 'SodRollGroup', 'ModernMowerGroup', 'UI_Alw
     , 'DelayLoad_Background_FrontLawn_Birthday', 'DelayLoad_Background_FrontLawn', 'Grass_Transition']
 var stage = new PIXI.Container()
 var objects = [], newObjects = []
-var plantType, zombieType
+var plantType = {}, zombieType = {}
 var fps = 30
 var resourcesMap
 
@@ -225,21 +227,34 @@ function loadPams(callback) {
 
 function setup2(resources, callback) {
     loadPackages(resources)
-    loadPlantType(resources)
-    loadZombieType(resources)
+    // loadPlantType(resources) // load all types, not necessary
+    // loadZombieType(resources)
     for (let p of plantList) {
-        let t = plantType[p.ename]
+        // let t = plantType[p.ename]
+        let t = rtons.PlantTypes[p.ename]
+        plantType[t.TypeName] = t
+        plantType[t.TypeName].prop = getByRTID(t.Properties)
         Object.assign(p, t)
     }
     for (let z of zombieList) {
-        let t = zombieType[z.ename]
+        // let t = zombieType[z.ename]
+        let t = rtons.ZombieTypes[z.ename]
+        zombieType[t.TypeName] = t
+        let prop = getByRTID(t.Properties)
+        if(!prop) debugger
+        zombieType[t.TypeName].prop = prop
+        zombieType[t.TypeName].armorProps = []
+        if(prop.ZombieArmorProps) {
+            for(let armor of prop.ZombieArmorProps) {
+                zombieType[t.TypeName].armorProps.push(getByRTID(armor))
+            }
+        }
         Object.assign(z, t)
     }
     loadResources()
     // resourcesMap = resources.resourcesmap.data
 
     loader.reset()
-    console.log('concurrency =',  loader.concurrency)
     for(let type of plantList) {
         need2LoadGroup.push(...type.PlantResourceGroups)
     }
@@ -277,6 +292,7 @@ function loadPackages(resources) {
         for(let obj of pkg.objects) {
             if(!obj.aliases) continue
             for(let alias of obj.aliases) {
+                pkg[alias] = obj.objdata
                 rtMap[alias + '@' + pkgName] = obj.objdata
                 obj.objdata.objclass = obj.objclass
             }
@@ -288,8 +304,7 @@ function getByRTID(str) {
     return rtMap[id]
 }
 
-function loadPlantType(resources) {
-    plantType = {}
+function loadPlantType() {
     for(let obj of rtons.PlantTypes.objects) {
         let od = obj.objdata
         plantType[od.TypeName] = od
@@ -297,13 +312,20 @@ function loadPlantType(resources) {
     }
 }
 
-function loadZombieType(resources) {
-    zombieType = {}
+function loadZombieType() {
     for(let obj of rtons.ZombieTypes.objects) {
         let od = obj.objdata
         if(!od) continue
         zombieType[od.TypeName] = od
-        zombieType[od.TypeName].prop = getByRTID(od.Properties)
+        let prop = getByRTID(od.Properties)
+        if(!prop) debugger
+        zombieType[od.TypeName].prop = prop
+        zombieType[od.TypeName].armorProps = []
+        if(prop.ZombieArmorProps) {
+            for(let armor of prop.ZombieArmorProps) {
+                zombieType[od.TypeName].armorProps.push(getByRTID(armor))
+            }
+        }
     }
 }
 
@@ -389,4 +411,11 @@ function loadResources() {
     //         fs.writeFileSync('pam/json/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
     //     }
     // }
+}
+
+function ifCollide(obj1, obj2, rect1, rect2) {
+    return obj1.x + rect1.mX < obj2.x + rect2.mX + rect2.mWidth
+        && obj1.x + rect1.mX + rect1.mWidth > obj2.x + rect2.mX
+        && obj1.y + rect1.mY < obj2.y + rect2.mY + rect2.mHeight
+        && obj1.y + rect1.mY + rect1.mHeight > obj2.y + rect2.mY
 }

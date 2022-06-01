@@ -2,6 +2,11 @@
 let pams = {}
 let imageScale = 1200 / 768
 
+var PVZ2 = {}
+
+var chillFilter = new PIXI.filters.ColorMatrixFilter()
+chillFilter.tint(0x8888FF)
+
 function pamInit(name, dataRaw) {
     let data = parsePam(dataRaw)
     pams[name] = data
@@ -49,11 +54,13 @@ class PamSprite extends PIXI.Container {
         }
         this.frameStart = this.frame = frameStart
         this.param = param
+        this.parts = {}
         this.doFrame()
     }
 
     changeAction(frameStart) {
         if(typeof frameStart === 'string') {
+            this.actName = frameStart
             frameStart = this.pam.actionFrame[frameStart]
             if(frameStart == undefined) debugger
         }
@@ -62,17 +69,17 @@ class PamSprite extends PIXI.Container {
 
     doFrame() {
         let frame = this.sprite.frame[this.frame]
-        if(frame.stop || this.frame >= this.sprite.frame.length - 1) {
-            this.frame = this.frameStart
-            if(this.param.onFinish) {
-                this.param.onFinish(this)
+        if(this.sprite.frame.length > 1) {
+            if(this.frame == this.frameStart) {  // first frame, remove any
+                // this.parts = {}  // remove is inefficient?
+                // this.removeChildren()
+                for(let part of Object.values(this.parts)) {
+                    part.visible = false
+                }
+                // for(let child of this.children) {
+                //     child.visible = false
+                // }
             }
-            if(this.onFinish) this.onFinish()
-            frame = this.sprite.frame[this.frame]
-        }
-        if(this.frame == this.frameStart) {  // first frame, remove any
-            this.parts = {}
-            this.removeChildren()
         }
         for(let remove of frame.remove) {
             let spr = this.parts[remove.index]
@@ -82,9 +89,15 @@ class PamSprite extends PIXI.Container {
             }
         }
         for(let append of frame.append) {
-            if(this.parts[append.index]) continue
+            let spr = this.parts[append.index]
+            if(spr) {
+                spr.visible = true
+                if(spr.frame) {
+                    spr.frame = 0    // restart sub animation
+                }
+                continue
+            }
             let resourceId = append.resource
-            let spr
             if(append.sprite) {
                 let spriteData = this.pam.sprite[resourceId]
                 spr = new PamSprite(this.pam, spriteData, 0, this.param.custom)
@@ -155,6 +168,14 @@ class PamSprite extends PIXI.Container {
             }
         }
         this.frame++
+        if(frame.stop || this.frame >= this.sprite.frame.length - 1) {
+            this.frame = this.frameStart
+            if(this.param.onFinish) {
+                this.param.onFinish(this)
+            }
+            if(this.onFinish) this.onFinish()
+            // frame = this.sprite.frame[this.frame]
+        }
     }
 
     step() {
@@ -182,8 +203,22 @@ class PamSprite extends PIXI.Container {
     }
 }
 
-
-class PlantSprite extends PamSprite {
+PVZ2.Object = class extends PamSprite {
+    constructor() {
+        super(...arguments)
+        this.age = 0
+    }
+    step() {
+        super.step()
+        this.age++
+    }
+    onFinish() {
+        if(this.param && this.param.removeOnFinish) {
+            rm(this)
+        }
+    }
+}
+PVZ2.Plant = class extends PVZ2.Object {
     constructor(type) {
         let pam = pams[type.PopAnim]
         super(pam)
@@ -194,7 +229,10 @@ class PlantSprite extends PamSprite {
             this.actionCooldown = action.InitialMinCooldownTime * fps | action.CooldownTimeMin * fps
         }
         // this.attacking = true
-        this.hitpoints = type.prop.HitPoints
+        this.hitpoints = type.prop.Hitpoints
+        if(PVZ2.collisionBox) {
+            // drawCollisionBox(this, type.prop.HitRect)
+        }
     }
     init() {
         super.init()
@@ -207,25 +245,27 @@ class PlantSprite extends PamSprite {
                 } else if(this.pam.actionFrame['attack']) {
                     this.changeAction('attack')
                 }
-                this.actName = 'attack'
                 this.actionCooldown = this.actionCooldownMax
             }
         }
-        this.actionCooldown--
         super.step()
+        this.actionCooldown--
     }
     onFinish() {
-        if(this.actName == 'attack') {
+        if(this.actName != 'idle') {
             this.changeAction('idle')
+        } else {
+            // attack after finish last action
+            // this.changeAction('attack')
         }
     }
     useAction() {
         if(this.action.Type == 'projectile') {
             let projectileType = getByRTID(this.action.Projectile)
             let a = new ProjectileSprite(projectileType)
-            // a.pivot.set(195, 180)
-            a.position.set(this.x + this.action.SpawnOffset.x + projectileType.AttachedPAMOffset.x
-                , this.y + this.action.SpawnOffset.y + projectileType.AttachedPAMOffset.y)
+            a.pivot.set(-projectileType.AttachedPAMOffset.x/resScale, -projectileType.AttachedPAMOffset.y/resScale)
+            a.position.set(this.x + this.action.SpawnOffset.x
+                , this.y + this.action.SpawnOffset.y)
             stage.addChild(a)
             newObjects.push(a)
             a.scale.set(resScale)
@@ -236,12 +276,53 @@ class PlantSprite extends PamSprite {
     }
 }
 
-class ZombieSprite extends PamSprite {
-    constructor(type) {
+PVZ2.ZombieBaseClass = class extends PVZ2.Object {
+    constructor(type, initAct) {
         let pam = pams[type.PopAnim]
-        super(pam, null, 'walk')
+        super(pam, null, initAct, {walk: true, walkGround: 'ground_swatch'})
         this.type = type
-        this.hitpoints = type.prop.HitPoints
+        this.hitpoints = type.prop.Hitpoints
+        if(PVZ2.collisionBox) {
+            drawCollisionBox(this, type.prop.HitRect)
+        }
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        if(this.chillCounter > 0) {
+            this.chillCounter--
+            if(this.age % 2 == 0) {
+                super.step()
+            } else {
+                this.age++
+            }
+            if(this.chillCounter == 0) {
+                this.filters = []
+            }
+        } else {
+            super.step()
+        }
+    }
+    chill(n) {
+        this.chillCounter = n * fps
+        this.filters = [chillFilter];
+    }
+}
+PVZ2.ZombieBasic = class extends PVZ2.ZombieBaseClass {
+    constructor(type) {
+        super(type, 'walk')
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
+    }
+}
+PVZ2.ZombieModernAllStar = class extends PVZ2.ZombieBaseClass {
+    constructor(type) {
+        super(type, 'run')
     }
     init() {
         super.init()
@@ -251,12 +332,15 @@ class ZombieSprite extends PamSprite {
     }
 }
 
-class ProjectileSprite extends PamSprite {
+class ProjectileSprite extends PVZ2.Object {
     constructor(type) {
         let pam = pams[type.AttachedPAM]
         super(pam, null, 'animation')
         this.type = type
         this.speedX = type.InitialVelocity[0].Min / 30
+        if(PVZ2.collisionBox) {
+            drawCollisionBox(this, type.CollisionRect)
+        }
     }
     init() {
         super.init()
@@ -264,16 +348,25 @@ class ProjectileSprite extends PamSprite {
     step() {
         super.step()
         this.x += this.speedX
-        if(this.x > 800) {
+        if(this.x > 1200) {
             rm(this)
         }
+    }
+    splat() {
+        let pam = pams[this.type.ImpactPAM]
+        let a = new PVZ2.Object(pam, null, this.type.ImpactPAMAnimationToPlay[0], {removeOnFinish: true})
+        a.position.set(this.x + this.type.ImpactOffset[0].Min + this.type.AttachedPAMOffset.x
+            , this.y + this.type.ImpactOffset[1].Min + this.type.AttachedPAMOffset.y)
+        stage.addChild(a)
+        newObjects.push(a)
+        a.scale.set(resScale)
+        a.ztype = 'splat'
     }
 }
 
 PIXI.Container.prototype.setTransformArray = function(transform) {
     if(transform.length == 2) {
-        this.x = transform[0]
-        this.y = transform[1]
+        this.transform.setFromMatrix(new PIXI.Matrix(1, 0, 0, 1, ...transform))
     } else if(transform.length == 6) {
         this.transform.setFromMatrix(new PIXI.Matrix(...transform))
     } else {
@@ -287,4 +380,10 @@ PIXI.Container.prototype.setTransformArray2 = function(transform, transform2) {
     this.transform.setFromMatrix(mat.append(mat2))
 }
 
-
+function drawCollisionBox(obj, rect) {
+    let rec = new PIXI.Graphics()
+    rec.lineStyle(3, 0x000000, 1)
+    rec.drawRect(0, 0, rect.mWidth, rect.mHeight)
+    rec.position.set(rect.mX, rect.mY)
+    obj.addChild(rec)
+}

@@ -6,6 +6,9 @@
     </head>
     <script src="pixi.min.js"></script>
     <script src="pam.js"></script>
+    <script src="js/bytebuffer.js"></script>
+    <script src="js/pamparse.js"></script>
+    <script src="js/rtonparse.js"></script>
     <script src="pvz2util.js"></script>
     <body>
 <script type="text/javascript">
@@ -13,6 +16,7 @@
     // 准备好画布
     let app = new PIXI.Application({width: 916, height: 800});
     document.body.appendChild(app.view);
+    PVZ2.collisionBox = true
 
     // 设置背景颜色
     app.renderer.backgroundColor = 0x0ccccff;   
@@ -29,19 +33,20 @@
         for(let i = 0;i < 8;i++){
             seed(i, 0, 75 * i + 100)
         }
-        for(let i = 0;i < 8;i++){
-            plant(i, 150 * i + 100, 100)
-        }
+        // for(let i = 0;i < 8;i++){
+        //     plant(i, 150 * i + 100, 100)
+        // }
         for(let i = 0;i < 5;i++) {
             car(100, i * 100 + 100)
         }
-        sun1 = sun(500, 0)
+        sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
     }
     t = 0
+    var speed = 2
     // 每秒调用60次
     function loop() {
-        if(t++ % 2 == 0) {
+        if(t++ % speed == 0) {
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
                     obj.step()
@@ -50,6 +55,26 @@
                 } else if(obj.ztype == 'plant') {
                     obj.step()
                 } else if(obj.ztype == 'zombie') {
+                    obj.step()
+                } else if(obj.ztype == 'splat') {
+                    obj.step()
+                } else if(obj.ztype == 'projectile') {
+                    for(let obj2 of objects) {
+                        if(obj2.ztype == 'zombie') {
+                            let dx = obj.x - obj2.x
+                            let dy = obj.y - obj2.y
+                            if(ifCollide(obj, obj2, obj.type.CollisionRect, obj2.type.prop.HitRect)) {
+                                obj2.hitpoints -= obj.type.BaseDamage
+                                if(obj2.hitpoints < 0) {
+                                    obj2.changeAction('die')
+                                } else if(obj.type.DamageFlags.indexOf('chill') != -1) {
+                                    obj2.chill(10)
+                                }
+                                obj.splat()
+                                rm(obj)            
+                            }
+                        }
+                    }
                     obj.step()
                 }
             }
@@ -65,16 +90,20 @@
             sel = Math.floor((y - 100) / 75) 
             selspr.y = sel * 75 + 100
         } else if(x > 700) {
-            zombie(sel, x, y)
+            let a = zombie(sel, x, y)
         } else {
-            plant(sel, x, y)
+            let p = plant(sel, x, y)
+            p.attacking = true
         }
     }
     
     // 键盘事件
-    function onkeydown(e) {
+    window.onkeydown = function(e) {
         if(e.code == 'KeyA'){
-
+            speed = 60
+        }
+        if(e.code == 'KeyR'){
+            speed = 2
         }
     }
     
@@ -146,7 +175,6 @@
     ]
 
     app.view.onclick = onclick
-    window.onkeydown = onkeydown
 </script>
     </body>
 </html>
