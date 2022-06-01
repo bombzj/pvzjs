@@ -83,6 +83,9 @@ function seed(i, x, y) {
     c.ready = function() {
         return this.cd == 0
     }
+    c.refresh = function() {
+        this.cd = 0
+    }
     return c
 }
 
@@ -97,6 +100,24 @@ function seedSel(x, y) {
     return a
     
 }
+
+// 画铲子
+function shovel(x, y) {
+    let a = new PIXI.Sprite(texturesMap.IMAGE_UI_HUD_INGAME_RECYCLE_SHOVEL_BUTTON)
+    a.position.set(x, y)
+    stage.addChild(a)
+    newObjects.push(a)
+    a.ztype = 'shovel'
+    a.step = function() {
+        if(useShovel) {
+            this.texture = texturesMap.IMAGE_UI_HUD_INGAME_RECYCLE_SHOVEL_BUTTON_DOWN
+        } else {
+            this.texture = texturesMap.IMAGE_UI_HUD_INGAME_RECYCLE_SHOVEL_BUTTON
+        }
+    }
+    return a
+}
+
 
 // 画背景
 function back(x, y) {

@@ -245,6 +245,11 @@ PVZ2.Plant = class extends PVZ2.Object {
             // drawCollisionBox(this, type.prop.HitRect)
         }
         this.showSprites(hideSprites, false)
+        // plant shadow
+        let shadow = new PIXI.Sprite(texturesMap.IMAGE_PLANTSHADOW)
+        shadow.position.set(this.pivot.x - 15, this.pivot.y + 30)
+        shadow.zIndex = -1
+        this.addChild(shadow)
     }
     init() {
         super.init()
@@ -257,42 +262,49 @@ PVZ2.Plant = class extends PVZ2.Object {
                 }
             }
         }
-        if(this.attacking) {
+        if(this.pam.name == 'POPANIM_PLANT_SUNFLOWER') {
             if(this.actionCooldown <= 0) {
-                if(this.pam.name == 'SUNFLOWER') {
-                    this.changeAction('special')
-                } else if(this.pam.actionFrame['attack']) {
-                    this.changeAction('attack')
-                }
+                this.changeAction('special')
                 this.actionCooldown = this.actionCooldownMax
+            }
+        } else {
+            if(this.attacking) {
+                if(this.actionCooldown <= 0) {
+                    if(this.pam.actionFrame['attack']) {
+                        this.changeAction('attack')
+                    }
+                    this.actionCooldown = this.actionCooldownMax
+                }
             }
         }
         super.step()
         this.actionCooldown--
     }
     onFinish() {
-        if(this.actName != 'idle') {
-            if(this.action.Type == 'explode' && this.actName == 'attack') {
-                rm(this)
-                if(this.type.TypeName == 'cherry_bomb') {
-                    let offsetX = 24, offsetY = -180
-                    new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY)
-                    new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
-                }
-                for(let obj2 of objects) {
-                    if(obj2.ztype == 'zombie' && !obj2.dead) {
-                        obj2.dead = true
-                        rm(obj2)
-                        new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y)
+        if(this.actName) {
+            if(this.actName != 'idle') {
+                if(this.action.Type == 'explode' && this.actName == 'attack') {
+                    rm(this)
+                    if(this.type.TypeName == 'cherry_bomb') {
+                        let offsetX = 24, offsetY = -180
+                        new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY)
+                        new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
                     }
+                    for(let obj2 of objects) {
+                        if(obj2.ztype == 'zombie' && !obj2.dead) {
+                            obj2.dead = true
+                            rm(obj2)
+                            new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y)
+                        }
+                    }
+                    return
                 }
-                return
+    
+                this.changeAction('idle')
+            } else {
+                // attack after finish last action
+                // this.changeAction('attack')
             }
-
-            this.changeAction('idle')
-        } else {
-            // attack after finish last action
-            // this.changeAction('attack')
         }
     }
     useAction() {
@@ -349,6 +361,11 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             }
             this.showArmor()
         }
+        // zombie shadow
+        let shadow = new PIXI.Sprite(texturesMap.IMAGE_PLANTSHADOW)
+        shadow.position.set(this.pivot.x + 5, this.pivot.y + 30)
+        shadow.zIndex = -1
+        this.addChild(shadow)
     }
     init() {
         super.init()
