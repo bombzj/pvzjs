@@ -35,31 +35,36 @@
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
+
+    var seedChooser
+    var gameStart = false
     // 启动后调用一次
     function init() {
         back(0, 0)
-        for(let i = 0;i < 8;i++){
-            seeds.push(seed(i, 0, 75 * i + 100))
-        }
         // for(let i = 0;i < 8;i++){
-        //     plant(i, 150 * i + 100, 100)
+        //     seeds.push(seed(i, 0, 75 * i + 100))
         // }
+        // for(let seed of seeds) {seed.refresh()} // for test
         for(let i = 0;i < 5;i++) {
             car(100, i * 100 + 100)
         }
         sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
+        selspr.visible = false
         numSun(0, 0, 50)
         shovel(680, 680)
         // for test
         sunTotal = 500
-        for(let seed of seeds) {seed.refresh()}
+        seedChooser = new SeedChooser(5)
+        stage.addChild(seedChooser)
+        seedChooser.position.set(100, 100)
     }
     t = 0
     var speed = 2
     var sunCnt = 0
     // 每秒调用60次
     function loop() {
+        if(!gameStart) return
         if(t++ % speed == 0) {
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
@@ -123,6 +128,12 @@
         let x = e.offsetX, y = e.offsetY
         console.log('click: ', x, y)
 
+        if(!gameStart) {
+            if(x >= seedChooser.x && y > seedChooser.y) {
+                seedChooser.click(x - seedChooser.x, y - seedChooser.y)
+            }
+            return
+        }
 
         dx = x - field.x
         dy = y - field.y

@@ -118,7 +118,6 @@ function shovel(x, y) {
     return a
 }
 
-
 // 画背景
 function back(x, y) {
     // let a = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE_LEFT)
@@ -428,6 +427,126 @@ function loadResources() {
     //         fs.writeFileSync('pam/json/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
     //     }
     // }
+}
+
+function loadPlantResource(type) {
+    loader.reset()
+    for(let resName of type.PlantResourceGroups) {
+        let res = resourcesMap[resName]
+        if(!res) continue
+        for(let pam of res.pams) {
+            try {
+                loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
+            } catch(e) { }
+        }
+        for(let image of res.atlases) {
+            try {
+                loader.add(image.name, 'pam/atlases/' + image.path + '.png')
+            } catch(e) { }
+        }
+    }
+    type.prop = getByRTID(type.Properties)
+    loader.loadPlant = [type]
+    loader.load((loader, resources) => initSinglePlant(loader, resources))
+}
+
+function initSinglePlant(loader, resources) {
+    for(let plant of loader.loadPlant) {
+        for(let resName of plant.PlantResourceGroups) {
+            let res = resourcesMap[resName]
+            if(!res) continue
+            for(let image of res.images) {
+                let baseTexture = resources[image.parent].texture
+                texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
+            }
+            for(let pam of res.pams) {
+                pamInit(pam.name, resources[pam.name].data, texturesMap)
+            }
+        }
+    }
+    seedChooser.showPlant()
+}
+
+let seedChooserSeedSize = {width: 120, height: 75, top: 200}
+
+class SeedChooser extends PIXI.Container {
+    constructor(column) {
+        super()
+        this.column = column
+        let types = rtons.PlantTypes.objects
+        this.seeds = []
+        for(let i = 0;i < types.length;i++) {
+            let type = types[i].objdata
+            let prop = getByRTID(type.Properties)
+            if(!type || !prop) debugger
+            let dx = i % column
+            let dy = Math.floor(i / column)
+            let x = dx * seedChooserSeedSize.width
+            let y = dy * seedChooserSeedSize.height + seedChooserSeedSize.top
+            let seed = new SeedChooserSeed(type, prop, x, y)
+            if(!this.seeds[dy]) this.seeds[dy] = []
+            this.seeds[dy][dx] = seed
+            this.addChild(seed)
+        }
+    }
+    click(x, y) {
+        let dx = Math.floor(x / seedChooserSeedSize.width)
+        let dy = Math.floor((y - seedChooserSeedSize.top) / seedChooserSeedSize.height)
+        if(dx < this.column && dy >= 0) {
+            let seed = this.seeds[dy][dx]
+            this.selected = seed
+            if(pams[seed.type.PopAnim]) {
+                this.showPlant()
+            } else {
+                loadPlantResource(seed.type)
+            }
+        }
+    }
+    showPlant() {
+        if(this.selected) {
+            if(this.demo) this.removeChild(this.demo)
+            this.demo = new PVZ2.Plant(this.selected.type)
+            this.demo.position.set(100, 100)
+            this.addChild(this.demo)
+            this.demo.scale.set(resScale)
+        }
+    }
+}
+
+class SeedChooserSeed extends PIXI.Container {
+    constructor(type, prop, x, y) {
+        super()
+        this.type = type
+        this.prop = prop
+        let bgname = type.HomeWorld
+        if (!bgname || bgname == 'tutorial') bgname = 'ready'
+        let b = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
+        // b.position.set(x, y)
+        let priceTab = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
+        priceTab.position.set(70, 35)
+
+        let price = new PIXI.Text(prop.Cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+        price.position.set(115 - price.width, 40)
+
+        
+        let cover1 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+        cover1.tint = 0x0
+        cover1.alpha = 0.5
+        cover1.visible = false
+        // cover1.position.set(0, 0)
+        let cover2 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+        cover2.tint = 0x0
+        cover2.alpha = 0.5
+        cover2.visible = false
+        // cover1.position.set(0, 0)
+
+        let a = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()])
+        a.position.set(10, 0)
+
+        this.addChild(b, a, priceTab, price, cover1, cover2)
+        this.position.set(x, y)
+        this.planttype = type
+    }
 }
 
 function ifCollide(obj1, obj2, rect1, rect2) {
