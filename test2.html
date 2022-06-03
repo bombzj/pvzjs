@@ -37,14 +37,14 @@
     ]
 
     var seedChooser
-    var gameStart = false
+    var gameStart = true
     // 启动后调用一次
     function init() {
         back(0, 0)
-        // for(let i = 0;i < 8;i++){
-        //     seeds.push(seed(i, 0, 75 * i + 100))
-        // }
-        // for(let seed of seeds) {seed.refresh()} // for test
+        for(let i = 0;i < 8;i++){
+            seeds.push(seed(i, 0, 75 * i + 100))
+        }
+        for(let seed of seeds) {seed.refresh()} // for test
         for(let i = 0;i < 5;i++) {
             car(100, i * 100 + 100)
         }
@@ -55,16 +55,16 @@
         shovel(680, 680)
         // for test
         sunTotal = 500
-        seedChooser = new SeedChooser(5)
-        stage.addChild(seedChooser)
-        seedChooser.position.set(100, 100)
+        // seedChooser = new SeedChooser(5)
+        // stage.addChild(seedChooser)
+        // seedChooser.position.set(100, 0)
     }
     t = 0
     var speed = 2
     var sunCnt = 0
     // 每秒调用60次
     function loop() {
-        if(!gameStart) return
+        // if(!gameStart) return
         if(t++ % speed == 0) {
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
@@ -94,9 +94,11 @@
                                 obj2.hit(obj.type.BaseDamage)
                                 if(obj2.hitpoints < 0) {
                                 } else  {
-                                    for(let cond of obj.type.Conditions) {
-                                        if(cond.Condition == 'chill') {
-                                            obj2.chill(cond.Duration.Min)
+                                    if(obj.type.Conditions) {
+                                        for(let cond of obj.type.Conditions) {
+                                            if(cond.Condition == 'chill') {
+                                                obj2.chill(cond.Duration.Min)
+                                            }
                                         }
                                     }
                                 }

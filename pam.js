@@ -240,17 +240,16 @@ PVZ2.Plant = class extends PVZ2.Object {
             this.actionCooldownMax = action.CooldownTimeMin * fps
             this.actionCooldown = action.InitialMinCooldownTime * fps | action.CooldownTimeMin * fps
         }
-        // this.attacking = true
+        this.attacking = true
         this.hitpoints = type.prop.Hitpoints
-        let center = type.prop.ArtCenter
-        this.pivot.set(center.x / resScale, center.y / resScale)
+        this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
             // drawCollisionBox(this, type.prop.HitRect)
         }
         this.showSprites(hideSprites, false)
         // plant shadow
         let shadow = new PIXI.Sprite(texturesMap.IMAGE_PLANTSHADOW)
-        shadow.position.set(this.pivot.x - 15, this.pivot.y + 30)
+        shadow.position.set(this.pivot.x - 50, this.pivot.y + 20)
         shadow.zIndex = -1
         this.addChild(shadow)
     }
@@ -318,8 +317,8 @@ PVZ2.Plant = class extends PVZ2.Object {
         if(this.action.Type == 'projectile') {
             let projectileType = getByRTID(this.action.Projectile)
             let a = new ProjectileSprite(projectileType)
-            a.position.set(this.x + this.action.SpawnOffset.x
-                , this.y + this.action.SpawnOffset.y)
+            a.position.set(this.x + this.action.SpawnOffset.x * resScale
+                , this.y + this.action.SpawnOffset.y * resScale)
             stage.addChild(a)
             newObjects.push(a)
             a.scale.set(resScale)
@@ -351,12 +350,12 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         let pam = pams[type.PopAnim]
         super(pam, null, initAct, {walk: true, walkGround: 'ground_swatch'})
         this.type = type
-        this.hitpoints = type.prop.Hitpoints
+        let prop = type.prop
+        this.hitpoints = prop.Hitpoints
         
-        let center = type.prop.ArtCenter
-        this.pivot.set(center.x / resScale, center.y / resScale)
+        this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
-            drawCollisionBox(this, type.prop.HitRect)
+            drawCollisionBox(this, prop.HitRect)
         }
         this.showSprites(hideSprites, false)
         if(type.armorProps) {
@@ -371,7 +370,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         }
         // zombie shadow
         let shadow = new PIXI.Sprite(texturesMap.IMAGE_PLANTSHADOW)
-        shadow.position.set(this.pivot.x + 5, this.pivot.y + 30)
+        shadow.position.set(this.pivot.x - 50, this.pivot.y + 30)
         shadow.zIndex = -1
         this.addChild(shadow)
     }
@@ -430,8 +429,8 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         }
         this.hitpoints -= damage
         if(this.hitpoints < 0) {
-            obj2.changeAction('die')
-            obj2.dead = true
+            this.changeAction('die')
+            this.dead = true
         }
     }
     showArmor() {
@@ -487,6 +486,7 @@ PVZ2.Effect = class extends PVZ2.Object {
         this.position.set(x, y)
         stage.addChild(this)
         newObjects.push(this)
+        this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         this.scale.set(resScale)
         this.ztype = 'effect'
     }
@@ -504,7 +504,7 @@ class ProjectileSprite extends PVZ2.Object {
         super(pam, null, 'animation')
         this.type = type
         this.speedX = type.InitialVelocity[0].Min / 30
-        this.pivot.set(-type.AttachedPAMOffset.x/resScale, -type.AttachedPAMOffset.y/resScale)
+        this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
             drawCollisionBox(this, type.CollisionRect)
         }
@@ -522,8 +522,8 @@ class ProjectileSprite extends PVZ2.Object {
     splat() {
         let pam = pams[this.type.ImpactPAM]
         new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], 
-            this.x + this.type.ImpactOffset[0].Min + this.type.AttachedPAMOffset.x,
-            this.y + this.type.ImpactOffset[1].Min + this.type.AttachedPAMOffset.y)
+            this.x + this.type.ImpactOffset[0].Min,
+            this.y + this.type.ImpactOffset[1].Min)
     }
 }
 

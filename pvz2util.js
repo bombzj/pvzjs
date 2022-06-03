@@ -2,7 +2,7 @@
 // 画一个植物
 function plant(i, x, y) {
     let a = new PVZ2.Plant(plantList[i])
-    a.position.set(x - 30, y)
+    a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
     a.plantType = i
@@ -14,7 +14,7 @@ function plant(i, x, y) {
 // 画一个僵尸
 function zombie(i, x, y) {
     let a = new PVZ2[zombieList[i].ZombieClass](zombieList[i])
-    a.position.set(x - 30, y)
+    a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
     a.plantType = i
