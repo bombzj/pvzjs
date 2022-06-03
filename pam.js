@@ -47,6 +47,9 @@ class PamSprite extends PIXI.Container {
         this.sprite = sprite || pam.main_sprite
         if(typeof frameStart === 'string') {
             frameStart = pam.actionFrame[frameStart]
+            if(frameStart == undefined) {
+                frameStart = 0
+            }
         }
         this.frameStart = this.frame = frameStart
         this.param = param
@@ -230,7 +233,7 @@ PVZ2.Object = class extends PamSprite {
 PVZ2.Plant = class extends PVZ2.Object {
     constructor(type) {
         let pam = pams[type.PopAnim]
-        super(pam)
+        super(pam, undefined, 'idle')
         this.type = type
         if(type.prop.Actions) {
             let action = this.action = type.prop.Actions[0]
@@ -255,6 +258,10 @@ PVZ2.Plant = class extends PVZ2.Object {
         super.init()
     }
     step() {
+        if(this.demo) {
+            super.step()
+            return
+        }
         if(this.type.prop.IsInstant) {
             if(this.action.Type == 'explode' && this.actName != 'attack') {
                 if(!this.action.CooldownTimeMin || this.age > this.action.CooldownTimeMin * 30) {
@@ -335,7 +342,8 @@ var hideSprites = new Set([
         "zombie_armor_brick_damage_01",
         "zombie_armor_brick_damage_02",
         'butter', 'ink',
-        '_wallnut_armor_states'
+        '_wallnut_armor_states',
+        '_tallnut_plantfood_armor'
     ])
 
 PVZ2.ZombieBaseClass = class extends PVZ2.Object {

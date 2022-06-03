@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+    </head>
+    <script src="pixi.min.js"></script>
+    <script src="pam.js"></script>
+    <script src="js/bytebuffer.js"></script>
+    <script src="js/pamparse.js"></script>
+    <script src="js/rtonparse.js"></script>
+    <script src="pvz2util.js"></script>
+    <body>
+<script type="text/javascript">
+
+    let app = new PIXI.Application({width: 1024, height: 1024});
+    document.body.appendChild(app.view);
+
+    app.renderer.backgroundColor = 0x0FFFFFF;   
+
+    const loader = PIXI.Loader.shared;          
+    loadPams()
+
+    var atlas
+    function init() {
+        atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
+        let a = new PIXI.Sprite(atlas.baseTexture)
+        app.stage.addChild(a)
+    }
+
+    function loop() {
+
+    }
+
+    function onclick(e) {
+        let x = e.offsetX, y = e.offsetY
+        console.log('click: ', x, y)
+
+        for(let child of atlas.children) {
+            let rect = child.texture.orig
+            if(y >= rect.top && y < rect.bottom && x >= rect.left && x < rect.right) {
+                console.log(child.id)
+            }
+        }
+    }
+
+    window.onkeydown = function(e) {
+        if(e.code == 'KeyA'){
+            speed = 60
+        }
+        if(e.code == 'KeyR'){
+            speed = 2
+        }
+    }
+    
+    var plantList = [
+        {       // 0
+            ename: 'sunflower',
+            cost: 50,
+            hitpoint: 300,
+            cooldown: 20,
+        },
+    ]
+
+    var zombieList = [
+        {       // 0
+            ename: 'mummy',
+        },
+    ]
+
+    app.view.onclick = onclick
+</script>
+    </body>
+</html>

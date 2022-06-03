@@ -189,6 +189,7 @@ function rm(obj) {
 
 const resScale = 768 / 1200
 let texturesMap = {}
+let atlasMap = {}
 
 function setup(resources) {
     for(let resName of need2LoadGroup) {
@@ -197,6 +198,15 @@ function setup(resources) {
         for(let image of res.images) {
             let baseTexture = resources[image.parent].texture
             texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
+            
+            let parent = atlasMap[image.parent]
+            if(!parent) {
+                parent = atlasMap[image.parent] = {baseTexture: baseTexture, children: []} 
+            }
+            parent.children.push({
+                id: image.id,
+                texture: texturesMap[image.id]
+            })
             // Object.assign(texturesMap, resources[image.name].textures)
         }
     }
@@ -467,7 +477,7 @@ function initSinglePlant(loader, resources) {
     seedChooser.showPlant()
 }
 
-let seedChooserSeedSize = {width: 120, height: 75, top: 200}
+let seedChooserSeedSize = {width: 120, height: 75, top: 0}
 
 class SeedChooser extends PIXI.Container {
     constructor(column) {
@@ -506,8 +516,10 @@ class SeedChooser extends PIXI.Container {
         if(this.selected) {
             if(this.demo) this.removeChild(this.demo)
             this.demo = new PVZ2.Plant(this.selected.type)
-            this.demo.position.set(100, 100)
+            this.demo.demo = true
+            this.demo.position.set(650, 300)
             this.addChild(this.demo)
+            objects.push(this.demo)
             this.demo.scale.set(resScale)
         }
     }
