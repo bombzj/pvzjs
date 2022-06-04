@@ -1,58 +1,51 @@
 
-// 画一个植物
+// draw a plant
 function plant(i, x, y) {
     let a = new PVZ2.Plant(plantList[i])
     a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
     a.plantType = i
-    a.scale.set(resScale)
     a.ztype = 'plant'
     return a
 }
 
-// 画一个僵尸
+// draw a zombie
 function zombie(i, x, y) {
     let a = new PVZ2[zombieList[i].ZombieClass](zombieList[i])
     a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
     a.plantType = i
-    a.scale.set(resScale)
     a.ztype = 'zombie'
     return a
 }
 
 var sunTotal = 50
-// 画一个种子
+// draw a seed
 function seed(i, x, y) {
     let planttype = plantList[i]
     let c = new PIXI.Container()
 
     let bgname = planttype.HomeWorld
     if (!bgname || bgname == 'tutorial') bgname = 'ready'
-    let b = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
-    // b.position.set(x, y)
-    let priceTab = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
-    priceTab.position.set(70, 35)
+    let b = drawPImage(0, 0, texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
+    let priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
 
-    let price = new PIXI.Text(planttype.prop.Cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
-    price.position.set(115 - price.width, 40)
+    let price = new PIXI.Text(planttype.prop.Cost, { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+    price.position.set(180 - price.width, 60)
 
     
-    let cover1 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+    let cover1 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
     cover1.tint = 0x0
     cover1.alpha = 0.5
     cover1.visible = false
-    // cover1.position.set(0, 0)
-    let cover2 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+    let cover2 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
     cover2.tint = 0x0
     cover2.alpha = 0.5
     cover2.visible = false
-    // cover1.position.set(0, 0)
 
-    let a = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
-    a.position.set(10, 0)
+    let a = drawPImage(15, 0, texturesMap['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
     a.seedType = i
 
     c.addChild(b, a, priceTab, price, cover1, cover2)
@@ -89,11 +82,9 @@ function seed(i, x, y) {
     return c
 }
 
-// 画选择种子框
+//draw seed selection
 function seedSel(x, y) {
-    let a = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_SELECT)
-    a.position.set(x, y)
-    stage.addChild(a)
+    let a = drawPImage(x, y, texturesMap.IMAGE_UI_PACKETS_SELECT, stage)
     newObjects.push(a)
     a.ztype = 'seedSel'
     a.step = function() {}
@@ -101,13 +92,11 @@ function seedSel(x, y) {
     
 }
 
-// 画铲子
+// draw shovel
 function shovel(x, y) {
-    let a = new PIXI.Sprite(texturesMap.IMAGE_UI_HUD_INGAME_SHOVEL_BUTTON)
-    a.position.set(x, y)
-    stage.addChild(a)
-    newObjects.push(a)
+    let a = drawPImage(x, y, texturesMap.IMAGE_UI_HUD_INGAME_SHOVEL_BUTTON, stage)
     a.ztype = 'shovel'
+    newObjects.push(a)
     a.step = function() {
         if(useShovel) {
             this.texture = texturesMap.IMAGE_UI_HUD_INGAME_SHOVEL_BUTTON_DOWN
@@ -118,40 +107,26 @@ function shovel(x, y) {
     return a
 }
 
-// 画背景
+// draw background
 function back(x, y) {
-    // let a = new PIXI.Sprite(textures.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE_LEFT)
-    // a.position.set(x, y)
-    let b = new PIXI.Sprite(texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
-    b.position.set(x, y)
-    stage.addChild(b)
-    return b
+    return drawPImage(x, y, texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE, stage)
 }
 
-// 画太阳
+// draw sun
 function sun(x, y) {
-    let pam = pams.POPANIM_EFFECTS_SUN
-    let a = new PVZ2.Object(pam, pam.main_sprite)
-    a.position.set(x, y)
-    stage.addChild(a)
-    newObjects.push(a)
-    a.pivot.set(100, 100)
-    a.scale.set(resScale)
-    a.ztype = 'sun'
-    return a
+    return new PVZ2.Sun(x, y)
 }
 
-// 画太阳数量
+// draw sun counter
 function numSun(x, y, num = 0) {
     let c = new PIXI.Container()
-    let b = new PIXI.Sprite(texturesMap.IMAGE_UI_GENERIC_COUNTER_BG)
-    b.position.set(35, 15)
-    b.scale.x = 1.2
+    let b = drawPImage(55, 24, texturesMap.IMAGE_UI_GENERIC_COUNTER_BG)
+    b.scale.x *= 1.2
     b.alpha = 0.7
-    let a = new PIXI.Sprite(texturesMap.IMAGE_UI_HUD_INGAME_SUN)
+    let a = drawPImage(0, 0, texturesMap.IMAGE_UI_HUD_INGAME_SUN)
 
-    let cnt = new PIXI.Text(num, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
-    cnt.position.set(75, 12)
+    let cnt = new PIXI.Text(num, { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+    cnt.position.set(117, 19)
 
     c.cnt = cnt
     sunTotal = num
@@ -171,15 +146,32 @@ function numSun(x, y, num = 0) {
     return c
 }
 
-// 画小车
-function car(x, y, act) {
-    let pam = pams.POPANIM_MOWERS_MOWER_MODERN
-    let a = new PamSprite(pam, null, pam.actionFrame[act])
+// draw mowner
+function car(x, y) {
+    return drawPam(x, y, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', stage)
+}
+
+function drawPam(x, y, pam, act, ztype, parent) {
+    let a = new PVZ2.Object(pam, null, pam.actionFrame[act])
     a.position.set(x, y)
-    stage.addChild(a)
+    a.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
+    if(parent) {
+        parent.addChild(a)
+    }
     newObjects.push(a)
-    a.scale.set(resScale)
-    a.ztype = 'car'
+    if(ztype) {
+        a.ztype = ztype
+    }
+    return a
+}
+
+function drawPImage(x, y, texture, parent) {
+    let a = new PIXI.Sprite(texture)
+    a.position.set(x, y)
+    a.scale.set(resScaleV)
+    if(parent) {
+        parent.addChild(a)
+    }
     return a
 }
 
@@ -187,7 +179,25 @@ function rm(obj) {
     obj.needRemove = true
 }
 
-const resScale = 768 / 1200
+
+var resScale
+var resScaleV
+PVZ2.setResolution = function(res) {
+    let res2 = 384  // 384 / 768 / 1536 supported
+    if(res >= 1536) {
+        res2 = 1536
+    } else if(res >= 768) {
+        res2 = 768
+    }
+    PVZ2.zoom = res / 1200
+    PVZ2.resolution = res2
+    resScale = res2 / 1200
+    resScaleV = 1200 / res2
+    PVZ2.screenWidth = res
+    PVZ2.screenHeight = res * 4 / 3
+}
+PVZ2.setResolution(768)
+
 let texturesMap = {}
 let atlasMap = {}
 
@@ -219,6 +229,7 @@ function setup(resources) {
     }
 
     app.stage.addChild(stage)
+    stage.scale.set(PVZ2.zoom)
     init(resources)
     app.ticker.add(delta => loop2())
 }
@@ -372,7 +383,7 @@ function loadResources() {
             }
         }
         
-        if(group.res && group.res != 768) continue
+        if(group.res && group.res != PVZ2.resolution) continue
         for(let res of group.resources) {
             if(res.type == 'Image') {
                 if(res.atlas) {
@@ -397,46 +408,6 @@ function loadResources() {
         }
     
     }
-    
-
-
-
-    // for(let d of resources.groups) {
-    //     resources[d.id] = d  // make it easy to get
-    // }
-    // for(let atlas of resources.groups) {
-    //     if(!atlas.id.endsWith('_768')) continue
-    //     let frames = {}
-    //     let parents = {}
-    //     for(res2 of atlas.resources) {
-    //         if(res2.atlas) {
-    //             parents[res2.id] = res2
-    //             frames[res2.id] = {}
-    //         } else {
-    //             let frameName = res2.id
-    //             frames[res2.parent][frameName] = {
-    //                 frame: {
-    //                     x: res2.ax,
-    //                     y: res2.ay,
-    //                     w: res2.aw,
-    //                     h: res2.ah
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     for(let parentName in parents) {
-    //         let parent = parents[parentName]
-    //         let filename = parent.path[parent.path.length - 1]
-    //         let output = { frames: frames[parentName] }
-    //         output.meta = {
-    //             image: '../atlases/' + filename + '.png',
-    //             // format: "RGBA8888",
-    //             size: {"w":parent.width,"h":parent.height},
-    //             scale: "1"
-    //         }
-    //         fs.writeFileSync('pam/json/' + filename + '.json', JSON.stringify(output, null, 4), 'utf-8')
-    //     }
-    // }
 }
 
 function loadPlantResource(type) {
@@ -520,7 +491,6 @@ class SeedChooser extends PIXI.Container {
             this.demo.position.set(650, 300)
             this.addChild(this.demo)
             objects.push(this.demo)
-            this.demo.scale.set(resScale)
         }
     }
 }

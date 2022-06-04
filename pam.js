@@ -55,6 +55,9 @@ class PamSprite extends PIXI.Container {
         this.param = param
         this.parts = {}
         this.doFrame()
+        if(PVZ2.spriteBox && sprite == pam.main_sprite) {
+            this.drawBoundingBox(0, 0, pam.size[0], pam.size[1])
+        }
     }
 
     changeAction(frameStart) {
@@ -213,6 +216,13 @@ class PamSprite extends PIXI.Container {
             }
         }
     }
+    drawBoundingBox(x, y, w, h, color = 0x00FF00) {
+        let rec = new PIXI.Graphics()
+        rec.lineStyle(3, color, 1)
+        rec.drawRect(0, 0, w, h)
+        rec.position.set(-x, -y)
+        this.addChild(rec)
+    }
 }
 
 PVZ2.Object = class extends PamSprite {
@@ -248,8 +258,7 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
         this.showSprites(hideSprites, false)
         // plant shadow
-        let shadow = new PIXI.Sprite(texturesMap.IMAGE_PLANTSHADOW)
-        shadow.position.set(this.pivot.x - 50, this.pivot.y + 20)
+        let shadow = drawPImage(this.pivot.x - 85, this.pivot.y + 10, texturesMap.IMAGE_PLANTSHADOW)
         shadow.zIndex = -1
         this.addChild(shadow)
     }
@@ -317,14 +326,13 @@ PVZ2.Plant = class extends PVZ2.Object {
         if(this.action.Type == 'projectile') {
             let projectileType = getByRTID(this.action.Projectile)
             let a = new ProjectileSprite(projectileType)
-            a.position.set(this.x + this.action.SpawnOffset.x * resScale
-                , this.y + this.action.SpawnOffset.y * resScale)
+            a.position.set(this.x + this.action.SpawnOffset.x
+                , this.y + this.action.SpawnOffset.y)
             stage.addChild(a)
             newObjects.push(a)
-            a.scale.set(resScale)
             a.ztype = 'projectile'
         } else if(this.action.Type == 'sun') {
-            sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y)
+            new PVZ2.Sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y, 50)
         }
     }
 }
@@ -369,8 +377,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             this.showArmor()
         }
         // zombie shadow
-        let shadow = new PIXI.Sprite(texturesMap.IMAGE_PLANTSHADOW)
-        shadow.position.set(this.pivot.x - 50, this.pivot.y + 30)
+        let shadow = drawPImage(this.pivot.x - 80, this.pivot.y + 10, texturesMap.IMAGE_PLANTSHADOW)
         shadow.zIndex = -1
         this.addChild(shadow)
     }
@@ -406,10 +413,10 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
                     if(prop.RunningSpeedScale) {
                         this.groundMove *= prop.RunningSpeedScale
                     }
-                    this.x -= this.groundMove * resScale
+                    this.x -= this.groundMove
                 }
             } else {
-                this.x -= prop.Speed * resScale
+                this.x -= prop.Speed
             }
         }
         this.showArmor()
@@ -487,7 +494,6 @@ PVZ2.Effect = class extends PVZ2.Object {
         stage.addChild(this)
         newObjects.push(this)
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
-        this.scale.set(resScale)
         this.ztype = 'effect'
     }
     init() {
@@ -495,6 +501,30 @@ PVZ2.Effect = class extends PVZ2.Object {
     }
     step() {
         super.step()
+    }
+}
+PVZ2.Sun = class extends PVZ2.Object {
+    constructor(x, y, fall = 500) {
+        let pam = pams.POPANIM_EFFECTS_SUN
+        super(pam)
+        this.position.set(x, y)
+        stage.addChild(this)
+        newObjects.push(this)
+        this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
+        this.ztype = 'sun'
+        this.fall = fall
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
+        if(this.age < this.fall) {
+            this.y += 2
+        }
+        if(this.age > 600) {
+            rm(this)
+        }
     }
 }
 
@@ -515,7 +545,7 @@ class ProjectileSprite extends PVZ2.Object {
     step() {
         super.step()
         this.x += this.speedX
-        if(this.x > 1200) {
+        if(this.x > 1600) {
             rm(this)
         }
     }

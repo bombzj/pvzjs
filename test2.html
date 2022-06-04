@@ -13,16 +13,14 @@
     <body>
 <script type="text/javascript">
 
-    // 准备好画布
-    let app = new PIXI.Application({width: 916, height: 800});
+    PVZ2.setResolution(768)
+    let app = new PIXI.Application({width: PVZ2.screenHeight, height: PVZ2.screenWidth});
     document.body.appendChild(app.view);
     PVZ2.collisionBox = true
 
-    // 设置背景颜色
     app.renderer.backgroundColor = 0x0ccccff;   
 
-    // 加载图片和动画
-    const loader = PIXI.Loader.shared;          
+    const loader = PIXI.Loader.shared;
     loadPams()
 
     let sun1
@@ -38,22 +36,24 @@
 
     var seedChooser
     var gameStart = true
-    // 启动后调用一次
+    var seedBankPos = {x: 0, y: 150, height: 120, width: 160}
+    var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
+
     function init() {
         back(0, 0)
         for(let i = 0;i < 8;i++){
-            seeds.push(seed(i, 0, 75 * i + 100))
+            seeds.push(seed(i, 0, seedBankPos.height * i + seedBankPos.y))
         }
         for(let seed of seeds) {seed.refresh()} // for test
         for(let i = 0;i < 5;i++) {
-            car(100, i * 100 + 100)
+            car(310, i * 150 + 390)
         }
         sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
         selspr.visible = false
         numSun(0, 0, 50)
-        shovel(680, 680)
-        // for test
+        shovel(shovelPos.x, shovelPos.y)
+
         sunTotal = 500
         // seedChooser = new SeedChooser(5)
         // stage.addChild(seedChooser)
@@ -62,18 +62,13 @@
     t = 0
     var speed = 2
     var sunCnt = 0
-    // 每秒调用60次
+
     function loop() {
         // if(!gameStart) return
         if(t++ % speed == 0) {
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
-                    if(obj.y < 674){
-                        obj.y += 1
-                    }
-                    if(obj.age > 600) {
-                        rm(obj)
-                    }
+                    
                 } else if(obj.ztype == 'seed') {
                     
                 } else if(obj.ztype == 'plant') {
@@ -82,18 +77,15 @@
                     
                 } else if(obj.ztype == 'seedSel') {
                     obj.visible = (selPlant != -1)
-                    obj.y = selPlant * 75 + 100
+                    obj.y = selPlant * seedBankPos.height + seedBankPos.y
                 } else if(obj.ztype == 'effect') {
                     
                 } else if(obj.ztype == 'projectile') {
                     for(let obj2 of objects) {
                         if(obj2.ztype == 'zombie' && !obj2.dead) {
-                            let dx = obj.x - obj2.x
-                            let dy = obj.y - obj2.y
                             if(ifCollide(obj, obj2, obj.type.CollisionRect, obj2.type.prop.HitRect)) {
                                 obj2.hit(obj.type.BaseDamage)
-                                if(obj2.hitpoints < 0) {
-                                } else  {
+                                if(obj2.hitpoints > 0) {
                                     if(obj.type.Conditions) {
                                         for(let cond of obj.type.Conditions) {
                                             if(cond.Condition == 'chill') {
@@ -114,7 +106,7 @@
             sunCnt++
             if(sunCnt == 300) {
                 sunCnt = 0
-                sun(field.x + rnd(0, 500), 0)
+                sun(field.x + rnd(0, 800), 0)
             }
         }
     }
@@ -122,18 +114,23 @@
     let selPlant = -1
     let useShovel = false
     let field = {
-        x: 260, y: 200,
-        w: 82, h: 96
+        x: 406, y: 312,
+        w: 128, h: 150
     }
-    // 鼠标事件
+
     function onclick(e) {
-        let x = e.offsetX, y = e.offsetY
+        let x = e.offsetX / PVZ2.zoom, y = e.offsetY / PVZ2.zoom
         console.log('click: ', x, y)
 
         if(!gameStart) {
             if(x >= seedChooser.x && y > seedChooser.y) {
                 seedChooser.click(x - seedChooser.x, y - seedChooser.y)
             }
+            return
+        }
+
+        if(x > 1200) {
+            let a = zombie(selPlant, x, y)
             return
         }
 
@@ -151,47 +148,42 @@
             } else if(selPlant != -1) {
                 grids[dy2][dx2] = plant(selPlant, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
                 
-                let cost = plantList[selPlant].prop.Cost  // 价格
+                let cost = plantList[selPlant].prop.Cost
                 sunTotal -= cost
-                seeds[selPlant].use()    // 重新冷却
+                seeds[selPlant].use()    // cooldown
                 selPlant = -1
             }
         }
-        // 选植物
-        if(x < 100) {
-            let dy = (y - 100) / 75
+        // pick plant
+        if(x < seedBankPos.width) {
+            let dy = (y - seedBankPos.y) / seedBankPos.height
             let dy2 = Math.floor(dy)
             if(dy2 >= 0 && dy2 < 8) {
-                let cost = plantList[dy2].prop.Cost  // 价格
+                let cost = plantList[dy2].prop.Cost
                 if(sunTotal >= cost && seeds[dy2].ready()) {
                     selPlant = dy2
                     useShovel = false
                 }
             }
         }
-        // 收太阳
+        // collect sun
         for(let obj of objects) {
             if(obj.ztype == 'sun') {
                 let dis = Math.sqrt((obj.x - x)**2 + (obj.y - y)**2)
-                if(dis <= 40) {
+                if(dis <= 50) {
                     rm(obj)
                     sunTotal += 25
                     break
                 }
             }
         }
-        // 点铲子
-        if(x <= 760 && x >= 680 && y <= 760 && y >= 680){
+        // toggle shovel
+        if(x <= shovelPos.x + shovelPos.width && x >= shovelPos.x && y <= shovelPos.y + shovelPos.height && y >= shovelPos.y){
             useShovel = !useShovel
             selPlant = -1
         }
-
-        if(x > 700) {
-            let a = zombie(1, x, y)
-        }
     }
     
-    // 键盘事件
     window.onkeydown = function(e) {
         if(e.code == 'KeyA'){
             speed = 60
@@ -202,72 +194,56 @@
     }
     
 
-    // 植物和种子列表
     var plantList = [
         {       // 0
-            name: '向日葵',
             ename: 'sunflower',
             cost: 50,
             hitpoint: 300,
             cooldown: 20,
         },
         {       // 1
-            name: '豌豆射手',
             ename: 'peashooter',
         },
         {       // 2
-            name: '坚果',
             ename: 'wallnut',
         },
         {       // 3
-            name: '冰豌豆',
             ename: 'snowpea',
         },
         {       // 4
-            name: '大嘴花',
             ename: 'chomper',
         },
         {       // 5
-            name: '窝瓜',
             ename: 'squash',
         },
         {       // 6
-            name: '樱桃炸弹',
             ename: 'cherry_bomb',
         },
         {       // 7
-            name: '双豌豆射手',
             ename: 'repeater',
         },
         {       // 8
-            name: '三豌豆射手',
             ename: 'threepeater',
         },
         {       // 9
-            name: '大喷菇',
             ename: 'fumeshroom',
         },
     ]
 
     var zombieList = [
         {       // 0
-            name: '普通僵尸',
             ename: 'mummy',
         },
         {       // 0
-            name: '交通锥僵尸',
             ename: 'mummy_armor1',
         },
         {       // 0
-            name: '铁桶僵尸',
             ename: 'mummy_armor2',
         },
         {       // 0
-            name: '铁桶僵尸',
             ename: 'mummy_armor4',
         },
         {       // 0
-            name: '全能僵尸',
             ename: 'modern_allstar',
         },
     ]
