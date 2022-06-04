@@ -1,7 +1,8 @@
 
 // draw a plant
 function plant(i, x, y) {
-    let a = new PVZ2.Plant(plantList[i])
+    let type = typeof i !== 'number' ? i : plantList[i]
+    let a = new PVZ2.Plant(type)
     a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
@@ -24,61 +25,10 @@ function zombie(i, x, y) {
 var sunTotal = 50
 // draw a seed
 function seed(i, x, y) {
-    let planttype = plantList[i]
-    let c = new PIXI.Container()
-
-    let bgname = planttype.HomeWorld
-    if (!bgname || bgname == 'tutorial') bgname = 'ready'
-    let b = drawPImage(0, 0, texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
-    let priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
-
-    let price = new PIXI.Text(planttype.prop.Cost, { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
-    price.position.set(180 - price.width, 60)
-
-    
-    let cover1 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
-    cover1.tint = 0x0
-    cover1.alpha = 0.5
-    cover1.visible = false
-    let cover2 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
-    cover2.tint = 0x0
-    cover2.alpha = 0.5
-    cover2.visible = false
-
-    let a = drawPImage(15, 0, texturesMap['IMAGE_UI_PACKETS_' + planttype.ename.toUpperCase()])
-    a.seedType = i
-
-    c.addChild(b, a, priceTab, price, cover1, cover2)
+    let c = new PVZ2.Seed(plantList[i])
     c.position.set(x, y)
     stage.addChild(c)
     newObjects.push(c)
-    c.ztype = 'seed'
-    c.planttype = planttype
-    if(planttype.prop.StartingCooldown) {
-        c.cd = planttype.prop.StartingCooldown * fps
-    } else {
-        c.cd = planttype.prop.PacketCooldown * fps
-    }
-    c.step = function() {
-        if(this.cd == 0) {
-            cover1.visible = this.planttype.prop.Cost > sunTotal
-            cover2.visible = false
-            return
-        }
-        this.cd--
-        cover2.scale.y = this.cd / this.planttype.prop.PacketCooldown / fps
-        cover1.visible = true
-        cover2.visible = true
-    }
-    c.use = function() {
-        this.cd = this.planttype.prop.PacketCooldown * fps
-    }
-    c.ready = function() {
-        return this.cd == 0
-    }
-    c.refresh = function() {
-        this.cd = 0
-    }
     return c
 }
 
@@ -165,7 +115,7 @@ function drawPam(x, y, pam, act, ztype, parent) {
     return a
 }
 
-function drawPImage(x, y, texture, parent) {
+function drawPImage(x = 0, y = 0, texture, parent) {
     let a = new PIXI.Sprite(texture)
     a.position.set(x, y)
     a.scale.set(resScaleV)
@@ -264,8 +214,8 @@ function loadPams(callback) {
 
 function setup2(resources, callback) {
     loadPackages(resources)
-    // loadPlantType(resources) // load all types, not necessary
-    // loadZombieType(resources)
+    loadPlantType(resources)
+    loadZombieType(resources)
     for (let p of plantList) {
         // let t = plantType[p.ename]
         let t = rtons.PlantTypes[p.ename]
@@ -337,6 +287,7 @@ function loadPackages(resources) {
     }
 }
 function getByRTID(str) {
+    str = str.replace('$', '')
     let id = str.substr(5, str.length - 6)
     return rtMap[id]
 }
@@ -448,38 +399,76 @@ function initSinglePlant(loader, resources) {
     seedChooser.showPlant()
 }
 
-let seedChooserSeedSize = {width: 120, height: 75, top: 0}
+let seedChooserSeedSize = {width: 180, height: 120, top: 0}
 
 class SeedChooser extends PIXI.Container {
-    constructor(column) {
+    constructor(column, row) {
         super()
         this.column = column
-        let types = rtons.PlantTypes.objects
+        this.row = row
         this.seeds = []
-        for(let i = 0;i < types.length;i++) {
-            let type = types[i].objdata
-            let prop = getByRTID(type.Properties)
-            if(!type || !prop) debugger
-            let dx = i % column
-            let dy = Math.floor(i / column)
-            let x = dx * seedChooserSeedSize.width
-            let y = dy * seedChooserSeedSize.height + seedChooserSeedSize.top
-            let seed = new SeedChooserSeed(type, prop, x, y)
-            if(!this.seeds[dy]) this.seeds[dy] = []
-            this.seeds[dy][dx] = seed
-            this.addChild(seed)
+        for(let y = 0;y < row;y++) {
+            for(let x = 0;x < column;x++) {
+                let seed = new PVZ2.Seed()
+                this.seeds.push(seed)
+                seed.position.set(x * seedChooserSeedSize.width, 
+                    y * seedChooserSeedSize.height + seedChooserSeedSize.top)
+                    this.addChild(seed)
+            }
         }
+        this.selectedTypes = new Set()
+        this.turnPage(0)
+        this.selspr = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_SELECT)
+        this.addChild(this.selspr)
+    }
+    turnPage(page) {
+        let types = rtons.PlantTypes.objects
+        this.page = page
+        for(let i = 0;i < this.column * this.row;i++) {
+            let index = i + this.column * this.row * this.page
+            if(index >= types.length) {
+                this.seeds[i].clearType()
+                continue
+            }
+            let type = types[index].objdata
+            if(!type || !type.prop) debugger
+
+            this.seeds[i].setType(type)
+            // this.seeds[i].chooserIndex = index
+            this.seeds[i].setSelected(this.selectedTypes.has(type))
+        }
+    }
+    pageUp() {
+        if(this.page > 0) {
+            this.turnPage(this.page - 1)
+        }
+    }
+    pageDown() {
+        this.turnPage(this.page + 1)
     }
     click(x, y) {
         let dx = Math.floor(x / seedChooserSeedSize.width)
         let dy = Math.floor((y - seedChooserSeedSize.top) / seedChooserSeedSize.height)
         if(dx < this.column && dy >= 0) {
-            let seed = this.seeds[dy][dx]
-            this.selected = seed
-            if(pams[seed.type.PopAnim]) {
-                this.showPlant()
-            } else {
-                loadPlantResource(seed.type)
+            let seed = this.seeds[dy * this.column + dx]
+            if(seed && seed.type) {
+                this.selected = seed
+                if(!seed.selected) {
+                    let next = seedBank.next()
+                    if(next) {
+                        next.setType(seed.type)
+                        next.chooserIndex = seed.chooserIndex
+                        seed.setSelected(true)
+                        this.selectedTypes.add(seed.type)
+                    }
+                }
+                this.selected = seed
+                this.selspr.position.set(dx * seedBank.pos.width, dy * seedBank.pos.height)
+                if(pams[seed.type.PopAnim]) {
+                    this.showPlant()
+                } else {
+                    loadPlantResource(seed.type)
+                }
             }
         }
     }
@@ -488,46 +477,21 @@ class SeedChooser extends PIXI.Container {
             if(this.demo) this.removeChild(this.demo)
             this.demo = new PVZ2.Plant(this.selected.type)
             this.demo.demo = true
-            this.demo.position.set(650, 300)
+            this.demo.position.set(1050, 500)
             this.addChild(this.demo)
             objects.push(this.demo)
         }
     }
-}
-
-class SeedChooserSeed extends PIXI.Container {
-    constructor(type, prop, x, y) {
-        super()
-        this.type = type
-        this.prop = prop
-        let bgname = type.HomeWorld
-        if (!bgname || bgname == 'tutorial') bgname = 'ready'
-        let b = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()])
-        // b.position.set(x, y)
-        let priceTab = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
-        priceTab.position.set(70, 35)
-
-        let price = new PIXI.Text(prop.Cost, { fontFamily: 'Arial', fontSize: 32, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
-        price.position.set(115 - price.width, 40)
-
-        
-        let cover1 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
-        cover1.tint = 0x0
-        cover1.alpha = 0.5
-        cover1.visible = false
-        // cover1.position.set(0, 0)
-        let cover2 = new PIXI.Sprite(texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
-        cover2.tint = 0x0
-        cover2.alpha = 0.5
-        cover2.visible = false
-        // cover1.position.set(0, 0)
-
-        let a = new PIXI.Sprite(texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()])
-        a.position.set(10, 0)
-
-        this.addChild(b, a, priceTab, price, cover1, cover2)
-        this.position.set(x, y)
-        this.planttype = type
+    setSelected(type, selected) {
+        let seed = this.seeds.find(x => x.type == type)
+        if(seed) {
+            seed.setSelected(selected)
+        }
+        if(selected) {
+            this.selectedTypes.add(type)
+        } else {
+            this.selectedTypes.delete(type)
+        }
     }
 }
 

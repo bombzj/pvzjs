@@ -325,7 +325,7 @@ PVZ2.Plant = class extends PVZ2.Object {
     useAction() {
         if(this.action.Type == 'projectile') {
             let projectileType = getByRTID(this.action.Projectile)
-            let a = new ProjectileSprite(projectileType)
+            let a = new PVZ2.Projectile(projectileType)
             a.position.set(this.x + this.action.SpawnOffset.x
                 , this.y + this.action.SpawnOffset.y)
             stage.addChild(a)
@@ -528,7 +528,7 @@ PVZ2.Sun = class extends PVZ2.Object {
     }
 }
 
-class ProjectileSprite extends PVZ2.Object {
+PVZ2.Projectile = class extends PVZ2.Object {
     constructor(type) {
         let pam = pams[type.AttachedPAM]
         super(pam, null, 'animation')
@@ -554,6 +554,86 @@ class ProjectileSprite extends PVZ2.Object {
         new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], 
             this.x + this.type.ImpactOffset[0].Min,
             this.y + this.type.ImpactOffset[1].Min)
+    }
+}
+
+PVZ2.Seed = class extends PIXI.Container {
+    constructor(type) {
+        super()
+        this.bg = drawPImage()
+        this.priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
+        this.price = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+
+        let cover1 = this.cover1 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+        cover1.tint = 0x0
+        cover1.alpha = 0.5
+        cover1.visible = false
+        let cover2 = this.cover2 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+        cover2.tint = 0x0
+        cover2.alpha = 0.5
+        cover2.visible = false
+
+        this.plant = drawPImage(15, 0)
+
+        this.addChild(this.bg, this.plant, this.priceTab, this.price, cover1, cover2)
+        this.ztype = 'seed'
+        if(type) {
+            this.setType(type)
+        } else {
+            this.clearType()
+        }
+    }
+    step() {
+        if(!this.type || !gameStart) return
+        if(this.cd == 0) {
+            this.cover1.visible = this.type.prop.Cost > sunTotal
+            this.cover2.visible = false
+            return
+        }
+        this.cd--
+        this.cover2.scale.y = this.cd / this.type.prop.PacketCooldown / fps
+        this.cover1.visible = true
+        this.cover2.visible = true
+    }
+    use() {
+        this.cd = this.type.prop.PacketCooldown * fps
+    }
+    ready() {
+        return this.cd == 0
+    }
+    refresh() {
+        this.cd = 0
+    }
+    clearType() {
+        this.type = undefined
+        this.bg.texture = texturesMap.IMAGE_UI_PACKETS_EMPTY_PACKET
+        this.bg.alpha = 0.5
+        this.price.visible = false
+        this.plant.visible = false
+        this.priceTab.visible = false
+    }
+    setType(type) {
+        if(!type.prop) debugger
+        let bgname = type.HomeWorld
+        if (!bgname || bgname == 'tutorial') bgname = 'ready'
+        this.bg.texture = texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()]
+        this.bg.alpha = 1
+        this.price.text = type.prop.Cost
+        this.price.position.set(180 - this.price.width, 60)
+        this.price.visible = true
+        this.plant.texture = texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()]
+        this.plant.visible = true
+        this.priceTab.visible = true
+        this.type = type
+        if(type.prop.StartingCooldown) {
+            this.cd = type.prop.StartingCooldown * fps
+        } else {
+            this.cd = type.prop.PacketCooldown * fps
+        }
+    }
+    setSelected(selected) {
+        this.cover1.visible = selected
+        this.selected = selected
     }
 }
 

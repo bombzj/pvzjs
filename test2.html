@@ -25,7 +25,6 @@
 
     let sun1
     let selspr
-    var seeds = []
     var grids = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -35,16 +34,28 @@
     ]
 
     var seedChooser
-    var gameStart = true
-    var seedBankPos = {x: 0, y: 150, height: 120, width: 160}
+    var gameStart = false
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
+    var seedBank = {
+        seeds: [],
+        pos: {
+            x: 0, y: 150, height: 120, width: 180
+        },
+        next() {    // return the next available empty seed, or undefined if full
+            for(let seed of this.seeds) {
+                if(!seed.type) {
+                    return seed
+                }
+            }
+        }
+    }
 
     function init() {
         back(0, 0)
         for(let i = 0;i < 8;i++){
-            seeds.push(seed(i, 0, seedBankPos.height * i + seedBankPos.y))
+            seedBank.seeds.push(seed(-1, 0, seedBank.pos.height * i + seedBank.pos.y))
         }
-        for(let seed of seeds) {seed.refresh()} // for test
+        // for(let seed of seeds) {seed.refresh()} // for test
         for(let i = 0;i < 5;i++) {
             car(310, i * 150 + 390)
         }
@@ -55,9 +66,20 @@
         shovel(shovelPos.x, shovelPos.y)
 
         sunTotal = 500
-        // seedChooser = new SeedChooser(5)
-        // stage.addChild(seedChooser)
-        // seedChooser.position.set(100, 0)
+        seedChooser = new SeedChooser(5, 7)
+        stage.addChild(seedChooser)
+        seedChooser.position.set(seedBank.pos.width + 20, 200)
+        let buttonStart = drawPImage(1140, 940, texturesMap.IMAGE_UI_GENERIC_PURPLEBUTTON, stage)
+        let buttonStartText = new PIXI.Text('Start!', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+        buttonStartText.position.set(buttonStart.x + 13, buttonStart.y + 15)
+        stage.addChild(buttonStartText)
+
+        buttonStart.interactive = true
+        buttonStart.click = function() {
+            gameStart = true
+            stage.removeChild(seedChooser)
+            stage.removeChild(buttonStart, buttonStartText)
+        }
     }
     t = 0
     var speed = 2
@@ -77,7 +99,7 @@
                     
                 } else if(obj.ztype == 'seedSel') {
                     obj.visible = (selPlant != -1)
-                    obj.y = selPlant * seedBankPos.height + seedBankPos.y
+                    obj.y = selPlant * seedBank.pos.height + seedBank.pos.y
                 } else if(obj.ztype == 'effect') {
                     
                 } else if(obj.ztype == 'projectile') {
@@ -126,6 +148,18 @@
             if(x >= seedChooser.x && y > seedChooser.y) {
                 seedChooser.click(x - seedChooser.x, y - seedChooser.y)
             }
+            // click seedbank to cancel
+            if(x < seedBank.pos.width) {
+                let dy = (y - seedBank.pos.y) / seedBank.pos.height
+                let dy2 = Math.floor(dy)
+                if(dy2 >= 0 && dy2 < 8) {
+                    let seed = seedBank.seeds[dy2]
+                    if(seed.type) {
+                        seedChooser.setSelected(seed.type, false)
+                        seed.clearType()
+                    }
+                }
+            }
             return
         }
 
@@ -146,23 +180,27 @@
                     useShovel = false
                 }
             } else if(selPlant != -1) {
-                grids[dy2][dx2] = plant(selPlant, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
+                let seed = seedBank.seeds[selPlant]
+                grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
                 
                 let cost = plantList[selPlant].prop.Cost
                 sunTotal -= cost
-                seeds[selPlant].use()    // cooldown
+                seed.use()    // cooldown
                 selPlant = -1
             }
         }
         // pick plant
-        if(x < seedBankPos.width) {
-            let dy = (y - seedBankPos.y) / seedBankPos.height
+        if(x < seedBank.pos.width) {
+            let dy = (y - seedBank.pos.y) / seedBank.pos.height
             let dy2 = Math.floor(dy)
             if(dy2 >= 0 && dy2 < 8) {
-                let cost = plantList[dy2].prop.Cost
-                if(sunTotal >= cost && seeds[dy2].ready()) {
-                    selPlant = dy2
-                    useShovel = false
+                let seed = seedBank.seeds[dy2]
+                if(seed.type) {
+                    let cost = seed.type.prop.Cost
+                    if(sunTotal >= cost && seed.ready()) {
+                        selPlant = dy2
+                        useShovel = false
+                    }
                 }
             }
         }
@@ -190,6 +228,12 @@
         }
         if(e.code == 'KeyR'){
             speed = 2
+        }
+        if(e.code == 'KeyU'){
+            seedChooser.pageUp()
+        }
+        if(e.code == 'KeyD'){
+            seedChooser.pageDown()
         }
     }
     
