@@ -59,7 +59,12 @@ function shovel(x, y) {
 
 // draw background
 function back(x, y) {
-    return drawPImage(x, y, texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE, stage)
+    let scene = new PVZ2.Scene()
+    scene.position.set(x, y)
+    stage.addChild(scene)
+    newObjects.push(scene)
+    scene.ztype = 'scene'
+    return scene
 }
 
 // draw sun
@@ -96,7 +101,7 @@ function numSun(x, y, num = 0) {
     return c
 }
 
-// draw mowner
+// draw mower
 function car(x, y) {
     return drawPam(x, y, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', stage)
 }
@@ -147,6 +152,7 @@ PVZ2.setResolution = function(res) {
     PVZ2.screenHeight = res * 4 / 3
 }
 PVZ2.setResolution(768)
+PVZ2.gameStart = true
 
 let texturesMap = {}
 let atlasMap = {}
@@ -196,8 +202,8 @@ function loop2() {
     loop()
 }
 
-let need2LoadGroup = ['LevelCommon', 'SodRollGroup', 'ModernMowerGroup', 'UI_AlwaysLoaded', 'UI_SeedPackets'
-    , 'DelayLoad_Background_FrontLawn_Birthday', 'DelayLoad_Background_FrontLawn', 'Grass_Transition']
+let need2LoadGroup = ['LevelCommon', 'ModernMowerGroup', 'UI_AlwaysLoaded', 'UI_SeedPackets'
+    , 'DelayLoad_Background_FrontLawn_Birthday']
 var stage = new PIXI.Container()
 var objects = [], newObjects = []
 var plantType = {}, zombieType = {}
@@ -287,6 +293,7 @@ function loadPackages(resources) {
     }
 }
 function getByRTID(str) {
+    if(!str) debugger
     str = str.replace('$', '')
     let id = str.substr(5, str.length - 6)
     return rtMap[id]
@@ -361,42 +368,50 @@ function loadResources() {
     }
 }
 
-function loadPlantResource(type) {
+function loadPlantResource(typeNames, callback) {
+    if(loader.loading) return
     loader.reset()
-    for(let resName of type.PlantResourceGroups) {
-        let res = resourcesMap[resName]
-        if(!res) continue
-        for(let pam of res.pams) {
-            try {
-                loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
-            } catch(e) { }
-        }
-        for(let image of res.atlases) {
-            try {
-                loader.add(image.name, 'pam/atlases/' + image.path + '.png')
-            } catch(e) { }
-        }
-    }
-    type.prop = getByRTID(type.Properties)
-    loader.loadPlant = [type]
-    loader.load((loader, resources) => initSinglePlant(loader, resources))
-}
-
-function initSinglePlant(loader, resources) {
-    for(let plant of loader.loadPlant) {
-        for(let resName of plant.PlantResourceGroups) {
+    for(let typeName of typeNames) {
+        let type = rtons.PlantTypes[typeName]
+        console.log('loading ' + typeName)
+        for(let resName of type.PlantResourceGroups) {
             let res = resourcesMap[resName]
             if(!res) continue
-            for(let image of res.images) {
-                let baseTexture = resources[image.parent].texture
-                texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
-            }
             for(let pam of res.pams) {
-                pamInit(pam.name, resources[pam.name].data, texturesMap)
+                try {
+                    loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
+                } catch(e) { }
+            }
+            for(let image of res.atlases) {
+                try {
+                    loader.add(image.name, 'pam/atlases/' + image.path + '.png')
+                } catch(e) { }
             }
         }
+        if(!type.prop) {
+            type.prop = getByRTID(type.Properties)
+        }
     }
-    seedChooser.showPlant()
+
+    loader.load((loader, resources) => {
+        for(let typeName of typeNames) {
+            let type = rtons.PlantTypes[typeName]
+            for(let resName of type.PlantResourceGroups) {
+                let res = resourcesMap[resName]
+                if(!res) continue
+                for(let image of res.images) {
+                    let baseTexture = resources[image.parent].texture
+                    texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
+                }
+                for(let pam of res.pams) {
+                    pamInit(pam.name, resources[pam.name].data, texturesMap)
+                }
+            }
+        }
+        if(callback) {
+            callback()
+        }
+    })
 }
 
 let seedChooserSeedSize = {width: 180, height: 120, top: 0}
@@ -416,7 +431,7 @@ class SeedChooser extends PIXI.Container {
                     this.addChild(seed)
             }
         }
-        this.selectedTypes = new Set()
+        this.pickedTypes = new Set()
         this.turnPage(0)
         this.selspr = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_SELECT)
         this.addChild(this.selspr)
@@ -435,7 +450,7 @@ class SeedChooser extends PIXI.Container {
 
             this.seeds[i].setType(type)
             // this.seeds[i].chooserIndex = index
-            this.seeds[i].setSelected(this.selectedTypes.has(type))
+            this.seeds[i].setPicked(this.pickedTypes.has(type.TypeName))
         }
     }
     pageUp() {
@@ -450,26 +465,48 @@ class SeedChooser extends PIXI.Container {
         let dx = Math.floor(x / seedChooserSeedSize.width)
         let dy = Math.floor((y - seedChooserSeedSize.top) / seedChooserSeedSize.height)
         if(dx < this.column && dy >= 0) {
-            let seed = this.seeds[dy * this.column + dx]
-            if(seed && seed.type) {
-                this.selected = seed
-                if(!seed.selected) {
-                    let next = seedBank.next()
-                    if(next) {
-                        next.setType(seed.type)
-                        next.chooserIndex = seed.chooserIndex
-                        seed.setSelected(true)
-                        this.selectedTypes.add(seed.type)
-                    }
-                }
-                this.selected = seed
-                this.selspr.position.set(dx * seedBank.pos.width, dy * seedBank.pos.height)
-                if(pams[seed.type.PopAnim]) {
-                    this.showPlant()
-                } else {
-                    loadPlantResource(seed.type)
-                }
+            this.click2(dx, dy)
+        }
+    }
+    click2(dx, dy) {
+        let seed = this.seeds[dy * this.column + dx]
+        if(seed && seed.type) {
+            this.selected = seed
+            if(!seed.picked) {
+                this.addSeed(seed)
             }
+            this.selected = seed
+            this.selspr.position.set(dx * seedBank.pos.width, dy * seedBank.pos.height)
+            if(pams[seed.type.PopAnim]) {
+                this.showPlant()
+            } else {
+                let current = this.selected.type.TypeName
+                loadPlantResource([seed.type.TypeName], () => {
+                    if(current == this.selected.type.TypeName) {
+                        this.showPlant()
+                    }
+                })
+            }
+        }
+    }
+    addSeedByName(name) {
+        let next = seedBank.next()
+        let type = rtons.PlantTypes[name]
+        let seed = this.seeds.find(x => x.type.TypeName == name)
+        if(seed) {
+            seed.setPicked(true)
+        }
+        if(next) {
+            next.setType(type)
+            this.pickedTypes.add(name)
+        }
+    }
+    addSeed(seed) {
+        let next = seedBank.next()
+        if(next) {
+            next.setType(seed.type)
+            seed.setPicked(true)
+            this.pickedTypes.add(seed.type.TypeName)
         }
     }
     showPlant() {
@@ -482,22 +519,159 @@ class SeedChooser extends PIXI.Container {
             objects.push(this.demo)
         }
     }
-    setSelected(type, selected) {
-        let seed = this.seeds.find(x => x.type == type)
+    setPicked(typeName, picked) {
+        let seed = this.seeds.find(x => x.type.TypeName == typeName)
         if(seed) {
-            seed.setSelected(selected)
+            seed.setPicked(picked)
         }
-        if(selected) {
-            this.selectedTypes.add(type)
+        if(picked) {
+            this.pickedTypes.add(typeName)
         } else {
-            this.selectedTypes.delete(type)
+            this.pickedTypes.delete(typeName)
         }
+    }
+}
+
+PVZ2.Seed = class extends PIXI.Container {
+    constructor(type) {
+        super()
+        this.bg = drawPImage()
+        this.priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
+        this.price = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+
+        let cover1 = this.cover1 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+        cover1.tint = 0x0
+        cover1.alpha = 0.5
+        cover1.visible = false
+        let cover2 = this.cover2 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
+        cover2.tint = 0x0
+        cover2.alpha = 0.5
+        cover2.visible = false
+
+        this.plant = drawPImage(15, 0)
+
+        this.addChild(this.bg, this.plant, this.priceTab, this.price, cover1, cover2)
+        this.ztype = 'seed'
+        if(type) {
+            this.setType(type)
+        } else {
+            this.clearType()
+        }
+    }
+    step() {
+        if(!this.type || !PVZ2.gameStart) return
+        if(PVZ2.debug) this.cd = 0
+        if(this.cd == 0) {
+            this.cover1.visible = this.type.prop.Cost > sunTotal
+            this.cover2.visible = false
+            return
+        }
+        this.cd--
+        this.cover2.scale.y = this.cd / this.type.prop.PacketCooldown / fps
+        this.cover1.visible = true
+        this.cover2.visible = true
+    }
+    use() {
+        this.cd = this.type.prop.PacketCooldown * fps
+    }
+    ready() {
+        return this.cd == 0
+    }
+    refresh() {
+        this.cd = 0
+    }
+    clearType() {
+        this.type = undefined
+        this.bg.texture = texturesMap.IMAGE_UI_PACKETS_EMPTY_PACKET
+        this.bg.alpha = 0.5
+        this.price.visible = false
+        this.plant.visible = false
+        this.priceTab.visible = false
+    }
+    setType(type) {
+        if(!type.prop) debugger
+        let bgname = type.HomeWorld
+        if (!bgname || bgname == 'tutorial') bgname = 'ready'
+        this.bg.texture = texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()]
+        this.bg.alpha = 1
+        this.price.text = type.prop.Cost
+        this.price.position.set(180 - this.price.width, 60)
+        this.price.visible = true
+        this.plant.texture = texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()]
+        this.plant.visible = true
+        this.priceTab.visible = true
+        this.type = type
+        if(type.prop.StartingCooldown) {
+            this.cd = type.prop.StartingCooldown * fps
+        } else {
+            this.cd = type.prop.PacketCooldown * fps
+        }
+    }
+    setPicked(picked) {
+        this.cover1.visible = picked
+        this.picked = picked
+    }
+}
+
+PVZ2.ZombiePacket = class extends PIXI.Container {
+    constructor(type) {
+        super()
+        if(type) {
+            this.setType(type)
+        } else {
+            this.clearType()
+        }
+    }
+    clearType() {
+    }
+    setType(type) {
+
+    }
+}
+
+PVZ2.Scene = class extends PIXI.Container {
+    static backPosition = {x: 600, y: 0}
+    static moveSpeed = 20
+    constructor() {
+        super()
+        let bg1 = drawPImage(0, 0, texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
+        let bg2 = drawPImage(bg1.width, 0, texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE_RIGHT)
+        this.addChild(bg1, bg2)
+    }
+    step() {
+        if(this.destX != undefined) {
+            this.x = getCloser(this.x, this.destX, PVZ2.Scene.moveSpeed)
+            if(this.x == this.destX) {
+                this.destX = undefined
+            }
+        }
+    }
+    goFront() {
+        this.destX = 0
+    }
+    goBack() {
+        this.destX = -PVZ2.Scene.backPosition.x
     }
 }
 
 function ifCollide(obj1, obj2, rect1, rect2) {
     return obj1.x + rect1.mX < obj2.x + rect2.mX + rect2.mWidth
         && obj1.x + rect1.mX + rect1.mWidth > obj2.x + rect2.mX
-        && obj1.y + rect1.mY < obj2.y + rect2.mY + rect2.mHeight
-        && obj1.y + rect1.mY + rect1.mHeight > obj2.y + rect2.mY
+        && obj1.y + rect1.mY > obj2.y + rect2.mY - rect2.mHeight
+        && obj1.y + rect1.mY - rect1.mHeight < obj2.y + rect2.mY
+}
+
+function getCloser(from, to, speed) {
+    if(from > to) {
+        from -= speed
+        if(from < to) {
+            from = to
+        }
+    } else if(from < to) {
+        from += speed
+        if(from > to) {
+            from = to
+        }
+    }
+    return from
 }

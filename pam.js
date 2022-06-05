@@ -270,6 +270,12 @@ PVZ2.Plant = class extends PVZ2.Object {
             super.step()
             return
         }
+        if(this.launchCounter != undefined) {
+            this.launchCounter++
+            if(this.launchCounter == 5 && this.type.TypeName == 'repeater') {
+                this.launch()
+            }
+        }
         if(this.type.prop.IsInstant) {
             if(this.action.Type == 'explode' && this.actName != 'attack') {
                 if(!this.action.CooldownTimeMin || this.age > this.action.CooldownTimeMin * 30) {
@@ -306,7 +312,7 @@ PVZ2.Plant = class extends PVZ2.Object {
                         new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
                     }
                     for(let obj2 of objects) {
-                        if(obj2.ztype == 'zombie' && !obj2.dead) {
+                        if(obj2.ztype == 'zombie' && !obj2.dead && withinDistance(this, obj2, 200)) {
                             obj2.dead = true
                             rm(obj2)
                             new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y)
@@ -324,16 +330,22 @@ PVZ2.Plant = class extends PVZ2.Object {
     }
     useAction() {
         if(this.action.Type == 'projectile') {
-            let projectileType = getByRTID(this.action.Projectile)
-            let a = new PVZ2.Projectile(projectileType)
-            a.position.set(this.x + this.action.SpawnOffset.x
-                , this.y + this.action.SpawnOffset.y)
-            stage.addChild(a)
-            newObjects.push(a)
-            a.ztype = 'projectile'
+            if(this.action.Projectile) {
+                this.launch()
+                this.launchCounter = 0
+            }
         } else if(this.action.Type == 'sun') {
             new PVZ2.Sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y, 50)
         }
+    }
+    launch() {
+        let projectileType = getByRTID(this.action.Projectile)
+        let a = new PVZ2.Projectile(projectileType)
+        a.position.set(this.x + this.action.SpawnOffset.x
+            , this.y + this.action.SpawnOffset.y)
+        stage.addChild(a)
+        newObjects.push(a)
+        a.ztype = 'projectile'
     }
 }
 
@@ -543,6 +555,24 @@ PVZ2.Projectile = class extends PVZ2.Object {
         super.init()
     }
     step() {
+        for(let obj2 of objects) {
+            if(obj2.ztype == 'zombie' && !obj2.dead) {
+                if(ifCollide(this, obj2, this.type.CollisionRect, obj2.type.prop.HitRect)) {
+                    obj2.hit(this.type.BaseDamage)
+                    if(obj2.hitpoints > 0) {
+                        if(this.type.Conditions) {
+                            for(let cond of this.type.Conditions) {
+                                if(cond.Condition == 'chill') {
+                                    obj2.chill(cond.Duration.Min)
+                                }
+                            }
+                        }
+                    }
+                    this.splat()
+                    rm(this)            
+                }
+            }
+        }
         super.step()
         this.x += this.speedX
         if(this.x > 1600) {
@@ -557,85 +587,6 @@ PVZ2.Projectile = class extends PVZ2.Object {
     }
 }
 
-PVZ2.Seed = class extends PIXI.Container {
-    constructor(type) {
-        super()
-        this.bg = drawPImage()
-        this.priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
-        this.price = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
-
-        let cover1 = this.cover1 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
-        cover1.tint = 0x0
-        cover1.alpha = 0.5
-        cover1.visible = false
-        let cover2 = this.cover2 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
-        cover2.tint = 0x0
-        cover2.alpha = 0.5
-        cover2.visible = false
-
-        this.plant = drawPImage(15, 0)
-
-        this.addChild(this.bg, this.plant, this.priceTab, this.price, cover1, cover2)
-        this.ztype = 'seed'
-        if(type) {
-            this.setType(type)
-        } else {
-            this.clearType()
-        }
-    }
-    step() {
-        if(!this.type || !gameStart) return
-        if(this.cd == 0) {
-            this.cover1.visible = this.type.prop.Cost > sunTotal
-            this.cover2.visible = false
-            return
-        }
-        this.cd--
-        this.cover2.scale.y = this.cd / this.type.prop.PacketCooldown / fps
-        this.cover1.visible = true
-        this.cover2.visible = true
-    }
-    use() {
-        this.cd = this.type.prop.PacketCooldown * fps
-    }
-    ready() {
-        return this.cd == 0
-    }
-    refresh() {
-        this.cd = 0
-    }
-    clearType() {
-        this.type = undefined
-        this.bg.texture = texturesMap.IMAGE_UI_PACKETS_EMPTY_PACKET
-        this.bg.alpha = 0.5
-        this.price.visible = false
-        this.plant.visible = false
-        this.priceTab.visible = false
-    }
-    setType(type) {
-        if(!type.prop) debugger
-        let bgname = type.HomeWorld
-        if (!bgname || bgname == 'tutorial') bgname = 'ready'
-        this.bg.texture = texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()]
-        this.bg.alpha = 1
-        this.price.text = type.prop.Cost
-        this.price.position.set(180 - this.price.width, 60)
-        this.price.visible = true
-        this.plant.texture = texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()]
-        this.plant.visible = true
-        this.priceTab.visible = true
-        this.type = type
-        if(type.prop.StartingCooldown) {
-            this.cd = type.prop.StartingCooldown * fps
-        } else {
-            this.cd = type.prop.PacketCooldown * fps
-        }
-    }
-    setSelected(selected) {
-        this.cover1.visible = selected
-        this.selected = selected
-    }
-}
 
 PIXI.Container.prototype.setTransformArray = function(transform) {
     if(transform.length == 2) {
@@ -657,6 +608,10 @@ function drawCollisionBox(obj, rect) {
     let rec = new PIXI.Graphics()
     rec.lineStyle(3, 0x000000, 1)
     rec.drawRect(0, 0, rect.mWidth, rect.mHeight)
-    rec.position.set(rect.mX + obj.pivot.x, rect.mY + obj.pivot.y)
+    rec.position.set(rect.mX + obj.pivot.x, -rect.mY + obj.pivot.y - rect.mHeight)
     obj.addChild(rec)
+}
+
+function withinDistance(obj1, obj2, dist) {
+    return Math.sqrt((obj1.x - obj2.x)**2 + (obj1.y - obj2.y)**2) < dist
 }

@@ -16,7 +16,7 @@
     PVZ2.setResolution(768)
     let app = new PIXI.Application({width: PVZ2.screenHeight, height: PVZ2.screenWidth});
     document.body.appendChild(app.view);
-    PVZ2.collisionBox = true
+    // PVZ2.collisionBox = true
 
     app.renderer.backgroundColor = 0x0ccccff;   
 
@@ -34,9 +34,12 @@
     ]
 
     var seedChooser
-    var gameStart = false
+    var scene
+    PVZ2.gameStart = false
+    PVZ2.debug = true
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
     var seedBank = {
+        initSeeds: ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'cherry_bomb'],
         seeds: [],
         pos: {
             x: 0, y: 150, height: 120, width: 180
@@ -49,15 +52,22 @@
             }
         }
     }
+    var zombieBank = {
+        initPackets: ['mummy_armor4'],
+        packets: [],
+        pos: {
+            x: 0, y: 150, height: 120, width: 180
+        },
+    }
 
     function init() {
-        back(0, 0)
+        scene = back(0, 0)
+        scene.goBack()
         for(let i = 0;i < 8;i++){
             seedBank.seeds.push(seed(-1, 0, seedBank.pos.height * i + seedBank.pos.y))
         }
-        // for(let seed of seeds) {seed.refresh()} // for test
         for(let i = 0;i < 5;i++) {
-            car(310, i * 150 + 390)
+            drawPam(310, i * 150 + 390, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', scene)
         }
         sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
@@ -65,10 +75,17 @@
         numSun(0, 0, 50)
         shovel(shovelPos.x, shovelPos.y)
 
-        sunTotal = 500
+        sunTotal = 5000
         seedChooser = new SeedChooser(5, 7)
         stage.addChild(seedChooser)
         seedChooser.position.set(seedBank.pos.width + 20, 200)
+        loadPlantResource(seedBank.initSeeds, () => {
+            seedChooser.click2(0, 0)
+        })
+        for(let [index, name] of seedBank.initSeeds.entries()) {
+            seedChooser.addSeedByName(name)
+        }
+        // start button
         let buttonStart = drawPImage(1140, 940, texturesMap.IMAGE_UI_GENERIC_PURPLEBUTTON, stage)
         let buttonStartText = new PIXI.Text('Start!', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
         buttonStartText.position.set(buttonStart.x + 13, buttonStart.y + 15)
@@ -76,9 +93,16 @@
 
         buttonStart.interactive = true
         buttonStart.click = function() {
-            gameStart = true
+            PVZ2.gameStart = true
             stage.removeChild(seedChooser)
+            stage.removeChild(buttonRefresh)
             stage.removeChild(buttonStart, buttonStartText)
+            scene.goFront()
+        }
+        // refresh button
+        let buttonRefresh = drawPImage(1140, 40, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
+        buttonRefresh.interactive = true
+        buttonRefresh.click = function() {
         }
     }
     t = 0
@@ -86,7 +110,7 @@
     var sunCnt = 0
 
     function loop() {
-        // if(!gameStart) return
+        // if(!PVZ2.gameStart) return
         if(t++ % speed == 0) {
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
@@ -103,24 +127,6 @@
                 } else if(obj.ztype == 'effect') {
                     
                 } else if(obj.ztype == 'projectile') {
-                    for(let obj2 of objects) {
-                        if(obj2.ztype == 'zombie' && !obj2.dead) {
-                            if(ifCollide(obj, obj2, obj.type.CollisionRect, obj2.type.prop.HitRect)) {
-                                obj2.hit(obj.type.BaseDamage)
-                                if(obj2.hitpoints > 0) {
-                                    if(obj.type.Conditions) {
-                                        for(let cond of obj.type.Conditions) {
-                                            if(cond.Condition == 'chill') {
-                                                obj2.chill(cond.Duration.Min)
-                                            }
-                                        }
-                                    }
-                                }
-                                obj.splat()
-                                rm(obj)            
-                            }
-                        }
-                    }
                 }
                 obj.step()
             }
@@ -144,7 +150,7 @@
         let x = e.offsetX / PVZ2.zoom, y = e.offsetY / PVZ2.zoom
         console.log('click: ', x, y)
 
-        if(!gameStart) {
+        if(!PVZ2.gameStart) {
             if(x >= seedChooser.x && y > seedChooser.y) {
                 seedChooser.click(x - seedChooser.x, y - seedChooser.y)
             }
@@ -155,7 +161,7 @@
                 if(dy2 >= 0 && dy2 < 8) {
                     let seed = seedBank.seeds[dy2]
                     if(seed.type) {
-                        seedChooser.setSelected(seed.type, false)
+                        seedChooser.setPicked(seed.type.TypeName, false)
                         seed.clearType()
                     }
                 }
@@ -168,6 +174,18 @@
             return
         }
 
+        // collect sun
+        for(let obj of objects) {
+            if(obj.ztype == 'sun') {
+                let dis = Math.sqrt((obj.x - x)**2 + (obj.y - y)**2)
+                if(dis <= 50) {
+                    rm(obj)
+                    sunTotal += 25
+                    return
+                }
+            }
+        }
+        // plant plant
         dx = x - field.x
         dy = y - field.y
         dx2 = Math.floor(dx / field.w)
@@ -183,7 +201,7 @@
                 let seed = seedBank.seeds[selPlant]
                 grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
                 
-                let cost = plantList[selPlant].prop.Cost
+                let cost = seed.type.prop.Cost
                 sunTotal -= cost
                 seed.use()    // cooldown
                 selPlant = -1
@@ -194,24 +212,17 @@
             let dy = (y - seedBank.pos.y) / seedBank.pos.height
             let dy2 = Math.floor(dy)
             if(dy2 >= 0 && dy2 < 8) {
-                let seed = seedBank.seeds[dy2]
-                if(seed.type) {
-                    let cost = seed.type.prop.Cost
-                    if(sunTotal >= cost && seed.ready()) {
-                        selPlant = dy2
-                        useShovel = false
+                if(dy2 == selPlant){
+                    selPlant = -1
+                } else {
+                    let seed = seedBank.seeds[dy2]
+                    if(seed.type) {
+                        let cost = seed.type.prop.Cost
+                        if(sunTotal >= cost && seed.ready()) {
+                            selPlant = dy2
+                            useShovel = false
+                        }
                     }
-                }
-            }
-        }
-        // collect sun
-        for(let obj of objects) {
-            if(obj.ztype == 'sun') {
-                let dis = Math.sqrt((obj.x - x)**2 + (obj.y - y)**2)
-                if(dis <= 50) {
-                    rm(obj)
-                    sunTotal += 25
-                    break
                 }
             }
         }
@@ -238,59 +249,9 @@
     }
     
 
-    var plantList = [
-        {       // 0
-            ename: 'sunflower',
-            cost: 50,
-            hitpoint: 300,
-            cooldown: 20,
-        },
-        {       // 1
-            ename: 'peashooter',
-        },
-        {       // 2
-            ename: 'wallnut',
-        },
-        {       // 3
-            ename: 'snowpea',
-        },
-        {       // 4
-            ename: 'chomper',
-        },
-        {       // 5
-            ename: 'squash',
-        },
-        {       // 6
-            ename: 'cherry_bomb',
-        },
-        {       // 7
-            ename: 'repeater',
-        },
-        {       // 8
-            ename: 'threepeater',
-        },
-        {       // 9
-            ename: 'fumeshroom',
-        },
-    ]
+    var plantList = []
 
-    var zombieList = [
-        {       // 0
-            ename: 'mummy',
-        },
-        {       // 0
-            ename: 'mummy_armor1',
-        },
-        {       // 0
-            ename: 'mummy_armor2',
-        },
-        {       // 0
-            ename: 'mummy_armor4',
-        },
-        {       // 0
-            ename: 'modern_allstar',
-        },
-    ]
+    var zombieList = []
 
     function rnd(x, y) {
         return Math.floor(Math.random() * (y-x+1)) + x

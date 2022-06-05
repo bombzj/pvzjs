@@ -13,7 +13,7 @@
     <body>
 <script type="text/javascript">
 
-    let app = new PIXI.Application({width: 1024, height: 1024});
+    let app = new PIXI.Application({width: 2048, height: 2048});
     document.body.appendChild(app.view);
 
     app.renderer.backgroundColor = 0x0FFFFFF;   
@@ -21,12 +21,20 @@
     const loader = PIXI.Loader.shared;          
     loadPams()
 
-    var atlas
+    var atlasNames =['UI_SEEDPACKETS', 'UI_ALWAYSLOADED', 'LEVELCOMMON', 'UI_ZOMBIEPACKETS']
+    var atlas = 0
+    var atlasSprite
+    var texture
     function init() {
         // atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
-        atlas = atlasMap.ATLASIMAGE_ATLAS_UI_ALWAYSLOADED_768_00
-        let a = new PIXI.Sprite(atlas.baseTexture)
-        app.stage.addChild(a)
+        atlasSprite = new PIXI.Sprite()
+        drawAtlas()
+        app.stage.addChild(atlasSprite)
+    }
+
+    function drawAtlas() {
+        texture = atlasMap['ATLASIMAGE_ATLAS_' + atlasNames[atlas] + '_768_00']
+        atlasSprite.texture = texture.baseTexture
     }
 
     function loop() {
@@ -37,7 +45,7 @@
         let x = e.offsetX, y = e.offsetY
         console.log('click: ', x, y)
 
-        for(let child of atlas.children) {
+        for(let child of texture.children) {
             let rect = child.texture.orig
             if(y >= rect.top && y < rect.bottom && x >= rect.left && x < rect.right) {
                 console.log(child.id)
@@ -46,11 +54,13 @@
     }
 
     window.onkeydown = function(e) {
-        if(e.code == 'KeyA'){
-            speed = 60
+        if(e.code == 'KeyU'){
+            if(atlas > 0) atlas--
+            drawAtlas()
         }
-        if(e.code == 'KeyR'){
-            speed = 2
+        if(e.code == 'KeyD'){
+            if(atlas < atlasNames.length - 1) atlas++
+            drawAtlas()
         }
     }
     
