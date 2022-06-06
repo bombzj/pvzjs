@@ -77,19 +77,21 @@
             }
         },
         showDemo2() {
-                for(let z of this.zombies) {
-                    scene.removeChild(z)
+            for(let z of this.zombies) {
+                scene.removeChild(z)
+            }
+            this.zombies = []
+            for(let i = 0;i < 2;i++) {
+                for(let p of this.packets) {
+                    let demo = new PVZ2.ZombieBaseClass(rtons.ZombieTypes[p], 'idle')
+                    demo.position.set(this.pos.x + rnd(0, this.pos.width), this.pos.y + rnd(0, this.pos.height))
+                    scene.addChild(demo)
+                    objects.push(demo)
+                    this.zombies.push(demo)
                 }
-                this.zombies = []
-                for(let i = 0;i < 2;i++) {
-                    for(let p of this.packets) {
-                        let demo = new PVZ2.ZombieBaseClass(rtons.ZombieTypes[p], 'idle')
-                        demo.position.set(this.pos.x + rnd(0, this.pos.width), this.pos.y + rnd(0, this.pos.height))
-                        scene.addChild(demo)
-                        objects.push(demo)
-                        this.zombies.push(demo)
-                    }
-                }
+            }
+            zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE
+            zombieBank.buttonRefresh.interactive = true
         }
     }
 
@@ -102,7 +104,7 @@
         for(let i = 0;i < 5;i++) {
             drawPam(310, i * 150 + 390, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', scene)
         }
-        sun1 = sun(500, 100)
+        // sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
         selspr.visible = false
         numSun(0, 0, 50)
@@ -132,15 +134,17 @@
         buttonStart.click = function() {
             PVZ2.gameStart = true
             stage.removeChild(seedChooser)
-            stage.removeChild(buttonRefresh)
+            stage.removeChild(zombieBank.buttonRefresh)
             stage.removeChild(buttonStart, buttonStartText)
             scene.goFront()
         }
         // refresh button
-        let buttonRefresh = drawPImage(1140, 40, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
-        buttonRefresh.interactive = true
-        buttonRefresh.click = function() {
+        zombieBank.buttonRefresh = drawPImage(1240, 240, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
+        zombieBank.buttonRefresh.interactive = true
+        zombieBank.buttonRefresh.click = function() {
             zombieBank.shuffle()
+            zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE_DOWN
+            zombieBank.buttonRefresh.interactive = false
         }
     }
     t = 0
@@ -149,7 +153,6 @@
     var zombieCnt = 0
 
     function loop() {
-        // if(!PVZ2.gameStart) return
         if(t++ % speed == 0) {
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
@@ -169,6 +172,7 @@
                 }
                 obj.step()
             }
+            if(!PVZ2.gameStart) return
             // a new sun every 20 sec
             sunCnt++
             if(sunCnt == 300) {

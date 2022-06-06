@@ -18,7 +18,7 @@ function zombie(i, x, y) {
     if(PVZ2[type.ZombieClass]) {
         a = new PVZ2[type.ZombieClass](type)
     } else {
-        a = new PVZ2.ZombieBaseClass(type)
+        a = new PVZ2.ZombieBasic(type)
     }
     a.position.set(x, y)
     stage.addChild(a)
@@ -490,6 +490,21 @@ class SeedChooser extends PIXI.Container {
         this.demoSprite = new StretchingSprite(texturesMap.IMAGE_UI_GENERIC_GREENBUTTON_DOWN, seedChooserDemoPos.width, seedChooserDemoPos.height)
         this.demoSprite.position.set(seedChooserDemoPos.x, seedChooserDemoPos.y)
         this.addChild(this.selspr, this.demoSprite)
+        let upButton = drawPImage(0, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_BAR_UPGRADE_ARROW_GREEN)
+        let downButton = drawPImage(0, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_BAR_UPGRADE_ARROW_GREEN)
+        downButton.angle = 180
+        upButton.interactive = downButton.interactive = true
+        upButton.scale.set(2)
+        downButton.scale.set(2)
+        upButton.position.set(320, -200)
+        downButton.position.set(400, 0)
+        upButton.click = x => {
+            this.pageUp()
+        }
+        downButton.click = x => {
+            this.pageDown()
+        }
+        this.addChild(upButton, downButton)
     }
     turnPage(page) {
         this.page = page
