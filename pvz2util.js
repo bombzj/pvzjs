@@ -13,7 +13,13 @@ function plant(i, x, y) {
 
 // draw a zombie
 function zombie(i, x, y) {
-    let a = new PVZ2[zombieList[i].ZombieClass](zombieList[i])
+    let type = typeof i !== 'number' ? i : zombieList[i]
+    let a
+    if(PVZ2[type.ZombieClass]) {
+        a = new PVZ2[type.ZombieClass](type)
+    } else {
+        a = new PVZ2.ZombieBaseClass(type)
+    }
     a.position.set(x, y)
     stage.addChild(a)
     newObjects.push(a)
@@ -164,7 +170,7 @@ function setup(resources) {
         for(let image of res.images) {
             let baseTexture = resources[image.parent].texture
             texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
-            
+            // only for findatlas.js
             let parent = atlasMap[image.parent]
             if(!parent) {
                 parent = atlasMap[image.parent] = {baseTexture: baseTexture, children: []} 
@@ -180,7 +186,7 @@ function setup(resources) {
         let res = resourcesMap[resName]
         if(!res) continue
         for(let pam of res.pams) {
-            pamInit(pam.name, resources[pam.name].data, texturesMap)
+            pamInit(pam.name, resources[pam.name].data)
         }
     }
 
@@ -401,7 +407,7 @@ function loadPlantResource(typeNames, callback) {
                     texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
                 }
                 for(let pam of res.pams) {
-                    pamInit(pam.name, resources[pam.name].data, texturesMap)
+                    pamInit(pam.name, resources[pam.name].data)
                 }
             }
         }
@@ -410,6 +416,54 @@ function loadPlantResource(typeNames, callback) {
         }
     })
 }
+
+
+function loadZombieResource(typeNames, callback) {
+    if(loader.loading) return
+    loader.reset()
+    for(let typeName of typeNames) {
+        let type = rtons.ZombieTypes[typeName]
+        console.log('loading ' + typeName)
+        for(let resName of type.ResourceGroups) {
+            let res = resourcesMap[resName]
+            if(!res) continue
+            for(let pam of res.pams) {
+                try {
+                    loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
+                } catch(e) { }
+            }
+            for(let image of res.atlases) {
+                try {
+                    loader.add(image.name, 'pam/atlases/' + image.path + '.png')
+                } catch(e) { }
+            }
+        }
+        if(!type.prop) {
+            type.prop = getByRTID(type.Properties)
+        }
+    }
+
+    loader.load((loader, resources) => {
+        for(let typeName of typeNames) {
+            let type = rtons.ZombieTypes[typeName]
+            for(let resName of type.ResourceGroups) {
+                let res = resourcesMap[resName]
+                if(!res) continue
+                for(let image of res.images) {
+                    let baseTexture = resources[image.parent].texture
+                    texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
+                }
+                for(let pam of res.pams) {
+                    pamInit(pam.name, resources[pam.name].data)
+                }
+            }
+        }
+        if(callback) {
+            callback()
+        }
+    })
+}
+
 
 let seedChooserSeedSize = {width: 180, height: 120, top: 0}
 let seedChooserDemoPos = {x: 0, y: -310, width: 300, height: 300}

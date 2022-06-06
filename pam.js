@@ -368,7 +368,8 @@ var hideSprites = new Set([
 PVZ2.ZombieBaseClass = class extends PVZ2.Object {
     constructor(type, initAct) {
         let pam = pams[type.PopAnim]
-        super(pam, null, initAct, {walk: true, walkGround: 'ground_swatch'})
+        super(pam, undefined, initAct, {walk: true, walkGround: 'ground_swatch'})
+        this.actName = initAct
         this.type = type
         let prop = type.prop
         this.hitpoints = prop.Hitpoints
@@ -411,7 +412,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             super.step()
         }
 
-        if(this.actName != 'die') {
+        if(this.actName != 'die' && this.actName != 'idle') {
             let prop = this.type.prop
             let ground = prop.GroundTrackName && this.getSprite(prop.GroundTrackName)
             if(ground) {
