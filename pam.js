@@ -107,7 +107,7 @@ class PamSprite extends PIXI.Container {
                 if(this.param.walk && spriteData.name == this.param.walkGround) {
                     this.ground = undefined
                 }
-                if(spriteData.name.startsWith('custom') && spriteData.name != this.param.custom/* || hideSprite.has(spriteData.name)*/) {
+                if(['Magnet_Item'].indexOf(spriteData.name) != -1 || spriteData.name.startsWith('custom') && spriteData.name != this.param.custom/* || hideSprite.has(spriteData.name)*/) {
                     spr.visible = false
                 }
             } else {

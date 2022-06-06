@@ -76,9 +76,9 @@
         shovel(shovelPos.x, shovelPos.y)
 
         sunTotal = 5000
-        seedChooser = new SeedChooser(5, 7)
+        seedChooser = new SeedChooser(5, 5)
         stage.addChild(seedChooser)
-        seedChooser.position.set(seedBank.pos.width + 20, 200)
+        seedChooser.position.set(seedBank.pos.width + 20, 440)
         loadPlantResource(seedBank.initSeeds, () => {
             seedChooser.click2(0, 0)
         })

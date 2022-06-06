@@ -215,62 +215,59 @@ function loadPams(callback) {
         loader.add(j, 'pam/packages/' + j + '.rton', {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER, loadType: 'rton'})
     }
     // loader.add('resourcesmap', 'pam/resourcesmap.json')
-    loader.load((loader, resources) => setup2(resources, callback));
-}
-
-function setup2(resources, callback) {
-    loadPackages(resources)
-    loadPlantType(resources)
-    loadZombieType(resources)
-    for (let p of plantList) {
-        // let t = plantType[p.ename]
-        let t = rtons.PlantTypes[p.ename]
-        plantType[t.TypeName] = t
-        plantType[t.TypeName].prop = getByRTID(t.Properties)
-        Object.assign(p, t)
-    }
-    for (let z of zombieList) {
-        // let t = zombieType[z.ename]
-        let t = rtons.ZombieTypes[z.ename]
-        zombieType[t.TypeName] = t
-        let prop = getByRTID(t.Properties)
-        if(!prop) debugger
-        zombieType[t.TypeName].prop = prop
-        if(prop.ZombieArmorProps) {
-            zombieType[t.TypeName].armorProps = []
-            for(let armor of prop.ZombieArmorProps) {
-                zombieType[t.TypeName].armorProps.push(getByRTID(armor))
+    loader.load((loader, resources) => {
+        loadPackages(resources)
+        loadPlantType(resources)
+        loadZombieType(resources)
+        for (let p of plantList) {
+            // let t = plantType[p.ename]
+            let t = rtons.PlantTypes[p.ename]
+            plantType[t.TypeName] = t
+            plantType[t.TypeName].prop = getByRTID(t.Properties)
+            Object.assign(p, t)
+        }
+        for (let z of zombieList) {
+            // let t = zombieType[z.ename]
+            let t = rtons.ZombieTypes[z.ename]
+            zombieType[t.TypeName] = t
+            let prop = getByRTID(t.Properties)
+            if(!prop) debugger
+            zombieType[t.TypeName].prop = prop
+            if(prop.ZombieArmorProps) {
+                zombieType[t.TypeName].armorProps = []
+                for(let armor of prop.ZombieArmorProps) {
+                    zombieType[t.TypeName].armorProps.push(getByRTID(armor))
+                }
+            }
+            Object.assign(z, t)
+        }
+        loadResources()
+        // resourcesMap = resources.resourcesmap.data
+    
+        loader.reset()
+        for(let type of plantList) {
+            need2LoadGroup.push(...type.PlantResourceGroups)
+        }
+        for(let type of zombieList) {
+            need2LoadGroup.push(...type.ResourceGroups)
+        }
+        for(let resName of need2LoadGroup) {
+            let res = resourcesMap[resName]
+            if(!res) continue
+            for(let pam of res.pams) {
+                try {
+                    loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
+                } catch(e) { }
+            }
+            for(let image of res.atlases) {
+                try {
+                    loader.add(image.name, 'pam/atlases/' + image.path + '.png')
+                } catch(e) { }
             }
         }
-        Object.assign(z, t)
-    }
-    loadResources()
-    // resourcesMap = resources.resourcesmap.data
-
-    loader.reset()
-    for(let type of plantList) {
-        need2LoadGroup.push(...type.PlantResourceGroups)
-    }
-    for(let type of zombieList) {
-        need2LoadGroup.push(...type.ResourceGroups)
-    }
-    for(let resName of need2LoadGroup) {
-        let res = resourcesMap[resName]
-        if(!res) continue
-        for(let pam of res.pams) {
-            try {
-                loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
-            } catch(e) { }
-        }
-        for(let image of res.atlases) {
-            try {
-                loader.add(image.name, 'pam/atlases/' + image.path + '.png')
-            } catch(e) { }
-        }
-    }
-    loader.load((loader, resources) => setup(resources, callback));
+        loader.load((loader, resources) => setup(resources, callback));
+    });
 }
-
 
 const packageJsons = ['RESOURCES', 'PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
     , 'ArmorTypes', 'PropertySheets', 'ProjectileTypes']
@@ -415,6 +412,7 @@ function loadPlantResource(typeNames, callback) {
 }
 
 let seedChooserSeedSize = {width: 180, height: 120, top: 0}
+let seedChooserDemoPos = {x: 0, y: -310, width: 300, height: 300}
 
 class SeedChooser extends PIXI.Container {
     constructor(column, row) {
@@ -422,6 +420,7 @@ class SeedChooser extends PIXI.Container {
         this.column = column
         this.row = row
         this.seeds = []
+        this.typeNames = rtons.PropertySheets.DefaultGameProps.PlantTypeOrder
         for(let y = 0;y < row;y++) {
             for(let x = 0;x < column;x++) {
                 let seed = new PVZ2.Seed()
@@ -434,18 +433,19 @@ class SeedChooser extends PIXI.Container {
         this.pickedTypes = new Set()
         this.turnPage(0)
         this.selspr = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_SELECT)
-        this.addChild(this.selspr)
+        this.demoSprite = new StretchingSprite(texturesMap.IMAGE_UI_GENERIC_GREENBUTTON_DOWN, seedChooserDemoPos.width, seedChooserDemoPos.height)
+        this.demoSprite.position.set(seedChooserDemoPos.x, seedChooserDemoPos.y)
+        this.addChild(this.selspr, this.demoSprite)
     }
     turnPage(page) {
-        let types = rtons.PlantTypes.objects
         this.page = page
         for(let i = 0;i < this.column * this.row;i++) {
             let index = i + this.column * this.row * this.page
-            if(index >= types.length) {
+            if(index >= this.typeNames.length) {
                 this.seeds[i].clearType()
                 continue
             }
-            let type = types[index].objdata
+            let type = rtons.PlantTypes[this.typeNames[index]]
             if(!type || !type.prop) debugger
 
             this.seeds[i].setType(type)
@@ -459,7 +459,9 @@ class SeedChooser extends PIXI.Container {
         }
     }
     pageDown() {
-        this.turnPage(this.page + 1)
+        if(this.page < this.typeNames.length / this.row / this.column - 1) {
+            this.turnPage(this.page + 1)
+        }
     }
     click(x, y) {
         let dx = Math.floor(x / seedChooserSeedSize.width)
@@ -514,7 +516,7 @@ class SeedChooser extends PIXI.Container {
             if(this.demo) this.removeChild(this.demo)
             this.demo = new PVZ2.Plant(this.selected.type)
             this.demo.demo = true
-            this.demo.position.set(1050, 500)
+            this.demo.position.set(seedChooserDemoPos.x + seedChooserDemoPos.width / 2, seedChooserDemoPos.y + seedChooserDemoPos.height / 2)
             this.addChild(this.demo)
             objects.push(this.demo)
         }
@@ -591,7 +593,9 @@ PVZ2.Seed = class extends PIXI.Container {
     setType(type) {
         if(!type.prop) debugger
         let bgname = type.HomeWorld
-        if (!bgname || bgname == 'tutorial') bgname = 'ready'
+        if(type.Premium) bgname = 'ready_premium'
+        else if(!bgname) bgname = 'homeless'
+        else if (bgname == 'tutorial' || bgname == 'modern') bgname = 'ready'
         this.bg.texture = texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()]
         this.bg.alpha = 1
         this.price.text = type.prop.Cost
@@ -651,6 +655,51 @@ PVZ2.Scene = class extends PIXI.Container {
     }
     goBack() {
         this.destX = -PVZ2.Scene.backPosition.x
+    }
+}
+
+class StretchingSprite extends PIXI.Container {
+    constructor(texture, width, height) {
+        super()
+        width *= resScale
+        height *= resScale
+        let oriRect = texture.orig
+        let height3 = oriRect.height / 3
+        let baseTexture = texture.baseTexture
+        if(width <= texture.width) {
+            if(height <= texture.height) {
+                this.addChild(new PIXI.Sprite(texture))
+            } else {
+                let s1 = new PIXI.Sprite(new PIXI.Texture(baseTexture, new PIXI.Rectangle(oriRect.x, oriRect.y, oriRect.width, height3)))
+                let s2 = new PIXI.Sprite(new PIXI.Texture(baseTexture, new PIXI.Rectangle(oriRect.x, oriRect.y + height3, oriRect.width, height3)))
+                s2.position.set(0, height3)
+                s2.scale.y = (height - height3 * 2) / height3
+                let s3 = new PIXI.Sprite(new PIXI.Texture(baseTexture, new PIXI.Rectangle(oriRect.x, oriRect.y + height3 * 2, oriRect.width, height3)))
+                s3.position.set(0, height - height3)
+                this.addChild(s1, s2, s3)
+            }
+        } else {
+            if(height <= texture.height) {
+                this.drawStripe(baseTexture, oriRect, width, 0, oriRect.y, oriRect.height)
+            } else {
+                this.drawStripe(baseTexture, oriRect, width, 0, oriRect.y, height3)
+                this.drawStripe(baseTexture, oriRect, width, height3, oriRect.y + height3, height3, (height - height3 * 2) / height3)
+                this.drawStripe(baseTexture, oriRect, width, height - height3, oriRect.y + height3 * 2, height3)
+            }
+        }
+        this.scale.set(resScaleV)
+    }
+    drawStripe(baseTexture, oriRect, width, y, oy, oheight, scaleY = 1) {
+        let width3 = oriRect.width / 3
+        let s1 = new PIXI.Sprite(new PIXI.Texture(baseTexture, new PIXI.Rectangle(oriRect.x, oy, width3, oheight)))
+        s1.position.set(0, y)
+        let s2 = new PIXI.Sprite(new PIXI.Texture(baseTexture, new PIXI.Rectangle(oriRect.x + width3, oy, width3, oheight)))
+        s2.position.set(width3, y)
+        s2.scale.x = (width - width3 * 2) / width3
+        let s3 = new PIXI.Sprite(new PIXI.Texture(baseTexture, new PIXI.Rectangle(oriRect.x + width3 * 2, oy, width3, oheight)))
+        s3.position.set(width - width3, y)
+        s1.scale.y = s2.scale.y = s3.scale.y = scaleY
+        this.addChild(s1, s2, s3)
     }
 }
 
