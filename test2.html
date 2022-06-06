@@ -25,13 +25,6 @@
 
     let sun1
     let selspr
-    var grids = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
 
     var seedChooser
     var scene
@@ -96,6 +89,7 @@
     }
 
     function init() {
+        initGrid(5, 9)
         scene = back(0, 0)
         scene.goBack()
         for(let i = 0;i < 8;i++){
@@ -239,15 +233,17 @@
         dx2 = Math.floor(dx / field.w)
         dy2 = Math.floor(dy / field.h)
         if(dx2 >= 0 && dx2 < 9 && dy2 >= 0 && dy2 < 5) {
-            if(grids[dy2][dx2]) {
+            if(PVZ2.grids[dy2][dx2]) {
                 if(useShovel) {
-                    rm(grids[dy2][dx2])
-                    grids[dy2][dx2] = 0
+                    rm(PVZ2.grids[dy2][dx2])
+                    PVZ2.grids[dy2][dx2] = 0
                     useShovel = false
                 }
             } else if(selPlant != -1) {
                 let seed = seedBank.seeds[selPlant]
-                grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
+                let p = PVZ2.grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
+                p.gridX = dx2
+                p.gridY = dy2
                 
                 let cost = seed.type.prop.Cost
                 sunTotal -= cost

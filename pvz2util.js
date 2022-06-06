@@ -193,20 +193,22 @@ function setup(resources) {
     app.stage.addChild(stage)
     stage.scale.set(PVZ2.zoom)
     init(resources)
-    app.ticker.add(delta => loop2())
+    app.ticker.add(delta => {
+        objects.forEach(a => {
+            if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
+                stage.removeChild(a)
+                if(a.gridX != undefined) {
+                    PVZ2.grids[a.gridY][a.gridX] = undefined
+                }
+            }
+        })
+        objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
+        objects = objects.concat(newObjects)
+        newObjects = []
+        loop()
+    })
 }
 
-function loop2() {
-    objects.forEach(a => {
-        if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
-            stage.removeChild(a)
-        }
-    })
-    objects = objects.filter(a => !a.needRemove && (!a.pamParent || !a.pamParent.needRemove))
-    objects = objects.concat(newObjects)
-    newObjects = []
-    loop()
-}
 
 let need2LoadGroup = ['LevelCommon', 'ModernMowerGroup', 'UI_AlwaysLoaded', 'UI_SeedPackets'
     , 'DelayLoad_Background_FrontLawn_Birthday']
@@ -702,6 +704,15 @@ PVZ2.ZombiePacket = class extends PIXI.Container {
     }
 }
 
+function initGrid(row, column) {
+    PVZ2.row = row
+    PVZ2.column = column
+    PVZ2.grids = []
+    for(let i = 0;i < row;i++) {
+        PVZ2.grids[i] = []
+    }
+}
+
 PVZ2.Scene = class extends PIXI.Container {
     static backPosition = {x: 600, y: 0}
     static moveSpeed = 20
@@ -770,6 +781,11 @@ class StretchingSprite extends PIXI.Container {
         s1.scale.y = s2.scale.y = s3.scale.y = scaleY
         this.addChild(s1, s2, s3)
     }
+}
+
+PVZ2.plantRect = {
+    mX: 20,    mY: 0,
+    mWidth: 40, mHeight: 100
 }
 
 function ifCollide(obj1, obj2, rect1, rect2) {

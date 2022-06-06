@@ -86,8 +86,9 @@ class PamSprite extends PIXI.Container {
         for(let remove of frame.remove) {
             let spr = this.parts[remove.index]
             if(spr) {
-                this.removeChild(spr)
-                delete this.parts[remove.index]
+                spr.renderable = false
+                // this.removeChild(spr)
+                // delete this.parts[remove.index]
             }
         }
         for(let append of frame.append) {
@@ -373,6 +374,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         this.type = type
         let prop = type.prop
         this.hitpoints = prop.Hitpoints
+        this.initAct = initAct
         
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
@@ -411,8 +413,25 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         } else {
             super.step()
         }
+        let eating = false
+        for(let obj2 of objects) {
+            if(obj2.ztype == 'plant') {
+                if(ifCollide(this, obj2, this.type.prop.AttackRect, PVZ2.plantRect)) {
+                    obj2.hitpoints -= this.type.prop.EatDPS / 30
+                    if(obj2.hitpoints <= 0) {
+                        rm(obj2)
+                    }
+                    eating = true
+                }
+            }
+        }
+        if(eating && this.actName != 'eat') {
+            this.changeAction('eat')
+        } else if(!eating && this.actName == 'eat') {
+            this.changeAction(this.initAct)
+        }
 
-        if(this.actName != 'die' && this.actName != 'idle') {
+        if(this.actName != 'die' && this.actName != 'idle' && this.actName != 'eat') {
             let prop = this.type.prop
             let ground = prop.GroundTrackName && this.getSprite(prop.GroundTrackName)
             if(ground) {
