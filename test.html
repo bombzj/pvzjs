@@ -14,7 +14,8 @@
 <script type="text/javascript">
 
     // 准备好画布
-    let app = new PIXI.Application({width: 916, height: 800});
+    PVZ2.setResolution(768)
+    let app = new PIXI.Application({width: PVZ2.screenHeight, height: PVZ2.screenWidth});
     document.body.appendChild(app.view);
 
     // 设置背景颜色
@@ -22,28 +23,25 @@
 
     // 加载图片和动画
     const loader = PIXI.Loader.shared;
+
     var seeds = []  // 种子列表
-    var grids = [   // 所有的格子
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
+    var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
+    var seedBankPos = {x: 0, y: 150, height: 120, width: 180}
 
     // 启动后调用一次
     function init() {
+        initGrid(5, 9)
         back(0, 0)
         for(let i = 0;i < 8;i++){
-            seeds.push(seed(i, 0, 75 * i + 100))
+            seeds.push(seed(i, 0, seedBankPos.height * i + seedBankPos.y))
         }
         for(let i = 0;i < 5;i++) {
-            car(100, i * 100 + 100)
+            car(310, i * 150 + 390)
         }
-        numSun(0, 0, 50)    // 太阳数量
+        numSun(0, 0, 5000)    // 太阳数量
         sun(500, 0)     
         seedSel(0, 0)   // 选种子
-        shovel(680, 680)
+        shovel(shovelPos.x, shovelPos.y)    // 画铲子
     }
 
     var loopCnt = 0
@@ -53,9 +51,10 @@
         for(obj of objects) {
             // 太阳掉到底不动
             if(obj.ztype == 'sun') {
-                if(obj.y < 674){
-                    obj.y += 1
-                }
+                // if(obj.y < 1050){
+                //     obj.y += 1.5
+                // }
+            } else if(obj.ztype == 'projectile') {
             }
         }
 
@@ -68,7 +67,8 @@
         sunCnt++
         if(sunCnt == 300) {
             sunCnt = 0
-            sun(field.x + rnd(0, 500), 0)
+            sun(field.x + rnd(0, 800), 0)
+            zombie(rnd(0, 4), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
         }
     }
 
@@ -78,43 +78,56 @@
             if(obj.ztype == 'seedSel') {
                 // 移动选中框
                 obj.visible = (selPlant != -1)
-                obj.y = selPlant * 75 + 100
+                obj.y = selPlant * seedBankPos.height + seedBankPos.y
             } else if(obj.ztype == 'sun') {
                 // 太阳消失
-                if(obj.age > 600) {
-                    rm(obj)
-                }
+                // if(obj.age > 600) {
+                //     rm(obj)
+                // }
             }
             obj.step()
         }
     }
 
     let field = {
-        x: 260, y: 200,
-        w: 82, h: 96
+        x: 406, y: 312,
+        w: 128, h: 150
     }
 
     let selPlant = -1 // 选中的植物
     let useShovel = false   // 正在铲
     // 鼠标事件
     function onclick(e) {
-        let x = e.offsetX, y = e.offsetY
+        let x = e.offsetX / PVZ2.zoom, y = e.offsetY / PVZ2.zoom
         console.log('click: ', x, y)
+        // 收太阳
+        for(let obj of objects) {
+            if(obj.ztype == 'sun') {
+                let dis = Math.sqrt((obj.x - x)**2 + (obj.y - y)**2)
+                if(dis <= 50) {
+                    rm(obj)
+                    sunTotal += 25
+                    return
+                }
+            }
+        }
         // 放植物
         dx = x - field.x
         dy = y - field.y
         dx2 = Math.floor(dx / field.w)
         dy2 = Math.floor(dy / field.h)
         if(dx2 >= 0 && dx2 < 9 && dy2 >= 0 && dy2 < 5) {
-            if(grids[dy2][dx2]) {
+            if(PVZ2.grids[dy2][dx2]) {
                 if(useShovel) {
-                    rm(grids[dy2][dx2])
-                    grids[dy2][dx2] = 0
+                    rm(PVZ2.grids[dy2][dx2])
+                    PVZ2.grids[dy2][dx2] = 0
                     useShovel = false
                 }
             } else if(selPlant != -1) {
-                grids[dy2][dx2] = plant(selPlant, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
-                
+                let p = PVZ2.grids[dy2][dx2] = plant(selPlant, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
+                p.gridX = dx2
+                p.gridY = dy2
+
                 let cost = plantList[selPlant].prop.Cost  // 价格
                 sunTotal -= cost
                 seeds[selPlant].use()    // 重新冷却
@@ -122,30 +135,23 @@
             }
         }
         // 选植物
-        if(x < 100) {
-            let dy = (y - 100) / 75
+        if(x < seedBankPos.width) {
+            let dy = (y - seedBankPos.y) / seedBankPos.height
             let dy2 = Math.floor(dy)
             if(dy2 >= 0 && dy2 < 8) {
-                let cost = plantList[dy2].prop.Cost  // 价格
-                if(sunTotal >= cost && seeds[dy2].ready()) {
-                    selPlant = dy2
-                    useShovel = false
-                }
-            }
-        }
-        // 收太阳
-        for(let obj of objects) {
-            if(obj.ztype == 'sun') {
-                let dis = Math.sqrt((obj.x - x)**2 + (obj.y - y)**2)
-                if(dis <= 40) {
-                    rm(obj)
-                    sunTotal += 25
-                    break
+                if(dy2 == selPlant){
+                    selPlant = -1
+                } else {
+                    let cost = plantList[dy2].prop.Cost  // 价格
+                    if(sunTotal >= cost && seeds[dy2].ready()) {
+                        selPlant = dy2
+                        useShovel = false
+                    }
                 }
             }
         }
         // 点铲子
-        if(x <= 760 && x >= 680 && y <= 760 && y >= 680){
+        if(x <= shovelPos.x + shovelPos.width && x >= shovelPos.x && y <= shovelPos.y + shovelPos.height && y >= shovelPos.y){
             useShovel = !useShovel
             selPlant = -1
         }
@@ -223,6 +229,9 @@
         {       // 3
             name: '橄榄球僵尸',
             ename: 'modern_allstar',
+        },
+        {       // 3
+            ename: 'mummy_armor4',
         },
     ]
     loadPams()

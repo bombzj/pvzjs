@@ -620,6 +620,7 @@ PVZ2.Seed = class extends PIXI.Container {
         cover2.tint = 0x0
         cover2.alpha = 0.5
         cover2.visible = false
+        cover2.origScaleY = cover2.scale.y
 
         this.plant = drawPImage(15, 0)
 
@@ -640,7 +641,7 @@ PVZ2.Seed = class extends PIXI.Container {
             return
         }
         this.cd--
-        this.cover2.scale.y = this.cd / this.type.prop.PacketCooldown / fps
+        this.cover2.scale.y = this.cd / this.type.prop.PacketCooldown / fps * this.cover2.origScaleY
         this.cover1.visible = true
         this.cover2.visible = true
     }
