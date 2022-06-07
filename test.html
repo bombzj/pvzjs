@@ -24,6 +24,7 @@
     // 加载图片和动画
     const loader = PIXI.Loader.shared;
 
+    var scene
     var seeds = []  // 种子列表
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
     var seedBankPos = {x: 0, y: 150, height: 120, width: 180}
@@ -31,7 +32,7 @@
     // 启动后调用一次
     function init() {
         initGrid(5, 9)
-        back(0, 0)
+        scene = back(0, 0)
         for(let i = 0;i < 8;i++){
             seeds.push(seed(i, 0, seedBankPos.height * i + seedBankPos.y))
         }

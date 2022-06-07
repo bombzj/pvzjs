@@ -1,13 +1,14 @@
-
+const zIndexHUD = 10000
 // draw a plant
 function plant(i, x, y) {
     let type = typeof i !== 'number' ? i : plantList[i]
     let a = new PVZ2.Plant(type)
     a.position.set(x, y)
-    stage.addChild(a)
+    scene.addChild(a)
     newObjects.push(a)
     a.plantType = i
     a.ztype = 'plant'
+    a.zIndex = a.y
     return a
 }
 
@@ -21,10 +22,11 @@ function zombie(i, x, y) {
         a = new PVZ2.ZombieBasic(type)
     }
     a.position.set(x, y)
-    stage.addChild(a)
+    scene.addChild(a)
     newObjects.push(a)
     a.plantType = i
     a.ztype = 'zombie'
+    a.zIndex = a.y+0.1
     return a
 }
 
@@ -35,6 +37,7 @@ function seed(i, x, y) {
     c.position.set(x, y)
     stage.addChild(c)
     newObjects.push(c)
+    c.zIndex = zIndexHUD
     return c
 }
 
@@ -44,8 +47,8 @@ function seedSel(x, y) {
     newObjects.push(a)
     a.ztype = 'seedSel'
     a.step = function() {}
+    a.zIndex = zIndexHUD + 1
     return a
-    
 }
 
 // draw shovel
@@ -60,6 +63,7 @@ function shovel(x, y) {
             this.texture = texturesMap.IMAGE_UI_HUD_INGAME_SHOVEL_BUTTON
         }
     }
+    a.zIndex = zIndexHUD
     return a
 }
 
@@ -104,6 +108,7 @@ function numSun(x, y, num = 0) {
         }
     }
     c.ztype = 'numSun'
+    c.zIndex = zIndexHUD
     return c
 }
 
@@ -196,7 +201,7 @@ function setup(resources) {
     app.ticker.add(delta => {
         objects.forEach(a => {
             if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
-                stage.removeChild(a)
+                scene.removeChild(a)
                 if(a.gridX != undefined) {
                     PVZ2.grids[a.gridY][a.gridX] = undefined
                 }
@@ -206,6 +211,8 @@ function setup(resources) {
         objects = objects.concat(newObjects)
         newObjects = []
         loop()
+        stage.sortChildren()
+        scene.sortChildren()
     })
 }
 
@@ -378,7 +385,7 @@ function loadPlantResource(typeNames, callback) {
     loader.reset()
     for(let typeName of typeNames) {
         let type = rtons.PlantTypes[typeName]
-        console.log('loading ' + typeName)
+        // console.log('loading ' + typeName)
         for(let resName of type.PlantResourceGroups) {
             let res = resourcesMap[resName]
             if(!res) continue
@@ -425,7 +432,7 @@ function loadZombieResource(typeNames, callback) {
     loader.reset()
     for(let typeName of typeNames) {
         let type = rtons.ZombieTypes[typeName]
-        console.log('loading ' + typeName)
+        // console.log('loading ' + typeName)
         for(let resName of type.ResourceGroups) {
             let res = resourcesMap[resName]
             if(!res) continue
@@ -468,7 +475,7 @@ function loadZombieResource(typeNames, callback) {
 
 
 let seedChooserSeedSize = {width: 180, height: 120, top: 0}
-let seedChooserDemoPos = {x: 0, y: -310, width: 300, height: 300}
+let seedChooserDemoPos = {x: 20, y: -280, width: 250, height: 250}
 
 class SeedChooser extends PIXI.Container {
     constructor(column, row) {
@@ -507,6 +514,7 @@ class SeedChooser extends PIXI.Container {
             this.pageDown()
         }
         this.addChild(upButton, downButton)
+        this.zIndex = zIndexHUD
     }
     turnPage(page) {
         this.page = page
@@ -587,7 +595,7 @@ class SeedChooser extends PIXI.Container {
             if(this.demo) this.removeChild(this.demo)
             this.demo = new PVZ2.Plant(this.selected.type)
             this.demo.demo = true
-            this.demo.position.set(seedChooserDemoPos.x + seedChooserDemoPos.width / 2, seedChooserDemoPos.y + seedChooserDemoPos.height / 2)
+            this.demo.position.set(seedChooserDemoPos.x + seedChooserDemoPos.width / 2, seedChooserDemoPos.y + seedChooserDemoPos.height / 2 + 20)
             this.addChild(this.demo)
             objects.push(this.demo)
         }
@@ -622,7 +630,7 @@ PVZ2.Seed = class extends PIXI.Container {
         cover2.visible = false
         cover2.origScaleY = cover2.scale.y
 
-        this.plant = drawPImage(15, 0)
+        this.plant = drawPImage()
 
         this.addChild(this.bg, this.plant, this.priceTab, this.price, cover1, cover2)
         this.ztype = 'seed'
@@ -674,6 +682,7 @@ PVZ2.Seed = class extends PIXI.Container {
         this.price.position.set(180 - this.price.width, 60)
         this.price.visible = true
         this.plant.texture = texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()]
+        this.plant.position.set(15, 68 - this.plant.texture.height)
         this.plant.visible = true
         this.priceTab.visible = true
         this.type = type
@@ -785,7 +794,7 @@ class StretchingSprite extends PIXI.Container {
 }
 
 PVZ2.plantRect = {
-    mX: 20,    mY: 0,
+    mX: 40,    mY: 0,
     mWidth: 40, mHeight: 100
 }
 

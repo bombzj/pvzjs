@@ -54,7 +54,11 @@ class PamSprite extends PIXI.Container {
         this.frameStart = this.frame = frameStart
         this.param = param
         this.parts = {}
-        this.hideSprites = new Set()
+        if(param.hideSprites) {
+            this.hideSprites = param.hideSprites
+        } else {
+            this.hideSprites = new Set()    // TODO: unnecessary cost
+        }
         this.doFrame()
         if(PVZ2.spriteBox && sprite == pam.main_sprite) {
             this.drawBoundingBox(0, 0, pam.size[0], pam.size[1])
@@ -104,7 +108,7 @@ class PamSprite extends PIXI.Container {
             let resourceId = append.resource
             if(append.sprite) {
                 let spriteData = this.pam.sprite[resourceId]
-                spr = new PamSprite(this.pam, spriteData, 0, this.param.custom)
+                spr = new PamSprite(this.pam, spriteData, 0, {hideSprites: this.hideSprites})
                 spr.data = spriteData
                 if(this.param.walk && spriteData.name == this.param.walkGround) {
                     this.ground = undefined
@@ -265,8 +269,12 @@ PVZ2.Plant = class extends PVZ2.Object {
             let action = this.action = type.prop.Actions[0]
             this.actionCooldownMax = action.CooldownTimeMin * fps
             this.actionCooldown = action.InitialMinCooldownTime * fps | action.CooldownTimeMin * fps
+            if(type.TypeName == 'sunflower') {
+                this.actionCooldownMax /= 2
+                this.actionCooldown /= 2
+            }
         }
-        this.attacking = true
+        // this.attacking = true   // for test
         this.hitpoints = type.prop.Hitpoints
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
@@ -315,16 +323,59 @@ PVZ2.Plant = class extends PVZ2.Object {
                 }
             }
         }
+        this.attacking = false
+        for(let obj2 of objects) {
+            if(obj2.ztype == 'zombie' && !obj2.dead) {
+                if(obj2.x > this.x && Math.abs(obj2.y - this.y) < 20) {
+                    this.attacking = true
+                    break
+                }
+            }
+        }
         super.step()
         this.actionCooldown--
     }
+    hit(damage) {
+        this.hitpoints -= damage
+        if(this.hitpoints <= 0) {
+            rm(this)
+        } else {
+            if(this.type.TypeName == 'wallnut') {
+                let ratio = this.hitpoints / this.type.prop.Hitpoints
+                if(ratio < 0.25) {
+                    if(this.actName != 'damage3') {
+                        this.changeAction('damage3')
+                    }
+                } else if(ratio < 0.5) {
+                    if(this.actName != 'damage2') {
+                        this.changeAction('damage2')
+                    }
+                } else if(ratio < 0.75) {
+                    if(this.actName != 'damage') {
+                        this.changeAction('damage')
+                    }
+                }
+            } else if(this.type.TypeName == 'tallnut') {
+                let ratio = this.hitpoints / this.type.prop.Hitpoints
+                if(ratio < 0.33) {
+                    if(this.actName != 'damage2') {
+                        this.changeAction('damage2')
+                    }
+                } else if(ratio < 0.66) {
+                    if(this.actName != 'damage') {
+                        this.changeAction('damage')
+                    }
+                }
+            }
+        }
+    }
     onFinish() {
         if(this.actName) {
-            if(this.actName != 'idle') {
+            if(this.actName != 'idle' && this.action) {
                 if(this.action.Type == 'explode' && this.actName == 'attack') {
                     rm(this)
                     if(this.type.TypeName == 'cherry_bomb') {
-                        let offsetX = 24, offsetY = -180
+                        let offsetX = 0, offsetY = -140
                         new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY)
                         new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
                     }
@@ -360,7 +411,7 @@ PVZ2.Plant = class extends PVZ2.Object {
         let a = new PVZ2.Projectile(projectileType)
         a.position.set(this.x + this.action.SpawnOffset.x
             , this.y + this.action.SpawnOffset.y)
-        stage.addChild(a)
+        scene.addChild(a)
         newObjects.push(a)
         a.ztype = 'projectile'
     }
@@ -436,11 +487,9 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         for(let obj2 of objects) {
             if(obj2.ztype == 'plant') {
                 if(ifCollide(this, obj2, this.type.prop.AttackRect, PVZ2.plantRect)) {
-                    obj2.hitpoints -= this.type.prop.EatDPS / 30
-                    if(obj2.hitpoints <= 0) {
-                        rm(obj2)
-                    }
+                    obj2.hit(this.type.prop.EatDPS / 30)
                     eating = true
+                    break
                 }
             }
         }
@@ -542,7 +591,7 @@ PVZ2.Effect = class extends PVZ2.Object {
     constructor(pam, act, x, y) {
         super(pam, undefined, act, {removeOnFinish: true})
         this.position.set(x, y)
-        stage.addChild(this)
+        scene.addChild(this)
         newObjects.push(this)
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         this.ztype = 'effect'
@@ -559,11 +608,12 @@ PVZ2.Sun = class extends PVZ2.Object {
         let pam = pams.POPANIM_EFFECTS_SUN
         super(pam)
         this.position.set(x, y)
-        stage.addChild(this)
+        scene.addChild(this)
         newObjects.push(this)
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         this.ztype = 'sun'
         this.fall = fall
+        this.zIndex = zIndexHUD + 2
     }
     init() {
         super.init()
@@ -608,7 +658,8 @@ PVZ2.Projectile = class extends PVZ2.Object {
                         }
                     }
                     this.splat()
-                    rm(this)            
+                    rm(this)
+                    break
                 }
             }
         }

@@ -29,7 +29,7 @@
     var seedChooser
     var scene
     PVZ2.gameStart = false
-    PVZ2.debug = true
+    PVZ2.debug = false
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
     var seedBank = {
         initSeeds: ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'cherry_bomb'],
@@ -79,6 +79,7 @@
                     let demo = new PVZ2.ZombieBaseClass(rtons.ZombieTypes[p], 'idle')
                     demo.position.set(this.pos.x + rnd(0, this.pos.width), this.pos.y + rnd(0, this.pos.height))
                     scene.addChild(demo)
+                    demo.zIndex = demo.y
                     objects.push(demo)
                     this.zombies.push(demo)
                 }
@@ -133,7 +134,7 @@
             scene.goFront()
         }
         // refresh button
-        zombieBank.buttonRefresh = drawPImage(1240, 240, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
+        zombieBank.buttonRefresh = drawPImage(1000, 300, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
         zombieBank.buttonRefresh.interactive = true
         zombieBank.buttonRefresh.click = function() {
             zombieBank.shuffle()
