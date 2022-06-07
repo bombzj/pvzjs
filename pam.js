@@ -54,6 +54,7 @@ class PamSprite extends PIXI.Container {
         this.frameStart = this.frame = frameStart
         this.param = param
         this.parts = {}
+        this.hideSprites = new Set()
         this.doFrame()
         if(PVZ2.spriteBox && sprite == pam.main_sprite) {
             this.drawBoundingBox(0, 0, pam.size[0], pam.size[1])
@@ -108,7 +109,7 @@ class PamSprite extends PIXI.Container {
                 if(this.param.walk && spriteData.name == this.param.walkGround) {
                     this.ground = undefined
                 }
-                if(['Magnet_Item'].indexOf(spriteData.name) != -1 || spriteData.name.startsWith('custom') && spriteData.name != this.param.custom/* || hideSprite.has(spriteData.name)*/) {
+                if(this.hideSprites.has(spriteData.name) || spriteData.name.startsWith('custom') && spriteData.name != this.param.custom/* || hideSprite.has(spriteData.name)*/) {
                     spr.visible = false
                 }
             } else {
@@ -205,11 +206,25 @@ class PamSprite extends PIXI.Container {
                 }
             }
         }
+        if(visible) {
+            this.hideSprites.delete(name)
+        } else {
+            this.hideSprites.add(name)
+        }
     }
     showSprites(names, visible = true) {
+        if(visible) {
+            for(let n of names) {
+                this.hideSprites.delete(n)
+            }
+        } else {
+            for(let n of names) {
+                this.hideSprites.add(n)
+            }
+        }
         for(let part of Object.values(this.parts)) {
             if(part.sprite) {
-                if(names.has(part.sprite.name)) {
+                if(this.hideSprites.has(part.sprite.name)) {
                     part.visible = visible
                 } else if(part.showSprite) {
                     part.showSprites(names, visible)
@@ -257,7 +272,8 @@ PVZ2.Plant = class extends PVZ2.Object {
         if(PVZ2.collisionBox) {
             // drawCollisionBox(this, type.prop.HitRect)
         }
-        this.showSprites(hideSprites, false)
+        this.showSprites(plantHideSprites, false)
+
         // plant shadow
         let shadow = drawPImage(this.pivot.x - 85, this.pivot.y + 10, texturesMap.IMAGE_PLANTSHADOW)
         shadow.zIndex = -1
@@ -350,7 +366,7 @@ PVZ2.Plant = class extends PVZ2.Object {
     }
 }
 
-var hideSprites = new Set([
+var zombieHideSprites = [
         'ground_swatch', 'ground_swatch_plane',
         "zombie_armor_cone_norm",
         "zombie_armor_cone_damage_01",
@@ -362,9 +378,12 @@ var hideSprites = new Set([
         "zombie_armor_brick_damage_01",
         "zombie_armor_brick_damage_02",
         'butter', 'ink',
-        '_wallnut_armor_states',
-        '_tallnut_plantfood_armor'
-    ])
+    ]
+var plantHideSprites = [
+    '_wallnut_armor_states',
+    '_tallnut_plantfood_armor',
+    'Magnet_Item'
+]
 
 PVZ2.ZombieBaseClass = class extends PVZ2.Object {
     constructor(type, initAct) {
@@ -380,7 +399,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         if(PVZ2.collisionBox) {
             drawCollisionBox(this, prop.HitRect)
         }
-        this.showSprites(hideSprites, false)
+        this.showSprites(zombieHideSprites, false)
         if(type.armorProps) {
             this.armors = []
             for(let armor of type.armorProps) {
