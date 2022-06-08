@@ -483,6 +483,9 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         } else {
             super.step()
         }
+        if(this.dead) {
+            return
+        }
         let eating = false
         for(let obj2 of objects) {
             if(obj2.ztype == 'plant') {
