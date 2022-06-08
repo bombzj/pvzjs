@@ -1,4 +1,5 @@
 const zIndexHUD = 10000
+const resourceRoot = 'pam/'
 // draw a plant
 function plant(i, x, y) {
     let type = typeof i !== 'number' ? i : plantList[i]
@@ -166,33 +167,11 @@ PVZ2.setResolution(768)
 PVZ2.gameStart = true
 
 let texturesMap = {}
-let atlasMap = {}
+let atlasTexturesMap = {}
 
 function setup(resources) {
     for(let resName of need2LoadGroup) {
-        let res = resourcesMap[resName]
-        if(!res) continue
-        for(let image of res.images) {
-            let baseTexture = resources[image.parent].texture
-            texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
-            // only for findatlas.js
-            let parent = atlasMap[image.parent]
-            if(!parent) {
-                parent = atlasMap[image.parent] = {baseTexture: baseTexture, children: []} 
-            }
-            parent.children.push({
-                id: image.id,
-                texture: texturesMap[image.id]
-            })
-            // Object.assign(texturesMap, resources[image.name].textures)
-        }
-    }
-    for(let resName of need2LoadGroup) {
-        let res = resourcesMap[resName]
-        if(!res) continue
-        for(let pam of res.pams) {
-            pamInit(pam.name, resources[pam.name].data)
-        }
+        loadGroupPost(resName, resources)
     }
 
     app.stage.addChild(stage)
@@ -227,9 +206,9 @@ var resourcesMap
 
 function loadPams(callback) {
     for (let j of packageJsons) {
-        loader.add(j, 'pam/packages/' + j + '.rton', {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER, loadType: 'rton'})
+        loader.add(j, resourceRoot + 'PACKAGES/' + j.toUpperCase() + '.RTON', {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER, loadType: 'rton'})
     }
-    // loader.add('resourcesmap', 'pam/resourcesmap.json')
+    // loader.add('resourcesmap', resourceRoot + 'resourcesmap.json')
     loader.load((loader, resources) => {
         loadPackages(resources)
         loadPlantType(resources)
@@ -267,21 +246,38 @@ function loadPams(callback) {
             need2LoadGroup.push(...type.ResourceGroups)
         }
         for(let resName of need2LoadGroup) {
-            let res = resourcesMap[resName]
-            if(!res) continue
-            for(let pam of res.pams) {
-                try {
-                    loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
-                } catch(e) { }
-            }
-            for(let image of res.atlases) {
-                try {
-                    loader.add(image.name, 'pam/atlases/' + image.path + '.png')
-                } catch(e) { }
-            }
+            loadGroupPre(resName)
         }
         loader.load((loader, resources) => setup(resources, callback));
     });
+}
+
+function loadGroupPre(resName) {
+    let res = resourcesMap[resName]
+    if(!res) return
+    for(let pam of res.pams) {
+        try {
+            loader.add(pam.name, resourceRoot + pam.path.toUpperCase(), {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
+        } catch(e) { }
+    }
+    for(let image of res.atlases) {
+        try {
+            loader.add(image.name, resourceRoot + 'ATLASES/' + image.path.toUpperCase() + '.PNG')
+        } catch(e) { }
+    }
+}
+
+function loadGroupPost(resName, resources) {
+    let res = resourcesMap[resName]
+    if(!res) return
+    for(let image of res.images) {
+        let baseTexture = resources[image.parent].texture
+        atlasTexturesMap[image.parent] = baseTexture
+        texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
+    }
+    for(let pam of res.pams) {
+        pamInit(pam.name, resources[pam.name].data)
+    }
 }
 
 const packageJsons = ['RESOURCES', 'PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
@@ -387,18 +383,7 @@ function loadPlantResource(typeNames, callback) {
         let type = rtons.PlantTypes[typeName]
         // console.log('loading ' + typeName)
         for(let resName of type.PlantResourceGroups) {
-            let res = resourcesMap[resName]
-            if(!res) continue
-            for(let pam of res.pams) {
-                try {
-                    loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
-                } catch(e) { }
-            }
-            for(let image of res.atlases) {
-                try {
-                    loader.add(image.name, 'pam/atlases/' + image.path + '.png')
-                } catch(e) { }
-            }
+            loadGroupPre(resName)
         }
         if(!type.prop) {
             type.prop = getByRTID(type.Properties)
@@ -409,15 +394,7 @@ function loadPlantResource(typeNames, callback) {
         for(let typeName of typeNames) {
             let type = rtons.PlantTypes[typeName]
             for(let resName of type.PlantResourceGroups) {
-                let res = resourcesMap[resName]
-                if(!res) continue
-                for(let image of res.images) {
-                    let baseTexture = resources[image.parent].texture
-                    texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
-                }
-                for(let pam of res.pams) {
-                    pamInit(pam.name, resources[pam.name].data)
-                }
+                loadGroupPost(resName, resources)
             }
         }
         if(callback) {
@@ -434,18 +411,7 @@ function loadZombieResource(typeNames, callback) {
         let type = rtons.ZombieTypes[typeName]
         // console.log('loading ' + typeName)
         for(let resName of type.ResourceGroups) {
-            let res = resourcesMap[resName]
-            if(!res) continue
-            for(let pam of res.pams) {
-                try {
-                    loader.add(pam.name, 'pam/' + pam.path, {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER})
-                } catch(e) { }
-            }
-            for(let image of res.atlases) {
-                try {
-                    loader.add(image.name, 'pam/atlases/' + image.path + '.png')
-                } catch(e) { }
-            }
+            loadGroupPre(resName)
         }
         if(!type.prop) {
             type.prop = getByRTID(type.Properties)
@@ -456,15 +422,7 @@ function loadZombieResource(typeNames, callback) {
         for(let typeName of typeNames) {
             let type = rtons.ZombieTypes[typeName]
             for(let resName of type.ResourceGroups) {
-                let res = resourcesMap[resName]
-                if(!res) continue
-                for(let image of res.images) {
-                    let baseTexture = resources[image.parent].texture
-                    texturesMap[image.id] = new PIXI.Texture(baseTexture, new PIXI.Rectangle(image.ax, image.ay, image.aw, image.ah))
-                }
-                for(let pam of res.pams) {
-                    pamInit(pam.name, resources[pam.name].data)
-                }
+                loadGroupPost(resName, resources)
             }
         }
         if(callback) {

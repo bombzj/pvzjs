@@ -11,6 +11,8 @@
     <script src="js/rtonparse.js"></script>
     <script src="pvz2util.js"></script>
     <body>
+        
+        <input name="atlasName" size="30"> <button onclick="changeAtlas(document.all.atlasName.value)">display</button>
 <script type="text/javascript">
 
     let app = new PIXI.Application({width: 2048, height: 2048});
@@ -18,23 +20,53 @@
 
     app.renderer.backgroundColor = 0x0FFFFFF;   
 
-    const loader = PIXI.Loader.shared;          
+    const loader = PIXI.Loader.shared;     
+    PVZ2.resolution = 768     
     loadPams()
 
     var atlasNames =['UI_SEEDPACKETS', 'UI_ALWAYSLOADED', 'LEVELCOMMON', 'UI_ZOMBIEPACKETS']
     var atlas = 0
     var atlasSprite
-    var texture
+    var textureId
+    var fileMapAtlas = {}
+    var atlasMap = {}
+    var atlasData
+    var scene = new PIXI.Container()
+
     function init() {
         // atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
+        for(let group of rtons.RESOURCES.groups) {
+            if(group.type == 'composite') continue
+            if(group.res != PVZ2.resolution) continue
+
+            let sub = resourcesMap[group.parent]
+            for(let res of group.resources) {
+                if(res.type == 'Image') {
+                    if(res.atlas) {
+                        fileMapAtlas[res.path[1].toUpperCase()] = atlasMap[res.id] = {baseTextureName: res.id, children: [], group: group.parent}
+                    } else {
+                        let parent = atlasMap[res.parent]
+                        parent.children.push(res.id)
+                    }
+                }
+            }
+        }
+
+
         atlasSprite = new PIXI.Sprite()
-        drawAtlas()
+        drawAtlasByIndex()
         app.stage.addChild(atlasSprite)
     }
 
-    function drawAtlas() {
-        texture = atlasMap['ATLASIMAGE_ATLAS_' + atlasNames[atlas] + '_768_00']
-        atlasSprite.texture = texture.baseTexture
+
+    function drawAtlas(name) {
+        atlasData = fileMapAtlas[name]
+        atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
+    }
+
+    function drawAtlasByIndex() {
+        atlasData = fileMapAtlas[atlasNames[atlas] + '_' + PVZ2.resolution + '_00']
+        atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
     }
 
     function loop() {
@@ -45,10 +77,11 @@
         let x = e.offsetX, y = e.offsetY
         console.log('click: ', x, y)
 
-        for(let child of texture.children) {
-            let rect = child.texture.orig
+        for(let child of atlasData.children) {
+            let texture = texturesMap[child]
+            let rect = texture.orig
             if(y >= rect.top && y < rect.bottom && x >= rect.left && x < rect.right) {
-                console.log(child.id)
+                console.log(child, atlasData.group)
             }
         }
     }
@@ -56,12 +89,24 @@
     window.onkeydown = function(e) {
         if(e.code == 'KeyU'){
             if(atlas > 0) atlas--
-            drawAtlas()
+            drawAtlasByIndex()
         }
         if(e.code == 'KeyD'){
             if(atlas < atlasNames.length - 1) atlas++
-            drawAtlas()
+            drawAtlasByIndex()
         }
+    }
+
+    function changeAtlas(name) {
+        loader.reset()
+        let file = name.endsWith('00') ? name : name + '_' + PVZ2.resolution + '_00'
+        let a = fileMapAtlas[file]
+        if(!a) return
+        loadGroupPre(a.group)
+        loader.load((loader, resources) => {
+            loadGroupPost(a.group, resources)
+            drawAtlas(file)
+        })
     }
     
     var plantList = [
