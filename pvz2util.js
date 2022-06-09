@@ -278,6 +278,7 @@ function loadGroupPost(resName, resources) {
     for(let pam of res.pams) {
         pamInit(pam.name, resources[pam.name].data)
     }
+    res.loaded = true
 }
 
 const packageJsons = ['RESOURCES', 'PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
