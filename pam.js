@@ -38,6 +38,31 @@ function pamInit(name, dataRaw) {
             data.actionFrame[frame.label] = index
         }
     }
+    // refill all frames for beginning of each anim in main_sprite
+    
+    let appends = {}    // keep all current appends
+    let changes = {}    // keep all current changes
+    let firstFrame = true
+    for(let frame of data.main_sprite.frame) {
+        if(firstFrame) {
+            for(let index in appends) {
+                if(!frame.remove.find(x => x.index == index)) {
+                    frame.append.push(appends[index])
+                    frame.change.push(changes[index])
+                }
+            }
+        }
+        for(let remove of frame.remove) {
+            delete appends[remove.index]
+        }
+        for(let append of frame.append) {
+            appends[append.index] = append
+        }
+        for(let change of frame.change) {
+            changes[change.index] = change
+        }
+        firstFrame = frame.stop
+    }
 }
 
 class PamSprite extends PIXI.Container {

@@ -134,6 +134,10 @@
         o.addEventListener("click", callback);   
         cell.appendChild(o);
     }
+    function addText(name, parent) {
+        let cell = parent.insertRow().insertCell()
+        cell.innerText = name
+    }
 
     function showGroupList() {
         removeButtons(chooseGroup)
@@ -159,6 +163,9 @@
                 changePam(groupName, pam.name)
             })
         }
+        for(let atlas of group.atlases) {
+            addText(atlas.name, choosePam)
+        }
     }
 
     function changePam(groupName, name) {
@@ -173,6 +180,7 @@
         }
         app.stage.removeChild(spr)
         pam = pams[name]
+        checkPam(pam)
         spr = new PamSprite(pam)
         app.stage.addChild(spr)
         spr.position.set(0, 0)
@@ -194,6 +202,29 @@
                 spr.changeSprite(sprite)
                 spr.position.set(app.view.width / 2, app.view.height / 2)
             })
+        }
+    }
+
+    function checkPam(pam) {
+        let ms = pam.main_sprite
+        let parts = {}
+        let oldparts = {}
+        for(let frame of ms.frame) {
+            for(let remove of frame.remove) {
+                // if(!parts[remove.index]) debugger
+                delete parts[remove.index]
+            }
+            for(let append of frame.append) {
+                // if(parts[append.index]) debugger
+                if(oldparts[append.index]) {
+                    if(oldparts[append.index].resource != append.resource || oldparts[append.index].sprite != append.sprite) debugger
+                }
+                parts[append.index] = append
+                oldparts[append.index] = append
+            }
+            for(let change of frame.change) {
+                // if(!parts[change.index]) debugger
+            }
         }
     }
     

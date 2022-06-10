@@ -12,7 +12,8 @@
     <script src="pvz2util.js"></script>
     <body>
         
-        <input name="atlasName" size="30"> <button onclick="changeAtlas(document.all.atlasName.value)">display</button>
+        <p><input name="atlasName" size="30"> <button onclick="changeAtlas(document.all.atlasName.value)">display</button></p>
+        <p id = "showtext"></p>
 <script type="text/javascript">
 
     let app = new PIXI.Application({width: 2048, height: 2048});
@@ -82,6 +83,7 @@
             let rect = texture.orig
             if(y >= rect.top && y < rect.bottom && x >= rect.left && x < rect.right) {
                 console.log(child, atlasData.group)
+                showtext.innerText = child + ' ' + atlasData.group
             }
         }
     }
