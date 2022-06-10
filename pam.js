@@ -74,6 +74,17 @@ class PamSprite extends PIXI.Container {
         this.frameStart = this.frame = frameStart
     }
 
+    changeSprite(sprite, frameStart) {
+        this.parts = {}  // remove is inefficient?
+        this.removeChildren()
+        this.sprite = sprite || this.pam.main_sprite
+        if(frameStart == undefined) {
+            frameStart = 0
+        }
+        this.changeAction(frameStart)
+        this.doFrame()
+    }
+
     doFrame() {
         let frame = this.sprite.frame[this.frame]
         if(this.sprite.frame.length > 1) {

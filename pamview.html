@@ -10,10 +10,13 @@
     <script src="js/pamparse.js"></script>
     <script src="js/rtonparse.js"></script>
     <script src="pvz2util.js"></script>
+    <style>
+        body, button, input {
+            font-size: 18px;
+        }
+    </style>
     <body>
-        
-        <input name="pamName" size="30"> <button onclick="searchPam(document.all.pamName.value)">display</button>
-        <div id="choosePam"></div>
+
 <script type="text/javascript">
 
     let app = new PIXI.Application({width: 400, height: 400});
@@ -33,7 +36,7 @@
     var atlasMap = {}
     var atlasData
     var scene = new PIXI.Container()
-    var spr
+    var spr, pam
 
     function init() {
         // atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
@@ -62,14 +65,19 @@
     function drawAtlas(name) {
         atlasData = fileMapAtlas[name]
         atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
-    }
+    }   
 
     function drawAtlasByIndex() {
         atlasData = fileMapAtlas[atlasNames[atlas] + '_' + PVZ2.resolution + '_00']
         atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
     }
 
+    var cnt = 0
+    var speed = 2
     function loop() {
+        if(++cnt < speed) return
+        cnt = 0
+
         if(spr) {
             spr.step()
         }
@@ -89,17 +97,19 @@
     }
 
     window.onkeydown = function(e) {
-        if(e.code == 'KeyU'){
-            if(atlas > 0) atlas--
-            drawAtlasByIndex()
-        }
-        if(e.code == 'KeyD'){
-            if(atlas < atlasNames.length - 1) atlas++
-            drawAtlasByIndex()
-        }
+        // if(e.code == 'KeyU'){
+        //     if(atlas > 0) atlas--
+        //     drawAtlasByIndex()
+        // }
+        // if(e.code == 'KeyD'){
+        //     if(atlas < atlasNames.length - 1) atlas++
+        //     drawAtlasByIndex()
+        // }
     }
 
     function searchPam(name) {
+        removeButtons(choosePam)
+        removeButtons(chooseSprite)
         name = name.toUpperCase()
         groupNames = []
         for(let groupName in resourcesMap) {
@@ -110,35 +120,45 @@
         showGroupList()
     }
 
-    function removeButtons() {
-        choosePam.innerHTML = ''
+    function removeButtons(parent) {
+        while(parent.rows.length > 0) {
+            parent.deleteRow(0)
+        }
+    }
+
+    function addButton(name, parent, callback) {
+        let cell = parent.insertRow().insertCell()
+        var o=document.createElement("input"); 
+        o.type = "button" ; 
+        o.value = name;
+        o.addEventListener("click", callback);   
+        cell.appendChild(o);
     }
 
     function showGroupList() {
-        removeButtons()
+        removeButtons(chooseGroup)
         for(let groupName of groupNames) {
-            addButton(groupName, () => {
+            let len = resourcesMap[groupName].pams.length
+            if(len == 0) continue
+            let name = groupName
+            if(len > 1) {
+                name = name + ' (' + len + ')'
+            }
+            addButton(name, chooseGroup, () => {
                 showPamList(groupName)
             })
         }
     }
 
     function showPamList(groupName) {
+        removeButtons(chooseSprite)
         let group = resourcesMap[groupName]
-        removeButtons()
+        removeButtons(choosePam)
         for(let pam of group.pams) {
-            addButton(pam.name, () => {
+            addButton(pam.name, choosePam, () => {
                 changePam(groupName, pam.name)
             })
         }
-    }
-
-    function addButton(name, callback) {
-        var o=document.createElement("input"); 
-        o.type = "button" ; 
-        o.value = name;
-        o.addEventListener("click", callback);   
-        choosePam.appendChild(o);
     }
 
     function changePam(groupName, name) {
@@ -152,10 +172,29 @@
             return
         }
         app.stage.removeChild(spr)
-        spr = new PamSprite(pams[name])
+        pam = pams[name]
+        spr = new PamSprite(pam)
         app.stage.addChild(spr)
+        spr.position.set(0, 0)
 
-
+        removeButtons(chooseSprite)
+        for(let frame in pam.actionFrame) {
+            let frameIndex = pam.actionFrame[frame]
+            addButton('main-' + frame, chooseSprite, () => {
+                spr.changeSprite(undefined, frameIndex)
+                spr.position.set(0, 0)
+            })
+        }
+        for(let sprite of pam.sprite) {
+            let name = sprite.name
+            if(sprite.frame.length > 1) {
+                name = name + ' (' + sprite.frame.length + ')'
+            }
+            addButton(name, chooseSprite, () => {
+                spr.changeSprite(sprite)
+                spr.position.set(app.view.width / 2, app.view.height / 2)
+            })
+        }
     }
     
     var plantList = [
@@ -175,5 +214,13 @@
 
     app.view.onclick = onclick
 </script>
+        <p>
+            <input name="pamName" size="30" onchange="searchPam(document.all.pamName.value)">
+        </p>
+        <p>
+            <table id="chooseGroup" style="float:left"></table>
+            <table id="choosePam" style="float:left"></table>
+            <table id="chooseSprite" style="float:left"></table>
+        </p>
     </body>
 </html>
