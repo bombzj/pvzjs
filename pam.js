@@ -260,10 +260,24 @@ PVZ2.Object = class extends PamSprite {
     constructor() {
         super(...arguments)
         this.age = 0
+        this.y3 = this.z3 = 0
     }
     step() {
         super.step()
         this.age++
+        this.y = this.y3 + this.z3
+        if(this.shadow) {
+            this.shadow.x = this.x
+            this.shadow.y = this.y3
+        }
+        this.zIndex = this.y3
+        if(this.ztype == 'zombie') {
+            this.zIndex += 0.1
+        } else if(this.ztype == 'sun') {
+            this.zIndex = 5000
+        } else if(this.ztype == 'projectile') {
+            this.zIndex += 0.2
+        }
     }
     onFinish() {
         if(this.param && this.param.removeOnFinish) {
@@ -294,9 +308,9 @@ PVZ2.Plant = class extends PVZ2.Object {
         this.showSprites(plantHideSprites, false)
 
         // plant shadow
-        let shadow = drawPImage(this.pivot.x - 85, this.pivot.y + 10, texturesMap.IMAGE_PLANTSHADOW)
-        shadow.zIndex = -1
-        this.addChild(shadow)
+        this.shadow = drawPImageCentered(-85, 10, texturesMap.IMAGE_PLANTSHADOW)
+        // shadow.zIndex = -1
+        shadowLayer.addChild(this.shadow)
     }
     init() {
         super.init()
@@ -337,7 +351,7 @@ PVZ2.Plant = class extends PVZ2.Object {
         this.attacking = false
         for(let obj2 of objects) {
             if(obj2.ztype == 'zombie' && !obj2.dead) {
-                if(obj2.x > this.x && Math.abs(obj2.y - this.y) < 20) {
+                if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
                     this.attacking = true
                     break
                 }
@@ -418,13 +432,36 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
     }
     launch() {
+        let target = this.findTarget()
         let projectileType = getByRTID(this.action.Projectile)
-        let a = new PVZ2.Projectile(projectileType)
-        a.position.set(this.x + this.action.SpawnOffset.x
-            , this.y + this.action.SpawnOffset.y)
+        let a = new PVZ2.Projectile(projectileType, target)
+        if(target) {
+            if(projectileType.InitialAcceleration) {    // catapult
+                let deltaX = target.x - this.x
+                a.velocity.x = (deltaX / 3.5 / a.velocity.z)
+            }
+        }
+        a.position.set(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y)
+        a.y3 = this.y3
+        a.z3 = this.z3 + this.action.SpawnOffset.y
         scene.addChild(a)
         newObjects.push(a)
         a.ztype = 'projectile'
+    }
+    findTarget() {
+        let obj
+        let nearX = 100000
+        for(let obj2 of objects) {
+            if(obj2.ztype == 'zombie' && !obj2.dead) {
+                if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
+                    if(obj2.x < nearX) {
+                        obj = obj2
+                        nearX = obj2.x
+                    }
+                }
+            }
+        }
+        return obj
     }
 }
 
@@ -473,9 +510,9 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             this.showArmor()
         }
         // zombie shadow
-        let shadow = drawPImage(this.pivot.x - 80, this.pivot.y + 10, texturesMap.IMAGE_PLANTSHADOW)
-        shadow.zIndex = -1
-        this.addChild(shadow)
+        this.shadow = drawPImageCentered(-80, 10, texturesMap.IMAGE_PLANTSHADOW)
+        // shadow.zIndex = -1
+        shadowLayer.addChild(this.shadow)
     }
     init() {
         super.init()
@@ -635,7 +672,7 @@ PVZ2.Sun = class extends PVZ2.Object {
     step() {
         super.step()
         if(this.age < this.fall) {
-            this.y += 2
+            this.y3 += 2
         }
         if(this.age > 600) {
             rm(this)
@@ -648,11 +685,27 @@ PVZ2.Projectile = class extends PVZ2.Object {
         let pam = pams[type.AttachedPAM]
         super(pam, null, 'animation')
         this.type = type
-        this.speedX = type.InitialVelocity[0].Min / 30
+        this.velocity = {
+            x: randomMinMax(type.InitialVelocity[0]) / 30,
+            y: randomMinMax(type.InitialVelocity[1]) / 30,
+            z: randomMinMax(type.InitialVelocity[2]) / 30,
+        }
+        if(type.InitialAcceleration) {
+            this.acceleration = {
+                x: randomMinMax(type.InitialAcceleration[0]) / 15,
+                y: randomMinMax(type.InitialAcceleration[1]) / 15,
+                z: randomMinMax(type.InitialAcceleration[2]) / 15,
+            }
+        }
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
             drawCollisionBox(this, type.CollisionRect)
         }
+        this.shadow = drawPImageCentered(-80, 10, texturesMap.IMAGE_PLANTSHADOW)
+        this.shadow.scale.x *= 0.3
+        this.shadow.scale.y *= 0.3
+        // shadow.zIndex = -1
+        shadowLayer.addChild(this.shadow)
     }
     init() {
         super.init()
@@ -678,16 +731,25 @@ PVZ2.Projectile = class extends PVZ2.Object {
             }
         }
         super.step()
-        this.x += this.speedX
-        if(this.x > 1600) {
+        this.x += this.velocity.x
+        this.y3 += -this.velocity.y
+        this.z3 += -this.velocity.z
+        if(this.acceleration) {
+            this.velocity.x += this.acceleration.x
+            this.velocity.y += this.acceleration.y
+            this.velocity.z += this.acceleration.z
+        }
+        if(this.x > 1600 || this.z3 > 0) {
             rm(this)
         }
     }
     splat() {
         let pam = pams[this.type.ImpactPAM]
-        new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], 
+        let sp = new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], 
             this.x + this.type.ImpactOffset[0].Min,
             this.y + this.type.ImpactOffset[1].Min)
+        sp.y3 = this.y3
+        sp.z3 = this.z3 + this.type.ImpactOffset[1].Min
     }
 }
 
