@@ -401,7 +401,7 @@ PVZ2.Plant = class extends PVZ2.Object {
                     rm(this)
                     if(this.type.TypeName == 'cherry_bomb') {
                         let offsetX = 0, offsetY = -140
-                        new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY)
+                        new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY, shadowLayer)
                         new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
                     }
                     for(let obj2 of objects) {
@@ -639,10 +639,11 @@ PVZ2.ZombieModernAllStar = class extends PVZ2.ZombieBaseClass {
     }
 }
 PVZ2.Effect = class extends PVZ2.Object {
-    constructor(pam, act, x, y) {
+    constructor(pam, act, x, y, parent = scene) {
         super(pam, undefined, act, {removeOnFinish: true})
         this.position.set(x, y)
-        scene.addChild(this)
+        this.y3 = y
+        parent.addChild(this)
         newObjects.push(this)
         this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         this.ztype = 'effect'
@@ -750,6 +751,56 @@ PVZ2.Projectile = class extends PVZ2.Object {
             this.y + this.type.ImpactOffset[1].Min)
         sp.y3 = this.y3
         sp.z3 = this.z3 + this.type.ImpactOffset[1].Min
+    }
+}
+
+PVZ2.mowerRect = {
+    mX: -15,
+    mY: -15,
+    mWidth: 30,
+    mHeight: 30
+}
+
+PVZ2.Mower = class extends PVZ2.Object {
+    constructor(x, y, pam) {
+        super(pam, pam.main_sprite, pam.actionFrame['idle'])
+
+        this.position.set(x, y)
+        this.y3 = y + 35
+        this.z3 = -35
+        this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
+        scene.addChild(this)
+        newObjects.push(this)
+        
+        this.ztype = 'car'
+        this.triggered = false
+        // this.shadow = drawPImageCentered(-10, 10, texturesMap.IMAGE_PLANTSHADOW)
+        // shadowLayer.addChild(this.shadow)
+    }
+    step() {
+        if(this.triggered) {
+            this.x += 10
+            if(this.x > 1600) {
+                rm(this)
+            }
+        }
+        for(let obj of objects) {
+            if(obj.ztype == 'zombie' && !obj.dead) {
+                if(ifCollide(this, obj, PVZ2.mowerRect, obj.type.prop.HitRect)) {
+                    obj.hit(100000)
+                    if(!this.triggered) {
+                        this.triggered = true
+                        this.changeAction('transition')
+                    }
+                }
+            }
+        }
+        super.step()
+    }
+    onFinish() {
+        if(this.actName == 'transition') {
+            this.changeAction('attack')
+        }
     }
 }
 

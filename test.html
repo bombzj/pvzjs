@@ -38,7 +38,7 @@
         }
         // 割草机
         for(let i = 0;i < 5;i++) {
-            car(310, i * 150 + 390)
+            car(field.x - 90, field.y + (0.5 + i) * field.h)
         }
         numSun(0, 0, 5000)    // 太阳数量
         sun(500, 0)     
@@ -70,7 +70,7 @@
         if(sunCnt == 300) {
             sunCnt = 0
             sun(field.x + rnd(0, 800), 0)
-            zombie(rnd(0, 4), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
+            zombie(rnd(3, 3), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
         }
     }
 

@@ -119,8 +119,7 @@ function numSun(x, y, num = 0) {
 
 // draw mower
 function car(x, y) {
-    let car = drawPam(x, y, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', stage)
-    car.y3 = y
+    let car = new PVZ2.Mower(x, y, pams.POPANIM_MOWERS_MOWER_MODERN)
     return car
 }
 
@@ -196,9 +195,9 @@ function setup(resources) {
     app.ticker.add(delta => {
         objects.forEach(a => {
             if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
-                scene.removeChild(a)
+                a.parent.removeChild(a)
                 if(a.shadow) {
-                    shadowLayer.removeChild(a.shadow)
+                    a.shadow.parent.removeChild(a.shadow)
                 }
                 if(a.gridX != undefined) {
                     PVZ2.grids[a.gridY][a.gridX] = undefined

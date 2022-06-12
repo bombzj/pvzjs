@@ -97,7 +97,7 @@
             seedBank.seeds.push(seed(-1, 0, seedBank.pos.height * i + seedBank.pos.y))
         }
         for(let i = 0;i < 5;i++) {
-            drawPam(310, i * 150 + 390, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', scene)
+            car(field.x - 90, field.y + (0.5 + i) * field.h)
         }
         // sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
