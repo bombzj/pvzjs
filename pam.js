@@ -371,8 +371,16 @@ PVZ2.Plant = class extends PVZ2.Object {
         } else {
             if(this.attacking) {
                 if(this.actionCooldown <= 0) {
-                    if(this.pam.actionFrame['attack']) {
-                        this.changeAction('attack')
+                    if(this.type.TypeName == 'kernelpult') {
+                        if(Math.random() < 0.4) {
+                            this.changeAction('attack')
+                        } else {
+                            this.changeAction('attack2')
+                        }
+                    } else {
+                        if(this.pam.actionFrame['attack']) {
+                            this.changeAction('attack')
+                        }
                     }
                     this.actionCooldown = this.actionCooldownMax
                 }
@@ -535,16 +543,19 @@ PVZ2.Plant = class extends PVZ2.Object {
     useAction() {
         if(this.action.Type == 'projectile') {
             if(this.action.Projectile) {
-                this.launch()
+                let projectileType = getByRTID(this.action.Projectile)
+                if(this.type.TypeName == 'kernelpult' && this.actName == 'attack2') {
+                    projectileType = getByRTID(this.type.prop.Actions[1].Projectile)
+                }
+                this.launch(projectileType)
                 this.launchCounter = 0
             }
         } else if(this.action.Type == 'sun') {
             new PVZ2.Sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y, 50)
         }
     }
-    launch() {
+    launch(projectileType) {
         let target = this.findTarget()
-        let projectileType = getByRTID(this.action.Projectile)
         if(projectileType.ClassName == 'ThreepeaterProjectile') {
             let a = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
             let b = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
@@ -582,7 +593,7 @@ function launchProjectile(type, x, y, z, target) {
     }
     if(target) {
         if(type.InitialAcceleration) {    // catapult
-            let deltaX = target.x - this.x
+            let deltaX = target.x - x
             a.velocity.x = (deltaX / 3.5 / a.velocity.z)
         }
     }
@@ -658,6 +669,11 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             if(this.chillCounter == 0) {
                 this.filters = []
             }
+        } else if(this.butterCounter > 0) {
+            this.butterCounter--
+            if(this.butterCounter == 0) {
+                this.showSprite('butter', false)
+            }
         } else {
             super.step()
         }
@@ -704,7 +720,11 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
     }
     chill(n) {
         this.chillCounter = n * fps
-        this.filters = [chillFilter];
+        this.filters = [chillFilter]
+    }
+    butter(n) {
+        this.butterCounter = n * fps
+        this.showSprite('butter', true)
     }
     hit(damage) {
         if(this.armors) {
@@ -813,6 +833,9 @@ PVZ2.Sun = class extends PVZ2.Object {
 
 PVZ2.Projectile = class extends PVZ2.Object {
     constructor(type) {
+        if(!type.AttachedPAM) {
+            type.AttachedPAM = "POPANIM_EFFECTS_T_KERNALPULT_PROJECTILE"
+        }
         let pam = pams[type.AttachedPAM]
         super(pam, null, 'animation')
         this.type = type
@@ -851,6 +874,8 @@ PVZ2.Projectile = class extends PVZ2.Object {
                             for(let cond of this.type.Conditions) {
                                 if(cond.Condition == 'chill') {
                                     obj2.chill(cond.Duration.Min)
+                                } else if(cond.Condition == 'butter') {
+                                    obj2.butter(cond.Duration.Min)
                                 }
                             }
                         }
@@ -875,12 +900,17 @@ PVZ2.Projectile = class extends PVZ2.Object {
         }
     }
     splat() {
+        if(!this.type.ImpactPAM) return
         let pam = pams[this.type.ImpactPAM]
-        let sp = new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], 
-            this.x + this.type.ImpactOffset[0].Min,
-            this.y + this.type.ImpactOffset[1].Min)
+        let x2 = 0
+        let y2 = 0
+        if(this.type.ImpactOffset) {
+            x2 = this.type.ImpactOffset[0].Min
+            y2 = this.type.ImpactOffset[1].Min
+        }
+        let sp = new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], this.x + x2, this.y + y2)
         sp.y3 = this.y3
-        sp.z3 = this.z3 + this.type.ImpactOffset[1].Min
+        sp.z3 = this.z3 + y2
     }
 }
 
