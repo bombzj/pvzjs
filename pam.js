@@ -310,6 +310,10 @@ PVZ2.Object = class extends PamSprite {
         }
     }
 }
+
+const squashingTime = 6
+const squashingWaitTime = 12
+
 PVZ2.Plant = class extends PVZ2.Object {
     constructor(type) {
         let pam = pams[type.PopAnim]
@@ -408,6 +412,19 @@ PVZ2.Plant = class extends PVZ2.Object {
                             break
                         }
                     }
+                } else if(this.type.TypeName == 'squash') {
+                    if(this.actName == 'idle') {
+                        if(Math.abs(obj2.x - this.x) < 200 && Math.abs(obj2.y3 - this.y3) < 20) {
+                            if(obj2.x < this.x) {
+                                this.changeAction('turn')
+                            } else {
+                                this.changeAction('jump_up_right')
+                                this.squashing = squashingTime + squashingWaitTime
+                            }
+                            this.target = obj2
+                            break
+                        }
+                    }
                 } else {
                     if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
                         this.attacking = true
@@ -428,6 +445,30 @@ PVZ2.Plant = class extends PVZ2.Object {
                 this.chewing--
                 if(this.chewing == 0) {
                     this.changeAction('special_end')
+                }
+            }
+        } else if(this.type.TypeName == 'squash') {
+            if(this.squashing > 0) {
+                this.squashing--
+                if(this.squashing < squashingTime) {
+                    if(this.squashing == 0) {
+    
+                    } else {
+                        this.x += (this.target.x - this.x) / this.squashing
+                        this.z3 -= 25
+                    }
+                }
+            } else if(this.squashing2 > 0) {
+                this.squashing2--
+                if(this.squashing2 == 0) {
+                    for(let obj2 of objects) {
+                        if(obj2.ztype == 'zombie' && !obj2.dead && Math.abs(obj2.x - this.x) < 100 && Math.abs(obj2.y3 - this.y3) < 20) {
+                            obj2.dead = true
+                            rm(obj2)
+                        }
+                    }
+                } else {
+                    this.z3 += 25
                 }
             }
         }
@@ -510,6 +551,20 @@ PVZ2.Plant = class extends PVZ2.Object {
                 }
             } else if(this.actName == 'special_end') {
                 this.changeAction('idle')
+            }
+
+        } else if(this.type.TypeName == 'squash') {
+            if(this.actName == 'turn') {
+                this.changeAction('jump_up_left')
+                this.squashing = squashingTime + squashingWaitTime
+            } else if(this.actName == 'jump_up_left') {
+                this.changeAction('jump_down_left')
+                this.squashing2 = squashingTime
+            } else if(this.actName == 'jump_up_right') {
+                this.changeAction('jump_down_right')
+                this.squashing2 = squashingTime
+            } else if(this.actName == 'jump_down_left' || this.actName == 'jump_down_right') {
+                rm(this)
             }
 
         } else {
