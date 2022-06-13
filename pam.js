@@ -313,7 +313,12 @@ PVZ2.Object = class extends PamSprite {
 PVZ2.Plant = class extends PVZ2.Object {
     constructor(type) {
         let pam = pams[type.PopAnim]
-        super(pam, undefined, 'idle')
+        let initAct = 'idle'
+        if(type.TypeName == 'potatomine') {
+            initAct = 'plant'
+        }
+        super(pam, undefined, initAct)
+        this.actName = initAct
         this.type = type
         if(type.prop.Actions) {
             let action = this.action = type.prop.Actions[0]
@@ -381,11 +386,26 @@ PVZ2.Plant = class extends PVZ2.Object {
                         this.attacking = true
                         break
                     }
+                } else if(this.type.TypeName == 'potatomine') {
+                    if(this.wake && this.actName != 'attack') {
+                        if(Math.abs(obj2.x - this.x) < 100 && Math.abs(obj2.y3 - this.y3) < 20) {
+                            this.changeAction('attack')
+                            break
+                        }
+                    }
                 } else {
                     if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
                         this.attacking = true
                         break
                     }
+                }
+            }
+        }
+        if(this.type.TypeName == 'potatomine') {
+            if(!this.wake) {
+                if(this.age > 150) {
+                    this.wake = true
+                    this.changeAction('recover')
                 }
             }
         }
@@ -427,29 +447,50 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
     }
     onFinish() {
-        if(this.actName) {
-            if(this.actName != 'idle' && this.action) {
-                if(this.action.Type == 'explode' && this.actName == 'attack') {
-                    rm(this)
-                    if(this.type.TypeName == 'cherry_bomb') {
-                        let offsetX = 0, offsetY = -140
-                        new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY, shadowLayer)
-                        new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
-                    }
-                    for(let obj2 of objects) {
-                        if(obj2.ztype == 'zombie' && !obj2.dead && withinDistance(this, obj2, 200)) {
-                            obj2.dead = true
-                            rm(obj2)
-                            new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y)
-                        }
-                    }
-                    return
-                }
-    
+        if(this.type.TypeName == 'potatomine') {
+            if(this.actName == 'plant') {
+                this.changeAction('plant_idle')
+            } else if(this.actName == 'recover') {
                 this.changeAction('idle')
-            } else {
-                // attack after finish last action
-                // this.changeAction('attack')
+            }
+
+            if(this.actName == 'attack') {
+                rm(this)
+                let offsetX = 0, offsetY = 0
+                new PVZ2.Effect(pams.POPANIM_EFFECTS_POTATOMINE_EXPLOSION, undefined,  this.x + offsetX, this.y + offsetY)
+                for(let obj2 of objects) {
+                    if(obj2.ztype == 'zombie' && !obj2.dead && withinDistance(this, obj2, 100)) {
+                        obj2.dead = true
+                        rm(obj2)
+                    }
+                }
+                return
+            }
+        } else {
+            if(this.actName) {
+                if(this.actName != 'idle' && this.action) {
+                    if(this.action.Type == 'explode' && this.actName == 'attack') {
+                        rm(this)
+                        if(this.type.TypeName == 'cherry_bomb') {
+                            let offsetX = 0, offsetY = -140
+                            new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_REAR, undefined,  this.x + offsetX, this.y + offsetY, shadowLayer)
+                            new PVZ2.Effect(pams.POPANIM_EFFECTS_CHERRYBOMB_EXPLOSION_TOP, undefined,  this.x + offsetX, this.y + offsetY)
+                            for(let obj2 of objects) {
+                                if(obj2.ztype == 'zombie' && !obj2.dead && withinDistance(this, obj2, 200)) {
+                                    obj2.dead = true
+                                    rm(obj2)
+                                    new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y)
+                                }
+                            }
+                        }
+                        return
+                    }
+        
+                    this.changeAction('idle')
+                } else {
+                    // attack after finish last action
+                    // this.changeAction('attack')
+                }
             }
         }
     }
