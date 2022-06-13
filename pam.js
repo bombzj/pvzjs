@@ -714,7 +714,12 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         super.init()
     }
     step() {
-        if(this.chillCounter > 0) {
+        if(this.butterCounter > 0) {
+            this.butterCounter--
+            if(this.butterCounter == 0) {
+                this.showSprite('butter', false)
+            }
+        } else if(this.chillCounter > 0) {
             this.chillCounter--
             if(this.age % 2 == 0) {
                 super.step()
@@ -723,11 +728,6 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             }
             if(this.chillCounter == 0) {
                 this.filters = []
-            }
-        } else if(this.butterCounter > 0) {
-            this.butterCounter--
-            if(this.butterCounter == 0) {
-                this.showSprite('butter', false)
             }
         } else {
             super.step()

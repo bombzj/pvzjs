@@ -80,6 +80,10 @@
 
         if(spr) {
             spr.step()
+            let frame = spr.sprite.frame[spr.frame]
+            for(let command of frame.command) {
+                console.log(command.command + '(' + command.parameter + ')')
+            }
         }
     }
 
