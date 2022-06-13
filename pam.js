@@ -376,9 +376,16 @@ PVZ2.Plant = class extends PVZ2.Object {
         this.attacking = false
         for(let obj2 of objects) {
             if(obj2.ztype == 'zombie' && !obj2.dead) {
-                if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
-                    this.attacking = true
-                    break
+                if(this.type.TypeName == 'threepeater') {
+                    if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 300) {
+                        this.attacking = true
+                        break
+                    }
+                } else {
+                    if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
+                        this.attacking = true
+                        break
+                    }
                 }
             }
         }
@@ -459,19 +466,16 @@ PVZ2.Plant = class extends PVZ2.Object {
     launch() {
         let target = this.findTarget()
         let projectileType = getByRTID(this.action.Projectile)
-        let a = new PVZ2.Projectile(projectileType, target)
-        if(target) {
-            if(projectileType.InitialAcceleration) {    // catapult
-                let deltaX = target.x - this.x
-                a.velocity.x = (deltaX / 3.5 / a.velocity.z)
-            }
+        if(projectileType.ClassName == 'ThreepeaterProjectile') {
+            let a = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+            let b = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+            a.vy = - (b.vy = 15)
+            a.vt = b.vt = 10
+            let c = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+            c.vt = 0
+        } else {
+            launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
         }
-        a.position.set(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y)
-        a.y3 = this.y3
-        a.z3 = this.z3 + this.action.SpawnOffset.y
-        scene.addChild(a)
-        newObjects.push(a)
-        a.ztype = 'projectile'
     }
     findTarget() {
         let obj
@@ -488,6 +492,28 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
         return obj
     }
+}
+
+function launchProjectile(type, x, y, z, target) {
+    let a
+    if(PVZ2[type.ClassName]) {
+        a = new PVZ2[type.ClassName](type, target)
+    } else {
+        a = new PVZ2.Projectile(type, target)
+    }
+    if(target) {
+        if(type.InitialAcceleration) {    // catapult
+            let deltaX = target.x - this.x
+            a.velocity.x = (deltaX / 3.5 / a.velocity.z)
+        }
+    }
+    a.position.set(x, y + z)
+    a.y3 = y
+    a.z3 = z
+    scene.addChild(a)
+    newObjects.push(a)
+    a.ztype = 'projectile'
+    return a
 }
 
 var zombieHideSprites = [
@@ -779,6 +805,19 @@ PVZ2.Projectile = class extends PVZ2.Object {
     }
 }
 
+
+PVZ2.ThreepeaterProjectile = class extends PVZ2.Projectile {
+    constructor(type) {
+        super(type)
+    }
+    step() {
+        if(this.age < this.vt) {
+            this.y3 += this.vy
+        }
+        super.step()
+    }
+}
+
 PVZ2.mowerRect = {
     mX: -15,
     mY: -15,
@@ -804,7 +843,7 @@ PVZ2.Mower = class extends PVZ2.Object {
     }
     step() {
         if(this.triggered) {
-            this.x += 10
+            this.x += 15
             if(this.x > 1600) {
                 rm(this)
             }
