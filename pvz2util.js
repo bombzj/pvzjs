@@ -5,11 +5,12 @@ function plant(i, x, y) {
     let type = typeof i !== 'number' ? i : plantList[i]
     let a = new PVZ2.Plant(type)
     a.position.set(x, y)
+    a.y3 = y + 35
+    a.z3 = -35
     scene.addChild(a)
     newObjects.push(a)
     a.plantType = i
     a.ztype = 'plant'
-    a.zIndex = a.y
     return a
 }
 
@@ -23,11 +24,12 @@ function zombie(i, x, y) {
         a = new PVZ2.ZombieBasic(type)
     }
     a.position.set(x, y)
+    a.y3 = y + 35
+    a.z3 = -35
     scene.addChild(a)
     newObjects.push(a)
     a.plantType = i
     a.ztype = 'zombie'
-    a.zIndex = a.y+0.1
     return a
 }
 
@@ -36,6 +38,7 @@ var sunTotal = 50
 function seed(i, x, y) {
     let c = new PVZ2.Seed(plantList[i])
     c.position.set(x, y)
+    c.y3 = y
     stage.addChild(c)
     newObjects.push(c)
     c.zIndex = zIndexHUD
@@ -68,13 +71,14 @@ function shovel(x, y) {
     return a
 }
 
+var scene, shadowLayer
 // draw background
 function back(x, y) {
-    let scene = new PVZ2.Scene()
     scene.position.set(x, y)
     stage.addChild(scene)
     newObjects.push(scene)
     scene.ztype = 'scene'
+    scene.addChild(shadowLayer)
     return scene
 }
 
@@ -115,7 +119,8 @@ function numSun(x, y, num = 0) {
 
 // draw mower
 function car(x, y) {
-    return drawPam(x, y, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', stage)
+    let car = new PVZ2.Mower(x, y, pams.POPANIM_MOWERS_MOWER_MODERN)
+    return car
 }
 
 function drawPam(x, y, pam, act, ztype, parent) {
@@ -132,14 +137,20 @@ function drawPam(x, y, pam, act, ztype, parent) {
     return a
 }
 
-function drawPImage(x = 0, y = 0, texture, parent) {
+function drawPImage(x = 0, y = 0, texture, parent, centered = false) {
     let a = new PIXI.Sprite(texture)
     a.position.set(x, y)
+    if(centered) {
+        a.pivot.set(texture.width / 2, texture.height / 2)
+    }
     a.scale.set(resScaleV)
     if(parent) {
         parent.addChild(a)
     }
     return a
+}
+function drawPImageCentered(x = 0, y = 0, texture, parent) {
+    return drawPImage(x, y, texture, parent, true)
 }
 
 function rm(obj) {
@@ -176,11 +187,18 @@ function setup(resources) {
 
     app.stage.addChild(stage)
     stage.scale.set(PVZ2.zoom)
+
+    scene = new PVZ2.Scene()
+    shadowLayer = new PIXI.Container()
+
     init(resources)
     app.ticker.add(delta => {
         objects.forEach(a => {
             if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
-                scene.removeChild(a)
+                a.parent.removeChild(a)
+                if(a.shadow) {
+                    a.shadow.parent.removeChild(a.shadow)
+                }
                 if(a.gridX != undefined) {
                     PVZ2.grids[a.gridY][a.gridX] = undefined
                 }
@@ -555,6 +573,7 @@ class SeedChooser extends PIXI.Container {
             this.demo = new PVZ2.Plant(this.selected.type)
             this.demo.demo = true
             this.demo.position.set(seedChooserDemoPos.x + seedChooserDemoPos.width / 2, seedChooserDemoPos.y + seedChooserDemoPos.height / 2 + 20)
+            this.demo.y3 = this.demo.y
             this.addChild(this.demo)
             objects.push(this.demo)
         }
@@ -757,11 +776,14 @@ PVZ2.plantRect = {
     mWidth: 40, mHeight: 100
 }
 
+const ObjectWidthY = 30
 function ifCollide(obj1, obj2, rect1, rect2) {
     return obj1.x + rect1.mX < obj2.x + rect2.mX + rect2.mWidth
         && obj1.x + rect1.mX + rect1.mWidth > obj2.x + rect2.mX
-        && obj1.y + rect1.mY > obj2.y + rect2.mY - rect2.mHeight
-        && obj1.y + rect1.mY - rect1.mHeight < obj2.y + rect2.mY
+        && obj1.y3 + ObjectWidthY > obj2.y3
+        && obj1.y3 - ObjectWidthY < obj2.y3
+        && obj1.z3 + rect1.mY > obj2.z3 + rect2.mY - rect2.mHeight
+        && obj1.z3 + rect1.mY - rect1.mHeight < obj2.z3 + rect2.mY
 }
 
 function getCloser(from, to, speed) {
@@ -777,4 +799,12 @@ function getCloser(from, to, speed) {
         }
     }
     return from
+}
+
+function randomMinMax(numbers) {
+    let delta = numbers.Max - numbers.Min
+    if(delta == 0) {
+        return numbers.Min
+    }
+    return Math.random() * delta + numbers.Min
 }

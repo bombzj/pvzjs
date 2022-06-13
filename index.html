@@ -27,7 +27,6 @@
     let selspr
 
     var seedChooser
-    var scene
     PVZ2.gameStart = false
     PVZ2.debug = false
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
@@ -78,6 +77,7 @@
                 for(let p of this.packets) {
                     let demo = new PVZ2.ZombieBaseClass(rtons.ZombieTypes[p], 'idle')
                     demo.position.set(this.pos.x + rnd(0, this.pos.width), this.pos.y + rnd(0, this.pos.height))
+                    demo.y3 = demo.y
                     scene.addChild(demo)
                     demo.zIndex = demo.y
                     objects.push(demo)
@@ -91,13 +91,13 @@
 
     function init() {
         initGrid(5, 9)
-        scene = back(0, 0)
+        back(0, 0)
         scene.goBack()
         for(let i = 0;i < 8;i++){
             seedBank.seeds.push(seed(-1, 0, seedBank.pos.height * i + seedBank.pos.y))
         }
         for(let i = 0;i < 5;i++) {
-            drawPam(310, i * 150 + 390, pams.POPANIM_MOWERS_MOWER_MODERN, undefined, 'car', scene)
+            car(field.x - 90, field.y + (0.5 + i) * field.h)
         }
         // sun1 = sun(500, 100)
         selspr = seedSel(0, 100)

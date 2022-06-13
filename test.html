@@ -24,20 +24,21 @@
     // 加载图片和动画
     const loader = PIXI.Loader.shared;
 
-    var scene
     var seeds = []  // 种子列表
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
     var seedBankPos = {x: 0, y: 150, height: 120, width: 180}
 
     // 启动后调用一次
     function init() {
+        PVZ2.debug = true
         initGrid(5, 9)
-        scene = back(0, 0)
+        back(0, 0)
         for(let i = 0;i < 8;i++){
             seeds.push(seed(i, 0, seedBankPos.height * i + seedBankPos.y))
         }
+        // 割草机
         for(let i = 0;i < 5;i++) {
-            car(310, i * 150 + 390)
+            car(field.x - 90, field.y + (0.5 + i) * field.h)
         }
         numSun(0, 0, 5000)    // 太阳数量
         sun(500, 0)     
@@ -69,7 +70,7 @@
         if(sunCnt == 300) {
             sunCnt = 0
             sun(field.x + rnd(0, 800), 0)
-            zombie(rnd(0, 4), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
+            zombie(rnd(3, 3), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
         }
     }
 
@@ -188,8 +189,8 @@
             ename: 'snowpea',
         },
         {       // 4
-            name: '大嘴花',
-            ename: 'chomper',
+            name: '西瓜投手',
+            ename: 'melonpult',
         },
         {       // 5
             name: '窝瓜',
