@@ -393,6 +393,13 @@ PVZ2.Plant = class extends PVZ2.Object {
                             break
                         }
                     }
+                } else if(this.type.TypeName == 'chomper') {
+                    if(!this.chewing && this.actName == 'idle') {
+                        if(obj2.x > this.x && obj2.x < this.x + 300 && Math.abs(obj2.y3 - this.y3) < 20) {
+                            this.changeAction('bite')
+                            break
+                        }
+                    }
                 } else {
                     if(obj2.x > this.x && Math.abs(obj2.y3 - this.y3) < 20) {
                         this.attacking = true
@@ -406,6 +413,13 @@ PVZ2.Plant = class extends PVZ2.Object {
                 if(this.age > 150) {
                     this.wake = true
                     this.changeAction('recover')
+                }
+            }
+        } else if(this.type.TypeName == 'chomper') {
+            if(this.chewing > 0) {
+                this.chewing--
+                if(this.chewing == 0) {
+                    this.changeAction('special_end')
                 }
             }
         }
@@ -464,8 +478,32 @@ PVZ2.Plant = class extends PVZ2.Object {
                         rm(obj2)
                     }
                 }
-                return
             }
+        } else if(this.type.TypeName == 'chomper') {
+            if(this.actName == 'special') {
+                this.changeAction('special_idle')
+                this.chewing = this.type.prop.ChewTimeSeconds * fps
+            } else if(this.actName == 'bite_end') {
+                this.changeAction('idle')
+            } else if(this.actName == 'bite') {
+                let ate = false
+                for(let obj2 of objects) {
+                    if(obj2.ztype == 'zombie' && !obj2.dead && obj2.x > this.x && obj2.x < this.x + 300 && Math.abs(obj2.y3 - this.y3) < 20) {
+                        obj2.dead = true
+                        rm(obj2)
+                        ate = true
+                        break
+                    }
+                }
+                if(ate) {
+                    this.changeAction('special')
+                } else {
+                    this.changeAction('bite_end')
+                }
+            } else if(this.actName == 'special_end') {
+                this.changeAction('idle')
+            }
+
         } else {
             if(this.actName) {
                 if(this.actName != 'idle' && this.action) {
