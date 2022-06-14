@@ -44,14 +44,6 @@ function pamInit(name, dataRaw) {
     let changes = {}    // keep all current changes
     let firstFrame = true
     for(let frame of data.main_sprite.frame) {
-        if(firstFrame) {
-            for(let index in appends) {
-                if(!frame.remove.find(x => x.index == index)) {
-                    frame.append.push(appends[index])
-                    frame.change.push(changes[index])
-                }
-            }
-        }
         for(let remove of frame.remove) {
             delete appends[remove.index]
         }
@@ -60,6 +52,17 @@ function pamInit(name, dataRaw) {
         }
         for(let change of frame.change) {
             changes[change.index] = change
+        }
+        if(firstFrame) {
+            if(Object.keys(appends).length != frame.append.length) {
+                frame.remove = []
+                frame.append = []
+                frame.change = []
+                for(let index in appends) {
+                    frame.append.push(appends[index])
+                    frame.change.push(changes[index])
+                }
+            }
         }
         firstFrame = frame.stop
     }
@@ -137,6 +140,7 @@ class PamSprite extends PIXI.Container {
             let spr = this.parts[append.index]
             if(spr) {
                 spr.renderable = true
+                spr.alpha = 1
                 if(spr.frame) {
                     spr.frame = 0    // restart sub animation
                 }
