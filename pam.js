@@ -400,8 +400,25 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
         if(this.launchCounter != undefined) {
             this.launchCounter++
-            if(this.launchCounter == 5 && this.type.TypeName == 'repeater') {
-                this.launch()
+            if(this.launchCounter == 5) {
+                if(this.type.TypeName == 'repeater') {
+                    let projectileType = getByRTID(this.action.Projectile)
+                    let target = this.findTarget()
+                    launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+                }
+            }
+        }
+        if(this.launchCounter2 != undefined) {
+            this.launchCounter2++
+            if(this.launchCounter2 == 5) {
+                if(this.type.TypeName == 'splitpea') {
+                    if(this.attacking2) {
+                        let projectileType = getByRTID(this.type.prop.Actions[1].Projectile)
+                        let action = this.type.prop.Actions[1]
+                        let a = launchProjectile(projectileType, this.x + action.SpawnOffset.x, this.y3, this.z3 + action.SpawnOffset.y)
+                        a.velocity.x = -a.velocity.x
+                    }
+                }
             }
         }
         if(this.type.prop.IsInstant) {
@@ -411,10 +428,25 @@ PVZ2.Plant = class extends PVZ2.Object {
                 }
             }
         }
-        if(this.pam.name == 'POPANIM_PLANT_SUNFLOWER') {
+        if(this.type.TypeName == 'sunflower') {
             if(this.actionCooldown <= 0) {
                 this.changeAction('special')
                 this.actionCooldown = this.actionCooldownMax
+            }
+        } else if(this.type.TypeName == 'splitpea') {
+            if(this.attacking || this.attacking2) {
+                if(this.actionCooldown <= 0) {
+                    if(this.attacking) {
+                        if(this.attacking2) {
+                            this.changeAction('attack2')
+                        } else {
+                            this.changeAction('attack')
+                        }
+                    } else {
+                        this.changeAction('attack3')
+                    }
+                    this.actionCooldown = this.actionCooldownMax
+                }
             }
         } else {
             if(this.attacking) {
@@ -435,6 +467,7 @@ PVZ2.Plant = class extends PVZ2.Object {
             }
         }
         this.attacking = false
+        this.attacking2 = false // splitpea
         for(let obj2 of objects) {
             if(obj2.ztype == 'zombie' && !obj2.dead) {
                 if(this.type.TypeName == 'threepeater') {
@@ -454,6 +487,14 @@ PVZ2.Plant = class extends PVZ2.Object {
                         if(obj2.x > this.x && obj2.x < this.x + 300 && Math.abs(obj2.y3 - this.y3) < 20) {
                             this.changeAction('bite')
                             break
+                        }
+                    }
+                } else if(this.type.TypeName == 'splitpea') {
+                    if(Math.abs(obj2.y3 - this.y3) < 20) {
+                        if(obj2.x > this.x) {
+                            this.attacking = true
+                        } else {
+                            this.attacking2 = true
                         }
                     }
                 } else if(this.type.TypeName == 'squash') {
@@ -640,31 +681,40 @@ PVZ2.Plant = class extends PVZ2.Object {
         }
     }
     command(command, parameter) {
-        if(command != 'use_action') return
+        let action
+        if(command == 'use_action') {
+            action = this.action
+        } else if(command == 'use_action2') {
+            action = this.type.prop.Actions[1]
+        } else {
+            return
+        }
         if(this.action.Type == 'projectile') {
-            if(this.action.Projectile) {
-                let projectileType = getByRTID(this.action.Projectile)
+            if(action.Projectile) {
+                let projectileType = getByRTID(action.Projectile)
                 if(this.type.TypeName == 'kernelpult' && this.actName == 'attack2') {
                     projectileType = getByRTID(this.type.prop.Actions[1].Projectile)
                 }
-                this.launch(projectileType)
-                this.launchCounter = 0
+                let target = this.findTarget()
+                if(projectileType.ClassName == 'ThreepeaterProjectile') {
+                    let a = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+                    let b = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+                    a.vy = - (b.vy = 15)
+                    a.vt = b.vt = 10
+                    let c = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+                    c.vt = 0
+                } else if(this.type.TypeName == 'splitpea' && command == 'use_action2') {
+                    let a = launchProjectile(projectileType, this.x + action.SpawnOffset.x, this.y3, this.z3 + action.SpawnOffset.y)
+                    a.velocity.x = -a.velocity.x
+                    this.launchCounter2= 0
+                } else {
+                    launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
+                    this.launchCounter = 0
+                }
+
             }
         } else if(this.action.Type == 'sun') {
             new PVZ2.Sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y, 50)
-        }
-    }
-    launch(projectileType) {
-        let target = this.findTarget()
-        if(projectileType.ClassName == 'ThreepeaterProjectile') {
-            let a = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
-            let b = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
-            a.vy = - (b.vy = 15)
-            a.vt = b.vt = 10
-            let c = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
-            c.vt = 0
-        } else {
-            launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
         }
     }
     findTarget() {
@@ -914,6 +964,7 @@ PVZ2.Sun = class extends PVZ2.Object {
         super()
         this.setPam(pam)
         this.position.set(x, y)
+        this.y3 = y
         scene.addChild(this)
         newObjects.push(this)
         // this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
@@ -1024,6 +1075,9 @@ PVZ2.Projectile = class extends PVZ2.Object {
         let sp = new PVZ2.Effect(pam, this.type.ImpactPAMAnimationToPlay[0], this.x + x2, this.y3, this.z3 + y2)
         sp.y3 = this.y3
         sp.z3 = this.z3 + y2
+        if(this.velocity && this.velocity.x < 0) {
+            sp.angle = 180
+        }
     }
 }
 
