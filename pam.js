@@ -454,6 +454,10 @@ PVZ2.Plant = class extends PVZ2.Object {
                         } else {
                             this.changeAction('attack2')
                         }
+                    } else if(this.type.TypeName == 'puffshroom') {
+                        this.changeAction('special_stage1')
+                    } else if(this.type.TypeName == 'fumeshroom') {
+                        this.changeAction('special')
                     } else {
                         if(this.pam.actionFrame['attack']) {
                             this.changeAction('attack')
@@ -685,8 +689,11 @@ PVZ2.Plant = class extends PVZ2.Object {
                         }
                         return
                     }
-        
-                    this.changeAction('idle')
+                    if(this.type.TypeName == 'puffshroom') {
+                        this.changeAction('idle_stage1')
+                    } else {
+                        this.changeAction('idle')
+                    }
                 } else {
                     // attack after finish last action
                     // this.changeAction('attack')
@@ -735,6 +742,16 @@ PVZ2.Plant = class extends PVZ2.Object {
                         if(obj2.ztype == 'zombie' && !obj2.dead) {
                             if(obj2.x > this.x && obj2.x < this.x + 300 && Math.abs(obj2.y3 - this.y3) < 300) {
                                 obj2.hit(30)
+                            }
+                        }
+                    }
+                } else if(this.type.TypeName == 'fumeshroom') {
+                    // let offset = this.action.SpawnOffset
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_FUMESHROOM_BUBBLES, 'animation', this.x + 130, this.y3, this.z3)
+                    for(let obj2 of objects) {
+                        if(obj2.ztype == 'zombie' && !obj2.dead) {
+                            if(obj2.x > this.x && obj2.x < this.x + 600 && Math.abs(obj2.y3 - this.y3) < 20) {
+                                obj2.hit(this.action.Damage)
                             }
                         }
                     }
@@ -850,7 +867,7 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
                 this.age++
             }
             if(this.chillCounter == 0) {
-                this.filters = []
+                this.filters = null
             }
         } else {
             super.step()
@@ -1043,11 +1060,13 @@ PVZ2.Projectile = class extends PVZ2.Object {
         if(PVZ2.collisionBox) {
             drawCollisionBox(this, type.CollisionRect)
         }
-        this.shadow = drawPImageCentered(-80, 10, texturesMap.IMAGE_PLANTSHADOW)
-        this.shadow.scale.x *= 0.3
-        this.shadow.scale.y *= 0.3
-        // shadow.zIndex = -1
-        shadowLayer.addChild(this.shadow)
+        if(type.HasShadow == undefined || type.HasShadow) {
+            this.shadow = drawPImageCentered(-80, 10, texturesMap.IMAGE_PLANTSHADOW)
+            this.shadow.scale.x *= 0.3
+            this.shadow.scale.y *= 0.3
+            // shadow.zIndex = -1
+            shadowLayer.addChild(this.shadow)
+        }
     }
     init() {
         super.init()
