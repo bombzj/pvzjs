@@ -812,3 +812,26 @@ function randomMinMax(numbers) {
     }
     return Math.random() * delta + numbers.Min
 }
+
+function addFilter(obj, add) {
+    if(obj.filters) {
+        obj.filters.push(add)
+    } else {
+        obj.filters = [add]
+    }
+}
+function removeFilter(obj, add) {
+    if(obj.filters) {
+        obj.filters.remove(add)
+        if(obj.filters.length == 0) {
+            obj.filters = null
+        }
+    }
+}
+
+Array.prototype.remove = function (val) {
+    var index = this.indexOf(val);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+}

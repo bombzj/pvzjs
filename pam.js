@@ -6,6 +6,15 @@ var PVZ2 = {}
 
 var chillFilter = new PIXI.filters.ColorMatrixFilter()
 chillFilter.tint(0x8888FF)
+var hitFilter = new PIXI.filters.ColorMatrixFilter()
+hitFilter.matrix = [
+    1, 0, 0, 0, 0.2,
+    0, 1, 0, 0, 0.2,
+    0, 0, 1, 0, 0.2,
+    0, 0, 0, 1, 0
+]
+const hitFilterDarkTime = 20
+const hitFilterLightTime = 30
 
 function pamInit(name, dataRaw) {
     let data = parsePam(dataRaw)
@@ -343,6 +352,12 @@ PVZ2.Object = class extends PIXI.Container {
         } else if(this.ztype == 'effect') {
             this.zIndex += 0.3
         }
+        if(this.hitFilterCounter > 0) {
+            this.hitFilterCounter--
+            if(this.hitFilterCounter == hitFilterDarkTime) {
+                removeFilter(this, hitFilter)
+            }
+        }
     }
     onFinish() {
         if(this.param && this.param.removeOnFinish) {
@@ -571,6 +586,10 @@ PVZ2.Plant = class extends PVZ2.Object {
         if(this.hitpoints <= 0) {
             rm(this)
         } else {
+            if(!this.hitFilterCounter) {
+                this.hitFilterCounter = hitFilterLightTime
+                addFilter(this, hitFilter)
+            }
             if(this.type.TypeName == 'wallnut') {
                 let ratio = this.hitpoints / this.type.prop.Hitpoints
                 if(ratio < 0.25) {
@@ -922,6 +941,10 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         this.showSprite('butter', true)
     }
     hit(damage) {
+        if(!this.hitFilterCounter) {
+            this.hitFilterCounter = hitFilterLightTime
+            addFilter(this, hitFilter)
+        }
         if(this.armors) {
             for(let armor of this.armors) {
                 if(armor.health > 0) {
@@ -931,9 +954,10 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             }
         }
         this.hitpoints -= damage
-        if(this.hitpoints < 0) {
+        if(this.hitpoints <= 0) {
             this.changeAction('die')
             this.dead = true
+            removeFilter(this, hitFilter)
         }
     }
     showArmor() {
