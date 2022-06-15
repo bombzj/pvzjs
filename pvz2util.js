@@ -176,6 +176,10 @@ PVZ2.setResolution = function(res) {
 }
 PVZ2.setResolution(768)
 PVZ2.gameStart = true
+PVZ2.field = {
+    x: 406, y: 312,
+    w: 128, h: 150
+}
 
 let texturesMap = {}
 let atlasTexturesMap = {}

@@ -472,6 +472,11 @@ PVZ2.Plant = class extends PVZ2.Object {
                         this.attacking = true
                         break
                     }
+                } else if(this.type.TypeName == 'snapdragon') {
+                    if(obj2.x > this.x && obj2.x < this.x + 350 && Math.abs(obj2.y3 - this.y3) < 300) {
+                        this.attacking = true
+                        break
+                    }
                 } else if(this.type.TypeName == 'potatomine') {
                     if(this.wake && this.actName != 'attack') {
                         if(Math.abs(obj2.x - this.x) < 100 && Math.abs(obj2.y3 - this.y3) < 20) {
@@ -665,6 +670,18 @@ PVZ2.Plant = class extends PVZ2.Object {
                                     new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y3, obj2.z3)
                                 }
                             }
+                        } else if(this.type.TypeName == 'jalapeno') {
+                            let offsetX = 0, offsetY = 0
+                            for(let i = 0;i < 9;i++) {
+                                new PVZ2.Effect(pams.POPANIM_EFFECTS_JALAPENO_FIRE, undefined,  PVZ2.field.x + offsetX + PVZ2.field.w * (i + 0.5), this.y + offsetY, 0)
+                            }
+                            for(let obj2 of objects) {
+                                if(obj2.ztype == 'zombie' && !obj2.dead && Math.abs(obj2.y3 - this.y3) < 20) {
+                                    obj2.dead = true
+                                    rm(obj2)
+                                    new PVZ2.Effect(pams.POPANIM_EFFECTS_ZOMBIE_ASH, undefined,  obj2.x, obj2.y3, obj2.z3)
+                                }
+                            }
                         }
                         return
                     }
@@ -711,9 +728,16 @@ PVZ2.Plant = class extends PVZ2.Object {
 
             } else {
                 if(this.type.TypeName == 'snapdragon') {
-                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3 - 128, this.z3)
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3 - 150, this.z3)
                     new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3, this.z3)
-                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3 + 128, this.z3)
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3 + 150, this.z3)
+                    for(let obj2 of objects) {
+                        if(obj2.ztype == 'zombie' && !obj2.dead) {
+                            if(obj2.x > this.x && obj2.x < this.x + 300 && Math.abs(obj2.y3 - this.y3) < 300) {
+                                obj2.hit(30)
+                            }
+                        }
+                    }
                 }
             }
         } else if(this.action.Type == 'sun') {
