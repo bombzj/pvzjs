@@ -54,7 +54,7 @@
 
         addPam(pams.POPANIM_PLANT_PEASHOOTER, 'idle', 0, -50, {custom: 'custom_06'})
         // addPam(pams.PEASHOOTER, 'attack', 0, 100)
-        addPam(pams.POPANIM_PLANT_PEASHOOTER, 'attack', -50, 80, {custom: 'custom_04', userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_PEASHOOTER, 'attack', -50, 80, {custom: 'custom_04', useAction: function(pamSprite) {
             let shot = addPam(pams.POPANIM_EFFECTS_T_PEA_PROJECTILE, 'animation', pamSprite.x + 40, pamSprite.y - 60)
             shot.stepAction = function() {
                 this.x += 10
@@ -63,7 +63,7 @@
                 }
             }
         }})
-        addPam(pams.POPANIM_PLANT_SUNFLOWER, 'special', 110, -50, {custom: 'custom_03', userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_SUNFLOWER, 'special', 110, -50, {custom: 'custom_03', useAction: function(pamSprite) {
             let sun = addPam(pams.POPANIM_EFFECTS_SUN, '', pamSprite.x + 80, pamSprite.y - 0)
             sun.drop = 0
             sun.stepAction = function() {
@@ -74,7 +74,7 @@
                 }
             }
         }})
-        addPam(pams.POPANIM_PLANT_SNOWPEA, 'attack', 240, -50, {custom: 'custom_01', userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_SNOWPEA, 'attack', 240, -50, {custom: 'custom_01', useAction: function(pamSprite) {
             let shot = addPam(pams.POPANIM_EFFECTS_T_SNOW_PEA, '', pamSprite.x + 80, pamSprite.y - 30)
             shot.stepAction = function() {
                 this.x += 10
@@ -129,7 +129,7 @@
 
         addPam(pams.POPANIM_PLANT_BONKCHOY, 'idle', 150, 240)
 
-        addPam(pams.POPANIM_PLANT_BLOOMERANG, 'attack', -50, 240, {userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_BLOOMERANG, 'attack', -50, 240, {useAction: function(pamSprite) {
             let shot = addPam(pams.POPANIM_EFFECTS_T_BLOOMERANG_PROJECTILE, '', pamSprite.x + 100, pamSprite.y - 60)
             shot.forward = true
             shot.stepAction = function() {
@@ -147,11 +147,11 @@
                 }
             }
         }})
-        addPam(pams.POPANIM_PLANT_FUMESHROOM, 'special', 300, 240, {userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_FUMESHROOM, 'special', 300, 240, {useAction: function(pamSprite) {
             let shot = addPam(pams.POPANIM_EFFECTS_FUMESHROOM_BUBBLES, 'special', pamSprite.x + 130, pamSprite.y, {onFinish: onFinish})
             shot.pamParent = pamSprite
         }})
-        addPam(pams.POPANIM_PLANT_COCONUTCANNON, 'attack', 50, 360, {userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_COCONUTCANNON, 'attack', 50, 360, {useAction: function(pamSprite) {
             let shot = addPam(pams.POPANIM_EFFECTS_T_COCONUT_PROJECTILE_EXPLOSION, 'coconut_projectile2', pamSprite.x + 80, pamSprite.y - 40)
             shot.stepAction = function() {
                 this.x += 50
@@ -162,7 +162,7 @@
             }
         }})
 
-        addPam(pams.POPANIM_PLANT_SNAPDRAGON, 'attack', 420, 340, {userAction: function(pamSprite) {
+        addPam(pams.POPANIM_PLANT_SNAPDRAGON, 'attack', 420, 340, {useAction: function(pamSprite) {
             let shot = addPam(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', pamSprite.x + 40, pamSprite.y - 30, {onFinish: onFinish})
             shot.pamParent = pamSprite
         }})

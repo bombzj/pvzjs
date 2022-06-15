@@ -196,16 +196,13 @@ class PamSprite extends PIXI.Container {
             }
         }
 
-        // for(let command of frame.command) {
-        //     if(command.command == 'use_action') {
-        //         if(this.param.userAction) {
-        //             this.param.userAction(this)
-        //         }
-        //         if(this.useAction) {
-        //             this.useAction()
-        //         }
-        //     }
-        // }
+        for(let command of frame.command) {
+            if(command.command == 'use_action') {
+                if(this.param.useAction) {
+                    this.param.useAction(this)
+                }
+            }
+        }
         this.frame++
         if(frame.stop || this.frame >= this.sprite.frame.length - 1) {
             this.frame = this.frameStart
@@ -304,7 +301,7 @@ PVZ2.Object = class extends PIXI.Container {
         let texture = texturesMap[id]
         this.image = new PIXI.Sprite(texture)
         this.image.pivot.set(texture.width / 2, texture.height / 2)
-        // this.image.scale.set(resScaleV)
+        this.image.scale.set(resScaleV)
         this.addChild(this.image)
     }
     changeAction(act) {
@@ -712,6 +709,12 @@ PVZ2.Plant = class extends PVZ2.Object {
                     this.launchCounter = 0
                 }
 
+            } else {
+                if(this.type.TypeName == 'snapdragon') {
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3 - 128, this.z3)
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3, this.z3)
+                    new PVZ2.Effect(pams.POPANIM_EFFECTS_SNAPDRAGON_FIRE, 'animation', this.x, this.y3 + 128, this.z3)
+                }
             }
         } else if(this.action.Type == 'sun') {
             new PVZ2.Sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y, 50)
@@ -1010,7 +1013,7 @@ PVZ2.Projectile = class extends PVZ2.Object {
             }
         }
         if(type.InitialAngularVelocity) {
-            this.angularVelocity = randomMinMax(type.InitialAngularVelocity)
+            this.angularVelocity = randomMinMax(type.InitialAngularVelocity) / 30
         }
         // this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         if(PVZ2.collisionBox) {
@@ -1057,7 +1060,7 @@ PVZ2.Projectile = class extends PVZ2.Object {
             this.velocity.z += this.acceleration.z
         }
         if(this.angularVelocity) {
-            this.angle += this.angularVelocity
+            this.rotation += this.angularVelocity
         }
         if(this.x > 1600 || this.z3 > 0) {
             rm(this)
