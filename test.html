@@ -13,6 +13,8 @@
     <body>
 <script type="text/javascript">
 
+    need2LoadGroup.push('DelayLoad_Background_FrontLawn_Birthday', 'ModernMowerGroup')
+
     // 准备好画布
     PVZ2.setResolution(768)
     let app = new PIXI.Application({width: PVZ2.screenHeight, height: PVZ2.screenWidth});
@@ -30,7 +32,7 @@
 
     // 启动后调用一次
     function init() {
-        PVZ2.debug = true
+        // PVZ2.debug = true
         initGrid(5, 9)
         back(0, 0)
         for(let i = 0;i < 8;i++){
@@ -70,7 +72,7 @@
         if(sunCnt == 300) {
             sunCnt = 0
             sun(field.x + rnd(0, 800), 0)
-            zombie(rnd(3, 3), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
+            zombie(rnd(0, 4), 1600, (rnd(0, 4) + 0.5) * field.h + field.y)
         }
     }
 
@@ -178,7 +180,7 @@
         },
         {       // 1
             name: '豌豆射手',
-            ename: 'peashooter',
+            ename: 'repeater',
         },
         {       // 2
             name: '坚果',
@@ -186,7 +188,7 @@
         },
         {       // 3
             name: '冰豌豆',
-            ename: 'snowpea',
+            ename: 'potatomine',
         },
         {       // 4
             name: '西瓜投手',
@@ -198,11 +200,11 @@
         },
         {       // 6
             name: '樱桃炸弹',
-            ename: 'cherry_bomb',
+            ename: 'jalapeno',
         },
         {       // 7
             name: '双豌豆射手',
-            ename: 'repeater',
+            ename: 'fumeshroom',
         },
         {       // 8
             name: '三豌豆射手',

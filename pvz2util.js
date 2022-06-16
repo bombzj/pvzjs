@@ -209,7 +209,15 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
 
 }
 PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
-
+    sunCnt = 0
+    step() {
+        // a new sun every 20 sec
+        this.sunCnt++
+        if(this.sunCnt == 300) {
+            this.sunCnt = 0
+            sun(PVZ2.field.x + rnd(0, 800), 0)
+        }
+    }
 }
 PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
     static getResourceGroup(prop) {
@@ -267,6 +275,7 @@ PVZ2.LawnMowerProperties = class extends PVZ2.BaseProperties {
 }
 PVZ2.StageModuleProperties = class extends PVZ2.BaseProperties {
     init() {
+        initGrid(5, 9)
         scene = new PVZ2.Scene(this.prop.BackgroundImagePrefix)
         back(0, 0)
         scene.goBack()
@@ -343,8 +352,7 @@ function setup(resources) {
 }
 
 
-let need2LoadGroup = ['LevelCommon', 'ModernMowerGroup', 'UI_AlwaysLoaded', 'UI_SeedPackets'
-    , 'DelayLoad_Background_FrontLawn_Birthday']
+let need2LoadGroup = ['LevelCommon', 'UI_AlwaysLoaded', 'UI_SeedPackets']
 var stage = new PIXI.Container()
 var objects = [], newObjects = []
 var plantType = {}, zombieType = {}
@@ -867,7 +875,7 @@ function initLevel(level) {
     if(!level) debugger
     PVZ2.modules = []
     objects = objects.filter((x) => {
-        return x.ztype != 'zombie' && x.ztype != 'scene'
+        return x.ztype != 'zombie' && x.ztype != 'scene' && x.ztype != 'mower'
     })
     
     let main = level.objects[0].objdata
@@ -877,7 +885,6 @@ function initLevel(level) {
         PVZ2.stage.init()
         PVZ2.modules.push(PVZ2.stage)
     }
-
 
     for(let module of main.Modules) {
         let prop = getByRTID(module, level)

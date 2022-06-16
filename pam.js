@@ -1183,7 +1183,7 @@ PVZ2.Mower = class extends PVZ2.Object {
         scene.addChild(this)
         newObjects.push(this)
         
-        this.ztype = 'car'
+        this.ztype = 'mower'
         this.triggered = false
         // this.shadow = drawPImageCentered(-10, 10, texturesMap.IMAGE_PLANTSHADOW)
         // shadowLayer.addChild(this.shadow)
