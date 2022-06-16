@@ -76,8 +76,8 @@ var scene, shadowLayer
 function back(x, y) {
     scene.position.set(x, y)
     stage.addChild(scene)
-    newObjects.push(scene)
-    scene.ztype = 'scene'
+    objects.push(scene)
+    shadowLayer = new PIXI.Container()
     scene.addChild(shadowLayer)
     return scene
 }
@@ -180,6 +180,131 @@ PVZ2.field = {
     x: 406, y: 312,
     w: 128, h: 150
 }
+PVZ2.worlds = ['egypt', 'beach', 'cowboy', 'dark', 'dino', 'eighties', 'future', 'iceage', 'lostcity', 'modern', 'pirate']
+PVZ2.modules = []
+PVZ2.BaseProperties = class {
+    constructor(prop) {
+        this.prop = prop
+    }
+    init() { }
+    step() { }
+    static getResourceGroup(prop) {
+        if(prop.ResourceGroupNames) {
+            return prop.ResourceGroupNames
+        }
+        if(prop.ResourceGroups) {
+            return prop.ResourceGroups
+        }
+        return []
+    }
+    static prepareProp() {}
+}
+PVZ2.ZombieType = class extends PVZ2.BaseProperties {
+    static prepareProp() {}
+}
+PVZ2.PlantType = class extends PVZ2.BaseProperties {
+    static prepareProp() {}
+}
+PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
+
+}
+PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
+
+}
+PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
+    static getResourceGroup(prop) {
+        let zombies = this.getZombies(prop)
+        let resourcesGroupNeeded = []
+        for(let zombie of zombies) {
+            let type = getByRTID(zombie)
+            resourcesGroupNeeded.push(...type.ResourceGroups)
+            if(!type.prop) {
+                type.prop = getByRTID(type.Properties)
+            }
+        }
+        return resourcesGroupNeeded
+    }
+    init() {
+        PVZ2.waveManager = this
+        this.packets = PVZ2.WaveManagerModuleProperties.getZombies(this.prop)
+    }
+    packets = []
+    static pos = {
+        x: 1800, y: 400, height: 600, width: 280
+    }
+    showDemo() {
+        for(let i = 0;i < 2;i++) {
+            for(let p of this.packets) {
+                let type = getByRTID(p)
+                let demo = new PVZ2.ZombieBaseClass(type, 'idle')
+                let pos = PVZ2.WaveManagerModuleProperties.pos
+                demo.position.set(pos.x + rnd(0, pos.width), pos.y + rnd(0, pos.height))
+                demo.y3 = demo.y
+                scene.addChild(demo)
+                demo.zIndex = demo.y
+                objects.push(demo)
+            }
+        }
+    }
+    static getZombies(prop) {
+        let zombies = new Set()
+        if(!prop.DynamicZombies) return []
+        for(let dyn of prop.DynamicZombies) {
+            if(!dyn.ZombiePool) continue
+            for(let zombie of dyn.ZombiePool) {
+                zombies.add(zombie)
+            }
+        }
+        return [...zombies]
+    }
+}
+PVZ2.LawnMowerProperties = class extends PVZ2.BaseProperties {
+    init() {
+        for(let i = 0;i < 5;i++) {
+            new PVZ2.Mower(field.x - 90, field.y + (0.5 + i) * field.h, pams[this.prop.MowerPopAnim])
+        }
+    }
+}
+PVZ2.StageModuleProperties = class extends PVZ2.BaseProperties {
+    init() {
+        scene = new PVZ2.Scene(this.prop.BackgroundImagePrefix)
+        back(0, 0)
+        scene.goBack()
+    }
+}
+PVZ2.BeachStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.LostCityStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.IceAgeStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.DinoStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.ModernStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.PirateStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.EgyptStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.WestStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.FutureStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.DarkStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
+PVZ2.EightiesStageProperties = class extends PVZ2.StageModuleProperties {
+
+}
 
 let texturesMap = {}
 let atlasTexturesMap = {}
@@ -232,7 +357,7 @@ function loadPams(callback) {
     }
     // loader.add('resourcesmap', resourceRoot + 'resourcesmap.json')
     loader.load((loader, resources) => {
-        loadPackages(resources)
+        loadPackagesPost(resources)
         loadPlantType(resources)
         loadZombieType(resources)
         for (let p of plantList) {
@@ -304,12 +429,12 @@ function loadGroupPost(resName, resources) {
 }
 
 const packageJsons = ['RESOURCES', 'PlantTypes', 'PlantProperties', 'ZombieTypes', 'ZombieProperties'
-    , 'ArmorTypes', 'PropertySheets', 'ProjectileTypes']
+    , 'ArmorTypes', 'PropertySheets', 'ProjectileTypes', 'LevelModules']
 var rtMap = {}
 var rtons = {}
 
-function loadPackages(resources) {
-    for(let pkgName of packageJsons) {
+function loadPackagesPost(resources, packageList = packageJsons) {
+    for(let pkgName of packageList) {
         let pkg = parseRton(resources[pkgName].data)
         rtons[pkgName] = pkg
         if(!pkg.objects) continue
@@ -323,10 +448,14 @@ function loadPackages(resources) {
         }
     }
 }
-function getByRTID(str) {
+function getByRTID(str, current) {
     if(!str) debugger
     str = str.replace('$', '')
     let id = str.substr(5, str.length - 6)
+    let split = id.split('@')
+    if(split[1] == 'CurrentLevel' || split[1] == '.') {
+        return current[split[0]]
+    }
     return rtMap[id]
 }
 
@@ -399,59 +528,48 @@ function loadResources() {
     }
 }
 
-function loadPlantResource(typeNames, callback) {
+async function loadGroupResource(groupNames) {
     if(loader.loading) return
-    loader.reset()
-    for(let typeName of typeNames) {
-        let type = rtons.PlantTypes[typeName]
-        // console.log('loading ' + typeName)
-        for(let resName of type.PlantResourceGroups) {
-            loadGroupPre(resName)
-        }
-        if(!type.prop) {
-            type.prop = getByRTID(type.Properties)
-        }
+    groupNames = [...new Set(groupNames)].filter((x) => resourcesMap[x])
+    if(groupNames.length == 0) {
+        return
     }
-
-    loader.load((loader, resources) => {
-        for(let typeName of typeNames) {
-            let type = rtons.PlantTypes[typeName]
-            for(let resName of type.PlantResourceGroups) {
+    loader.reset()
+    for(let resName of groupNames) {
+        loadGroupPre(resName)
+    }
+    return new Promise( (resolve, reject) => {
+        loader.load((loader, resources) => {
+            for(let resName of groupNames) {
                 loadGroupPost(resName, resources)
             }
-        }
-        if(callback) {
-            callback()
-        }
+            resolve()
+        })
     })
 }
 
-
-function loadZombieResource(typeNames, callback) {
-    if(loader.loading) return
-    loader.reset()
+async function loadPlantResource(typeNames) {
+    let resourcesGroupNeeded = []
     for(let typeName of typeNames) {
-        let type = rtons.ZombieTypes[typeName]
-        // console.log('loading ' + typeName)
-        for(let resName of type.ResourceGroups) {
-            loadGroupPre(resName)
-        }
+        let type = rtons.PlantTypes[typeName]
+        resourcesGroupNeeded.push(...type.PlantResourceGroups)
         if(!type.prop) {
             type.prop = getByRTID(type.Properties)
         }
     }
+    return loadGroupResource(resourcesGroupNeeded)
+}
 
-    loader.load((loader, resources) => {
-        for(let typeName of typeNames) {
-            let type = rtons.ZombieTypes[typeName]
-            for(let resName of type.ResourceGroups) {
-                loadGroupPost(resName, resources)
-            }
+async function loadZombieResource(typeNames) {
+    let resourcesGroupNeeded = []
+    for(let typeName of typeNames) {
+        let type = rtons.ZombieTypes[typeName]
+        resourcesGroupNeeded.push(...type.ResourceGroups)
+        if(!type.prop) {
+            type.prop = getByRTID(type.Properties)
         }
-        if(callback) {
-            callback()
-        }
-    })
+    }
+    return loadGroupResource(resourcesGroupNeeded)
 }
 
 
@@ -543,7 +661,7 @@ class SeedChooser extends PIXI.Container {
                 this.showPlant()
             } else {
                 let current = this.selected.type.TypeName
-                loadPlantResource([seed.type.TypeName], () => {
+                loadPlantResource([seed.type.TypeName]).then( () => {
                     if(current == this.selected.type.TypeName) {
                         this.showPlant()
                     }
@@ -705,14 +823,82 @@ function initGrid(row, column) {
     }
 }
 
+async function loadPackages(packageNames) {
+    if(loader.loading) return
+    loader.reset()
+    for(let name of packageNames) {
+        loader.add(name, resourceRoot + 'PACKAGES/LEVELS/' + name.toUpperCase() + '.RTON', {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER, loadType: 'rton'})
+    }
+
+    return new Promise( (resolve, reject) => {
+        loader.load((loader, resources) => {
+            loadPackagesPost(resources, packageNames)
+            resolve()
+        })
+    })
+}
+
+async function loadLevel(levelName) {
+    if(rtons[levelName]) {
+        return rtons[levelName]
+    }
+    await loadPackages([levelName])
+    let level = rtons[levelName]
+    rtons.CurrentLevel = level
+    if(level.objects[0].objclass != 'LevelDefinition') debugger
+    let main = level.objects[0].objdata
+    let prop = getByRTID(main.StageModule, level)
+    let resourcesGroupNeeded = []
+    if(PVZ2[prop.objclass]) {
+        resourcesGroupNeeded.push(...PVZ2[prop.objclass].getResourceGroup(prop))
+    }
+    for(let module of main.Modules) {
+        let prop = getByRTID(module, level)
+        if(PVZ2[prop.objclass]) {
+            resourcesGroupNeeded.push(...PVZ2[prop.objclass].getResourceGroup(prop))
+        }
+    }
+    await loadGroupResource(resourcesGroupNeeded)
+    return level
+}
+
+function initLevel(level) {
+    scene.removeChildren()
+    if(!level) debugger
+    PVZ2.modules = []
+    objects = objects.filter((x) => {
+        return x.ztype != 'zombie' && x.ztype != 'scene'
+    })
+    
+    let main = level.objects[0].objdata
+    let prop = getByRTID(main.StageModule, level)
+    if(PVZ2[prop.objclass]) {
+        PVZ2.stage = new PVZ2[prop.objclass](prop)
+        PVZ2.stage.init()
+        PVZ2.modules.push(PVZ2.stage)
+    }
+
+
+    for(let module of main.Modules) {
+        let prop = getByRTID(module, level)
+        if(PVZ2[prop.objclass]) {
+            let m = new PVZ2[prop.objclass](prop)
+            m.init()
+            PVZ2.modules.push(m)
+        }
+    }
+}
+
 PVZ2.Scene = class extends PIXI.Container {
     static backPosition = {x: 600, y: 0}
     static moveSpeed = 20
-    constructor() {
+    constructor(prefix = 'IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY') {
         super()
-        let bg1 = drawPImage(0, 0, texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE)
-        let bg2 = drawPImage(bg1.width, 0, texturesMap.IMAGE_BACKGROUNDS_BACKGROUND_LOD_BIRTHDAY_TEXTURE_RIGHT)
-        this.addChild(bg1, bg2)
+        this.bg1 = drawPImage(0, 0, texturesMap[prefix + '_TEXTURE'])
+        this.bg2 = drawPImage(this.bg1.width, 0, texturesMap[prefix + '_TEXTURE_RIGHT'])
+        this.addChild(this.bg1, this.bg2)
+        this.zIndex = -1
+        this.ztype = 'scene'
     }
     step() {
         if(this.destX != undefined) {
@@ -811,6 +997,9 @@ function randomMinMax(numbers) {
         return numbers.Min
     }
     return Math.random() * delta + numbers.Min
+}
+function randomInArray(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
 }
 
 function addFilter(obj, add) {

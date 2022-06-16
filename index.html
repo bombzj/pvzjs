@@ -18,8 +18,9 @@
     document.body.appendChild(app.view);
     // PVZ2.collisionBox = true
 
-    app.renderer.backgroundColor = 0x0ccccff;   
+    app.renderer.backgroundColor = 0x0ffffff;   
 
+    showLoading()
     const loader = PIXI.Loader.shared;
     loadPams()
 
@@ -44,60 +45,18 @@
             }
         }
     }
-    var zombieBank = {
-        packets: ['mummy_armor4', 'mummy_armor1', 'mummy_armor2', 'mummy'],
-        pos: {
-            x: 1800, y: 400, height: 600, width: 280
-        },
-        zombies: [],
-        shuffle() {
-            this.packets = []
-            let types = rtons.PropertySheets.DefaultGameProps.ZombieAlmanacOrder
-            for(let i = 0;i < 4;i++) {
-                this.packets.push(types[rnd(0, types.length - 1)])
-            }
-            this.showDemo()
-        },
-        showDemo() {
-            let need = this.packets.filter(p => rtons.ZombieTypes[p])
-            if(need.length > 0) {
-                loadZombieResource(need, () => {
-                    this.showDemo2()
-                })
-            } else {
-                this.showDemo2()
-            }
-        },
-        showDemo2() {
-            for(let z of this.zombies) {
-                scene.removeChild(z)
-            }
-            this.zombies = []
-            for(let i = 0;i < 2;i++) {
-                for(let p of this.packets) {
-                    let demo = new PVZ2.ZombieBaseClass(rtons.ZombieTypes[p], 'idle')
-                    demo.position.set(this.pos.x + rnd(0, this.pos.width), this.pos.y + rnd(0, this.pos.height))
-                    demo.y3 = demo.y
-                    scene.addChild(demo)
-                    demo.zIndex = demo.y
-                    objects.push(demo)
-                    this.zombies.push(demo)
-                }
-            }
-            zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE
-            zombieBank.buttonRefresh.interactive = true
-        }
-    }
+    var zombieBank = { }
 
     function init() {
+        if(loadingSprite) {
+            app.stage.removeChild(loadingSprite)
+            loadingSprite = undefined
+        }
         initGrid(5, 9)
         back(0, 0)
         scene.goBack()
         for(let i = 0;i < 8;i++){
             seedBank.seeds.push(seed(-1, 0, seedBank.pos.height * i + seedBank.pos.y))
-        }
-        for(let i = 0;i < 5;i++) {
-            car(field.x - 90, field.y + (0.5 + i) * field.h)
         }
         // sun1 = sun(500, 100)
         selspr = seedSel(0, 100)
@@ -110,10 +69,10 @@
         seedChooser = new SeedChooser(5, 5)
         stage.addChild(seedChooser)
         seedChooser.position.set(seedBank.pos.width + 20, 440)
-        loadPlantResource(seedBank.initSeeds, () => {
+        loadPlantResource(seedBank.initSeeds).then( () => {
             seedChooser.click2(0, 0)
             // zombie random packet & bank
-            zombieBank.showDemo()
+            // zombieBank.showDemo()
         })
         for(let [index, name] of seedBank.initSeeds.entries()) {
             seedChooser.addSeedByName(name)
@@ -137,7 +96,24 @@
         zombieBank.buttonRefresh = drawPImage(1000, 300, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
         zombieBank.buttonRefresh.interactive = true
         zombieBank.buttonRefresh.click = function() {
-            zombieBank.shuffle()
+
+            let world = randomInArray(PVZ2.worlds)
+            let levelName = world + rnd(1, 10)
+            loadLevel(levelName).then( (level) => {
+                // if(level.self.StageModule) {
+                //     let stageData = getByRTID(level.self.StageModule)
+                    
+                // }
+                if(!level) {
+                    console.log('error loading: ' + levelName)
+                }
+                initLevel(level)
+                // zombieBank.shuffle()
+                PVZ2.waveManager.showDemo()
+                zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE
+                zombieBank.buttonRefresh.interactive = true
+            })
+
             zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE_DOWN
             zombieBank.buttonRefresh.interactive = false
         }
@@ -149,6 +125,9 @@
 
     function loop() {
         if(t++ % speed == 0) {
+            for(let md of PVZ2.modules) {
+                md.step()
+            }
             for(let obj of objects) {
                 if(obj.ztype == 'sun') {
                     
@@ -176,7 +155,7 @@
             }
             if(++zombieCnt > 200) {
                 zombieCnt = 0
-                let type = rtons.ZombieTypes[rndObj(zombieBank.packets)]
+                let type = getByRTID(rndObj(PVZ2.waveManager.packets))
                 zombie(type, 1700, (rnd(0, 4) + 0.5) * field.h + field.y)
             }
         }
@@ -305,6 +284,20 @@
         return arr[Math.floor(Math.random() * arr.length)]
     }
     app.view.onclick = onclick
+
+    var loadingSprite
+    function showLoading() {
+        loadingSprite = new PIXI.Text('Loading...', { fontFamily: 'Arial', fontSize: 56, fill: 'green', align: 'center', fontWeight: '600', strokeThickness: 3 })
+        app.stage.addChild(loadingSprite)
+        loadingSprite.pivot.set(loadingSprite.width / 2, loadingSprite.height / 2)
+        loadingSprite.position.set(app.view.width / 2, app.view.height / 2)
+
+        app.ticker.add(delta => {
+            if(loadingSprite) {
+                loadingSprite.angle += 4
+            }
+        })
+    }
 </script>
     </body>
 </html>
