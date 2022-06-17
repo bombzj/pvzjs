@@ -530,6 +530,12 @@ PVZ2.Plant = class extends PVZ2.Object {
                             this.attacking2 = true
                         }
                     }
+                } else if(this.type.TypeName == 'starfruit') {
+                    if(Math.abs(obj2.y3 - this.y3) < 20 && obj2.x < this.x ||
+                        Math.abs(obj2.x - this.x) < 40 ||
+                        obj2.x > this.x && Math.abs((obj2.x - this.x) / 1.732 - this.y3 + obj2.y3) < 60) {
+                        this.attacking = true
+                    }
                 } else if(this.type.TypeName == 'squash') {
                     if(this.actName == 'idle') {
                         if(Math.abs(obj2.x - this.x) < 200 && Math.abs(obj2.y3 - this.y3) < 20) {
@@ -770,6 +776,27 @@ PVZ2.Plant = class extends PVZ2.Object {
                     let a = launchProjectile(projectileType, this.x + action.SpawnOffset.x, this.y3, this.z3 + action.SpawnOffset.y)
                     a.velocity.x = -a.velocity.x
                     this.launchCounter2= 0
+                } else if(this.type.TypeName == 'splitpea' && command == 'use_action2') {
+                    let a = launchProjectile(projectileType, this.x + action.SpawnOffset.x, this.y3, this.z3 + action.SpawnOffset.y)
+                    a.velocity.x = -a.velocity.x
+                    this.launchCounter2= 0
+                } else if(this.type.TypeName == 'starfruit') {
+                    let speed = projectileType.InitialVelocity[0].Min / 30
+                    let a = launchProjectile(projectileType, this.x, this.y3, this.z3)
+                    a.velocity.x = 0
+                    a.velocity.y = speed
+                    let b = launchProjectile(projectileType, this.x, this.y3, this.z3)
+                    b.velocity.x = 0
+                    b.velocity.y = -speed
+                    let c = launchProjectile(projectileType, this.x, this.y3, this.z3)
+                    c.velocity.x = -speed
+                    c.velocity.y = 0
+                    let d = launchProjectile(projectileType, this.x, this.y3, this.z3)
+                    d.velocity.x = speed * 0.85
+                    d.velocity.y = speed / 2
+                    let e = launchProjectile(projectileType, this.x, this.y3, this.z3)
+                    e.velocity.x = speed * 0.85
+                    e.velocity.y = -speed / 2
                 } else {
                     launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
                     this.launchCounter = 0

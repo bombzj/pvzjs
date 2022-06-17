@@ -315,6 +315,14 @@ PVZ2.EightiesStageProperties = class extends PVZ2.StageModuleProperties {
 
 }
 
+PVZ2.getGrids = function(obj) {
+    let grids = PVZ2.grids
+    if(obj.type.prop.MultiPlantLayer) {
+        grids = PVZ2.gridsLayer[obj.type.prop.MultiPlantLayer]
+    }
+    return grids
+}
+
 let texturesMap = {}
 let atlasTexturesMap = {}
 
@@ -338,7 +346,8 @@ function setup(resources) {
                     a.shadow.parent.removeChild(a.shadow)
                 }
                 if(a.gridX != undefined) {
-                    PVZ2.grids[a.gridY][a.gridX] = undefined
+                    let grids = PVZ2.getGrids(a)
+                    grids[a.gridY][a.gridX] = undefined
                 }
             }
         })
@@ -830,7 +839,7 @@ function initGrid(row, column) {
         core: PVZ2.grids,
         armor: [],   // like pumpkin
         ground: [],    // like lilypad
-        power: [],    // like lilypad
+        power: [],    // like 
     }
     for(let grids of Object.values(PVZ2.gridsLayer)) {
         for(let i = 0;i < row;i++) {
