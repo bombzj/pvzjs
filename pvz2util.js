@@ -826,8 +826,16 @@ function initGrid(row, column) {
     PVZ2.row = row
     PVZ2.column = column
     PVZ2.grids = []
-    for(let i = 0;i < row;i++) {
-        PVZ2.grids[i] = []
+    PVZ2.gridsLayer = {
+        core: PVZ2.grids,
+        armor: [],   // like pumpkin
+        ground: [],    // like lilypad
+        power: [],    // like lilypad
+    }
+    for(let grids of Object.values(PVZ2.gridsLayer)) {
+        for(let i = 0;i < row;i++) {
+            grids[i] = []
+        }
     }
 }
 

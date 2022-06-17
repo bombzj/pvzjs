@@ -344,13 +344,23 @@ PVZ2.Object = class extends PIXI.Container {
         }
         this.zIndex = this.y3
         if(this.ztype == 'zombie') {
-            this.zIndex += 0.1
+            this.zIndex += 1
         } else if(this.ztype == 'sun') {
             this.zIndex = 5000
         } else if(this.ztype == 'projectile') {
-            this.zIndex += 0.2
+            this.zIndex += 2
         } else if(this.ztype == 'effect') {
-            this.zIndex += 0.3
+            this.zIndex += 3
+        } else if(this.ztype == 'plant') {
+            if(this.type.prop.MultiPlantLayer) {
+                if(this.type.prop.MultiPlantLayer == 'armor') {
+                    this.zIndex += 0.2
+                } else if(this.type.prop.MultiPlantLayer == 'power') {
+                    this.zIndex += 0.3
+                }
+            } else {
+                this.zIndex += 0.1
+            }
         }
         if(this.hitFilterCounter > 0) {
             this.hitFilterCounter--
@@ -380,6 +390,7 @@ PVZ2.Plant = class extends PVZ2.Object {
         this.setPam(pam, undefined, initAct)
         this.actName = initAct
         this.type = type
+        let layer = type.prop.MultiPlantLayer
         if(type.prop.Actions) {
             let action = this.action = type.prop.Actions[0]
             this.actionCooldownMax = action.CooldownTimeMin * fps
@@ -396,11 +407,12 @@ PVZ2.Plant = class extends PVZ2.Object {
             // drawCollisionBox(this, type.prop.HitRect)
         }
         this.showSprites(plantHideSprites, false)
-
-        // plant shadow
-        this.shadow = drawPImageCentered(-85, 10, texturesMap.IMAGE_PLANTSHADOW)
-        // shadow.zIndex = -1
-        shadowLayer.addChild(this.shadow)
+        if(layer != 'ground' && layer != 'power') {
+            // plant shadow
+            this.shadow = drawPImageCentered(-85, 10, texturesMap.IMAGE_PLANTSHADOW)
+            // shadow.zIndex = -1
+            shadowLayer.addChild(this.shadow)
+        }
     }
     init() {
         super.init()
@@ -614,6 +626,17 @@ PVZ2.Plant = class extends PVZ2.Object {
                 } else if(ratio < 0.66) {
                     if(this.actName != 'damage') {
                         this.changeAction('damage')
+                    }
+                }
+            } else if(this.type.TypeName == 'pumpkin') {
+                let ratio = this.hitpoints / this.type.prop.Hitpoints
+                if(ratio < 0.33) {
+                    if(this.actName != 'idle3') {
+                        this.changeAction('idle3')
+                    }
+                } else if(ratio < 0.66) {
+                    if(this.actName != 'idle2') {
+                        this.changeAction('idle2')
                     }
                 }
             }

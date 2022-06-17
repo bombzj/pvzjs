@@ -202,22 +202,31 @@
         dx2 = Math.floor(dx / field.w)
         dy2 = Math.floor(dy / field.h)
         if(dx2 >= 0 && dx2 < 9 && dy2 >= 0 && dy2 < 5) {
-            if(PVZ2.grids[dy2][dx2]) {
-                if(useShovel) {
-                    rm(PVZ2.grids[dy2][dx2])
-                    PVZ2.grids[dy2][dx2] = 0
-                    useShovel = false
+            if(useShovel) {
+                for(let grids in Object.values(PVZ2.gridsLayer)) {
+                    if(grids[dy2][dx2]) {
+                        rm(grids[dy2][dx2])
+                        grids[dy2][dx2] = 0
+                        useShovel = false
+                        break
+                    }
                 }
             } else if(selPlant != -1) {
                 let seed = seedBank.seeds[selPlant]
-                let p = PVZ2.grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
-                p.gridX = dx2
-                p.gridY = dy2
-                
-                let cost = seed.type.prop.Cost
-                sunTotal -= cost
-                seed.use()    // cooldown
-                selPlant = -1
+                let grids = PVZ2.grids
+                if(seed.type.prop.MultiPlantLayer) {
+                    grids = PVZ2.gridsLayer[seed.type.prop.MultiPlantLayer]
+                }
+                if(!grids[dy2][dx2]) {
+                    let p = grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
+                    p.gridX = dx2
+                    p.gridY = dy2
+                    
+                    let cost = seed.type.prop.Cost
+                    sunTotal -= cost
+                    seed.use()    // cooldown
+                    selPlant = -1
+                }
             }
         }
         // pick plant
