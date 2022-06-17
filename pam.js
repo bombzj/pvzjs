@@ -533,9 +533,13 @@ PVZ2.Plant = class extends PVZ2.Object {
                 } else if(this.type.TypeName == 'starfruit') {
                     if(Math.abs(obj2.y3 - this.y3) < 20 && obj2.x < this.x ||
                         Math.abs(obj2.x - this.x) < 40 ||
-                        obj2.x > this.x && Math.abs((obj2.x - this.x) / 1.732 - this.y3 + obj2.y3) < 60) {
+                        obj2.x > this.x && Math.abs((obj2.x - this.x) / 1.732 - Math.abs(this.y3 - obj2.y3)) < 60) {
                         this.attacking = true
+                        break
                     }
+                } else if(this.type.TypeName == 'homingthistle') {
+                    this.attacking = true
+                    break
                 } else if(this.type.TypeName == 'squash') {
                     if(this.actName == 'idle') {
                         if(Math.abs(obj2.x - this.x) < 200 && Math.abs(obj2.y3 - this.y3) < 20) {
@@ -764,7 +768,6 @@ PVZ2.Plant = class extends PVZ2.Object {
                 if(this.type.TypeName == 'kernelpult' && this.actName == 'attack2') {
                     projectileType = getByRTID(this.type.prop.Actions[1].Projectile)
                 }
-                let target = this.findTarget()
                 if(projectileType.ClassName == 'ThreepeaterProjectile') {
                     let a = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
                     let b = launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
@@ -798,6 +801,7 @@ PVZ2.Plant = class extends PVZ2.Object {
                     e.velocity.x = speed * 0.85
                     e.velocity.y = -speed / 2
                 } else {
+                    let target = this.findTarget2()
                     launchProjectile(projectileType, this.x + this.action.SpawnOffset.x, this.y3, this.z3 + this.action.SpawnOffset.y, target)
                     this.launchCounter = 0
                 }
@@ -840,6 +844,19 @@ PVZ2.Plant = class extends PVZ2.Object {
                         obj = obj2
                         nearX = obj2.x
                     }
+                }
+            }
+        }
+        return obj
+    }
+    findTarget2() {
+        let obj
+        let nearX = 100000
+        for(let obj2 of objects) {
+            if(obj2.ztype == 'zombie' && !obj2.dead) {
+                if(obj2.x < nearX) {
+                    obj = obj2
+                    nearX = obj2.x
                 }
             }
         }
@@ -1179,7 +1196,7 @@ PVZ2.Projectile = class extends PVZ2.Object {
         if(this.angularVelocity) {
             this.rotation += this.angularVelocity
         }
-        if(this.x > 1600 || this.z3 > 0) {
+        if(this.x > 1600 || this.z3 > 0 || this.y3 < 0 || this.y3 > 1300 || this.x < 50) {
             rm(this)
         }
     }
@@ -1209,6 +1226,28 @@ PVZ2.ThreepeaterProjectile = class extends PVZ2.Projectile {
     step() {
         if(this.age < this.vt) {
             this.y3 += this.vy
+        }
+        super.step()
+    }
+}
+PVZ2.HomingThistleLeaf = class extends PVZ2.Projectile {
+    constructor(type, target) {
+        super(type)
+        this.target = target
+    }
+    step() {
+        let speed = this.type.InitialVelocity[0].Min / 30
+        if(this.target) {
+            if(this.target.dead) {
+                delete this.target
+            } else {
+                let angle = calcAngle(this.target.x - this.x, this.target.y3 - this.y3)
+                if(angle) {
+                    this.rotation = angle.angle
+                    this.velocity.x = angle.vx * speed
+                    this.velocity.y = -angle.vy * speed
+                }
+            }
         }
         super.step()
     }

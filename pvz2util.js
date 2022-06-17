@@ -1025,6 +1025,18 @@ function randomMinMax(numbers) {
 function randomInArray(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 }
+function calcAngle(dx, dy) {
+    let dist = Math.sqrt(dx**2 + dy**2)
+    let angle = Math.asin(dy / dist)
+    if(dx < 0) {
+        angle = Math.PI - angle
+    }
+    return {
+        angle: angle,
+        vx: dx / dist,
+        vy: dy / dist
+    }
+}
 
 function addFilter(obj, add) {
     if(obj.filters) {
