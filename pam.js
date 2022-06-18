@@ -888,16 +888,29 @@ function launchProjectile(type, x, y, z, target) {
 
 var zombieHideSprites = [
         'ground_swatch', 'ground_swatch_plane',
-        "zombie_armor_cone_norm",
-        "zombie_armor_cone_damage_01",
-        "zombie_armor_cone_damage_02",
-        "zombie_armor_bucket_norm",
-        "zombie_armor_bucket_damage_01",
-        "zombie_armor_bucket_damage_02",
-        "zombie_armor_brick_norm",
-        "zombie_armor_brick_damage_01",
-        "zombie_armor_brick_damage_02",
+        'zombie_armor_cone_norm',
+        'zombie_armor_cone_damage_01',
+        'zombie_armor_cone_damage_02',
+        'zombie_armor_bucket_norm',
+        'zombie_armor_bucket_damage_01',
+        'zombie_armor_bucket_damage_02',
+        'zombie_armor_brick_norm',
+        'zombie_armor_brick_damage_01',
+        'zombie_armor_brick_damage_02',
+        'zombie_armor_iceblock_norm',
+        'zombie_armor_iceblock_damage1',
+        'zombie_armor_iceblock_damage2',
+        'zombie_armor_crown_norm',
+        'zombie_armor_crown_damage_01',
+        'zombie_armor_crown_damage_02',
+        'zombie_armor_skull_norm',
+        'zombie_armor_skull_damage_01',
+        'zombie_armor_skull_damage_02',
+        'zombie_poncho_armor1_norm',
+        'zombie_poncho_armor1_damage1',
+        'zombie_poncho_armor1_damage2',
         'butter', 'ink',
+        'zombie_seaweed1', 'knight_feather', 'flag_stick', 'flag_01', 'cowboy_hat',
     ]
 var plantHideSprites = [
     '_wallnut_armor_states',
@@ -1027,6 +1040,15 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             removeFilter(this, hitFilter)
         }
     }
+    addArmor(armorType) {
+        if(!this.armors) {
+            this.armors = []
+        }
+        this.armors.push({
+            type: armorType,
+            health: armorType.BaseHealth
+        })
+    }
     showArmor() {
         if(!this.armors) return
         for(let armor of this.armors) {
@@ -1056,6 +1078,31 @@ PVZ2.ZombieBasic = class extends PVZ2.ZombieBaseClass {
     constructor(type) {
         super(type, 'walk')
     }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
+    }
+}
+PVZ2.ZombiePoncho = class extends PVZ2.ZombieBaseClass {
+    constructor(type) {
+        super(type, 'walk')
+        if(!PVZ2.ZombiePoncho.ponchoArmor) {
+            PVZ2.ZombiePoncho.ponchoArmor = getByRTID('RTID(PonchoDefault@ArmorTypes)')
+        }
+        if(!PVZ2.ZombiePoncho.plateArmor) {
+            PVZ2.ZombiePoncho.plateArmor = getByRTID('RTID(PonchoPlateDefault@ArmorTypes)')
+        }
+        this.addArmor(PVZ2.ZombiePoncho.ponchoArmor)
+        if(this.type.prop.PlateProbability > 0) {
+            if(Math.random() < this.type.prop.PlateProbability) {
+                this.addArmor(PVZ2.ZombiePoncho.plateArmor)
+            }
+        }
+    }
+    static ponchoArmor
+    static plateArmor
     init() {
         super.init()
     }
