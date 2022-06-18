@@ -12,8 +12,11 @@
     <script src="pvz2util.js"></script>
     <body>
         
-        <p><input name="atlasName" size="30"> <button onclick="changeAtlas(document.all.atlasName.value)">display</button></p>
+        <p><input name="atlasName" size="30"  onchange="searchAtlas(document.all.atlasName.value)"> <button onclick="changeAtlas(document.all.atlasName.value)">display</button></p>
         <p id = "showtext"></p>
+        <p>
+            <table id="atlasList" style="float:left"></table>
+        </p>
 <script type="text/javascript">
 
     let app = new PIXI.Application({width: 2048, height: 2048});
@@ -33,6 +36,7 @@
     var atlasMap = {}
     var atlasData
     var scene = new PIXI.Container()
+    var allAtlas = []
 
     function init() {
         // atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
@@ -44,7 +48,8 @@
             for(let res of group.resources) {
                 if(res.type == 'Image') {
                     if(res.atlas) {
-                        fileMapAtlas[res.path[1].toUpperCase()] = atlasMap[res.id] = {baseTextureName: res.id, children: [], group: group.parent}
+                        fileMapAtlas[res.path[1].toUpperCase()] = atlasMap[res.id] = {baseTextureName: res.id, children: [], group: group.parent, res: res}
+                        allAtlas.push(res.path[1].toUpperCase())
                     } else {
                         let parent = atlasMap[res.parent]
                         parent.children.push(res.id)
@@ -54,8 +59,9 @@
         }
 
 
+        showAtlasList()
         atlasSprite = new PIXI.Sprite()
-        drawAtlasByIndex()
+        // drawAtlasByIndex()
         app.stage.addChild(atlasSprite)
     }
 
@@ -66,8 +72,7 @@
     }
 
     function drawAtlasByIndex() {
-        atlasData = fileMapAtlas[atlasNames[atlas] + '_' + PVZ2.resolution + '_00']
-        atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
+        drawAtlas(atlasNames[atlas] + '_' + PVZ2.resolution + '_00')
     }
 
     function loop() {
@@ -110,6 +115,49 @@
             drawAtlas(file)
         })
     }
+
+
+    function searchAtlas(name) {
+        name = name.toUpperCase()
+        atlasNames = []
+        for(let atlasName of allAtlas) {
+            if(atlasName.toUpperCase().indexOf(name) != -1) {
+                atlasNames.push(atlasName)
+            }
+        }
+        showAtlasList()
+    }
+
+    function showAtlasList() {
+        removeButtons(atlasList)
+        for(let atlasName of atlasNames) {
+            // let len = resourcesMap[groupName].pams.length
+            // // if(len == 0) continue
+            // let name = atlasName
+            // if(len > 1) {
+            //     name = name + ' (' + len + ')'
+            // }
+            addButton(atlasName, atlasList, () => {
+                changeAtlas(atlasName)
+            })
+        }
+    }
+
+    function removeButtons(parent) {
+        while(parent.rows.length > 0) {
+            parent.deleteRow(0)
+        }
+    }
+
+    function addButton(name, parent, callback) {
+        let cell = parent.insertRow().insertCell()
+        var o=document.createElement("input"); 
+        o.type = "button" ; 
+        o.value = name;
+        o.addEventListener("click", callback);   
+        cell.appendChild(o);
+    }
+
     
     var plantList = [
         {       // 0
@@ -127,6 +175,8 @@
     ]
 
     app.view.onclick = onclick
+
+
 </script>
     </body>
 </html>
