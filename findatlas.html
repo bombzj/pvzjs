@@ -12,10 +12,15 @@
     <script src="pvz2util.js"></script>
     <body>
         
-        <p><input name="atlasName" size="30"  onchange="searchAtlas(document.all.atlasName.value)"> <button onclick="changeAtlas(document.all.atlasName.value)">display</button></p>
+        <p>
+            <input name="atlasName" size="30"  onchange="searchAtlas(document.all.atlasName.value)">
+            <input name="imageName" size="30"  onchange="searchImage(document.all.imageName.value)">
+            <button onclick="changeAtlas(document.all.atlasName.value)">display</button>
+        </p>
         <p id = "showtext"></p>
         <p>
             <table id="atlasList" style="float:left"></table>
+            <table id="imageList" style="float:left"></table>
         </p>
 <script type="text/javascript">
 
@@ -37,6 +42,8 @@
     var atlasData
     var scene = new PIXI.Container()
     var allAtlas = []
+    var currentAtlas
+    var selectSprite
 
     function init() {
         // atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
@@ -107,15 +114,38 @@
     function changeAtlas(name) {
         loader.reset()
         let file = name.endsWith('00') ? name : name + '_' + PVZ2.resolution + '_00'
-        let a = fileMapAtlas[file]
-        if(!a) return
-        loadGroupPre(a.group)
+        currentAtlas = fileMapAtlas[file]
+        if(!currentAtlas) return
+        loadGroupPre(currentAtlas.group)
         loader.load((loader, resources) => {
-            loadGroupPost(a.group, resources)
+            loadGroupPost(currentAtlas.group, resources)
             drawAtlas(file)
         })
     }
 
+    function searchImage(name) {
+        if(!atlasData) return
+        name = name.toUpperCase()
+        removeButtons(imageList)
+
+        for(let child of atlasData.children) {
+            if(child.toUpperCase().indexOf(name) != -1) {
+                addButton(child, imageList, () => {
+                    let texture = texturesMap[child]
+                    let rect = texture.orig
+
+                    if(selectSprite) {
+                        app.stage.removeChild(selectSprite)
+                    }
+                    selectSprite = new PIXI.Graphics()
+                    selectSprite.lineStyle(3, 0xff0000, 1)
+                    selectSprite.drawRect(0, 0, rect.width, rect.height)
+                    selectSprite.position.set(rect.x, rect.y)
+                    app.stage.addChild(selectSprite)
+                })
+            }
+        }
+    }
 
     function searchAtlas(name) {
         name = name.toUpperCase()
@@ -129,6 +159,7 @@
     }
 
     function showAtlasList() {
+        removeButtons(imageList)
         removeButtons(atlasList)
         for(let atlasName of atlasNames) {
             // let len = resourcesMap[groupName].pams.length

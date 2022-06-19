@@ -182,138 +182,7 @@ PVZ2.field = {
 }
 PVZ2.worlds = ['egypt', 'beach', 'cowboy', 'dark', 'dino', 'eighties', 'future', 'iceage', 'lostcity', 'modern', 'pirate']
 PVZ2.modules = []
-PVZ2.BaseProperties = class {
-    constructor(prop) {
-        this.prop = prop
-    }
-    init() { }
-    step() { }
-    static getResourceGroup(prop) {
-        if(prop.ResourceGroupNames) {
-            return prop.ResourceGroupNames
-        }
-        if(prop.ResourceGroups) {
-            return prop.ResourceGroups
-        }
-        return []
-    }
-    static prepareProp() {}
-}
-PVZ2.ZombieType = class extends PVZ2.BaseProperties {
-    static prepareProp() {}
-}
-PVZ2.PlantType = class extends PVZ2.BaseProperties {
-    static prepareProp() {}
-}
-PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
 
-}
-PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
-    sunCnt = 0
-    step() {
-        // a new sun every 20 sec
-        this.sunCnt++
-        if(this.sunCnt == 300) {
-            this.sunCnt = 0
-            sun(PVZ2.field.x + rnd(0, 800), 0)
-        }
-    }
-}
-PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
-    static getResourceGroup(prop) {
-        let zombies = this.getZombies(prop)
-        let resourcesGroupNeeded = []
-        for(let zombie of zombies) {
-            let type = getByRTID(zombie)
-            resourcesGroupNeeded.push(...type.ResourceGroups)
-            if(!type.prop) {
-                type.prop = getByRTID(type.Properties)
-            }
-        }
-        return resourcesGroupNeeded
-    }
-    init() {
-        PVZ2.waveManager = this
-        this.packets = PVZ2.WaveManagerModuleProperties.getZombies(this.prop)
-    }
-    packets = []
-    static pos = {
-        x: 1800, y: 400, height: 600, width: 280
-    }
-    showDemo() {
-        for(let i = 0;i < 2;i++) {
-            for(let p of this.packets) {
-                let type = getByRTID(p)
-                let demo = new PVZ2.ZombieBaseClass(type, 'idle')
-                let pos = PVZ2.WaveManagerModuleProperties.pos
-                demo.position.set(pos.x + rnd(0, pos.width), pos.y + rnd(0, pos.height))
-                demo.y3 = demo.y
-                scene.addChild(demo)
-                demo.zIndex = demo.y
-                objects.push(demo)
-            }
-        }
-    }
-    static getZombies(prop) {
-        let zombies = new Set()
-        if(!prop.DynamicZombies) return []
-        for(let dyn of prop.DynamicZombies) {
-            if(!dyn.ZombiePool) continue
-            for(let zombie of dyn.ZombiePool) {
-                zombies.add(zombie)
-            }
-        }
-        return [...zombies]
-    }
-}
-PVZ2.LawnMowerProperties = class extends PVZ2.BaseProperties {
-    init() {
-        for(let i = 0;i < 5;i++) {
-            new PVZ2.Mower(field.x - 90, field.y + (0.5 + i) * field.h, pams[this.prop.MowerPopAnim])
-        }
-    }
-}
-PVZ2.StageModuleProperties = class extends PVZ2.BaseProperties {
-    init() {
-        initGrid(5, 9)
-        scene = new PVZ2.Scene(this.prop.BackgroundImagePrefix)
-        back(0, 0)
-        scene.goBack()
-    }
-}
-PVZ2.BeachStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.LostCityStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.IceAgeStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.DinoStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.ModernStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.PirateStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.EgyptStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.WestStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.FutureStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.DarkStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
-PVZ2.EightiesStageProperties = class extends PVZ2.StageModuleProperties {
-
-}
 
 PVZ2.getGrids = function(obj) {
     let grids = PVZ2.grids
@@ -673,7 +542,7 @@ class SeedChooser extends PIXI.Container {
                 this.addSeed(seed)
             }
             this.selected = seed
-            this.selspr.position.set(dx * seedBank.pos.width, dy * seedBank.pos.height)
+            this.selspr.position.set(dx * PVZ2.seedBank.pos.width, dy * PVZ2.seedBank.pos.height)
             if(pams[seed.type.PopAnim]) {
                 this.showPlant()
             } else {
@@ -687,7 +556,7 @@ class SeedChooser extends PIXI.Container {
         }
     }
     addSeedByName(name) {
-        let next = seedBank.next()
+        let next = PVZ2.seedBank.next()
         let type = rtons.PlantTypes[name]
         let seed = this.seeds.find(x => x.type.TypeName == name)
         if(seed) {
@@ -699,7 +568,7 @@ class SeedChooser extends PIXI.Container {
         }
     }
     addSeed(seed) {
-        let next = seedBank.next()
+        let next = PVZ2.seedBank.next()
         if(next) {
             next.setType(seed.type)
             seed.setPicked(true)
@@ -815,6 +684,22 @@ PVZ2.Seed = class extends PIXI.Container {
     }
 }
 
+PVZ2.SeedConveyor = class extends PIXI.Container {
+    constructor(prop) {
+        super()
+        this.prop = prop
+        let top = drawPImage(0, 0, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_TOP)
+        let sideLeft = drawPImage(0, top.height, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_SIDE)
+        let belt = new PIXI.TilingSprite(texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_BELT, top.width / resScaleV, sideLeft.height / resScaleV)
+        belt.position.set(sideLeft.width, top.height)
+        belt.scale.set(resScaleV)
+        let sideRight = drawPImage(sideLeft.width + belt.width, top.height, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_SIDE)
+        this.addChild(belt, sideLeft, sideRight)
+    }
+    step() {
+    }
+}
+
 PVZ2.ZombiePacket = class extends PIXI.Container {
     constructor(type) {
         super()
@@ -889,6 +774,12 @@ async function loadLevel(levelName) {
 
 function initLevel(level) {
     scene.removeChildren()
+    if(PVZ2.seedBank) {
+        stage.removeChild(PVZ2.seedBank.seedChooser)
+    }
+    if(PVZ2.conveyor) {
+        stage.removeChild(PVZ2.conveyor)
+    }
     if(!level) debugger
     PVZ2.modules = []
     objects = objects.filter((x) => {

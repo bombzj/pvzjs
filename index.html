@@ -10,6 +10,7 @@
     <script src="js/pamparse.js"></script>
     <script src="js/rtonparse.js"></script>
     <script src="pvz2util.js"></script>
+    <script src="js/properties.js"></script>
     <body>
 <script type="text/javascript">
 
@@ -25,54 +26,27 @@
     loadPams()
 
     let sun1
-    let selspr
 
-    var seedChooser
     PVZ2.gameStart = false
     PVZ2.debug = false
     var shovelPos = {x: 1060, y: 1060, width: 125, height: 125}
-    var seedBank = {
-        initSeeds: ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'cherry_bomb'],
-        seeds: [],
-        pos: {
-            x: 0, y: 150, height: 120, width: 180
-        },
-        next() {    // return the next available empty seed, or undefined if full
-            for(let seed of this.seeds) {
-                if(!seed.type) {
-                    return seed
-                }
-            }
-        }
-    }
-    var zombieBank = { }
 
     function init() {
         if(loadingSprite) {
             app.stage.removeChild(loadingSprite)
             loadingSprite = undefined
         }
-        for(let i = 0;i < 8;i++){
-            seedBank.seeds.push(seed(-1, 0, seedBank.pos.height * i + seedBank.pos.y))
-        }
         // sun1 = sun(500, 100)
-        selspr = seedSel(0, 100)
-        selspr.visible = false
         numSun(0, 0, 50)
         shovel(shovelPos.x, shovelPos.y)
 
         sunTotal = 5000
-        // seed chooser & bank
-        seedChooser = new SeedChooser(5, 5)
-        stage.addChild(seedChooser)
-        seedChooser.position.set(seedBank.pos.width + 20, 440)
-        loadPlantResource(seedBank.initSeeds).then( () => {
-            seedChooser.click2(0, 0)
-            randomLevel()
-        })
-        for(let [index, name] of seedBank.initSeeds.entries()) {
-            seedChooser.addSeedByName(name)
-        }
+
+        // let conveyor = new PVZ2.SeedConveyor()
+        // conveyor.position.set(200, 0)
+        // stage.addChild(conveyor)
+
+        randomLevel()
 
         // start button
         let buttonStart = drawPImage(1140, 940, texturesMap.IMAGE_UI_GENERIC_PURPLEBUTTON, stage)
@@ -83,20 +57,20 @@
         buttonStart.interactive = true
         buttonStart.click = function() {
             PVZ2.gameStart = true
-            stage.removeChild(seedChooser)
-            stage.removeChild(zombieBank.buttonRefresh)
+            stage.removeChild(PVZ2.seedBank.seedChooser)
+            stage.removeChild(buttonRefresh)
             stage.removeChild(buttonStart, buttonStartText)
             scene.goFront()
         }
         // refresh button
-        zombieBank.buttonRefresh = drawPImage(1000, 300, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
-        zombieBank.buttonRefresh.interactive = true
-        zombieBank.buttonRefresh.click = function() {
-            zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE_DOWN
-            zombieBank.buttonRefresh.interactive = false
+        buttonRefresh = drawPImage(1000, 300, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
+        buttonRefresh.interactive = true
+        buttonRefresh.click = function() {
+            buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE_DOWN
+            buttonRefresh.interactive = false
             randomLevel().then(() => {
-                zombieBank.buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE
-                zombieBank.buttonRefresh.interactive = true
+                buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE
+                buttonRefresh.interactive = true
             })
 
         }
@@ -129,9 +103,6 @@
                     
                 } else if(obj.ztype == 'zombie') {
                     
-                } else if(obj.ztype == 'seedSel') {
-                    obj.visible = (selPlant != -1)
-                    obj.y = selPlant * seedBank.pos.height + seedBank.pos.y
                 } else if(obj.ztype == 'effect') {
                     
                 } else if(obj.ztype == 'projectile') {
@@ -160,25 +131,6 @@
     function onclick(e) {
         let x = e.offsetX / PVZ2.zoom, y = e.offsetY / PVZ2.zoom
         console.log('click: ', x, y)
-
-        if(!PVZ2.gameStart) {
-            if(x >= seedChooser.x && y > seedChooser.y) {
-                seedChooser.click(x - seedChooser.x, y - seedChooser.y)
-            }
-            // click seedbank to cancel
-            if(x < seedBank.pos.width) {
-                let dy = (y - seedBank.pos.y) / seedBank.pos.height
-                let dy2 = Math.floor(dy)
-                if(dy2 >= 0 && dy2 < 8) {
-                    let seed = seedBank.seeds[dy2]
-                    if(seed.type) {
-                        seedChooser.setPicked(seed.type.TypeName, false)
-                        seed.clearType()
-                    }
-                }
-            }
-            return
-        }
 
         // if(x > 1200) {
         //     let a = zombie(selPlant, x, y)
@@ -212,7 +164,7 @@
                     }
                 }
             } else if(selPlant != -1) {
-                let seed = seedBank.seeds[selPlant]
+                let seed = PVZ2.seedBank.seeds[selPlant]
                 let grids = PVZ2.getGrids(seed)
                 if(!grids[dy2][dx2]) {
                     let p = grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
@@ -226,24 +178,9 @@
                 }
             }
         }
-        // pick plant
-        if(x < seedBank.pos.width) {
-            let dy = (y - seedBank.pos.y) / seedBank.pos.height
-            let dy2 = Math.floor(dy)
-            if(dy2 >= 0 && dy2 < 8) {
-                if(dy2 == selPlant){
-                    selPlant = -1
-                } else {
-                    let seed = seedBank.seeds[dy2]
-                    if(seed.type) {
-                        let cost = seed.type.prop.Cost
-                        if(sunTotal >= cost && seed.ready()) {
-                            selPlant = dy2
-                            useShovel = false
-                        }
-                    }
-                }
-            }
+        
+        for(let md of PVZ2.modules) {
+            if(md.click(x, y)) break
         }
         // toggle shovel
         if(x <= shovelPos.x + shovelPos.width && x >= shovelPos.x && y <= shovelPos.y + shovelPos.height && y >= shovelPos.y){
