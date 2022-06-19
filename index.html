@@ -37,16 +37,11 @@
             loadingSprite = undefined
         }
         // sun1 = sun(500, 100)
-        numSun(0, 0, 50)
+        // let ns = numSun(0, 0, 50)
         shovel(shovelPos.x, shovelPos.y)
 
-        sunTotal = 5000
-
-        // let conveyor = new PVZ2.SeedConveyor()
-        // conveyor.position.set(200, 0)
-        // stage.addChild(conveyor)
-
         randomLevel()
+        sunTotal = 5000
 
         // start button
         let buttonStart = drawPImage(1140, 940, texturesMap.IMAGE_UI_GENERIC_PURPLEBUTTON, stage)
@@ -57,7 +52,9 @@
         buttonStart.interactive = true
         buttonStart.click = function() {
             PVZ2.gameStart = true
-            stage.removeChild(PVZ2.seedBank.seedChooser)
+            if(PVZ2.seedBank) {
+                stage.removeChild(PVZ2.seedBank.seedChooser)
+            }
             stage.removeChild(buttonRefresh)
             stage.removeChild(buttonStart, buttonStartText)
             scene.goFront()
@@ -78,7 +75,7 @@
 
     async function randomLevel() {
         let world = randomInArray(PVZ2.worlds)
-        let levelName = world + rnd(1, 10)
+        let levelName = 'cowboy4'//world + rnd(1, 10)
         await loadLevel(levelName).then( (level) => {
             if(!level) {
                 console.log('error loading: ' + levelName)
@@ -115,8 +112,10 @@
             }
             if(++zombieCnt > 200) {
                 zombieCnt = 0
-                let type = getByRTID(rndObj(PVZ2.waveManager.packets))
-                zombie(type, 1700, (rnd(0, 4) + 0.5) * field.h + field.y)
+                if(PVZ2.waveManager.packets.length > 0) {
+                    let type = getByRTID(rndObj(PVZ2.waveManager.packets))
+                    zombie(type, 1700, (rnd(0, 4) + 0.5) * field.h + field.y)
+                }
             }
         }
     }
@@ -164,7 +163,7 @@
                     }
                 }
             } else if(selPlant != -1) {
-                let seed = PVZ2.seedBank.seeds[selPlant]
+                let seed = PVZ2.seedBank ? PVZ2.seedBank.seeds[selPlant] : PVZ2.seedConveyor.seeds[selPlant]
                 let grids = PVZ2.getGrids(seed)
                 if(!grids[dy2][dx2]) {
                     let p = grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
@@ -173,7 +172,11 @@
                     
                     let cost = seed.type.prop.Cost
                     sunTotal -= cost
-                    seed.use()    // cooldown
+                    if(PVZ2.seedBank) {
+                        seed.use()    // cooldown
+                    } else {
+                        PVZ2.seedConveyor.use(selPlant)
+                    }
                     selPlant = -1
                 }
             }

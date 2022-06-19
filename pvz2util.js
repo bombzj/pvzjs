@@ -36,7 +36,10 @@ function zombie(i, x, y) {
 var sunTotal = 50
 // draw a seed
 function seed(i, x, y) {
-    let c = new PVZ2.Seed(plantList[i])
+    return newSeed(plantList[i], x, y)
+}
+function newSeed(type, x, y, noPrice = false, noCooldown = false) {
+    let c = new PVZ2.Seed(type, noPrice, noCooldown)
     c.position.set(x, y)
     c.y3 = y
     stage.addChild(c)
@@ -600,11 +603,14 @@ class SeedChooser extends PIXI.Container {
 }
 
 PVZ2.Seed = class extends PIXI.Container {
-    constructor(type) {
+    constructor(type, noPrice = false, noCooldown = false) {
         super()
+        this.noCooldown = noCooldown
         this.bg = drawPImage()
-        this.priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
-        this.price = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+        if(!noPrice) {
+            this.priceTab = drawPImage(115, 55, texturesMap.IMAGE_UI_PACKETS_PRICE_TAB)
+            this.price = new PIXI.Text('', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+        }
 
         let cover1 = this.cover1 = drawPImage(0, 0, texturesMap.IMAGE_UI_PACKETS_COOLDOWN)
         cover1.tint = 0x0
@@ -618,7 +624,11 @@ PVZ2.Seed = class extends PIXI.Container {
 
         this.plant = drawPImage()
 
-        this.addChild(this.bg, this.plant, this.priceTab, this.price, cover1, cover2)
+        this.addChild(this.bg, this.plant)
+        if(!noPrice) {
+            this.addChild(this.priceTab, this.price)
+            this.addChild(cover1, cover2)
+        }
         this.ztype = 'seed'
         if(type) {
             this.setType(type)
@@ -664,18 +674,22 @@ PVZ2.Seed = class extends PIXI.Container {
         else if (bgname == 'tutorial' || bgname == 'modern') bgname = 'ready'
         this.bg.texture = texturesMap['IMAGE_UI_PACKETS_' + bgname.toUpperCase()]
         this.bg.alpha = 1
-        this.price.text = type.prop.Cost
-        this.price.position.set(180 - this.price.width, 60)
-        this.price.visible = true
+        if(this.price) {
+            this.price.text = type.prop.Cost
+            this.price.position.set(180 - this.price.width, 60)
+            this.price.visible = true
+            this.priceTab.visible = true
+        }
         this.plant.texture = texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()]
         this.plant.position.set(15, 68 - this.plant.texture.height)
         this.plant.visible = true
-        this.priceTab.visible = true
         this.type = type
-        if(type.prop.StartingCooldown) {
-            this.cd = type.prop.StartingCooldown * fps
-        } else {
-            this.cd = type.prop.PacketCooldown * fps
+        if(!this.noCooldown) {
+            if(type.prop.StartingCooldown) {
+                this.cd = type.prop.StartingCooldown * fps
+            } else {
+                this.cd = type.prop.PacketCooldown * fps
+            }
         }
     }
     setPicked(picked) {
@@ -688,15 +702,17 @@ PVZ2.SeedConveyor = class extends PIXI.Container {
     constructor(prop) {
         super()
         this.prop = prop
+        let belt = new PIXI.TilingSprite(texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_BELT, 180, 1200)
+        this.belt = belt
+        belt.position.set(10, 10)
+        belt.tileScale.set(resScaleV)
         let top = drawPImage(0, 0, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_TOP)
-        let sideLeft = drawPImage(0, top.height, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_SIDE)
-        let belt = new PIXI.TilingSprite(texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_BELT, top.width / resScaleV, sideLeft.height / resScaleV)
-        belt.position.set(sideLeft.width, top.height)
-        belt.scale.set(resScaleV)
-        let sideRight = drawPImage(sideLeft.width + belt.width, top.height, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_SIDE)
-        this.addChild(belt, sideLeft, sideRight)
+        let sideLeft = drawPImage(0, 10, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_SIDE)
+        let sideRight = drawPImage(190, 10, texturesMap.IMAGE_UI_CONVEYOR_CONVEYOR_SIDE)
+        this.addChild(belt, sideLeft, sideRight, top)
     }
     step() {
+        this.belt.tilePosition.y -= 4
     }
 }
 
@@ -777,8 +793,8 @@ function initLevel(level) {
     if(PVZ2.seedBank) {
         stage.removeChild(PVZ2.seedBank.seedChooser)
     }
-    if(PVZ2.conveyor) {
-        stage.removeChild(PVZ2.conveyor)
+    if(PVZ2.seedConveyor) {
+        stage.removeChild(PVZ2.seedConveyor.conveyor)
     }
     if(!level) debugger
     PVZ2.modules = []

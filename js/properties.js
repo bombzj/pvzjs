@@ -43,6 +43,7 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
             this.seedChooser.addSeedByName(name)
         }
         this.seedChooser.click2(0, 0)
+        PVZ2.numSun = numSun(0, 0, 50)
     }
     static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
     seeds = []
@@ -114,13 +115,78 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
     }
 }
 PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
-    init() {
-        PVZ2.conveyor = new PVZ2.SeedConveyor()
-        PVZ2.conveyor.position.set(200, 0)
-        stage.addChild(PVZ2.conveyor)
+    static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
+    seeds = []
+    static pos = {
+        x: 0, y: 150, height: 120, width: 180
     }
+    init() {
+        PVZ2.seedConveyor = this
+        this.conveyor = new PVZ2.SeedConveyor()
+        this.conveyor.position.set(0, 0)
+        stage.addChild(this.conveyor)
+        this.selspr = seedSel(10, 100)
+        this.selspr.visible = false 
+        stage.addChild(this.selspr)
+    }
+    seedCounter = 0
     step() {
+        if(PVZ2.gameStart) {
+            this.conveyor.step()
+            let stickY = 10
+            let height = this.constructor.pos.height
+            for(let seed of this.seeds) {
+                if(seed.y > stickY) {
+                    seed.y -= 4
+                    if(seed.y < stickY) {
+                        seed.y = stickY
+                    }
+                }
+                stickY = seed.y + height
+            }
+            this.seedCounter--
+            if(this.seedCounter <= 0 && this.seeds.length < 9) {
+                this.seeds.push(newSeed(plantType[rndObj(this.constructor.initSeeds)], 10, 1300, true, true))
+                this.seedCounter = 150
+            }
 
+            this.selspr.visible = (selPlant != -1)
+            if(this.selspr.visible) {
+                let seed = this.seeds[selPlant]
+                this.selspr.y = seed.y
+            }
+        }
+    }
+    use(index) {
+        let rm = this.seeds.splice(index, 1)
+        stage.removeChild(rm[0])
+    }
+    click(x, y) {
+        let pos = this.constructor.pos
+        for(let i = 0;i < this.seeds.length;i++) {
+            let seed = this.seeds[i]
+            let dx = x - seed.x
+            let dy = y - seed.y
+            if(dx > 0 && dy > 0 && dx < pos.width && dy < pos.height) {
+                if(selPlant == i) {
+                    selPlant = -1
+                } else {
+                    selPlant = i
+                }
+                break
+            }
+        }
+    }
+    static getResourceGroup(prop) {    
+        let resourcesGroupNeeded = []
+        for(let typeName of this.initSeeds) {
+            let type = rtons.PlantTypes[typeName]
+            resourcesGroupNeeded.push(...type.PlantResourceGroups)
+            if(!type.prop) {
+                type.prop = getByRTID(type.Properties)
+            }
+        }
+        return resourcesGroupNeeded
     }
 }
 PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
