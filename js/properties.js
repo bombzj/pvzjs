@@ -43,7 +43,7 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
             this.seedChooser.addSeedByName(name)
         }
         this.seedChooser.click2(0, 0)
-        PVZ2.numSun = numSun(0, 0, 50)
+        PVZ2.numSun = numSun(0, 0, PVZ2.debug ? 5000 : 50)
     }
     static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
     seeds = []

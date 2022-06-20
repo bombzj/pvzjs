@@ -395,7 +395,7 @@ PVZ2.Plant = class extends PVZ2.Object {
             let action = this.action = type.prop.Actions[0]
             this.actionCooldownMax = action.CooldownTimeMin * fps
             this.actionCooldown = action.InitialMinCooldownTime * fps | action.CooldownTimeMin * fps
-            if(type.TypeName == 'sunflower') {
+            if(type.TypeName == 'sunflower' || type.TypeName == 'twinsunflower') {
                 this.actionCooldownMax /= 2
                 this.actionCooldown /= 2
             }
@@ -452,7 +452,7 @@ PVZ2.Plant = class extends PVZ2.Object {
                 }
             }
         }
-        if(this.type.TypeName == 'sunflower') {
+        if(this.type.TypeName == 'sunflower' || this.type.TypeName == 'twinsunflower') {
             if(this.actionCooldown <= 0) {
                 this.changeAction('special')
                 this.actionCooldown = this.actionCooldownMax
@@ -832,6 +832,10 @@ PVZ2.Plant = class extends PVZ2.Object {
             }
         } else if(this.action.Type == 'sun') {
             new PVZ2.Sun(this.x + this.action.SpawnOffset.x, this.y + this.action.SpawnOffset.y, 50)
+            if(this.type.TypeName == 'twinsunflower') {
+                let action = this.type.prop.Actions[1]
+                new PVZ2.Sun(this.x + action.SpawnOffset.x, this.y + action.SpawnOffset.y, 50)
+            }
         }
     }
     findTarget() {
