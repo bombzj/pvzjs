@@ -10,6 +10,7 @@
     <script src="js/pamparse.js"></script>
     <script src="js/rtonparse.js"></script>
     <script src="pvz2util.js"></script>
+    <script src="js/objects.js"></script>
     <script src="js/properties.js"></script>
     <body>
 <script type="text/javascript">
@@ -113,7 +114,7 @@
             if(++zombieCnt > 200) {
                 zombieCnt = 0
                 if(PVZ2.waveManager.packets.length > 0) {
-                    let type = getByRTID(rndObj(PVZ2.waveManager.packets))
+                    let type = rndObj(PVZ2.waveManager.packets)
                     zombie(type, 1700, (rnd(0, 4) + 0.5) * field.h + field.y)
                 }
             }

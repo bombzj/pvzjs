@@ -80,6 +80,7 @@ function pamInit(name, dataRaw) {
 class PamSprite extends PIXI.Container {
     constructor(pam, sprite, frameStart = 0, param = {}) {
         super()
+        if(!pam) debugger
         this.pam = pam
         this.sprite = sprite || pam.main_sprite
         if(typeof frameStart === 'string') {
