@@ -295,4 +295,7 @@ PVZ2.Scene = class extends PIXI.Container {
     goBack() {
         this.destX = -PVZ2.Scene.backPosition.x
     }
+    plantGrid(type, x, y) {
+        return plant(type, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h)
+    }
 }

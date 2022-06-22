@@ -412,10 +412,7 @@ async function loadPlantResource(typeNames) {
     let resourcesGroupNeeded = []
     for(let typeName of typeNames) {
         let type = rtons.PlantTypes[typeName]
-        resourcesGroupNeeded.push(...type.PlantResourceGroups)
-        if(!type.prop) {
-            type.prop = getByRTID(type.Properties)
-        }
+        resourcesGroupNeeded.push(...type.getResourceGroup())
     }
     return loadGroupResource(resourcesGroupNeeded)
 }
@@ -424,10 +421,7 @@ async function loadZombieResource(typeNames) {
     let resourcesGroupNeeded = []
     for(let typeName of typeNames) {
         let type = rtons.ZombieTypes[typeName]
-        resourcesGroupNeeded.push(...type.ResourceGroups)
-        if(!type.prop) {
-            type.prop = getByRTID(type.Properties)
-        }
+        resourcesGroupNeeded.push(...type.getResourceGroup())
     }
     return loadGroupResource(resourcesGroupNeeded)
 }

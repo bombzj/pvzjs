@@ -97,6 +97,7 @@ PVZ2.PlantTypeHollyKnight = class extends PVZ2.PlantType {
 PVZ2.PlantTypeUltomato = class extends PVZ2.PlantType {
 
 }
+
 PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
     init() {
         this.pos = this.constructor.pos
@@ -112,6 +113,9 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
         PVZ2.seedBank = this
         
         this.seedChooser.position.set(this.pos.width + 20, 440)
+        for(let plant of this.prop.PresetPlantList) {
+            this.seedChooser.addSeedByName(plant.PlantType)
+        }
         for(let name of this.constructor.initSeeds) {
             this.seedChooser.addSeedByName(name)
         }
@@ -282,6 +286,27 @@ PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
         }
     }
 }
+
+PVZ2.InitialGridItemProperties = class extends PVZ2.BaseProperties {
+    init() {
+        for(let placement of this.prop.InitialGridItemPlacements) {
+            scene.plantGrid(rtons.PlantTypes[placement.TypeName], placement.GridX - 1, placement.GridY)
+        }
+    }
+    getResourceGroup() {
+        let types = new Set()
+        for(let placement of this.InitialGridItemPlacements) {
+            types.add(placement.TypeName)
+        }
+        
+        let resourcesGroupNeeded = []
+        for(let type of types) {
+            resourcesGroupNeeded.push(...rtons.PlantTypes[type].getResourceGroup())
+        }
+        return resourcesGroupNeeded
+    }
+}
+
 PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
     prepare(parent) {
         if(this.DynamicZombies) {
@@ -445,4 +470,10 @@ PVZ2.DarkStageProperties = class extends PVZ2.StageModuleProperties {
 }
 PVZ2.EightiesStageProperties = class extends PVZ2.StageModuleProperties {
 
+}
+
+PVZ2.TideProperties = class extends PVZ2.BaseProperties {
+    init() {
+        
+    }
 }

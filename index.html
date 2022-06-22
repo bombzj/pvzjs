@@ -167,7 +167,7 @@
                 let seed = PVZ2.seedBank ? PVZ2.seedBank.seeds[selPlant] : PVZ2.seedConveyor.seeds[selPlant]
                 let grids = PVZ2.getGrids(seed)
                 if(!grids[dy2][dx2]) {
-                    let p = grids[dy2][dx2] = plant(seed.type, field.x + (0.5 + dx2) * field.w, field.y + (0.5 + dy2) * field.h)
+                    let p = grids[dy2][dx2] = scene.plantGrid(seed.type, dx2, dy2)
                     p.gridX = dx2
                     p.gridY = dy2
                     
