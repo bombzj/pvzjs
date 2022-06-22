@@ -278,6 +278,7 @@ PVZ2.Scene = class extends PIXI.Container {
         this.bg1 = drawPImage(0, 0, texturesMap[prefix + '_TEXTURE'])
         this.bg2 = drawPImage(this.bg1.width, 0, texturesMap[prefix + '_TEXTURE_RIGHT'])
         this.addChild(this.bg1, this.bg2)
+        this.bg1.zIndex = this.bg2.zIndex = -100
         this.zIndex = -1
         this.ztype = 'scene'
     }

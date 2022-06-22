@@ -416,6 +416,9 @@ PVZ2.SpawnZombiesJitteredWaveActionProps = class extends PVZ2.BaseProperties {
             zombies.add(zombie.Type)
         }
     }
+    init() {
+
+    }
 }
 PVZ2.LawnMowerProperties = class extends PVZ2.BaseProperties {
     init() {
@@ -474,6 +477,34 @@ PVZ2.EightiesStageProperties = class extends PVZ2.StageModuleProperties {
 
 PVZ2.TideProperties = class extends PVZ2.BaseProperties {
     init() {
-        
+        scene.waveLocation = this.prop.StartingWaveLocation
+        let lineX = field.x + field.w * (this.prop.StartingWaveLocation - 1)
+        let lineY = field.y
+        this.under = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_UNDERLAYER, 'idle', lineX, lineY, 0)
+        this.tideLine = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_TIDE_LINE, 'idle', lineX, lineY, 0)
+        this.upper = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WAVE_UPPERLAYER, 'idle', lineX, lineY, 0)
+        this.tideLine.zIndex = -10
+        this.under.zIndex = -50
+        this.upper.zIndex = -30
+        for(let i = this.prop.StartingWaveLocation - 1; i < 9;i++) {
+            for(let j = 0;j < 5;j++) {
+                if((i + j) % 2 == 1) continue
+                let square = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_SQUARE, 'idle', field.x + field.w * (i + 0.5) , field.y + field.h * (j + 0.5), 0)
+                square.zIndex = -40
+            }
+        }
+    }
+}
+
+PVZ2.TidalChangeWaveActionProps = class extends PVZ2.BaseProperties {
+    init() {
+        let newLocation
+        if(this.prop.TidalChange.ChangeType == 'absolute') {
+            newLocation = this.prop.TidalChange.ChangeAmount
+        } else {
+            newLocation = scene.waveLocation + this.prop.TidalChange.ChangeAmount
+        }
+
+        scene.waveLocation = newLocation
     }
 }

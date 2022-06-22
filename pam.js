@@ -302,7 +302,9 @@ PVZ2.Object = class extends PIXI.Container {
     setPam(pam, sprite, frameStart = 0, param = {}) {
         param.onFinish = () => this.onFinish()
         this.pamSprite = new PamSprite(pam, sprite, frameStart, param)
-        this.pamSprite.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
+        if(!param.topleft) {
+            this.pamSprite.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
+        }
         this.addChild(this.pamSprite)
         this.pam = pam
         this.param = param
@@ -343,7 +345,9 @@ PVZ2.Object = class extends PIXI.Container {
             this.shadow.x = this.x
             this.shadow.y = this.y3
         }
-        this.zIndex = this.y3
+        // if(this.ztype != 'background') {
+        //     this.zIndex = this.y3
+        // }
         if(this.ztype == 'zombie') {
             this.zIndex += 1
         } else if(this.ztype == 'sun') {
@@ -1137,6 +1141,25 @@ PVZ2.Effect = class extends PVZ2.Object {
         newObjects.push(this)
         // this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
         this.ztype = 'effect'
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
+    }
+}
+PVZ2.BackgroundEffect = class extends PVZ2.Object {
+    constructor(pam, act, x, y, z = 0, parent = scene) {
+        super()
+        this.setPam(pam, undefined, act, {topleft: false})
+        this.position.set(x, y + z)
+        this.y3 = y
+        this.z3 = z
+        parent.addChild(this)
+        newObjects.push(this)
+        // this.pivot.set(pam.size[0] / 2, pam.size[1] / 2)
+        this.ztype = 'background'
     }
     init() {
         super.init()

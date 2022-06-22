@@ -40,6 +40,7 @@
     var scene = new PIXI.Container()
     var spr, pam, sprName
     var highlightFilter
+    var center
 
     function init() {
         highlightFilter = new PIXI.filters.ColorMatrixFilter()
@@ -64,6 +65,12 @@
 
 
         showGroupList()
+        center = new PIXI.Graphics()
+        center.lineStyle(3, 0xFF0000, 1)
+        center.drawCircle(0, 0, 5)
+        center.zIndex = 10
+        center.visible = false
+        app.stage.addChild(center)
     }
 
 
@@ -250,6 +257,9 @@
         app.stage.addChild(spr)
         spr.position.set(0, 0)
 
+        center.position.set(pam.size[0] / 2, pam.size[1] / 2)
+        app.stage.sortChildren()
+
         removeButtons(chooseSprite)
         for(let frame in pam.actionFrame) {
             let frameIndex = pam.actionFrame[frame]
@@ -327,6 +337,7 @@
             <input name="pamName" size="30" onchange="searchPam(document.all.pamName.value)">
             <button onclick="goStep()">step</button>
             <button onclick="goPlay()">play</button>
+            <button onclick="center.visible = !center.visible">center</button>
         </p>
         <p>
             <table id="chooseGroup" style="float:left"></table>
