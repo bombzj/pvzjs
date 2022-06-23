@@ -97,7 +97,7 @@
             let rect = texture.orig
             if(y >= rect.top && y < rect.bottom && x >= rect.left && x < rect.right) {
                 console.log(child, atlasData.group)
-                showtext.innerText = child + ' ' + atlasData.group
+                showtext.innerText = child + ' ' + atlasData.group + ' ' + rect.width + 'x' + rect.height
             }
         }
     }
@@ -144,6 +144,7 @@
                     selectSprite.drawRect(0, 0, rect.width, rect.height)
                     selectSprite.position.set(rect.x, rect.y)
                     app.stage.addChild(selectSprite)
+                    showtext.innerText = child + ' ' + atlasData.group + ' ' + rect.width + 'x' + rect.height
                 })
             }
         }

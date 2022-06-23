@@ -111,13 +111,13 @@
             for(let md of PVZ2.modules) {
                 md.step()
             }
-            if(++zombieCnt > 200) {
-                zombieCnt = 0
-                if(PVZ2.waveManager.packets.length > 0) {
-                    let type = rndObj(PVZ2.waveManager.packets)
-                    zombie(type, 1700, (rnd(0, 4) + 0.5) * field.h + field.y)
-                }
-            }
+            // if(++zombieCnt > 200) {
+            //     zombieCnt = 0
+            //     if(PVZ2.waveManager.packets.length > 0) {
+            //         let type = rndObj(PVZ2.waveManager.packets)
+            //         zombie(type, 1700, (rnd(0, 4) + 0.5) * field.h + field.y)
+            //     }
+            // }
         }
     }
 

@@ -8,6 +8,7 @@ PVZ2.BaseProperties = class {
     }
     init() { }
     step() { }
+    action() { }    // one time action without new instance
     click(x, y) {
         return false    // not handled
     }
@@ -289,11 +290,16 @@ PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
 
 PVZ2.InitialGridItemProperties = class extends PVZ2.BaseProperties {
     init() {
-        for(let placement of this.prop.InitialGridItemPlacements) {
-            scene.plantGrid(rtons.PlantTypes[placement.TypeName], placement.GridX - 1, placement.GridY)
+        if(this.prop.InitialGridItemPlacements) {
+            for(let placement of this.prop.InitialGridItemPlacements) {
+                scene.plantGrid(rtons.PlantTypes[placement.TypeName], placement.GridX - 1, placement.GridY)
+            }
         }
     }
     getResourceGroup() {
+        if(!this.InitialGridItemPlacements) {
+            return []
+        }
         let types = new Set()
         for(let placement of this.InitialGridItemPlacements) {
             types.add(placement.TypeName)
@@ -306,6 +312,7 @@ PVZ2.InitialGridItemProperties = class extends PVZ2.BaseProperties {
         return resourcesGroupNeeded
     }
 }
+
 
 PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
     prepare(parent) {
@@ -331,9 +338,70 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         resourcesGroupNeeded.push(this.WaveManagerProps.getResourceGroup())  // included in the zombie resource above
         return resourcesGroupNeeded
     }
+    static meterPos = {
+        x: 570, y: 30, width: 400, height: 20
+    }
+    static waveInterval = 10
     init() {
         PVZ2.waveManager = this
         this.packets = this.prop.getZombies()
+
+        this.progressMeter = new PIXI.Container()
+        this.progressMeter.position.set(this.constructor.meterPos.x, this.constructor.meterPos.y)
+        stage.addChild(this.progressMeter)
+
+        let props = this.prop.WaveManagerProps
+        this.flagCount = props.WaveCount / props.FlagWaveInterval
+        this.meter = drawPImage(0, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER)
+        this.meterFill = drawPImage(this.constructor.meterPos.width + 20, 10, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_FILL)
+        this.meterFill.pivot.x = 22
+        this.meterFill.scale.x = 0
+        this.zombieHead = drawPImage(this.constructor.meterPos.width, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_ZOMBIEHEAD)
+        this.progressMeter.addChild(this.meter, this.meterFill, this.zombieHead)
+        this.meterFlags = []
+        let width = this.constructor.meterPos.width
+        for(let i = 0;i < this.flagCount;i++) {
+            let x = width - width * (i + 1) / this.flagCount
+            let flag = drawPImage(x, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_FLAG_DEFAULT)
+            let pole = drawPImage(x - 5, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_FLAG_POLE)
+            this.meterFlags[i] = {
+                flag: flag,
+                pole: pole
+            }
+            this.progressMeter.addChild(pole, flag)
+        }
+        this.currentWave = 0
+        this.waveCounter = 1 * this.constructor.waveInterval
+        this.zombieSpawnCounter = 0
+        this.zombieSpawnList = []
+    }
+    step() {
+        let props = this.prop.WaveManagerProps
+        this.waveCounter--
+        if(this.waveCounter <= 0 && this.currentWave < props.WaveCount) {
+            for(let wave of props.Waves[this.currentWave]) {
+                wave.action()
+            }
+            this.currentWave++
+            this.waveCounter = this.constructor.waveInterval *  30
+        }
+        this.zombieSpawnCounter--
+        if(this.zombieSpawnCounter <= 0 && this.zombieSpawnList.length > 0) {
+            this.zombieSpawnCounter = 30
+            let zombie = this.zombieSpawnList.shift()
+            scene.zombieGrid(zombie.Type, 10, zombie.Row)
+        }
+        for(let i = 0;i < this.flagCount;i++) {
+            let mf = this.meterFlags[i]
+            if(this.currentWave < (i + 1) * props.FlagWaveInterval) {
+                mf.flag.y = mf.pole.y = 0
+            } else {
+                mf.flag.y = mf.pole.y = -this.constructor.meterPos.height
+            }
+        }
+        let meterX = this.currentWave * this.constructor.meterPos.width / props.WaveCount
+        this.zombieHead.x = this.constructor.meterPos.width - meterX
+        this.meterFill.scale.x = meterX / 20
     }
     packets = []
     static pos = {
@@ -416,8 +484,8 @@ PVZ2.SpawnZombiesJitteredWaveActionProps = class extends PVZ2.BaseProperties {
             zombies.add(zombie.Type)
         }
     }
-    init() {
-
+    action() {
+        PVZ2.waveManager.zombieSpawnList.push(...this.Zombies)
     }
 }
 PVZ2.LawnMowerProperties = class extends PVZ2.BaseProperties {
