@@ -963,7 +963,6 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         this.shadow = drawPImageCentered(-80, 10, texturesMap.IMAGE_PLANTSHADOW)
         // shadow.zIndex = -1
         shadowLayer.addChild(this.shadow)
-        PVZ2.hasWater = true
         if(PVZ2.hasWater) {
             this.ripple = new PVZ2.Effect(pams.POPANIM_BACKGROUNDS_WATER_ZOMBIE_RIPPLE, 'ripple', this.x, this.y3, this.z3, scene, false)
 

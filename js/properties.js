@@ -542,7 +542,15 @@ PVZ2.StageModuleProperties = class extends PVZ2.BaseProperties {
     }
 }
 PVZ2.BeachStageProperties = class extends PVZ2.StageModuleProperties {
-
+    init() {
+        super.init()
+        this.rocks = drawPImage(0, 0, texturesMap[this.prop.BackgroundImagePrefix + '_ROCKS'])
+        this.broadwalk = drawPImage(0, 800, texturesMap[this.prop.BackgroundImagePrefix + '_BOARDWALK'])
+        scene.addChild(this.rocks, this.broadwalk)
+        this.rocks.zIndex = this.broadwalk.zIndex = -5
+        
+        PVZ2.hasWater = true
+    }
 }
 PVZ2.LostCityStageProperties = class extends PVZ2.StageModuleProperties {
 
@@ -586,6 +594,9 @@ PVZ2.TideProperties = class extends PVZ2.BaseProperties {
         this.tideLine.zIndex = -10
         this.under.zIndex = -50
         this.upper.zIndex = -30
+        this.waterSign = drawPImageCentered(lineX - field.w, field.y - 100, texturesMap.IMAGE_BACKGROUNDS_BEACH_WATERSIGN, scene)
+        this.waterSign.scale.set(this.waterSign.scale.x * 0.5)
+        this.waterSign.zIndex = -1
         for(let i = this.prop.StartingWaveLocation - 1; i < 9;i++) {
             for(let j = 0;j < 5;j++) {
                 if((i + j) % 2 == 1) continue

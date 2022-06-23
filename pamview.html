@@ -166,15 +166,41 @@
     }
 
     window.onkeydown = function(e) {
+        console.log('key: ' + e.code)
         if(e.code == 'KeyS'){
             if(stepMode) {
                 step()
             }
         }
+        if(e.code == 'ArrowUp'){
+            spr.y -= 100
+            e.preventDefault()
+        }
+        if(e.code == 'ArrowDown'){
+            spr.y += 100
+            e.preventDefault()
+        }
+        if(e.code == 'ArrowLeft'){
+            spr.x -= 100
+            e.preventDefault()
+        }
+        if(e.code == 'ArrowRight'){
+            spr.x += 100
+            e.preventDefault()
+        }
+        if(e.code == 'Minus'){
+            spr.scale.set(spr.scale.x / 2)
+            e.preventDefault()
+        }
+        if(e.code == 'Equal'){
+            spr.scale.set(spr.scale.x * 2)
+            e.preventDefault()
+        }
         // if(e.code == 'KeyD'){
         //     if(atlas < atlasNames.length - 1) atlas++
         //     drawAtlasByIndex()
         // }
+        coord.innerText = spr.x + ',' + spr.y + ',' + Math.floor(spr.scale.x*100) + '%'
     }
 
     function searchPam(name) {
@@ -338,6 +364,7 @@
             <button onclick="goStep()">step</button>
             <button onclick="goPlay()">play</button>
             <button onclick="center.visible = !center.visible">center</button>
+            <span id="coord"></span>
         </p>
         <p>
             <table id="chooseGroup" style="float:left"></table>
