@@ -342,12 +342,18 @@ PVZ2.Object = class extends PIXI.Container {
         this.age++
         this.y = this.y3 + this.z3
         if(this.shadow) {
+            this.shadow.visible = this.x <= 500
             this.shadow.x = this.x
-            this.shadow.y = this.y3
+            this.shadow.y = this.shadow.y3 = this.y3
         }
-        // if(this.ztype != 'background') {
-        //     this.zIndex = this.y3
-        // }
+        if(this.ripple) {
+            this.ripple.visible = this.x > 500
+            this.ripple.x = this.x
+            this.ripple.y = this.ripple.y3 = this.y3
+        }
+        if(this.ztype != 'background') {
+            this.zIndex = this.y3
+        }
         if(this.ztype == 'zombie') {
             this.zIndex += 1
         } else if(this.ztype == 'sun') {
@@ -957,6 +963,17 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         this.shadow = drawPImageCentered(-80, 10, texturesMap.IMAGE_PLANTSHADOW)
         // shadow.zIndex = -1
         shadowLayer.addChild(this.shadow)
+        PVZ2.hasWater = true
+        if(PVZ2.hasWater) {
+            this.ripple = new PVZ2.Effect(pams.POPANIM_BACKGROUNDS_WATER_ZOMBIE_RIPPLE, 'ripple', this.x, this.y3, this.z3, scene, false)
+
+            let inWaterMask = new PIXI.Graphics()
+            inWaterMask.beginFill(0xFFFFFF)
+            inWaterMask.drawRect(0, 0, 400, 210)
+            inWaterMask.endFill()
+            this.pamSprite.addChild(inWaterMask)
+            this.pamSprite.mask = inWaterMask
+        }
     }
     init() {
         super.init()
@@ -1131,9 +1148,9 @@ PVZ2.ZombieModernAllStar = class extends PVZ2.ZombieBaseClass {
     }
 }
 PVZ2.Effect = class extends PVZ2.Object {
-    constructor(pam, act, x, y, z = 0, parent = scene) {
+    constructor(pam, act, x, y, z = 0, parent = scene, removeOnFinish = true) {
         super()
-        this.setPam(pam, undefined, act, {removeOnFinish: true})
+        this.setPam(pam, undefined, act, {removeOnFinish: removeOnFinish})
         this.position.set(x, y + z)
         this.y3 = y
         this.z3 = z

@@ -214,6 +214,9 @@ function setup(resources) {
         objects.forEach(a => {
             if (a.needRemove || a.pamParant && a.pamParent.needRemove) {
                 a.parent.removeChild(a)
+                if(a.ripple) {
+                    a.ripple.parent.removeChild(a.ripple)
+                }
                 if(a.shadow) {
                     a.shadow.parent.removeChild(a.shadow)
                 }
