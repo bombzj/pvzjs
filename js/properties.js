@@ -384,7 +384,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         this.meterFill.pivot.x = 22
         this.meterFill.scale.x = 0
         this.zombieHead = drawPImage(this.constructor.meterPos.width, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_ZOMBIEHEAD)
-        this.progressMeter.addChild(this.meter, this.meterFill, this.zombieHead)
+        this.progressMeter.addChild(this.meter, this.meterFill)
         this.meterFlags = []
         let width = this.constructor.meterPos.width
         for(let i = 0;i < this.flagCount;i++) {
@@ -397,6 +397,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
             }
             this.progressMeter.addChild(pole, flag)
         }
+        this.progressMeter.addChild(this.zombieHead)
         this.currentWave = 0
         this.waveCounter = 1 * this.constructor.waveInterval
         this.zombieSpawnCounter = 0
@@ -416,7 +417,11 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         if(this.zombieSpawnCounter <= 0 && this.zombieSpawnList.length > 0) {
             this.zombieSpawnCounter = 30
             let zombie = this.zombieSpawnList.shift()
-            scene.zombieGrid(zombie.Type, 10, zombie.Row)
+            if(zombie.Row) {
+                scene.zombieGrid(zombie.Type, 10, parseInt(zombie.Row) - 1)
+            } else {
+                scene.zombieGrid(zombie.Type, 10, rnd(0, 4))
+            }
         }
         for(let i = 0;i < this.flagCount;i++) {
             let mf = this.meterFlags[i]

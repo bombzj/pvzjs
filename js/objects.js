@@ -299,7 +299,7 @@ PVZ2.Scene = class extends PIXI.Container {
     plantGrid(type, x, y) {
         return plant(type, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h)
     }
-    zombieGrid(type, x = 9, y = rnd(0, 4)) {
+    zombieGrid(type, x = 9, y) {
         return zombie(type, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h)
     }
     tileGrid(pam, act, x, y) {
