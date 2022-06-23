@@ -302,4 +302,8 @@ PVZ2.Scene = class extends PIXI.Container {
     zombieGrid(type, x = 9, y = rnd(0, 4)) {
         return zombie(type, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h)
     }
+    tileGrid(pam, act, x, y) {
+        let tile = new PVZ2.Effect(pam, act, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h, 0, scene, false)
+        return tile
+    }
 }

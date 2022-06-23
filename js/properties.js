@@ -114,8 +114,10 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
         PVZ2.seedBank = this
         
         this.seedChooser.position.set(this.pos.width + 20, 440)
-        for(let plant of this.prop.PresetPlantList) {
-            this.seedChooser.addSeedByName(plant.PlantType)
+        if(this.prop.PresetPlantList) {
+            for(let plant of this.prop.PresetPlantList) {
+                this.seedChooser.addSeedByName(plant.PlantType)
+            }
         }
         for(let name of this.constructor.initSeeds) {
             this.seedChooser.addSeedByName(name)
@@ -313,6 +315,31 @@ PVZ2.InitialGridItemProperties = class extends PVZ2.BaseProperties {
     }
 }
 
+PVZ2.ProtectThePlantChallengeProperties = class extends PVZ2.BaseProperties {
+    init() {
+        if(this.prop.Plants) {
+            for(let plant of this.prop.Plants) {
+                scene.plantGrid(rtons.PlantTypes[plant.PlantType], plant.GridX - 1, plant.GridY)
+                scene.tileGrid(pams.POPANIM_BACKGROUNDS_PROTECT_TILE, 'animation', plant.GridX - 1, plant.GridY)
+            }
+        }
+    }
+    getResourceGroup() {
+        if(!this.Plants) {
+            return []
+        }
+        let types = new Set()
+        for(let plant of this.Plants) {
+            types.add(plant.PlantType)
+        }
+        
+        let resourcesGroupNeeded = ['ProtectThePlantChallengeModule']
+        for(let type of types) {
+            resourcesGroupNeeded.push(...rtons.PlantTypes[type].getResourceGroup())
+        }
+        return resourcesGroupNeeded
+    }
+}
 
 PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
     prepare(parent) {
