@@ -415,7 +415,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         }
         this.zombieSpawnCounter--
         if(this.zombieSpawnCounter <= 0 && this.zombieSpawnList.length > 0) {
-            this.zombieSpawnCounter = 30
+            this.zombieSpawnCounter = 40
             let zombie = this.zombieSpawnList.shift()
             if(zombie.Row) {
                 scene.zombieGrid(zombie.Type, 10, parseInt(zombie.Row) - 1)
@@ -622,5 +622,37 @@ PVZ2.TidalChangeWaveActionProps = class extends PVZ2.BaseProperties {
         }
 
         scene.waveLocation = newLocation
+    }
+}
+
+PVZ2.RailcartProperties = class extends PVZ2.BaseProperties {
+    init() {
+        for(let rail of this.prop.Rails) {
+            this.addRail(rail.Column, rail.RowStart, rail.RowEnd)
+        }
+        this.carts = []
+        for(let cart of this.prop.Railcarts) {
+            this.carts.push(this.addCart(cart.Column, cart.Row))
+        }
+    }
+    click(x, y) {
+
+    }
+    addRail(column, rowStart, rowEnd) {
+        let posStart = scene.getLocation(column, rowStart)
+        drawPImage(posStart.x, posStart.y, texturesMap.IMAGE_RAILCART_COWBOY_TOP, scene, true)
+        let posEnd = scene.getLocation(column, rowEnd)
+        drawPImage(posEnd.x, posEnd.y, texturesMap.IMAGE_RAILCART_COWBOY_BOTTOM, scene, true)
+        for(let i = rowStart + 1;i < rowEnd;i++) {
+            let pos = scene.getLocation(column, i)
+            drawPImage(pos.x, pos.y, texturesMap.IMAGE_RAILCART_COWBOY_MID, scene, true)
+        }
+    }
+    addCart(column, row) {
+        let pos = scene.getLocation(column, row)
+        return drawPImage(pos.x, pos.y, texturesMap.IMAGE_RAILCART_COWBOY_MINING_CART, scene, true)
+    }
+    getResourceGroup() {
+        return ['Railcart_Cowboy_Group']
     }
 }

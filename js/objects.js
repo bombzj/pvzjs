@@ -313,4 +313,10 @@ PVZ2.Scene = class extends PIXI.Container {
             return 5000
         }
     }
+    getLocation(column, row) {
+        return {
+            x: field.x + (0.5 + column) * field.w,
+            y: field.y + (0.5 + row) * field.h
+        }
+    }
 }
