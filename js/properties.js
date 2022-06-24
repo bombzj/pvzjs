@@ -119,10 +119,15 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
                 this.seedChooser.addSeedByName(plant.PlantType)
             }
         }
-        for(let name of this.constructor.initSeeds) {
-            this.seedChooser.addSeedByName(name)
+        if(this.prop.SelectionMethod == 'chooser') {
+            for(let name of this.constructor.initSeeds) {
+                this.seedChooser.addSeedByName(name)
+            }
+            this.seedChooser.visible = true
+            this.seedChooser.click2(0, 0)
+        } else if(this.prop.SelectionMethod == 'preset') {
+            this.seedChooser.visible = false
         }
-        this.seedChooser.click2(0, 0)
         PVZ2.numSun = numSun(0, 0, PVZ2.debug ? 5000 : 50)
     }
     static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
@@ -149,6 +154,9 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
     click(x, y) {
         let pos = this.constructor.pos
         if(!PVZ2.gameStart) {
+            if(this.prop.SelectionMethod == 'preset') {
+                return
+            }
             if(x >= this.seedChooser.x && y >this. seedChooser.y) {
                 this.seedChooser.click(x - this.seedChooser.x, y - this.seedChooser.y)
             }
@@ -192,19 +200,25 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
         }
     }
     getResourceGroup() {
-        // if(this.prop) {
-            let resourcesGroupNeeded = []
+        let resourcesGroupNeeded = []
+        if(this.PresetPlantList) {
+            if(this.PresetPlantList) {
+                for(let plant of this.PresetPlantList) {
+                    let type = rtons.PlantTypes[plant.PlantType]
+                    resourcesGroupNeeded.push(...type.getResourceGroup())
+                }
+            }
+        }
+        if(this.SelectionMethod == 'chooser') {
             for(let typeName of this.constructor.initSeeds) {
                 let type = rtons.PlantTypes[typeName]
                 resourcesGroupNeeded.push(...type.getResourceGroup())
             }
-            return resourcesGroupNeeded
-        // }
-        // return []
+        }
+        return resourcesGroupNeeded
     }
 }
 PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
-    static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
     seeds = []
     static pos = {
         x: 0, y: 150, height: 120, width: 180
@@ -235,7 +249,7 @@ PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
             }
             this.seedCounter--
             if(this.seedCounter <= 0 && this.seeds.length < 9) {
-                this.seeds.push(newSeed(plantType[rndObj(this.constructor.initSeeds)], 10, 1300, true, true))
+                this.seeds.push(newSeed(plantType[this.getRandomPlant()], 10, 1300, true, true))
                 this.seedCounter = 150
             }
 
@@ -266,16 +280,17 @@ PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
             }
         }
     }
+    getRandomPlant() {
+        let plant = rndObj(this.prop.InitialPlantList)
+        return plant.PlantType
+    }
     getResourceGroup() {    
-        // if(this.prop) {     // object, not property
-            let resourcesGroupNeeded = []
-            for(let typeName of this.constructor.initSeeds) {
-                let type = rtons.PlantTypes[typeName]
-                resourcesGroupNeeded.push(...type.getResourceGroup())
-            }
-            return resourcesGroupNeeded
-        // }
-        // return []
+        let resourcesGroupNeeded = []
+        for(let plant of this.InitialPlantList) {
+            let type = rtons.PlantTypes[plant.PlantType]
+            resourcesGroupNeeded.push(...type.getResourceGroup())
+        }
+        return resourcesGroupNeeded
     }
 }
 PVZ2.SunDropperProperties = class extends PVZ2.BaseProperties {
