@@ -98,6 +98,11 @@ PVZ2.PlantTypeUltomato = class extends PVZ2.PlantType {
 }
 
 PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
+    static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
+    seeds = []
+    static pos = {
+        x: 0, y: 150, height: 120, width: 180
+    }
     init() {
         this.pos = this.constructor.pos
         for(let i = 0;i < 8;i++){
@@ -127,11 +132,6 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
             this.seedChooser.visible = false
         }
         PVZ2.numSun = numSun(0, 0, PVZ2.debug ? 5000 : 50)
-    }
-    static initSeeds = ['sunflower', 'peashooter', 'wallnut', 'snowpea', 'homingthistle']
-    seeds = []
-    static pos = {
-        x: 0, y: 150, height: 120, width: 180
     }
     next() {    // return the next available empty seed, or undefined if full
         for(let seed of this.seeds) {
@@ -221,6 +221,7 @@ PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
     static pos = {
         x: 0, y: 150, height: 120, width: 180
     }
+    seedCounter = 0
     init() {
         PVZ2.seedConveyor = this
         this.conveyor = new PVZ2.SeedConveyor()
@@ -230,7 +231,6 @@ PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
         this.selspr.visible = false 
         stage.addChild(this.selspr)
     }
-    seedCounter = 0
     step() {
         if(PVZ2.gameStart) {
             this.conveyor.step()
@@ -359,6 +359,14 @@ PVZ2.ProtectThePlantChallengeProperties = class extends PVZ2.BaseProperties {
 }
 
 PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
+    static meterPos = {
+        x: 570, y: 30, width: 400, height: 20
+    }
+    static waveInterval = 10
+    packets = []
+    static pos = {
+        x: 1800, y: 400, height: 600, width: 280
+    }
     prepare(parent) {
         if(this.DynamicZombies) {
             for(let dyn of this.DynamicZombies) {
@@ -382,10 +390,6 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         resourcesGroupNeeded.push(this.WaveManagerProps.getResourceGroup())  // included in the zombie resource above
         return resourcesGroupNeeded
     }
-    static meterPos = {
-        x: 570, y: 30, width: 400, height: 20
-    }
-    static waveInterval = 10
     init() {
         PVZ2.waveManager = this
         this.packets = this.prop.getZombies()
@@ -451,10 +455,6 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         let meterX = this.currentWave * this.constructor.meterPos.width / props.WaveCount
         this.zombieHead.x = this.constructor.meterPos.width - meterX
         this.meterFill.scale.x = meterX / 20
-    }
-    packets = []
-    static pos = {
-        x: 1800, y: 400, height: 600, width: 280
     }
     showDemo() {
         for(let i = 0;i < 1;i++) {
