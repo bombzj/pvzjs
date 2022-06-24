@@ -544,8 +544,8 @@ PVZ2.StageModuleProperties = class extends PVZ2.BaseProperties {
 PVZ2.BeachStageProperties = class extends PVZ2.StageModuleProperties {
     init() {
         super.init()
-        this.rocks = drawPImage(0, 0, texturesMap[this.prop.BackgroundImagePrefix + '_ROCKS'])
-        this.broadwalk = drawPImage(0, 800, texturesMap[this.prop.BackgroundImagePrefix + '_BOARDWALK'])
+        this.rocks = drawPImage(310, 10, texturesMap[this.prop.BackgroundImagePrefix + '_ROCKS'])
+        this.broadwalk = drawPImage(-80, 810, texturesMap[this.prop.BackgroundImagePrefix + '_BOARDWALK'])
         scene.addChild(this.rocks, this.broadwalk)
         this.rocks.zIndex = this.broadwalk.zIndex = -5
         
@@ -586,21 +586,26 @@ PVZ2.EightiesStageProperties = class extends PVZ2.StageModuleProperties {
 PVZ2.TideProperties = class extends PVZ2.BaseProperties {
     init() {
         scene.waveLocation = this.prop.StartingWaveLocation
-        let lineX = field.x + field.w * (this.prop.StartingWaveLocation - 1)
+        let lineX = scene.getWaterX()
         let lineY = field.y
-        this.under = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_UNDERLAYER, 'idle', lineX, lineY, 0)
-        this.tideLine = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_TIDE_LINE, 'idle', lineX, lineY, 0)
-        this.upper = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WAVE_UPPERLAYER, 'idle', lineX, lineY, 0)
-        this.tideLine.zIndex = -10
+        this.under = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_UNDERLAYER, 'idle', lineX + 230, lineY + 350, 0)
+        this.under.scale.set(this.under.scale.x * 0.65)
+        this.tideLine = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_TIDE_LINE, 'idle', lineX + 50, lineY + 330, 0)
+        this.tideLine.scale.set(this.tideLine.scale.x * 0.83)
+        this.upper = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WAVE_UPPERLAYER, 'idle', lineX + 350, lineY + 350, 0)
+        this.upper.scale.set(this.upper.scale.x * 0.65)
+        this.tideLine.zIndex = -40
         this.under.zIndex = -50
+        // this.upper.visible = false
         this.upper.zIndex = -30
-        this.waterSign = drawPImageCentered(lineX - field.w, field.y - 100, texturesMap.IMAGE_BACKGROUNDS_BEACH_WATERSIGN, scene)
+        this.waterSign = drawPImageCentered(lineX, field.y - 100, texturesMap.IMAGE_BACKGROUNDS_BEACH_WATERSIGN, scene)
         this.waterSign.scale.set(this.waterSign.scale.x * 0.5)
         this.waterSign.zIndex = -1
-        for(let i = this.prop.StartingWaveLocation - 1; i < 9;i++) {
+        for(let i = this.prop.StartingWaveLocation; i < 9;i++) {
             for(let j = 0;j < 5;j++) {
                 if((i + j) % 2 == 1) continue
                 let square = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_SQUARE, 'idle', field.x + field.w * (i + 0.5) , field.y + field.h * (j + 0.5), 0)
+                square.scale.set(square.scale.x * 0.7)
                 square.zIndex = -40
             }
         }

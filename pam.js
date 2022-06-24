@@ -341,15 +341,17 @@ PVZ2.Object = class extends PIXI.Container {
         }
         this.age++
         this.y = this.y3 + this.z3
+        let waterX = scene.getWaterX()
         if(this.shadow) {
-            this.shadow.visible = this.x <= 500
+            this.shadow.visible = this.x <= waterX
             this.shadow.x = this.x
             this.shadow.y = this.shadow.y3 = this.y3
         }
         if(this.ripple) {
-            this.ripple.visible = this.x > 500
+            this.ripple.visible = this.x > waterX
             this.ripple.x = this.x
-            this.ripple.y = this.ripple.y3 = this.y3
+            this.ripple.y3 = this.y3
+            this.ripple.y = this.ripple.y3 + this.ripple.z3
         }
         if(this.ztype != 'background') {
             this.zIndex = this.y3
@@ -964,14 +966,14 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
         // shadow.zIndex = -1
         shadowLayer.addChild(this.shadow)
         if(PVZ2.hasWater) {
-            this.ripple = new PVZ2.Effect(pams.POPANIM_BACKGROUNDS_WATER_ZOMBIE_RIPPLE, 'ripple', this.x, this.y3, this.z3, scene, false)
+            this.ripple = new PVZ2.Effect(pams.POPANIM_BACKGROUNDS_WATER_ZOMBIE_RIPPLE, 'ripple', this.x, this.y3, this.z3 + 50, scene, false)
 
-            let inWaterMask = new PIXI.Graphics()
+            let inWaterMask = this.inWaterMask = new PIXI.Graphics()
             inWaterMask.beginFill(0xFFFFFF)
-            inWaterMask.drawRect(0, 0, 400, 210)
+            inWaterMask.drawRect(-500, -500, 1000, 560)
             inWaterMask.endFill()
-            this.pamSprite.addChild(inWaterMask)
-            this.pamSprite.mask = inWaterMask
+            this.addChild(inWaterMask)
+            this.mask = inWaterMask
         }
     }
     init() {
@@ -1036,6 +1038,21 @@ PVZ2.ZombieBaseClass = class extends PVZ2.Object {
             }
         }
         this.showArmor()
+        let inWaterDepth = 50
+        // ripple
+        if(PVZ2.hasWater) {
+            let dx = this.x - scene.getWaterX()
+            if(dx <= 0) {
+                this.pamSprite.y = 0
+                // this.inWaterMask.y = 0
+            } else if(dx > inWaterDepth) {
+                this.pamSprite.y = inWaterDepth
+                // this.inWaterMask.y = -inWaterDepth
+            } else {
+                this.pamSprite.y = dx
+                // this.inWaterMask.y = -dx
+            }
+        }
     }
     chill(n) {
         this.chillCounter = n * fps
