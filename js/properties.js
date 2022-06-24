@@ -698,3 +698,28 @@ PVZ2.GravestoneProperties = class extends PVZ2.BaseProperties {
         }
     }
 }
+
+PVZ2.InitialPlantProperties = class extends PVZ2.BaseProperties {
+    init() {
+        if(this.prop.InitialPlantPlacements) {
+            for(let placement of this.prop.InitialPlantPlacements) {
+                scene.plantGrid(plantType[placement.TypeName], placement.GridX - 1, placement.GridY)
+            }
+        }
+    }
+    getResourceGroup() {
+        if(!this.InitialPlantPlacements) {
+            return []
+        }
+        let types = new Set()
+        for(let placement of this.InitialPlantPlacements) {
+            types.add(placement.TypeName)
+        }
+        
+        let resourcesGroupNeeded = []
+        for(let type of types) {
+            resourcesGroupNeeded.push(...plantType[type].getResourceGroup())
+        }
+        return resourcesGroupNeeded
+    }
+}
