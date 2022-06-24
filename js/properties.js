@@ -605,12 +605,12 @@ PVZ2.TideProperties = class extends PVZ2.BaseProperties {
         scene.waveLocation = this.prop.StartingWaveLocation
         let lineX = scene.getWaterX()
         let lineY = field.y
-        this.under = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_UNDERLAYER, 'idle', lineX + 230, lineY + 350, 0)
-        this.under.scale.set(this.under.scale.x * 0.65)
+        this.under = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_UNDERLAYER, 'idle', lineX + 230, lineY + 380, 0)
+        this.under.scale.set(this.under.scale.x * 0.75)
         this.tideLine = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_TIDE_LINE, 'idle', lineX + 50, lineY + 330, 0)
         this.tideLine.scale.set(this.tideLine.scale.x * 0.83)
-        this.upper = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WAVE_UPPERLAYER, 'idle', lineX + 350, lineY + 350, 0)
-        this.upper.scale.set(this.upper.scale.x * 0.65)
+        this.upper = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WAVE_UPPERLAYER, 'idle', lineX + 400, lineY + 380, 0)
+        this.upper.scale.set(this.upper.scale.x * 0.75)
         this.tideLine.zIndex = -40
         this.under.zIndex = -50
         // this.upper.visible = false
@@ -618,7 +618,7 @@ PVZ2.TideProperties = class extends PVZ2.BaseProperties {
         this.waterSign = drawPImageCentered(lineX, field.y - 100, texturesMap.IMAGE_BACKGROUNDS_BEACH_WATERSIGN, scene)
         this.waterSign.scale.set(this.waterSign.scale.x * 0.5)
         this.waterSign.zIndex = -1
-        for(let i = this.prop.StartingWaveLocation; i < 9;i++) {
+        for(let i = this.prop.StartingWaveLocation - 1; i < 9;i++) {
             for(let j = 0;j < 5;j++) {
                 if((i + j) % 2 == 1) continue
                 let square = new PVZ2.BackgroundEffect(pams.POPANIM_BACKGROUNDS_WATER_SQUARE, 'idle', field.x + field.w * (i + 0.5) , field.y + field.h * (j + 0.5), 0)
@@ -721,5 +721,21 @@ PVZ2.InitialPlantProperties = class extends PVZ2.BaseProperties {
             resourcesGroupNeeded.push(...plantType[type].getResourceGroup())
         }
         return resourcesGroupNeeded
+    }
+}
+
+PVZ2.PiratePlankProperties = class extends PVZ2.BaseProperties {
+    init() {
+        if(this.prop.PlankRows) {
+            for(let row of this.prop.PlankRows) {
+                let texture = (row % 2 == 1) ? texturesMap.IMAGE_BACKGROUNDS_PIRATE_PLANK : texturesMap.IMAGE_BACKGROUNDS_PIRATE_PLANK_02
+                let pos = scene.getLocation(6, row)
+                let plank = drawPImage(pos.x + 50, pos.y + 40, texture, scene, true)
+                
+            }
+        }
+    }
+    getResourceGroup() {
+        return []
     }
 }
