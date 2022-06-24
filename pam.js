@@ -1163,6 +1163,25 @@ PVZ2.ZombieModernAllStar = class extends PVZ2.ZombieBaseClass {
         super.step()
     }
 }
+PVZ2.GridItem = class extends PVZ2.Object {
+    constructor(type) {
+        super()
+        this.type = type
+        let pam = pams[type.prop.PopAnim]        // PopAnimRenderOffset
+
+        let initAct = undefined
+        if(type.TypeName == 'goldtile') {
+            initAct = 'inactive_used'
+        }
+        this.setPam(pam, undefined, initAct)
+    }
+    init() {
+        super.init()
+    }
+    step() {
+        super.step()
+    }
+}
 PVZ2.Effect = class extends PVZ2.Object {
     constructor(pam, act, x, y, z = 0, parent = scene, removeOnFinish = true) {
         super()

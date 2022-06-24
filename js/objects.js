@@ -306,6 +306,9 @@ PVZ2.Scene = class extends PIXI.Container {
         let tile = new PVZ2.Effect(pam, act, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h, 0, scene, false)
         return tile
     }
+    itemGrid(type, x, y) {
+        return gridItem(type, field.x + (0.5 + x) * field.w, field.y + (0.5 + y) * field.h)
+    }
     getWaterX() {
         if(this.waveLocation >= 0) {
             return field.x + (this.waveLocation - 2) * field.w

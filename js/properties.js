@@ -36,7 +36,6 @@ PVZ2.LevelDefinition = class extends PVZ2.BaseProperties {
     }
 }
 PVZ2.ZombieType = class extends PVZ2.BaseProperties {
-    prepareProp() {}
     getResourceGroup() {
         return this.ResourceGroups
     }
@@ -53,7 +52,6 @@ PVZ2.ZombieType = class extends PVZ2.BaseProperties {
     }
 }
 PVZ2.PlantType = class extends PVZ2.BaseProperties {
-    prepareProp() {}
     getResourceGroup() {
         return this.PlantResourceGroups
     }
@@ -249,8 +247,11 @@ PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
             }
             this.seedCounter--
             if(this.seedCounter <= 0 && this.seeds.length < 9) {
-                this.seeds.push(newSeed(plantType[this.getRandomPlant()], 10, 1300, true, true))
-                this.seedCounter = 150
+                let type = plantType[this.getRandomPlant()]
+                if(type) {
+                    this.seeds.push(newSeed(type, 10, 1300, true, true))
+                    this.seedCounter = 150
+                }
             }
 
             this.selspr.visible = (selPlant != -1)
@@ -288,6 +289,7 @@ PVZ2.ConveyorSeedBankProperties = class extends PVZ2.BaseProperties {
         let resourcesGroupNeeded = []
         for(let plant of this.InitialPlantList) {
             let type = rtons.PlantTypes[plant.PlantType]
+            if(!type) continue  // ? tool_powertile_alpha in future16
             resourcesGroupNeeded.push(...type.getResourceGroup())
         }
         return resourcesGroupNeeded
@@ -309,7 +311,7 @@ PVZ2.InitialGridItemProperties = class extends PVZ2.BaseProperties {
     init() {
         if(this.prop.InitialGridItemPlacements) {
             for(let placement of this.prop.InitialGridItemPlacements) {
-                scene.plantGrid(rtons.PlantTypes[placement.TypeName], placement.GridX - 1, placement.GridY)
+                scene.itemGrid(gridType[placement.TypeName], placement.GridX - 1, placement.GridY)
             }
         }
     }
@@ -324,7 +326,7 @@ PVZ2.InitialGridItemProperties = class extends PVZ2.BaseProperties {
         
         let resourcesGroupNeeded = []
         for(let type of types) {
-            resourcesGroupNeeded.push(...rtons.PlantTypes[type].getResourceGroup())
+            resourcesGroupNeeded.push(...gridType[type].getResourceGroup())
         }
         return resourcesGroupNeeded
     }
@@ -669,5 +671,30 @@ PVZ2.RailcartProperties = class extends PVZ2.BaseProperties {
     }
     getResourceGroup() {
         return ['Railcart_Cowboy_Group']
+    }
+}
+
+
+PVZ2.GridItemType = class extends PVZ2.BaseProperties {
+    getResourceGroup() {
+        return this.ResourceGroups
+    }
+    prepare() {
+        gridType[this.TypeName] = this
+        this.prop = this.Properties = getByRTID(this.Properties)
+    }
+}
+
+PVZ2.GravestoneProperties = class extends PVZ2.BaseProperties {
+    getResourceGroup() {
+        return ['Egypt_Gravestone']
+    }
+    init() {
+        if(this.prop.ForceSpawnData) {
+            let type = gridType.gravestone_egypt
+            for(let grave of this.prop.ForceSpawnData) {
+                scene.itemGrid(type, grave.GridX, grave.GridY)
+            }
+        }
     }
 }

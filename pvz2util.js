@@ -33,6 +33,18 @@ function zombie(i, x, y) {
     return a
 }
 
+function gridItem(i, x, y) {
+    let type = typeof i !== 'string' ? i : gridType[i]
+    let a = new PVZ2.GridItem(type)
+    a.position.set(x, y)
+    a.y3 = y
+    a.z3 = 0
+    scene.addChild(a)
+    newObjects.push(a)
+    a.ztype = 'item'
+    return a
+}
+
 var sunTotal = 50
 // draw a seed
 function seed(i, x, y) {
@@ -239,7 +251,7 @@ function setup(resources) {
 let need2LoadGroup = ['LevelCommon', 'UI_AlwaysLoaded', 'UI_SeedPackets']
 var stage = new PIXI.Container()
 var objects = [], newObjects = []
-var plantType = {}, zombieType = {}
+var plantType = {}, zombieType = {}, gridType = {}
 var fps = 30
 var resourcesMap
 
@@ -303,7 +315,7 @@ function loadGroupPost(resName, resources) {
 }
 
 const packageJsons = ['RESOURCES', 'ProjectileTypes', 'ArmorTypes', 'PlantProperties', 'ZombieProperties'
-    , 'PlantTypes', 'ZombieTypes', 'PropertySheets', 'LevelModules']
+    , 'PlantTypes', 'ZombieTypes', 'PropertySheets', 'LevelModules', 'GridItemProps', 'GridItemTypes']
 var rtMap = {}
 var rtons = {}
 
