@@ -744,3 +744,14 @@ PVZ2.PiratePlankProperties = class extends PVZ2.BaseProperties {
         return []
     }
 }
+
+PVZ2.PowerTileProperties = class extends PVZ2.BaseProperties {
+    init() {
+        for(let tile of this.prop.LinkedTiles) {
+            scene.itemGrid(gridType['powertile_' + tile.Group], tile.Location.mX, tile.Location.mY)
+        }
+    }
+    getResourceGroup() {
+        return ['PowerTileModule']
+    }
+}
