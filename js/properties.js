@@ -402,7 +402,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         this.flagCount = props.WaveCount / props.FlagWaveInterval
         this.meter = drawPImage(0, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER)
         this.meterFill = drawPImage(this.constructor.meterPos.width + 20, 10, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_FILL)
-        this.meterFill.pivot.x = 22
+        this.meterFill.pivot.x = 34 * resScale
         this.meterFill.scale.x = 0
         this.zombieHead = drawPImage(this.constructor.meterPos.width, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_METER_ZOMBIEHEAD)
         this.progressMeter.addChild(this.meter, this.meterFill)
@@ -454,7 +454,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         }
         let meterX = this.currentWave * this.constructor.meterPos.width / props.WaveCount
         this.zombieHead.x = this.constructor.meterPos.width - meterX
-        this.meterFill.scale.x = meterX / 20
+        this.meterFill.scale.x = meterX * resScaleV / 34
     }
     showDemo() {
         for(let i = 0;i < 1;i++) {
@@ -579,7 +579,12 @@ PVZ2.DinoStageProperties = class extends PVZ2.StageModuleProperties {
 
 }
 PVZ2.ModernStageProperties = class extends PVZ2.StageModuleProperties {
-
+    init() {
+        super.init()
+        this.grass = drawPImage(field.x - 45, field.y, texturesMap[this.prop.BackgroundImagePrefix + '_ROW_05'])
+        scene.addChild(this.grass)
+        this.grass.zIndex = -5
+    }
 }
 PVZ2.PirateStageProperties = class extends PVZ2.StageModuleProperties {
 

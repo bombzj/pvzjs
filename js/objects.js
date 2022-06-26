@@ -28,8 +28,8 @@ class SeedChooser extends PIXI.Container {
         let downButton = drawPImage(0, 0, texturesMap.IMAGE_UI_HUD_INGAME_PROGRESS_BAR_UPGRADE_ARROW_GREEN)
         downButton.angle = 180
         upButton.interactive = downButton.interactive = true
-        upButton.scale.set(2)
-        downButton.scale.set(2)
+        upButton.scale.set(upButton.scale.x * 1.3)
+        downButton.scale.set(downButton.scale.x * 1.3)
         upButton.position.set(320, -200)
         downButton.position.set(400, 0)
         upButton.click = x => {
@@ -218,7 +218,7 @@ PVZ2.Seed = class extends PIXI.Container {
             this.priceTab.visible = true
         }
         this.plant.texture = texturesMap['IMAGE_UI_PACKETS_' + type.TypeName.toUpperCase()]
-        this.plant.position.set(15, 68 - this.plant.texture.height)
+        this.plant.position.set(15, 105 - this.plant.texture.height * resScaleV)
         this.plant.visible = true
         this.type = type
         if(!this.noCooldown) {
