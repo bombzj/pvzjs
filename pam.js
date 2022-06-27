@@ -1407,7 +1407,7 @@ PVZ2.Mower = class extends PVZ2.Object {
     step() {
         if(this.triggered) {
             this.x += 15
-            if(this.x > 1600) {
+            if(this.x > 1700) {
                 rm(this)
             }
         }

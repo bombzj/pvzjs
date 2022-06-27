@@ -424,12 +424,17 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         this.zombieSpawnCounter = 0
         this.zombieSpawnList = []
     }
+    isLastWave() {
+        return this.currentWave == this.prop.WaveManagerProps.WaveCount - 1
+    }
     step() {
         let props = this.prop.WaveManagerProps
         this.waveCounter--
         if(this.waveCounter <= 0 && this.currentWave < props.WaveCount) {
-            for(let wave of props.Waves[this.currentWave]) {
-                wave.action()
+            if(this.currentWave < props.Waves.length) {
+                for(let wave of props.Waves[this.currentWave]) {
+                    wave.action()
+                }
             }
             this.currentWave++
             this.waveCounter = this.constructor.waveInterval *  30
@@ -754,4 +759,79 @@ PVZ2.PowerTileProperties = class extends PVZ2.BaseProperties {
     getResourceGroup() {
         return ['PowerTileModule']
     }
+}
+
+PVZ2.ZombiesAteYourBrainsProperties = class extends PVZ2.BaseProperties {
+    counterMax = 200
+    step() {
+        if(this.lostCounter >= 0) {
+            if(this.lostCounter > 0) {
+                this.lostCounter--
+                if(this.lostCounter <= 0) {
+                    init()
+                } else {
+                    stage.alpha = this.lostCounter / this.counterMax
+                }
+            }
+        } else {
+            let lost = this.isLost()
+            if(lost) {
+                this.lostCounter = this.counterMax
+            }
+        }
+    }
+    isLost() {
+        for(let obj of objects) {
+            if(obj.ztype == 'zombie' && !obj.dead) {
+                if(obj.x < this.prop.ZombieWinPositionX * 1.5 + field.x) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+}
+
+PVZ2.ZombiesDeadWinConProperties = class extends PVZ2.BaseProperties {
+    counterMax = 100
+    step() {
+        if(this.winCounter >= 0) {
+            if(this.winCounter > 0) {
+                this.winCounter--
+                if(this.winCounter <= 0) {
+                    init()
+                } else {
+                    stage.alpha = this.winCounter / this.counterMax
+                }
+            }
+        } else {
+            let win = this.isWin()
+            if(win) {
+                this.winCounter = this.counterMax
+            }
+        }
+    }
+    isWin() {
+        if(!PVZ2.waveManager.isLastWave()) {
+            return false
+        }
+        for(let obj of objects) {
+            if(obj.ztype == 'zombie' && !obj.dead) {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+PVZ2.GameScenes = {
+    Loading: 0,
+    Menu: 1,
+    LevelIntro: 2,
+    Playing: 3,
+    ZombiesWon: 4,
+    Award: 5,
+    Credit: 6,
+    Challenge: 7,
+    Leaderboard: 8
 }

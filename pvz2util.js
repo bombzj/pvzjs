@@ -256,6 +256,7 @@ var fps = 30
 var resourcesMap
 
 function loadPams(callback) {
+    PVZ2.gameScene = PVZ2.GameScenes.Loading
     for (let j of packageJsons) {
         loader.add(j, resourceRoot + 'PACKAGES/' + j.toUpperCase() + '.RTON', {xhrType: PIXI.LoaderResource.XHR_RESPONSE_TYPE.BUFFER, loadType: 'rton'})
     }
@@ -490,6 +491,7 @@ async function loadLevel(levelName) {
 }
 
 function initLevel(level) {
+    PVZ2.gameStart = false
     scene.removeChildren()
     if(PVZ2.seedBank) {
         stage.removeChild(PVZ2.seedBank.seedChooser)
@@ -518,6 +520,8 @@ function initLevel(level) {
             PVZ2.modules.push(m)
         }
     }
+    PVZ2.gameScene = PVZ2.GameScenes.Playing
+    stage.alpha = 1
 }
 
 
