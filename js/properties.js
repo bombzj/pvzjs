@@ -110,7 +110,7 @@ PVZ2.SeedBankProperties = class extends PVZ2.BaseProperties {
         }
         this.resetSeedsPosition()
         // seed chooser & bank
-        this.seedChooser = new SeedChooser(5, 5)
+        this.seedChooser = new PVZ2.SeedChooser(5, 5)
         stage.addChild(this.seedChooser)
         this.selspr = seedSel(0, 100)
         this.selspr.visible = false 
@@ -425,7 +425,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         this.zombieSpawnList = []
     }
     isLastWave() {
-        return this.currentWave == this.prop.WaveManagerProps.WaveCount - 1
+        return this.currentWave >= this.prop.WaveManagerProps.WaveCount
     }
     step() {
         let props = this.prop.WaveManagerProps
@@ -822,16 +822,4 @@ PVZ2.ZombiesDeadWinConProperties = class extends PVZ2.BaseProperties {
         }
         return true
     }
-}
-
-PVZ2.GameScenes = {
-    Loading: 0,
-    Menu: 1,
-    LevelIntro: 2,
-    Playing: 3,
-    ZombiesWon: 4,
-    Award: 5,
-    Credit: 6,
-    Challenge: 7,
-    Leaderboard: 8
 }
