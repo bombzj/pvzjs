@@ -2,375 +2,60 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>test</title>
+        <script src="pixi.min.js"></script>
+        <script src="pam.js"></script>
+        <script src="js/objects.js"></script>
+        <script src="js/bytebuffer.js"></script>
+        <script src="js/pamparse.js"></script>
+        <script src="js/rtonparse.js"></script>
+        <script src="pvz2util.js"></script>
+        <script src="js/properties.js"></script>
+        <script src="js/pamview.js"></script>
+        <link rel="stylesheet" href="css/primer.css">
+        <title>Pam Viewer</title>
+        <meta name="viewport" content="width=device-width">
     </head>
-    <script src="pixi.min.js"></script>
-    <script src="pam.js"></script>
-    <script src="js/objects.js"></script>
-    <script src="js/bytebuffer.js"></script>
-    <script src="js/pamparse.js"></script>
-    <script src="js/rtonparse.js"></script>
-    <script src="pvz2util.js"></script>
-    <script src="js/properties.js"></script>
-    <style>
-        body, button, input {
-            font-size: 18px;
-        }
-    </style>
-    <body>
+    <body onload="jsInit()">
+        <div id="canvasParent">
+        </div>
+        <div class="Box Box--condensed">
+            <ul>
+                <li class="Box-row">
+                    <input class="form-control" name="pamName" size="30" onchange="searchGroup(document.all.pamName.value)">
+                    <button class="btn mr-2" type="button" onclick="searchGroup(document.all.pamName.value)">
+                        <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
+                    </button>
+                </li>
+                <li class="Box-row">
+                    <button class="btn" onclick="goStep()">Step</button>
+                    <button class="btn" onclick="goPlay()">Play</button>
+                    <button class="btn" onclick="center.visible = !center.visible">Center</button>
+                    <span id="coord"></span>
+                </li>
+                <li class="Box-row">
+                    <nav class="UnderlineNav">
+                        <div class="UnderlineNav-body" role="tablist" id="modeNav">
+                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toGroup()">Group</button>
+                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toPam()">Pam</button>
+                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toSprite()">Sprite</button>
+                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toPart()">Part</button>
+                        </div>
+                    </nav>
+                    
+                    <nav class="menu" aria-label="Loading" id="loadingSpan">
+                        <span>Loading</span><span class="AnimatedEllipsis"></span>
+                    </nav>
+                    <nav class="menu" aria-label="Group" id="chooseGroup">
+                    </nav>
+                    <nav class="menu" aria-label="Pam" id="choosePam" style="display:none">
+                    </nav>
+                    <nav class="menu" aria-label="Sprite" id="chooseSprite" style="display:none">
+                    </nav>
+                    <nav class="menu" aria-label="Part" id="tableListPart" style="display:none">
+                    </nav>
+                </li>
+              </ul>
 
-<script type="text/javascript">
-
-    let app = new PIXI.Application({width: 600, height: 600});
-    document.body.appendChild(app.view);
-
-    app.renderer.backgroundColor = 0x0FFFFFF;   
-
-    const loader = PIXI.Loader.shared;     
-    PVZ2.resolution = 768     
-    loadPams()
-
-    var groupNames =['PlantChomper', 'PlantPeashooter', 'SodRollGroup', 'ZombieEgyptBasicGroup']
-    var atlas = 0
-    var atlasSprite
-    var textureId
-    var fileMapAtlas = {}
-    var atlasMap = {}
-    var atlasData
-    var scene = new PIXI.Container()
-    var spr, pam, sprName
-    var highlightFilter
-    var center
-
-    function init() {
-        highlightFilter = new PIXI.filters.ColorMatrixFilter()
-        highlightFilter.negative()
-        // atlas = atlasMap.ATLASIMAGE_ATLAS_UI_SEEDPACKETS_768_00
-        for(let group of rtons.RESOURCES.groups) {
-            if(group.type == 'composite') continue
-            if(group.res != PVZ2.resolution) continue
-
-            let sub = resourcesMap[group.parent]
-            for(let res of group.resources) {
-                if(res.type == 'Image') {
-                    if(res.atlas) {
-                        fileMapAtlas[res.path[1].toUpperCase()] = atlasMap[res.id] = {baseTextureName: res.id, children: [], group: group.parent}
-                    } else {
-                        let parent = atlasMap[res.parent]
-                        parent.children.push(res.id)
-                    }
-                }
-            }
-        }
-
-
-        showGroupList()
-        center = new PIXI.Graphics()
-        center.lineStyle(3, 0xFF0000, 1)
-        center.drawCircle(0, 0, 5)
-        center.zIndex = 10
-        center.visible = false
-        app.stage.addChild(center)
-    }
-
-
-    function drawAtlas(name) {
-        atlasData = fileMapAtlas[name]
-        atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
-    }   
-
-    function drawAtlasByIndex() {
-        atlasData = fileMapAtlas[atlasNames[atlas] + '_' + PVZ2.resolution + '_00']
-        atlasSprite.texture = atlasTexturesMap[atlasData.baseTextureName]
-    }
-
-    var cnt = 0
-    var speed = 2
-    function loop() {
-        if(stepMode) return
-        if(++cnt < speed) return
-        cnt = 0
-
-        step()
-    }
-
-    function step() {
-        if(spr) {
-            spr.step()
-            showInfo()
-        }
-    }
-
-    function showInfo() {
-        let frame = spr.sprite.frame[spr.frame]
-        for(let command of frame.command) {
-            console.log(command.command + '(' + command.parameter + ')')
-        }
-
-        if(stepMode) {
-            removeButtons(tableListPart)
-            let row = tableListPart.insertRow()
-            row.insertCell().innerText = spr.frame
-            row.insertCell().innerText = 'anim-' + sprName
-            listParts(spr.parts)
-        }
-    }
-
-    function listParts(parts, tab = 0) {
-        for(let index in parts) {
-            let part = parts[index]
-            if(part.data.frame) {   // is sprite, not image
-                let row = tableListPart.insertRow()
-                // let cell = row.insertCell()
-                // var o=document.createElement("input"); 
-                // o.type = "button" ; 
-                // o.value = name;
-                // o.addEventListener("click", callback);   
-                // cell.appendChild(o);
-                
-                row.insertCell().innerText = ">".repeat(tab) + index
-                let cell = row.insertCell()
-                cell.innerText = part.data.name
-                cell.addEventListener('click', () => {
-                    highlightPart(part)
-                })
-                row.insertCell().innerText = part.renderable
-
-                if(part.parts) {
-                    listParts(part.parts, tab + 1)
-                }
-            }
-        }
-    }
-
-    function highlightPart(part) {
-        if(part.filters) {
-            delete part.filters
-        } else {
-            part.filters = [highlightFilter]
-            // console.log(part)
-        }
-    }
-
-    function onclick(e) {
-        let x = e.offsetX, y = e.offsetY
-        console.log('click: ', x, y)
-
-        for(let child of atlasData.children) {
-            let texture = texturesMap[child]
-            let rect = texture.orig
-            if(y >= rect.top && y < rect.bottom && x >= rect.left && x < rect.right) {
-                console.log(child, atlasData.group)
-            }
-        }
-    }
-
-    window.onkeydown = function(e) {
-        console.log('key: ' + e.code)
-        if(e.code == 'KeyS'){
-            if(stepMode) {
-                step()
-            }
-        }
-        if(e.code == 'ArrowUp'){
-            spr.y -= 100
-            e.preventDefault()
-        }
-        if(e.code == 'ArrowDown'){
-            spr.y += 100
-            e.preventDefault()
-        }
-        if(e.code == 'ArrowLeft'){
-            spr.x -= 100
-            e.preventDefault()
-        }
-        if(e.code == 'ArrowRight'){
-            spr.x += 100
-            e.preventDefault()
-        }
-        if(e.code == 'Minus'){
-            spr.scale.set(spr.scale.x / 2)
-            e.preventDefault()
-        }
-        if(e.code == 'Equal'){
-            spr.scale.set(spr.scale.x * 2)
-            e.preventDefault()
-        }
-        // if(e.code == 'KeyD'){
-        //     if(atlas < atlasNames.length - 1) atlas++
-        //     drawAtlasByIndex()
-        // }
-        coord.innerText = spr.x + ',' + spr.y + ',' + Math.floor(spr.scale.x*100) + '%'
-    }
-
-    function searchPam(name) {
-        removeButtons(choosePam)
-        removeButtons(chooseSprite)
-        removeButtons(tableListPart)
-        name = name.toUpperCase()
-        groupNames = []
-        for(let groupName in resourcesMap) {
-            if(groupName.toUpperCase().indexOf(name) != -1) {
-                groupNames.push(groupName)
-            }
-        }
-        showGroupList()
-    }
-
-    function removeButtons(parent) {
-        while(parent.rows.length > 0) {
-            parent.deleteRow(0)
-        }
-    }
-
-    function addButton(name, parent, callback) {
-        let cell = parent.insertRow().insertCell()
-        var o=document.createElement("input"); 
-        o.type = "button" ; 
-        o.value = name;
-        o.addEventListener("click", callback);   
-        cell.appendChild(o);
-    }
-    function addText(name, parent) {
-        let cell = parent.insertRow().insertCell()
-        cell.innerText = name
-    }
-
-    function showGroupList() {
-        removeButtons(chooseGroup)
-        for(let groupName of groupNames) {
-            let len = resourcesMap[groupName].pams.length
-            // if(len == 0) continue
-            let name = groupName
-            if(len > 1) {
-                name = name + ' (' + len + ')'
-            }
-            addButton(name, chooseGroup, () => {
-                showPamList(groupName)
-            })
-        }
-    }
-
-    function showPamList(groupName) {
-        removeButtons(chooseSprite)
-        removeButtons(tableListPart)
-        let group = resourcesMap[groupName]
-        removeButtons(choosePam)
-        for(let pam of group.pams) {
-            addButton(pam.name, choosePam, () => {
-                changePam(groupName, pam.name)
-            })
-        }
-        for(let atlas of group.atlases) {
-            addText(atlas.name, choosePam)
-        }
-    }
-
-    function changePam(groupName, name) {
-        if(!resourcesMap[groupName].loaded) {
-            loader.reset()
-            loadGroupPre(groupName)
-            loader.load((loader, resources) => {
-                loadGroupPost(groupName, resources)
-                changePam(groupName, name)
-            })
-            return
-        }
-        app.stage.removeChild(spr)
-        pam = pams[name]
-        checkPam(pam)
-        spr = new PamSprite(pam)
-        app.stage.addChild(spr)
-        spr.position.set(0, 0)
-
-        center.position.set(pam.size[0] / 2, pam.size[1] / 2)
-        app.stage.sortChildren()
-
-        removeButtons(chooseSprite)
-        for(let frame in pam.actionFrame) {
-            let frameIndex = pam.actionFrame[frame]
-            addButton('main-' + frame, chooseSprite, () => {
-                sprName = frame
-                spr.changeSprite(undefined, frameIndex)
-                spr.position.set(0, 0)
-                showInfo()
-            })
-        }
-        for(let sprite of pam.sprite) {
-            let name = sprite.name
-            if(sprite.frame.length > 1) {
-                name = name + ' (' + sprite.frame.length + ')'
-            }
-            addButton(name, chooseSprite, () => {
-                spr.changeSprite(sprite)
-                spr.position.set(app.view.width / 2, app.view.height / 2)
-                showInfo()
-            })
-        }
-    }
-
-    function checkPam(pam) {
-        let ms = pam.main_sprite
-        let parts = {}
-        let oldparts = {}
-        for(let frame of ms.frame) {
-            for(let remove of frame.remove) {
-                // if(!parts[remove.index]) debugger
-                delete parts[remove.index]
-            }
-            for(let append of frame.append) {
-                // if(parts[append.index]) debugger
-                if(oldparts[append.index]) {
-                    if(oldparts[append.index].resource != append.resource || oldparts[append.index].sprite != append.sprite) debugger
-                }
-                parts[append.index] = append
-                oldparts[append.index] = append
-            }
-            for(let change of frame.change) {
-                // if(!parts[change.index]) debugger
-            }
-        }
-    }
-
-    var stepMode = false
-    function goStep() {
-        stepMode = true
-        step()
-    }
-    function goPlay() {
-        stepMode = false
-        removeButtons(tableListPart)
-    }
-    
-    var plantList = [
-        {       // 0
-            ename: 'sunflower',
-            cost: 50,
-            hitpoint: 300,
-            cooldown: 20,
-        },
-    ]
-
-    var zombieList = [
-        {       // 0
-            ename: 'mummy',
-        },
-    ]
-
-    app.view.onclick = onclick
-</script>
-        <p>
-            <input name="pamName" size="30" onchange="searchPam(document.all.pamName.value)">
-            <button onclick="goStep()">step</button>
-            <button onclick="goPlay()">play</button>
-            <button onclick="center.visible = !center.visible">center</button>
-            <span id="coord"></span>
-        </p>
-        <p>
-            <table id="chooseGroup" style="float:left"></table>
-            <table id="choosePam" style="float:left"></table>
-            <table id="chooseSprite" style="float:left"></table>
-            <table id="tableListPart" style="float:left"></table>
-        </p>
+        </div>
     </body>
 </html>
