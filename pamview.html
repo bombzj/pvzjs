@@ -35,7 +35,7 @@
                 <li class="Box-row">
                     <button class="btn" onclick="goStep()" id="btnStep" disabled>Step</button>
                     <button class="btn" onclick="goPlay()" id="btnPlay" disabled>Play</button>
-                    <button class="btn" onclick="center.visible = !center.visible">Center</button>
+                    <button class="btn" onclick="goCenter()">Center</button>
                     <details class="dropdown details-reset details-overlay d-inline-block">
                         <summary class="btn" aria-haspopup="true">
                             List
@@ -49,8 +49,6 @@
                         </ul>
                     </details>
                     <span id="coord"></span>
-                </li>
-                <li class="Box-row">
                     <nav class="UnderlineNav">
                         <div class="UnderlineNav-body" role="tablist" id="modeNav">
                           <button id="navGroup" class="UnderlineNav-item" role="tab" type="button" onclick="toGroup()">Group</button>

@@ -13,10 +13,11 @@ var center
 var app
 
 function jsInit() {
-    app = new PIXI.Application({ width: canvasParent.clientWidth, height: 400 });
-    canvasParent.appendChild(app.view);
+    app = new PIXI.Application({ })
+    jsResize()
+    canvasParent.appendChild(app.view)
 
-    app.renderer.backgroundColor = 0x0FFFFFF;
+    app.renderer.backgroundColor = 0x0FFFFFF
 
     PVZ2.resolution = 1536
     need2LoadGroup = []
@@ -36,12 +37,22 @@ function jsInit() {
     }
 
     window.onkeydown = pamKeydown
-    app.view.onclick = onclick
+    // app.view.onclick = onclick
     window.onresize = jsResize
+    app.view.onpointerdown = onPointerDown
+    app.view.onpointermove = onPointerMove
+    app.view.onpointerup = onPointerUp
+    app.view.ontouchstart = onTouchStart
 }
 
 function jsResize() {
-    app.view.width = canvasParent.clientWidth
+    let canvasWidth = canvasParent.clientWidth < 600 ? canvasParent.clientWidth : 600
+    let canvasHeight = canvasWidth < 400 ? canvasWidth : 400
+    app.view.width = canvasWidth
+    app.view.height = canvasHeight
+    if(spr) {
+        adjustPosition()
+    }
 }
 
 
@@ -69,8 +80,12 @@ function init() {
     loadingSpan.style.display = 'none'
     showGroupList()
     center = new PIXI.Graphics()
-    center.lineStyle(3, 0xFF0000, 1)
-    center.drawCircle(0, 0, 5)
+    center.lineStyle(2, 0xFF0000, 1)
+    const lineLength = 20
+    center.moveTo(-lineLength, 0)
+    center.lineTo(lineLength, 0)
+    center.moveTo(0, -lineLength)
+    center.lineTo(0, lineLength)
     center.zIndex = 10
     center.visible = false
     app.stage.addChild(center)
@@ -170,6 +185,85 @@ function onclick(e) {
     //     }
     // }
 }
+
+const evCache = []
+var beginDiff = -1
+var beginScale
+var beginPos
+function onPointerDown(e) {
+    console.log(e)
+    evCache.push(e)
+    if(!e.target.hasPointerCapture(e.pointerId)) {
+        e.target.setPointerCapture(e.pointerId)
+    }
+    if(!spr) return
+    if(evCache.length == 2) {
+        beginDiff = Math.sqrt((evCache[1].clientX-evCache[0].clientX)**2 + (evCache[1].clientY-evCache[0].clientY)**2)
+        beginScale = spr.scale.x
+    }
+    if(!beginPos) {
+        beginPos = {
+            x: spr.x - e.clientX,
+            y: spr.y - e.clientY,
+            pointerId: e.pointerId,
+            scale: 1
+        }
+    }
+}
+function onPointerMove(e) {
+    // console.log(e)
+    for (let i = 0; i < evCache.length; i++) {
+        if (e.pointerId == evCache[i].pointerId) {
+            evCache[i] = e;
+            break;
+        }
+    } 
+    if(!spr) return
+    if (evCache.length == 2) {
+        // Calculate the distance between the two pointers
+        const curDiff = Math.sqrt((evCache[1].clientX-evCache[0].clientX)**2 + (evCache[1].clientY-evCache[0].clientY)**2)
+        beginPos.scale = curDiff / beginDiff
+        spr.scale.set(beginScale * beginPos.scale)
+        spr.x = evCache[0].clientX + beginPos.x * beginPos.scale
+        spr.y = evCache[0].clientY + beginPos.y * beginPos.scale
+    } else {
+        if(beginPos && e.pointerId == beginPos.pointerId) {
+            spr.x = e.clientX + beginPos.x * beginPos.scale
+            spr.y = e.clientY + beginPos.y * beginPos.scale
+        }
+    }
+}
+function onPointerUp(e) {
+    console.log(e)
+    e.target.releasePointerCapture(e.pointerId)
+    for (let i = 0; i < evCache.length; i++) {
+        if (evCache[i].pointerId == e.pointerId) {
+            evCache.splice(i, 1)
+            break
+        }
+    }
+    if(!spr) return
+    // Remove this event from the target's cache
+    if(beginPos && e.pointerId == beginPos.pointerId) {
+        beginPos = undefined
+    }
+    if (evCache.length < 2) {
+        prevDiff = -1
+        beginScale = -1
+    }
+}
+function onTouchStart(e) {
+    if(e.touches.length != evCache.length) {
+        // something is wrong
+        beginPos = undefined
+        beginScale = undefined
+        while(evCache.length > 0) {
+            evCache.pop()
+        }
+    }
+}
+
+
 const moveSpeed = 50
 function pamKeydown(e) {
     // console.log('key: ' + e.code)
@@ -207,7 +301,7 @@ function pamKeydown(e) {
     //     if(atlas < atlasNames.length - 1) atlas++
     //     drawAtlasByIndex()
     // }
-    coord.innerText = spr.x + ',' + spr.y + ',' + Math.floor(spr.scale.x * 100) + '%'
+    coord.innerText = Math.floor(spr.x) + ',' + Math.floor(spr.y) + ',' + Math.floor(spr.scale.x * 100) + '%'
 }
 
 function searchGroup(name) {
@@ -326,9 +420,7 @@ function changePam(groupName, name) {
     checkPam(pam)
     spr = new PamSprite(pam)
     app.stage.addChild(spr)
-    spr.position.set(0, 0)
-
-    center.position.set(pam.size[0] / 2, pam.size[1] / 2)
+    adjustPosition()
     app.stage.sortChildren()
 
     removeButtons(chooseSprite)
@@ -340,7 +432,7 @@ function changePam(groupName, name) {
         addButton('main-' + frame, chooseSprite, (e) => {
             sprName = frame
             spr.changeSprite(undefined, frameIndex)
-            spr.position.set(0, 0)
+            adjustPosition()
             showInfo()
             if(selectedSpriteIndex != -1) {
                 chooseSprite.children[selectedSpriteIndex].removeAttribute('aria-current')
@@ -359,7 +451,7 @@ function changePam(groupName, name) {
         const index2 = index
         addButton(name, chooseSprite, (e) => {
             spr.changeSprite(sprite)
-            spr.position.set(app.view.width / 2, app.view.height / 2)
+            adjustPosition()
             showInfo()
             if(selectedSpriteIndex != -1) {
                 chooseSprite.children[selectedSpriteIndex].removeAttribute('aria-current')
@@ -375,6 +467,28 @@ function changePam(groupName, name) {
         selectedSpriteIndex = 0
         chooseSprite.children[0].setAttribute('aria-current', 'page')
     }
+}
+
+function adjustPosition() {
+    if(!spr) return
+    let rect = spr.getLocalBounds()
+    let rectCenterX = rect.x + rect.width / 2
+    let rectCenterY = rect.y + rect.height / 2
+    let ratio = rect.width / app.view.width
+    let ratio2 = rect.height / app.view.height
+    if(ratio < ratio2) {
+        ratio = ratio2
+    }
+    if(ratio > 0.9) {
+        ratio = 0.9 / ratio
+        spr.scale.set(ratio)
+        spr.position.set(app.view.width / 2 - rectCenterX * ratio, app.view.height / 2 - rectCenterY * ratio)
+    } else {
+        spr.scale.set(1)
+        spr.position.set(app.view.width / 2 - rectCenterX, app.view.height / 2 - rectCenterY)    
+    }
+    
+    center.position.set(spr.x + pam.size[0] / 2 * spr.scale.x, spr.y + pam.size[1] / 2 * spr.scale.y)
 }
 
 function toGroup() {
@@ -457,6 +571,10 @@ function goPlay() {
     toSprite()
     removeButtons(tableListPart)
     navPart.style.display = 'none'
+}
+function goCenter() {
+    adjustPosition()
+    center.visible = !center.visible
 }
 
 function capitalizeFirstLetter(string) {
