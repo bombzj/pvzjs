@@ -18,9 +18,22 @@ function jsInit() {
 
     app.renderer.backgroundColor = 0x0FFFFFF;
 
-    PVZ2.resolution = 768
+    PVZ2.resolution = 1536
     need2LoadGroup = []
     loadPams()
+    for(let world of PVZ2.worlds) {
+        let li = document.createElement('li')
+        let a = document.createElement('a')
+        a.classList.add('dropdown-item')
+        a.innerText = capitalizeFirstLetter(world) + ' World'
+        a.href = "#"
+        a.addEventListener("click", (e) => {
+            searchGroupPreset(world, e.target)
+            e.preventDefault()
+        })
+        presetSearch.appendChild(li)
+        li.appendChild(a)
+    }
 
     window.onkeydown = pamKeydown
     app.view.onclick = onclick
@@ -199,9 +212,6 @@ function pamKeydown(e) {
 
 function searchGroup(name) {
     if(name.length < 2) return
-    removeButtons(choosePam)
-    removeButtons(chooseSprite)
-    removeButtons(tableListPart)
     name = name.toUpperCase()
     groupNames = []
     for (let groupName in resourcesMap) {
@@ -212,6 +222,12 @@ function searchGroup(name) {
     showGroupList()
 }
 
+function searchGroupPreset(name, target) {
+    target.parentElement.parentElement.parentElement.removeAttribute('open')
+    pamName.value = name
+    searchGroup(name)
+}
+
 function removeButtons(parent) {
     while (parent.lastElementChild) {
         parent.removeChild(parent.lastElementChild);
@@ -219,10 +235,11 @@ function removeButtons(parent) {
 }
 
 function addButton(name, parent, callback) {
-    var o = document.createElement("a")
+    var o = document.createElement('a')
     o.innerText = name
     if(callback) {
-        o.addEventListener("click", callback)
+        o.href = '#'
+        o.addEventListener('click', callback)
     }
     o.classList.add('menu-item')
     parent.appendChild(o)
@@ -234,6 +251,12 @@ function addText(name, parent) {
 
 var selectedGroupIndex
 function showGroupList() {
+    removeButtons(choosePam)
+    navPam.style.display = 'none'
+    removeButtons(chooseSprite)
+    navSprite.style.display = 'none'
+    removeButtons(tableListPart)
+    navPart.style.display = 'none'
     removeButtons(chooseGroup)
     selectedGroupIndex = -1
     for (let [index, groupName] of groupNames.entries()) {
@@ -243,7 +266,7 @@ function showGroupList() {
         if (len > 1) {
             name = name + ' (' + len + ')'
         }
-        addButton(name, chooseGroup, () => {
+        addButton(name, chooseGroup, (e) => {
             showPamList(groupName)
             if(selectedGroupIndex != -1) {
                 chooseGroup.children[selectedGroupIndex].removeAttribute('aria-current')
@@ -251,6 +274,7 @@ function showGroupList() {
             chooseGroup.children[index].setAttribute('aria-current', 'page')
             selectedGroupIndex = index
             toPam()
+            e.preventDefault()
         })
     }
     toGroup()
@@ -263,8 +287,9 @@ function showPamList(groupName) {
     let group = resourcesMap[groupName]
     selectedPamIndex = -1
     removeButtons(choosePam)
+    navPam.style.display = ''
     for (let [index, pam] of group.pams.entries()) {
-        addButton(pam.name, choosePam, () => {
+        addButton(pam.name, choosePam, (e) => {
             changePam(groupName, pam.name)
             if(selectedPamIndex != -1) {
                 choosePam.children[selectedPamIndex].removeAttribute('aria-current')
@@ -272,6 +297,7 @@ function showPamList(groupName) {
             choosePam.children[index].setAttribute('aria-current', 'page')
             selectedPamIndex = index
             toSprite()
+            e.preventDefault()
         })
     }
     for (let atlas of group.atlases) {
@@ -292,6 +318,9 @@ function changePam(groupName, name) {
         })
         return
     }
+
+    btnStep.disabled = false
+
     app.stage.removeChild(spr)
     pam = pams[name]
     checkPam(pam)
@@ -303,11 +332,12 @@ function changePam(groupName, name) {
     app.stage.sortChildren()
 
     removeButtons(chooseSprite)
+    navSprite.style.display = ''
     let index = 0
     for (let frame in pam.actionFrame) {
         let frameIndex = pam.actionFrame[frame]
         const index2 = index
-        addButton('main-' + frame, chooseSprite, () => {
+        addButton('main-' + frame, chooseSprite, (e) => {
             sprName = frame
             spr.changeSprite(undefined, frameIndex)
             spr.position.set(0, 0)
@@ -317,6 +347,7 @@ function changePam(groupName, name) {
             }
             chooseSprite.children[index2].setAttribute('aria-current', 'page')
             selectedSpriteIndex = index2
+            e.preventDefault()
         })
         index++
     }
@@ -326,7 +357,7 @@ function changePam(groupName, name) {
             name = name + ' (' + sprite.frame.length + ')'
         }
         const index2 = index
-        addButton(name, chooseSprite, () => {
+        addButton(name, chooseSprite, (e) => {
             spr.changeSprite(sprite)
             spr.position.set(app.view.width / 2, app.view.height / 2)
             showInfo()
@@ -335,6 +366,7 @@ function changePam(groupName, name) {
             }
             chooseSprite.children[index2].setAttribute('aria-current', 'page')
             selectedSpriteIndex = index2
+            e.preventDefault()
         })
         index++
     }
@@ -412,15 +444,23 @@ function checkPam(pam) {
 var stepMode = false
 function goStep() {
     if(!stepMode) {
+        navPart.style.display = ''
         toPart()
+        btnPlay.disabled = false
     }
     stepMode = true
     step()
 }
 function goPlay() {
+    btnPlay.disabled = true
     stepMode = false
     toSprite()
     removeButtons(tableListPart)
+    navPart.style.display = 'none'
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 var plantList = [

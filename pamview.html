@@ -22,27 +22,41 @@
             <ul>
                 <li class="Box-row">
                     <div class="input-group">
-                        <input class="form-control" name="pamName" onchange="searchGroup(document.all.pamName.value)">
+                        <form onsubmit="searchGroup(pamName.value);return false;" id="searchForm">
+                            <input class="form-control" id="pamName">
+                        </form>
                         <span class="input-group-button">
-                            <button class="btn" type="button" onclick="searchGroup(document.all.pamName.value)">
-                            <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
-                        </button>
+                            <button class="btn" type="button" onclick="searchGroup(pamName.value)">
+                                <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
+                            </button>
                         </span>
                     </div>
                 </li>
                 <li class="Box-row">
-                    <button class="btn" onclick="goStep()">Step</button>
-                    <button class="btn" onclick="goPlay()">Play</button>
+                    <button class="btn" onclick="goStep()" id="btnStep" disabled>Step</button>
+                    <button class="btn" onclick="goPlay()" id="btnPlay" disabled>Play</button>
                     <button class="btn" onclick="center.visible = !center.visible">Center</button>
+                    <details class="dropdown details-reset details-overlay d-inline-block">
+                        <summary class="btn" aria-haspopup="true">
+                            List
+                            <div class="dropdown-caret"></div>
+                        </summary>
+                    
+                        <ul class="dropdown-menu dropdown-menu-se" id="presetSearch">
+                        <li><a class="dropdown-item" href="#" onclick="searchGroupPreset('zombie',this);return false;">All Zombies</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="searchGroupPreset('plant',this);return false;">All Plants</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="searchGroupPreset('world',this);return false;">World Map</a></li>
+                        </ul>
+                    </details>
                     <span id="coord"></span>
                 </li>
                 <li class="Box-row">
                     <nav class="UnderlineNav">
                         <div class="UnderlineNav-body" role="tablist" id="modeNav">
-                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toGroup()">Group</button>
-                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toPam()">Pam</button>
-                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toSprite()">Sprite</button>
-                          <button class="UnderlineNav-item" role="tab" type="button" onclick="toPart()">Part</button>
+                          <button id="navGroup" class="UnderlineNav-item" role="tab" type="button" onclick="toGroup()">Group</button>
+                          <button id="navPam" style="display:none;" class="UnderlineNav-item" role="tab" type="button" onclick="toPam()">Pam</button>
+                          <button id="navSprite" style="display:none;" class="UnderlineNav-item" role="tab" type="button" onclick="toSprite()">Sprite</button>
+                          <button id="navPart" style="display:none;" class="UnderlineNav-item" role="tab" type="button" onclick="toPart()">Part</button>
                         </div>
                     </nav>
                     
