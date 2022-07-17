@@ -1002,9 +1002,12 @@ var zombieHideSprites = [
         'zombie_seaweed1', 'knight_feather', 'flag_stick', 'flag_01', 'cowboy_hat',
     ]
 var plantHideSprites = [
-    '_wallnut_armor_states',
-    '_tallnut_plantfood_armor',
-    'Magnet_Item'
+    '_wallnut_armor_states', 'endurian_plantfood_armor',
+    '_tallnut_plantfood_armor', 'Plantfood_Helmet2',
+    'Magnet_Item', 'witchhazel_effect_left', 'witchhazel_effect_right',
+    '_custom_right', '_custom_left', 
+    'custom_01', 'custom_1', 'custom_02', 'custom_03', 'custom_04', 'custom_05', 'custom_06', 'custom_07', 'custom_08', 'custom_09',
+    'custom_valentines', 'custom_halloween', 'custom_holiday', 'custom_thingsandstuff'
 ]
 
 PVZ2.ZombieBaseClass = class extends PVZ2.Object {
