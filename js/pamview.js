@@ -11,17 +11,29 @@ var spr, pam, sprName
 var highlightFilter
 var center
 var app
+var loadingSprite
 
 function jsInit() {
-    app = new PIXI.Application({ })
+    app = new PIXI.Application({ view: myCanvas })
+    // canvasParent.appendChild(app.view)
     jsResize()
-    canvasParent.appendChild(app.view)
 
     app.renderer.backgroundColor = 0x0FFFFFF
 
     PVZ2.resolution = 1536
     need2LoadGroup = []
     loadPams()
+
+    loadingSprite = new PIXI.Text('Loading...', { fontFamily: 'Arial', fontSize: 50, fill: 'green', align: 'center', fontWeight: '400', strokeThickness: 3 })
+    app.stage.addChild(loadingSprite)
+    loadingSprite.pivot.set(loadingSprite.width / 2, loadingSprite.height / 2)
+    loadingSprite.position.set(app.view.width / 2, app.view.height / 2)        
+    app.ticker.add(delta => {
+        if(loadingSprite) {
+            loadingSprite.angle += 3
+        }
+    })
+
     for(let world of PVZ2.worlds) {
         let li = document.createElement('li')
         let a = document.createElement('a')
@@ -46,10 +58,11 @@ function jsInit() {
 }
 
 function jsResize() {
-    let canvasWidth = canvasParent.clientWidth < 600 ? canvasParent.clientWidth : 600
+    let canvasWidth = canvasParent.clientWidth
     let canvasHeight = canvasWidth < 400 ? canvasWidth : 400
     app.view.width = canvasWidth
     app.view.height = canvasHeight
+    canvasParent.style.height = canvasHeight + 'px'
     if(spr) {
         adjustPosition()
     }
@@ -78,6 +91,7 @@ function init() {
     }
 
     loadingSpan.style.display = 'none'
+    loadingSprite.visible = false
     showGroupList()
     center = new PIXI.Graphics()
     center.lineStyle(2, 0xFF0000, 1)
@@ -122,7 +136,7 @@ function step() {
 function showInfo() {
     let frame = spr.sprite.frame[spr.frame]
     for (let command of frame.command) {
-        console.log(command.command + '(' + command.parameter + ')')
+        // console.log(command.command + '(' + command.parameter + ')')
     }
 
     if (stepMode) {
@@ -130,7 +144,9 @@ function showInfo() {
         // let row = tableListPart.insertRow()
         // row.insertCell().innerText = spr.frame
         // row.insertCell().innerText = 'anim-' + sprName
-        addButton('anim-' + sprName, tableListPart)
+        // addButton('anim-' + sprName, tableListPart, (e) => {
+        //     e.preventDefault()
+        // })
         listParts(spr.parts)
     }
 }
@@ -154,9 +170,23 @@ function listParts(parts, tab = 0) {
             //     highlightPart(part)
             // })
             // row.insertCell().innerText = part.renderable
-            addButton(part.data.name, tableListPart, () => {
+            let btn = addButton("-".repeat(tab) + part.data.name, tableListPart, (e) => {
                 highlightPart(part)
+                e.preventDefault()
             })
+            
+            btn.classList.add('d-flex', 'flex-items-center')
+            if(part.renderable) {
+                let label = document.createElement('span')
+                label.innerText = 'v'
+                label.classList.add('Label')
+                btn.appendChild(label)
+            }
+            let label = document.createElement('span')
+            label.innerText = index
+            label.classList.add('Label')
+            btn.appendChild(label)
+
             if (part.parts) {
                 listParts(part.parts, tab + 1)
             }
@@ -191,7 +221,7 @@ var beginDiff = -1
 var beginScale
 var beginPos
 function onPointerDown(e) {
-    console.log(e)
+    // console.log(e)
     evCache.push(e)
     if(!e.target.hasPointerCapture(e.pointerId)) {
         e.target.setPointerCapture(e.pointerId)
@@ -234,7 +264,7 @@ function onPointerMove(e) {
     }
 }
 function onPointerUp(e) {
-    console.log(e)
+    // console.log(e)
     e.target.releasePointerCapture(e.pointerId)
     for (let i = 0; i < evCache.length; i++) {
         if (evCache[i].pointerId == e.pointerId) {
@@ -337,6 +367,7 @@ function addButton(name, parent, callback) {
     }
     o.classList.add('menu-item')
     parent.appendChild(o)
+    return o
 }
 function addText(name, parent) {
     let cell = parent.insertRow().insertCell()
@@ -403,19 +434,24 @@ function showPamList(groupName) {
 
 var selectedSpriteIndex
 function changePam(groupName, name) {
+    btnStep.disabled = false
+    if(spr) {
+        app.stage.removeChild(spr)
+        spr = undefined
+    }
+
     if (!resourcesMap[groupName].loaded) {
         loader.reset()
         loadGroupPre(groupName)
+        loadingSprite.visible = true
         loader.load((loader, resources) => {
             loadGroupPost(groupName, resources)
+            loadingSprite.visible = false
             changePam(groupName, name)
         })
         return
     }
 
-    btnStep.disabled = false
-
-    app.stage.removeChild(spr)
     pam = pams[name]
     checkPam(pam)
     spr = new PamSprite(pam)
@@ -425,6 +461,10 @@ function changePam(groupName, name) {
 
     removeButtons(chooseSprite)
     navSprite.style.display = ''
+    if(stepMode) {
+        navPart.style.display = ''
+        showInfo()
+    }
     let index = 0
     for (let frame in pam.actionFrame) {
         let frameIndex = pam.actionFrame[frame]
@@ -450,6 +490,7 @@ function changePam(groupName, name) {
         }
         const index2 = index
         addButton(name, chooseSprite, (e) => {
+            sprName = 'default'
             spr.changeSprite(sprite)
             adjustPosition()
             showInfo()
