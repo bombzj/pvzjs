@@ -3,19 +3,34 @@ PVZ2.debug = false
 var shovelPos = { x: 1060, y: 1060, width: 125, height: 125 }
 var app, loader
 document.addEventListener('DOMContentLoaded', () => {
-    PVZ2.setResolution(768)
-    app = new PIXI.Application({ width: PVZ2.screenHeight, height: PVZ2.screenWidth, view: myCanvas });
-    document.body.appendChild(app.view);
+    // PVZ2.setResolution(1536)
+    app = new PIXI.Application({ view: myCanvas, backgroundColor: 0x0ffffff })
+    jsResize()
+    // document.body.appendChild(app.view)
     // PVZ2.collisionBox = true
 
-    app.renderer.backgroundColor = 0x0ffffff;
+    // app.renderer.backgroundColor = 0x0ffffff
 
     showLoading()
-    loader = PIXI.Loader.shared;
+    loader = PIXI.Loader.shared
     loadPams()
     app.view.addEventListener('pointerdown', onclick)
 })
 
+window.onresize = jsResize
+function jsResize() {
+    let res = window.innerHeight
+    let res2 = window.innerWidth * 3 / 4
+    res = res <= res2 ? res : res2
+
+    PVZ2.zoom = res / 1200
+    PVZ2.screenHeight = res
+    PVZ2.screenWidth = res * 4 / 3
+    app.renderer.resize(PVZ2.screenWidth, PVZ2.screenHeight)
+    if(stage) {
+        stage.scale.set(PVZ2.zoom)
+    }
+}
 
 function init() {
     // if (loadingSprite) {

@@ -182,12 +182,9 @@ PVZ2.setResolution = function(res) {
     } else if(res >= 768) {
         res2 = 768
     }
-    PVZ2.zoom = res / 1200
     PVZ2.resolution = res2
     resScale = res2 / 1200
     resScaleV = 1200 / res2
-    PVZ2.screenWidth = res
-    PVZ2.screenHeight = res * 4 / 3
 }
 let queryRes = parseInt(getQueryVariable('res'))
 if(!queryRes) {
@@ -506,9 +503,11 @@ function initLevel(level) {
     stage.removeChildren()
     if(!level) debugger
     PVZ2.modules = []
-    objects = objects.filter((x) => {
-        return x.ztype != 'zombie' && x.ztype != 'scene' && x.ztype != 'mower'
-    })
+    // objects = objects.filter((x) => {
+    //     return x.ztype != 'zombie' && x.ztype != 'scene' && x.ztype != 'mower'
+    // })
+    objects = []
+    newObjects = []
     
     let main = level.objects[0]
     let prop = main.StageModule

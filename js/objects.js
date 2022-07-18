@@ -1003,10 +1003,11 @@ var zombieHideSprites = [
     ]
 var plantHideSprites = [
     '_wallnut_armor_states', 'endurian_plantfood_armor',
-    '_tallnut_plantfood_armor', 'Plantfood_Helmet2',
+    '_tallnut_plantfood_armor', 'Plantfood_Helmet2', 'Peanut_Plantfood_Helmet',
     'Magnet_Item', 'witchhazel_effect_left', 'witchhazel_effect_right',
-    '_custom_right', '_custom_left', 
-    'custom_01', 'custom_1', 'custom_02', 'custom_03', 'custom_04', 'custom_05', 'custom_06', 'custom_07', 'custom_08', 'custom_09',
+    '_custom_right', '_custom_left', 'custom_01_horns', 'custom_02_cop', 'custom_03_orange', 'custom_01_halo', 'custom_02_robber', 'custom_03_blue',
+    'custom_01', 'custom_02', 'custom_03', 'custom_04', 'custom_05', 'custom_06', 'custom_07', 'custom_08', 'custom_09',
+    'custom_1', 'custom_2', 'custom_3',
     'custom_valentines', 'custom_halloween', 'custom_holiday', 'custom_thingsandstuff'
 ]
 
