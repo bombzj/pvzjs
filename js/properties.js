@@ -382,7 +382,6 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
     }
     getResourceGroup() {
         let zombies = this.getZombies()
-        console.log(zombies.length)
         let resourcesGroupNeeded = []
         for(let zombie of zombies) {
             resourcesGroupNeeded.push(...zombie.getResourceGroup())
@@ -420,7 +419,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
         }
         this.progressMeter.addChild(this.zombieHead)
         this.currentWave = 0
-        this.waveCounter = 1 * this.constructor.waveInterval
+        this.waveCounter = 60 * this.constructor.waveInterval
         this.zombieSpawnCounter = 0
         this.zombieSpawnList = []
     }
@@ -437,7 +436,7 @@ PVZ2.WaveManagerModuleProperties = class extends PVZ2.BaseProperties {
                 }
             }
             this.currentWave++
-            this.waveCounter = this.constructor.waveInterval *  30
+            this.waveCounter = this.constructor.waveInterval * 60
         }
         this.zombieSpawnCounter--
         if(this.zombieSpawnCounter <= 0 && this.zombieSpawnList.length > 0) {
@@ -522,8 +521,10 @@ PVZ2.WaveManagerProperties = class extends PVZ2.BaseProperties {
 }
 PVZ2.SpawnZombiesJitteredWaveActionProps = class extends PVZ2.BaseProperties {
     prepare() {
-        for(let zombie of this.Zombies) {
-            zombie.Type = getByRTID(zombie.Type)
+        if(this.Zombies) {
+            for(let zombie of this.Zombies) {
+                zombie.Type = getByRTID(zombie.Type)
+            }
         }
     }
     // getResourceGroup() {
@@ -534,8 +535,10 @@ PVZ2.SpawnZombiesJitteredWaveActionProps = class extends PVZ2.BaseProperties {
     //     return resourcesGroupNeeded
     // }
     getZombies(zombies) {
-        for(let zombie of this.Zombies) {
-            zombies.add(zombie.Type)
+        if(this.Zombies) {
+            for(let zombie of this.Zombies) {
+                zombies.add(zombie.Type)
+            }
         }
     }
     action() {

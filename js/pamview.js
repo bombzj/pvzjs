@@ -13,7 +13,7 @@ var center
 var app
 var loadingSprite
 
-function jsInit() {
+document.addEventListener('DOMContentLoaded', () => {
     app = new PIXI.Application({ view: myCanvas })
     // canvasParent.appendChild(app.view)
     jsResize()
@@ -59,7 +59,7 @@ function jsInit() {
     app.view.onpointermove = onPointerMove
     app.view.onpointerup = onPointerUp
     app.view.ontouchstart = onTouchStart
-}
+})
 
 function jsResize() {
     let canvasWidth = canvasParent.clientWidth

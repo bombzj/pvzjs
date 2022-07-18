@@ -496,13 +496,14 @@ async function loadLevel(levelName) {
 
 function initLevel(level) {
     PVZ2.gameStart = false
-    scene.removeChildren()
-    if(PVZ2.seedBank) {
-        stage.removeChild(PVZ2.seedBank.seedChooser)
-    }
-    if(PVZ2.seedConveyor) {
-        stage.removeChild(PVZ2.seedConveyor.conveyor)
-    }
+    // scene.removeChildren()
+    // if(PVZ2.seedBank) {
+    //     stage.removeChild(PVZ2.seedBank.seedChooser)
+    // }
+    // if(PVZ2.seedConveyor) {
+    //     stage.removeChild(PVZ2.seedConveyor.conveyor)
+    // }
+    stage.removeChildren()
     if(!level) debugger
     PVZ2.modules = []
     objects = objects.filter((x) => {
@@ -526,6 +527,39 @@ function initLevel(level) {
     }
     PVZ2.gameScene = PVZ2.GameScenes.Playing
     stage.alpha = 1
+
+    shovel(shovelPos.x, shovelPos.y)
+    sunTotal = 50
+
+    
+    // start button
+    let buttonStart = drawPImage(1140, 940, texturesMap.IMAGE_UI_GENERIC_PURPLEBUTTON, stage)
+    let buttonStartText = new PIXI.Text('Start!', { fontFamily: 'Arial', fontSize: 56, fill: 'white', align: 'center', fontWeight: '600', strokeThickness: 3 });
+    buttonStartText.position.set(buttonStart.x + 13, buttonStart.y + 15)
+    stage.addChild(buttonStartText)
+
+    buttonStart.interactive = true
+    buttonStart.on('pointerdown',  function () {
+        PVZ2.gameStart = true
+        if (PVZ2.seedBank) {
+            stage.removeChild(PVZ2.seedBank.seedChooser)
+        }
+        stage.removeChild(buttonRefresh)
+        stage.removeChild(buttonStart, buttonStartText)
+        scene.goFront()
+    })
+    // refresh button
+    buttonRefresh = drawPImage(1000, 300, texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE, stage)
+    buttonRefresh.interactive = true
+    buttonRefresh.on('pointerdown',  function () {
+        buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE_DOWN
+        buttonRefresh.interactive = false
+        randomLevel().then(() => {
+            buttonRefresh.texture = texturesMap.IMAGE_UI_POWERUPS_POWER_BEGHOULEDSHUFFLE
+            buttonRefresh.interactive = true
+        })
+
+    })    
 }
 
 

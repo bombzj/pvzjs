@@ -70,12 +70,12 @@ PVZ2.SeedChooser = class extends PIXI.Container {
         downButton.scale.set(downButton.scale.x * 1.3)
         upButton.position.set(320, -200)
         downButton.position.set(400, 0)
-        upButton.click = x => {
+        upButton.on('pointerdown', x => {
             this.pageUp()
-        }
-        downButton.click = x => {
+        })
+        downButton.on('pointerdown', x => {
             this.pageDown()
-        }
+        })
         this.addChild(upButton, downButton)
         this.zIndex = zIndexHUD
     }
