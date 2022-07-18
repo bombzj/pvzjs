@@ -189,7 +189,11 @@ PVZ2.setResolution = function(res) {
     PVZ2.screenWidth = res
     PVZ2.screenHeight = res * 4 / 3
 }
-PVZ2.setResolution(768)
+let queryRes = parseInt(getQueryVariable('res'))
+if(!queryRes) {
+    queryRes = 1536
+}
+PVZ2.setResolution(queryRes)
 PVZ2.gameStart = true
 PVZ2.field = {
     x: 406, y: 312,
@@ -639,6 +643,15 @@ function removeFilter(obj, add) {
     }
 }
 
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
 Array.prototype.remove = function (val) {
     var index = this.indexOf(val);
     if (index > -1) {

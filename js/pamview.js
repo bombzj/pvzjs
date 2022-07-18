@@ -20,8 +20,12 @@ function jsInit() {
 
     app.renderer.backgroundColor = 0x0FFFFFF
 
-    PVZ2.resolution = 1536
+    // PVZ2.setResolution(1536)
+
     need2LoadGroup = []
+    packageJsons.splice(1, packageJsons.length - 1)
+    // = ['RESOURCES', 'ProjectileTypes', 'ArmorTypes', 'PlantProperties', 'ZombieProperties'
+    //, 'PlantTypes', 'ZombieTypes', 'PropertySheets', 'LevelModules', 'GridItemProps', 'GridItemTypes']
     loadPams()
 
     loadingSprite = new PIXI.Text('Loading...', { fontFamily: 'Arial', fontSize: 50, fill: 'green', align: 'center', fontWeight: '400', strokeThickness: 3 })
@@ -60,8 +64,7 @@ function jsInit() {
 function jsResize() {
     let canvasWidth = canvasParent.clientWidth
     let canvasHeight = canvasWidth < 400 ? canvasWidth : 400
-    app.view.width = canvasWidth
-    app.view.height = canvasHeight
+    app.renderer.resize(canvasWidth, canvasHeight)
     canvasParent.style.height = canvasHeight + 'px'
     if(spr) {
         adjustPosition()
@@ -385,6 +388,7 @@ function showGroupList() {
     removeButtons(chooseGroup)
     selectedGroupIndex = -1
     for (let [index, groupName] of groupNames.entries()) {
+        if(!resourcesMap[groupName]) continue
         let len = resourcesMap[groupName].pams.length
         // if(len == 0) continue
         let name = groupName
@@ -414,7 +418,8 @@ function showPamList(groupName) {
     removeButtons(choosePam)
     navPam.style.display = ''
     for (let [index, pam] of group.pams.entries()) {
-        addButton(pam.name, choosePam, (e) => {
+        let name = pam.name.replace('POPANIM_', '')
+        addButton(name, choosePam, (e) => {
             changePam(groupName, pam.name)
             if(selectedPamIndex != -1) {
                 choosePam.children[selectedPamIndex].removeAttribute('aria-current')
@@ -426,7 +431,7 @@ function showPamList(groupName) {
         })
     }
     for (let atlas of group.atlases) {
-        let name = atlas.name.replace('ATLASIMAGE_ATLAS_', '').replace('_768_00', '')
+        let name = atlas.name.replace('ATLASIMAGE_ATLAS_', '').replace('_' + PVZ2.resolution + '_00', '')
         addButton('atlas: ' + name, choosePam)
         // addText(atlas.name, choosePam)
     }
